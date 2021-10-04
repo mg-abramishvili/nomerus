@@ -1,0 +1,27 @@
+@import 'bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
+
+html, body {
+    font-family: 'Jost', sans-serif;
+    font-size: 17px;
+}
+
+.type_choose .type1_with_flag {
+    background-color: #ececec;
+    width: 250px;
+    height: 60px;
+    border-radius: 8px;
+    position: relative;
+}
+.type_choose .type1_with_flag button {
+    width: calc(100% - 10px);
+    height: calc(100% - 12px);
+    border: 2px solid #222;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+    right: 5px;
+    font-size: 20px;
+}
