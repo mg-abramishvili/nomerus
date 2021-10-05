@@ -17,6 +17,9 @@
                     <template v-if="selected_transport.namecode === 'legkovoy'">
                         <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="а000аа" type="text" class="form-control" style="text-transform: uppercase;">
                     </template>
+                    <template v-if="selected_transport.namecode === 'moto'">
+                        <input v-model="number" v-maska="{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="000аа" type="text" class="form-control" style="text-transform: uppercase;">
+                    </template>
                 </div>
                 <div v-else class="mb-3">
                     <label class="form-label mb-1">Гос. номер</label>
@@ -66,12 +69,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="selected_type.namecode === 'type4'" class="type4">               
+                            <div v-if="number && number.length > 0" class="numbers">
+                                <span>{{ number.slice(0, 4) }}</span>
+                                <span>{{ number.slice(4, 6) }}</span>
+                            </div>
+                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
+                                <span>
+                                    {{ number_region }}
+                                </span>
+                                <div class="reg-inner">
+                                    <i>RUS</i>
+                                    <img src="/img/rus.svg"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div v-if="selected_type && selected_type.id" class="form-check mb-3">
+        <div v-if="selected_type && selected_type.id && selected_type.flag == true" class="form-check mb-3">
             <input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
                 Заказать комплект (+ 1шт.)

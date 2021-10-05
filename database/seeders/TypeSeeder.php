@@ -28,6 +28,14 @@ class TypeSeeder extends Seeder
                 'price' => 1000,
                 'komplekt_price' => 1000
             ],
+            [
+                'id' => 3,
+                'name' => 'Тип 4',
+                'namecode' => 'type4',
+                'flag' => 0,
+                'price' => 1500,
+                'komplekt_price' => NULL
+            ],
         ]);
     }
 }

@@ -22,6 +22,11 @@ class TransportTypeSeeder extends Seeder
                 'transport_id' => 1,
                 'type_id' => 2,
             ],
+            [
+                'id' => 3,
+                'transport_id' => 2,
+                'type_id' => 3,
+            ],
         ]);
     }
 }
