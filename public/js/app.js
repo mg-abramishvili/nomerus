@@ -2421,7 +2421,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("/api/transport/".concat(this.selected_transport.id, "/types")).then(function (response) {
-        return _this2.types = response.data, _this2.selected_type = _this2.types[0];
+        return _this2.types = response.data, _this2.selected_type = _this2.types[0], _this2.price = _this2.types[0].price;
       });
       this.number = '';
       this.number_region = '';
@@ -2434,7 +2434,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     addKomplekt: function addKomplekt() {
-      this.selected_komplekt_type = this.selected_type;
+      if (this.add_komplekt == true) {
+        this.selected_komplekt_type = this.selected_type;
+        this.selectKomplektType();
+      } else {
+        this.selected_komplekt_type = '';
+        this.price = this.selected_type.price;
+      }
     },
     selectKomplektType: function selectKomplektType() {
       this.price = parseInt(this.selected_type.komplekt_price) + parseInt(this.selected_komplekt_type.komplekt_price);

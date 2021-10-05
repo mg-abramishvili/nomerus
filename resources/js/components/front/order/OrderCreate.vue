@@ -155,7 +155,8 @@
                 .get(`/api/transport/${this.selected_transport.id}/types`)
                 .then(response => (
                     this.types = response.data,
-                    this.selected_type = this.types[0]
+                    this.selected_type = this.types[0],
+                    this.price = this.types[0].price
                 ));
                 this.number = ''
                 this.number_region = ''
@@ -168,7 +169,13 @@
                 }
             },
             addKomplekt() {
-                this.selected_komplekt_type = this.selected_type
+                if(this.add_komplekt == true) {
+                    this.selected_komplekt_type = this.selected_type
+                    this.selectKomplektType()
+                } else {
+                    this.selected_komplekt_type = ''
+                    this.price = this.selected_type.price
+                }
             },
             selectKomplektType() {
                 this.price = parseInt(this.selected_type.komplekt_price) + parseInt(this.selected_komplekt_type.komplekt_price)
