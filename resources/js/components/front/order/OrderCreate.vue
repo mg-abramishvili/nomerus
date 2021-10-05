@@ -72,16 +72,18 @@
                         <div v-if="selected_type.namecode === 'type4'" class="type4">               
                             <div v-if="number && number.length > 0" class="numbers">
                                 <span>{{ number.slice(0, 4) }}</span>
+                            </div>
+                            <div v-if="number && number.length > 0" class="letters">
                                 <span>{{ number.slice(4, 6) }}</span>
                             </div>
                             <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                <span>
-                                    {{ number_region }}
-                                </span>
                                 <div class="reg-inner">
                                     <i>RUS</i>
                                     <img src="/img/rus.svg"/>
                                 </div>
+                                <span>
+                                    {{ number_region }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -89,7 +91,7 @@
             </div>
         </div>
 
-        <div v-if="selected_type && selected_type.id && selected_type.flag == true" class="form-check mb-3">
+        <div v-if="selected_type && selected_type.id && selected_transport.komplekt == true" class="form-check mb-3">
             <input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
                 Заказать комплект (+ 1шт.)
@@ -178,6 +180,7 @@
                 ));
                 this.number = ''
                 this.number_region = ''
+                this.add_komplekt = false
             },
             selectType() {
                 if(this.selected_type && this.selected_type.price && this.selected_komplekt_type && this.selected_komplekt_type.price) {

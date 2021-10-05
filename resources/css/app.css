@@ -181,6 +181,7 @@ html, body {
     transform-origin: 0 50%;
 }
 
+/* TYPE 1 PLATE */
 .order-plate-preview .type1_with_flag {
     background-color: #ececec;
     width: 230px;
@@ -191,7 +192,6 @@ html, body {
     display: flex;
     flex-wrap: wrap;
 }
-
 .order-plate-preview .type1_with_flag:before {
     content: '';
     width: calc(100% - 10px);
@@ -204,7 +204,6 @@ html, body {
     left: 5px;
     right: 5px;
 }
-
 .order-plate-preview .type1_with_flag:after {
     content: '';
     width: 2px;
@@ -215,19 +214,16 @@ html, body {
     transform: translateY(-50%);
     right: 65px;
 }
-
 .order-plate-preview .type1_with_flag .numbers {
     width: 164px;
     padding-left: 7px;
     text-align: center;
     letter-spacing: 1.5px;
 }
-
 .order-plate-preview .type1_with_flag .numbers span {
     display: inline-block;
     margin: 0 -5px;
 }
-
 .order-plate-preview .type1_with_flag .reg {
     width: 66px;
     text-align: center;
@@ -235,13 +231,11 @@ html, body {
     font-size: 30px;
     margin-top: -7px;
 }
-
 .order-plate-preview .type1_with_flag .reg .reg-inner {
     margin-top: -27px;
     display: block;
     line-height: 1;
 }
-
 .order-plate-preview .type1_with_flag .reg .reg-inner i {
     font-style: normal;
     font-family: Arial, Helvetica, sans-serif;
@@ -252,13 +246,102 @@ html, body {
     vertical-align: middle;
     margin-right: -4px;
 }
-
 .order-plate-preview .type1_with_flag .reg .reg-inner img {
     width: 15px;
     display: inline-block;
     vertical-align: middle;
 }
+/* TYPE 1 PLATE */
 
+/* TYPE 4 PLATE */
+.order-plate-preview .type4 {
+    background-color: #ececec;
+    width: 140px;
+    height: 110px;
+    border-radius: 8px;
+    position: relative;
+    line-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.order-plate-preview .type4:before {
+    content: '';
+    width: calc(100% - 10px);
+    height: calc(100% - 12px);
+    border: 2px solid #222;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+    right: 5px;
+}
+.order-plate-preview .type4:after {
+    content: '';
+    position: absolute;
+    width: 55px;
+    border: 2px solid;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 3px;
+    bottom: 6px;
+    right: 5px;
+    height: 50px;
+}
+.order-plate-preview .type4 .numbers {
+    width: 140px;
+    padding-left: 7px;
+    text-align: center;
+    letter-spacing: 3.5px;
+}
+.order-plate-preview .type4 .numbers span {
+    display: inline-block;
+    margin: 0 -5px;
+}
+.order-plate-preview .type4 .letters {
+    width: 81px;
+    text-align: center;
+    padding-left: 7px;
+    font-size: 60px;
+    margin-top: -22px;
+    letter-spacing: 3px;
+    padding-top: 2px;
+}
+.order-plate-preview .type4 .reg {
+    width: 59px;
+    text-align: center;
+    padding-right: 7px;
+    font-size: 36px;
+    margin-top: -22px;
+    position: relative;
+    padding-top: 8px;
+}
+.order-plate-preview .type4 .reg .reg-inner {
+    line-height: 0;
+    margin-top: 8px;
+    position: absolute;
+    z-index: 1;
+    padding: 1px 3px;
+    left: -5px;
+    top: 2px;
+    background: #ececec;
+}
+.order-plate-preview .type4 .reg .reg-inner i {
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+.order-plate-preview .type4 .reg .reg-inner img {
+    width: 13px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -1px;
+}
+/* TYPE 4 PLATE */
 
 @font-face {
     font-family: 'RoadNumbers';

@@ -2409,6 +2409,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -2443,6 +2445,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.number = '';
       this.number_region = '';
+      this.add_komplekt = false;
     },
     selectType: function selectType() {
       if (this.selected_type && this.selected_type.price && this.selected_komplekt_type && this.selected_komplekt_type.price) {
@@ -25404,10 +25407,12 @@ var render = function() {
                   ? _c("div", { staticClass: "type4" }, [
                       _vm.number && _vm.number.length > 0
                         ? _c("div", { staticClass: "numbers" }, [
-                            _c("span", [
-                              _vm._v(_vm._s(_vm.number.slice(0, 4)))
-                            ]),
-                            _vm._v(" "),
+                            _c("span", [_vm._v(_vm._s(_vm.number.slice(0, 4)))])
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.number && _vm.number.length > 0
+                        ? _c("div", { staticClass: "letters" }, [
                             _c("span", [_vm._v(_vm._s(_vm.number.slice(4, 6)))])
                           ])
                         : _vm._e(),
@@ -25417,15 +25422,15 @@ var render = function() {
                       _vm.number_region &&
                       _vm.number_region.length > 0
                         ? _c("div", { staticClass: "reg" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
                             _c("span", [
                               _vm._v(
                                 "\n                                " +
                                   _vm._s(_vm.number_region) +
                                   "\n                            "
                               )
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(1)
+                            ])
                           ])
                         : _vm._e()
                     ])
@@ -25436,7 +25441,9 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.selected_type && _vm.selected_type.id && _vm.selected_type.flag == true
+    _vm.selected_type &&
+    _vm.selected_type.id &&
+    _vm.selected_transport.komplekt == true
       ? _c("div", { staticClass: "form-check mb-3" }, [
           _c("input", {
             directives: [
