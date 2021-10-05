@@ -4,11 +4,181 @@
 html, body {
     font-family: 'Jost', sans-serif;
     font-size: 17px;
+    background-color: #f7f7f7;
+}
+
+.front header .bg-dark {
+    background-color: #000001 !important;
+}
+
+.home-carousel {
+    height: 500px;
+    background-color: #1F1F1F;
+    position: relative;
+    color: #fff;
+}
+
+.home-carousel .container {
+    height: 100%;
+    position: relative;
+}
+
+.home-carousel-inner {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.home-carousel-inner h1 {
+    text-transform: uppercase;
+    font-size: 54px;
+}
+
+.home-carousel-inner h1 strong {
+    font-weight: 400;
+    color: #EF5044;
+}
+
+.home-carousel-img {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    right: 0;
+    bottom: 0;
+    background-image: url('/img/home-carousel.png');
+    background-position: center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+.home-block-title,
+.order-block-title {
+    font-size: 38px;
+    margin-top: 0;
+    margin-bottom: 60px;
+    text-align: center;
+    position: relative;
+}
+
+.home-block-title:after,
+.order-block-title:after {
+    content: '';
+    width: 80px;
+    height: 3px;
+    background-color: #EF5044;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.btn-standard {
+    background-color: #EF5044;
+    color: #fff;
+    line-height: 1;
+    padding: 14px 40px;
+    border-radius: 40px;
+}
+
+
+
+
+.home-services {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.home-services-item {
+    background-color: #F9F9F9;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    /*border: 2px solid #E3E3E3;*/
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 18px rgba(0, 0, 0, 0.15);
+}
+
+.home-services-item .home-services-item-image {
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+
+.home-services-item .home-services-item-image:before {
+    content: '';
+    background: linear-gradient(0deg, #EF5044, transparent 70%, transparent);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+.home-services-item .home-services-item-image .btn-standard {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    box-shadow: 0 1px 32px rgba(0, 0, 0, 0.15);
+}
+
+.home-services-item .home-services-item-info {
+    padding: 20px 20px 20px 0px;
+    color: #595959;
+}
+
+.home-services-item .home-services-item-info h3 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.home-services-item .home-services-item-info h5 {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #595959;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.home-services-item .home-services-item-info h5 i {
+    font-style: normal;
+    color: #EF5044;
+    font-weight: 500;
+}
+
+.home-services-item .home-services-item-info img {
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 100px;
+}
+
+.order-page {
+    max-width: 700px;
+}
+
+.order-form-item {
+    background-color: #fff;
+    padding: 25px;
+    margin-bottom: 25px;
 }
 
 .order-plate-preview {
     font-family: 'RoadNumbers';
     font-size: 48px;
+    transform: scale(1.3);
+    transform-origin: 0 50%;
 }
 
 .order-plate-preview .type1_with_flag {

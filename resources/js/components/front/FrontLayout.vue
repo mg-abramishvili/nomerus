@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="front">
         <header>
-            <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <div class="container">
                     <router-link :to="{ name: 'Home' }" class="navbar-brand">Номерус</router-link>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
