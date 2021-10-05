@@ -7,26 +7,49 @@
                 <select v-model="selected_transport" @change="selectTransport()" class="form-select">
                     <option v-for="transport in transports" :key="'transport_' + transport.id" :value="transport">{{ transport.name }}</option>
                 </select>
-                {{ selected_transport }}
 
                 <select v-model="selected_type" @change="selectType()" class="form-select">
                     <option v-for="type in types" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
                 </select>
-                {{ selected_type }}
                 
                 <div class="mb-3">
-                    <label class="form-label">Номер</label>
                     <template v-if="selected_type.namecode === 'type1_with_flag'">
-                        <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[а-яА-Я]/ }}}" type="text" class="form-control">
+                        <label class="form-label">Номер</label>
+                        <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="а000аа" type="text" class="form-control" style="text-transform: uppercase;">
                     </template>
                     <template v-if="selected_type.namecode === 'type1_without_flag'">
-                        <input v-model="number" v-maska="{ mask: 'ZZ###ZZ', tokens: { 'Z': { pattern: /[а-яА-Я]/ }}}" type="text" class="form-control">
+                        <label class="form-label">Номер</label>
+                        <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="а000аа" type="text" class="form-control" style="text-transform: uppercase;">
                     </template>
+                </div>
+
+                <div class="mb-3">
+                    <select v-model="number_region" class="form-select">
+                        <option value="02">02</option>
+                        <option value="102">102</option>
+                    </select>
                 </div>
             </div>
             <div class="col-12 col-md-4">
                 Ваш номер:<br/>
-                {{ number }}
+                <div class="order-plate-preview">
+                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="type1_with_flag">               
+                        <div v-if="number && number.length > 0" class="numbers">
+                            <span>{{ number.slice(0, 1) }}</span>
+                            <span>{{ number.slice(1, 4) }}</span>
+                            <span>{{ number.slice(4, 6) }}</span>
+                        </div>
+                        <div v-if="number_region && number_region.length > 0" class="reg">
+                            <span>
+                                {{ number_region }}
+                            </span>
+                            <div class="reg-inner">
+                                <i>RUS</i>
+                                <img v-if="selected_type.namecode === 'type1_with_flag'" src="/img/rus.svg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -47,6 +70,7 @@
                 selected_type: {},
 
                 number: '',
+                number_region: '',
             }
         },
         created() {
@@ -63,9 +87,10 @@
                 .then(response => (
                     this.types = response.data
                 ));
+                this.number = ''
+                this.number_region = ''
             },
             selectType() {
-                this.number = ''
             }
         },
         components: {

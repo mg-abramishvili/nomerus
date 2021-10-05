@@ -2229,6 +2229,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -2240,7 +2263,8 @@ __webpack_require__.r(__webpack_exports__);
       types: [],
       selected_transport: {},
       selected_type: {},
-      number: ''
+      number: '',
+      number_region: ''
     };
   },
   created: function created() {
@@ -2257,10 +2281,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/transport/".concat(this.selected_transport.id, "/types")).then(function (response) {
         return _this2.types = response.data;
       });
-    },
-    selectType: function selectType() {
       this.number = '';
-    }
+      this.number_region = '';
+    },
+    selectType: function selectType() {}
   },
   components: {}
 });
@@ -24777,9 +24801,7 @@ var render = function() {
           }),
           0
         ),
-        _vm._v(
-          "\n            " + _vm._s(_vm.selected_transport) + "\n\n            "
-        ),
+        _vm._v(" "),
         _c(
           "select",
           {
@@ -24822,19 +24844,15 @@ var render = function() {
           }),
           0
         ),
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.selected_type) +
-            "\n            \n            "
-        ),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "mb-3" },
           [
-            _c("label", { staticClass: "form-label" }, [_vm._v("Номер")]),
-            _vm._v(" "),
             _vm.selected_type.namecode === "type1_with_flag"
               ? [
+                  _c("label", { staticClass: "form-label" }, [_vm._v("Номер")]),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
@@ -24848,14 +24866,19 @@ var render = function() {
                         rawName: "v-maska",
                         value: {
                           mask: "Z###ZZ",
-                          tokens: { Z: { pattern: /[а-яА-Я]/ } }
+                          tokens: {
+                            Z: {
+                              pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
+                            }
+                          }
                         },
                         expression:
-                          "{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[а-яА-Я]/ }}}"
+                          "{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text" },
+                    staticStyle: { "text-transform": "uppercase" },
+                    attrs: { placeholder: "а000аа", type: "text" },
                     domProps: { value: _vm.number },
                     on: {
                       input: function($event) {
@@ -24871,6 +24894,8 @@ var render = function() {
             _vm._v(" "),
             _vm.selected_type.namecode === "type1_without_flag"
               ? [
+                  _c("label", { staticClass: "form-label" }, [_vm._v("Номер")]),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
@@ -24883,15 +24908,20 @@ var render = function() {
                         name: "maska",
                         rawName: "v-maska",
                         value: {
-                          mask: "ZZ###ZZ",
-                          tokens: { Z: { pattern: /[а-яА-Я]/ } }
+                          mask: "Z###ZZ",
+                          tokens: {
+                            Z: {
+                              pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
+                            }
+                          }
                         },
                         expression:
-                          "{ mask: 'ZZ###ZZ', tokens: { 'Z': { pattern: /[а-яА-Я]/ }}}"
+                          "{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text" },
+                    staticStyle: { "text-transform": "uppercase" },
+                    attrs: { placeholder: "а000аа", type: "text" },
                     domProps: { value: _vm.number },
                     on: {
                       input: function($event) {
@@ -24906,13 +24936,86 @@ var render = function() {
               : _vm._e()
           ],
           2
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "mb-3" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.number_region,
+                  expression: "number_region"
+                }
+              ],
+              staticClass: "form-select",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.number_region = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "02" } }, [_vm._v("02")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "102" } }, [_vm._v("102")])
+            ]
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-12 col-md-4" }, [
         _vm._v("\n            Ваш номер:"),
         _c("br"),
-        _vm._v("\n            " + _vm._s(_vm.number) + "\n        ")
+        _vm._v(" "),
+        _c("div", { staticClass: "order-plate-preview" }, [
+          _vm.selected_type.namecode === "type1_with_flag" ||
+          _vm.selected_type.namecode === "type1_without_flag"
+            ? _c("div", { staticClass: "type1_with_flag" }, [
+                _vm.number && _vm.number.length > 0
+                  ? _c("div", { staticClass: "numbers" }, [
+                      _c("span", [_vm._v(_vm._s(_vm.number.slice(0, 1)))]),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(_vm.number.slice(1, 4)))]),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(_vm.number.slice(4, 6)))])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.number_region && _vm.number_region.length > 0
+                  ? _c("div", { staticClass: "reg" }, [
+                      _c("span", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.number_region) +
+                            "\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "reg-inner" }, [
+                        _c("i", [_vm._v("RUS")]),
+                        _vm._v(" "),
+                        _vm.selected_type.namecode === "type1_with_flag"
+                          ? _c("img", { attrs: { src: "/img/rus.svg" } })
+                          : _vm._e()
+                      ])
+                    ])
+                  : _vm._e()
+              ])
+            : _vm._e()
+        ])
       ])
     ])
   ])

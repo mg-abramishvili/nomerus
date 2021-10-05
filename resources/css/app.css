@@ -6,14 +6,24 @@ html, body {
     font-size: 17px;
 }
 
-.type_choose .type1_with_flag {
+.order-plate-preview {
+    font-family: 'RoadNumbers';
+    font-size: 48px;
+}
+
+.order-plate-preview .type1_with_flag {
     background-color: #ececec;
-    width: 250px;
+    width: 230px;
     height: 60px;
     border-radius: 8px;
     position: relative;
+    line-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
 }
-.type_choose .type1_with_flag button {
+
+.order-plate-preview .type1_with_flag:before {
+    content: '';
     width: calc(100% - 10px);
     height: calc(100% - 12px);
     border: 2px solid #222;
@@ -23,5 +33,67 @@ html, body {
     transform: translateY(-50%);
     left: 5px;
     right: 5px;
-    font-size: 20px;
+}
+
+.order-plate-preview .type1_with_flag:after {
+    content: '';
+    width: 2px;
+    height: calc(100% - 12px);
+    background-color: #222;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 65px;
+}
+
+.order-plate-preview .type1_with_flag .numbers {
+    width: 164px;
+    padding-left: 7px;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.order-plate-preview .type1_with_flag .numbers span {
+    display: inline-block;
+    margin: 0 -5px;
+}
+
+.order-plate-preview .type1_with_flag .reg {
+    width: 66px;
+    text-align: center;
+    padding-right: 7px;
+    font-size: 30px;
+    margin-top: -7px;
+}
+
+.order-plate-preview .type1_with_flag .reg .reg-inner {
+    margin-top: -27px;
+    display: block;
+    line-height: 1;
+}
+
+.order-plate-preview .type1_with_flag .reg .reg-inner i {
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.order-plate-preview .type1_with_flag .reg .reg-inner img {
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+@font-face {
+    font-family: 'RoadNumbers';
+    src: url('RoadNumbers.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
