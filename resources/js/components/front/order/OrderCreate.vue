@@ -217,9 +217,18 @@
         created() {
             axios
                 .get('/api/transports')
-                .then(response => (
+                .then((response => {
                     this.transports = response.data
-                ));
+
+                    if(this.$route.params.transport === 'legkovoy') {
+                        this.selected_transport =  this.transports[0]
+                        this.selectTransport()
+                    }
+                    if(this.$route.params.transport === 'moto') {
+                        this.selected_transport =  this.transports[1]
+                        this.selectTransport()
+                    }
+                }));
         },
         methods: {
             selectTransport() {

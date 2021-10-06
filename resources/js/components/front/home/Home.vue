@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="home-services-item-image" style="background-image:url(/img/home-services-1.jpg);">
-                                        <button class="btn btn-standard">Заказать</button>
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -59,16 +59,16 @@
                         <div class="home-services-item">
                             <div class="row">
                                 <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-3.jpg);">
-                                        <button class="btn btn-standard">Заказать</button>
+                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-4.jpg);">
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'moto'} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="home-services-item-info">
-                                        <h3>Номер для прицепа</h3>
-                                        <h5><i>Тип 2</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для автомобильных прицепов и полуприцепов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type2.png)"></div>
+                                        <h3>Номер для мотоцикла</h3>
+                                        <h5><i>Тип 4</i> ГОСТ Р 50577-2018</h5>
+                                        <p>Государственный регистрационный знак для мотоциклов, моторолеров и мопедов.</p>
+                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type4.png)"></div>
                                     </div>
                                 </div>
                             </div>
@@ -79,16 +79,16 @@
                         <div class="home-services-item">
                             <div class="row">
                                 <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-4.jpg);">
+                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-3.jpg);">
                                         <button class="btn btn-standard">Заказать</button>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="home-services-item-info">
-                                        <h3>Номер для мотоцикла</h3>
-                                        <h5><i>Тип 4</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для мотоциклов, моторолеров и мопедов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type4.png)"></div>
+                                        <h3>Номер для прицепа</h3>
+                                        <h5><i>Тип 2</i> ГОСТ Р 50577-2018</h5>
+                                        <p>Государственный регистрационный знак для автомобильных прицепов и полуприцепов.</p>
+                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type2.png)"></div>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,9 @@
 @import 'bootstrap.min.css';
 
+html {
+    scroll-behavior: initial !important;
+}
+
 html, body {
     font-family: 'Stolzl', sans-serif;
     font-weight: 300;

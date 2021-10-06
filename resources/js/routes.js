@@ -10,7 +10,7 @@ export const routes = [
         component: Home
     },
     {
-        path: '/order',
+        path: '/order/:kto/:transport',
         name: 'OrderCreate',
         component: OrderCreate
     },

@@ -2607,7 +2607,19 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get('/api/transports').then(function (response) {
-      return _this.transports = response.data;
+      _this.transports = response.data;
+
+      if (_this.$route.params.transport === 'legkovoy') {
+        _this.selected_transport = _this.transports[0];
+
+        _this.selectTransport();
+      }
+
+      if (_this.$route.params.transport === 'moto') {
+        _this.selected_transport = _this.transports[1];
+
+        _this.selectTransport();
+      }
     });
   },
   methods: {
@@ -2690,7 +2702,13 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
   mode: 'history',
-  routes: _routes__WEBPACK_IMPORTED_MODULE_4__.routes
+  routes: _routes__WEBPACK_IMPORTED_MODULE_4__.routes,
+  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    };
+  }
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   el: '#app',
@@ -2724,7 +2742,7 @@ var routes = [{
   name: 'Home',
   component: _components_front_home_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
-  path: '/order',
+  path: '/order/:kto/:transport',
   name: 'OrderCreate',
   component: _components_front_order_OrderCreate_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
@@ -25275,7 +25293,91 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2),
+    _c("div", { staticClass: "home-services" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [
+          _vm._v("Номера для вашего авто")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12 col-md-6" }, [
+            _c("div", { staticClass: "home-services-item" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-5" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "home-services-item-image",
+                      staticStyle: {
+                        "background-image": "url(/img/home-services-1.jpg)"
+                      }
+                    },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-standard",
+                          attrs: {
+                            to: {
+                              name: "OrderCreate",
+                              params: { kto: "fz", transport: "legkovoy" }
+                            }
+                          }
+                        },
+                        [_vm._v("Заказать")]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-6" }, [
+            _c("div", { staticClass: "home-services-item" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-5" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "home-services-item-image",
+                      staticStyle: {
+                        "background-image": "url(/img/home-services-4.jpg)"
+                      }
+                    },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-standard",
+                          attrs: {
+                            to: {
+                              name: "OrderCreate",
+                              params: { kto: "fz", transport: "moto" }
+                            }
+                          }
+                        },
+                        [_vm._v("Заказать")]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(4)
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(5)
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "home-order-form" }, [
       _c("div", { staticClass: "container" }, [
@@ -25284,9 +25386,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row align-items-center" }, [
-          _vm._m(3),
+          _vm._m(6),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(7),
           _vm._v(" "),
           _c(
             "div",
@@ -25307,11 +25409,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _vm._m(8),
     _vm._v(" "),
-    _vm._m(6),
+    _vm._m(9),
     _vm._v(" "),
-    _vm._m(7)
+    _vm._m(10)
   ])
 }
 var staticRenderFns = [
@@ -25340,192 +25442,142 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "home-services" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "home-block-title" }, [
-          _vm._v("Номера для вашего авто")
+    return _c("div", { staticClass: "col-7" }, [
+      _c("div", { staticClass: "home-services-item-info" }, [
+        _c("h3", [_vm._v("Обычный номер")]),
+        _vm._v(" "),
+        _c("h5", [_c("i", [_vm._v("Тип 1")]), _vm._v(" ГОСТ Р 50577-2018")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
+          )
         ]),
         _vm._v(" "),
+        _c("div", {
+          staticClass: "home-services-item-info-plate",
+          staticStyle: { "background-image": "url(/img/type1.png)" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-6" }, [
+      _c("div", { staticClass: "home-services-item" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-1.jpg)"
-                      }
-                    },
-                    [
-                      _c("button", { staticClass: "btn btn-standard" }, [
-                        _vm._v("Заказать")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-7" }, [
-                  _c("div", { staticClass: "home-services-item-info" }, [
-                    _c("h3", [_vm._v("Обычный номер")]),
-                    _vm._v(" "),
-                    _c("h5", [
-                      _c("i", [_vm._v("Тип 1")]),
-                      _vm._v(" ГОСТ Р 50577-2018")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "home-services-item-info-plate",
-                      staticStyle: { "background-image": "url(/img/type1.png)" }
-                    })
-                  ])
+          _c("div", { staticClass: "col-5" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-services-item-image",
+                staticStyle: {
+                  "background-image": "url(/img/home-services-2.jpg)"
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-standard" }, [
+                  _vm._v("Заказать")
                 ])
-              ])
-            ])
+              ]
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-2.jpg)"
-                      }
-                    },
-                    [
-                      _c("button", { staticClass: "btn btn-standard" }, [
-                        _vm._v("Заказать")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-7" }, [
-                  _c("div", { staticClass: "home-services-item-info" }, [
-                    _c("h3", [_vm._v("Номер без флага")]),
-                    _vm._v(" "),
-                    _c("h5", [
-                      _c("i", [_vm._v("Тип 1")]),
-                      _vm._v(" ГОСТ Р 50577-2018")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "home-services-item-info-plate",
-                      staticStyle: {
-                        "background-image": "url(/img/type1_without_flag.png)"
-                      }
-                    })
-                  ])
-                ])
-              ])
+          _c("div", { staticClass: "col-7" }, [
+            _c("div", { staticClass: "home-services-item-info" }, [
+              _c("h3", [_vm._v("Номер без флага")]),
+              _vm._v(" "),
+              _c("h5", [
+                _c("i", [_vm._v("Тип 1")]),
+                _vm._v(" ГОСТ Р 50577-2018")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "home-services-item-info-plate",
+                staticStyle: {
+                  "background-image": "url(/img/type1_without_flag.png)"
+                }
+              })
             ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-7" }, [
+      _c("div", { staticClass: "home-services-item-info" }, [
+        _c("h3", [_vm._v("Номер для мотоцикла")]),
+        _vm._v(" "),
+        _c("h5", [_c("i", [_vm._v("Тип 4")]), _vm._v(" ГОСТ Р 50577-2018")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Государственный регистрационный знак для мотоциклов, моторолеров и мопедов."
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "home-services-item-info-plate",
+          staticStyle: { "background-image": "url(/img/type4.png)" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-6" }, [
+      _c("div", { staticClass: "home-services-item" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-5" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-services-item-image",
+                staticStyle: {
+                  "background-image": "url(/img/home-services-3.jpg)"
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-standard" }, [
+                  _vm._v("Заказать")
+                ])
+              ]
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-3.jpg)"
-                      }
-                    },
-                    [
-                      _c("button", { staticClass: "btn btn-standard" }, [
-                        _vm._v("Заказать")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-7" }, [
-                  _c("div", { staticClass: "home-services-item-info" }, [
-                    _c("h3", [_vm._v("Номер для прицепа")]),
-                    _vm._v(" "),
-                    _c("h5", [
-                      _c("i", [_vm._v("Тип 2")]),
-                      _vm._v(" ГОСТ Р 50577-2018")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Государственный регистрационный знак для автомобильных прицепов и полуприцепов."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "home-services-item-info-plate",
-                      staticStyle: { "background-image": "url(/img/type2.png)" }
-                    })
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-4.jpg)"
-                      }
-                    },
-                    [
-                      _c("button", { staticClass: "btn btn-standard" }, [
-                        _vm._v("Заказать")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-7" }, [
-                  _c("div", { staticClass: "home-services-item-info" }, [
-                    _c("h3", [_vm._v("Номер для мотоцикла")]),
-                    _vm._v(" "),
-                    _c("h5", [
-                      _c("i", [_vm._v("Тип 4")]),
-                      _vm._v(" ГОСТ Р 50577-2018")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Государственный регистрационный знак для мотоциклов, моторолеров и мопедов."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "home-services-item-info-plate",
-                      staticStyle: { "background-image": "url(/img/type4.png)" }
-                    })
-                  ])
-                ])
-              ])
+          _c("div", { staticClass: "col-7" }, [
+            _c("div", { staticClass: "home-services-item-info" }, [
+              _c("h3", [_vm._v("Номер для прицепа")]),
+              _vm._v(" "),
+              _c("h5", [
+                _c("i", [_vm._v("Тип 2")]),
+                _vm._v(" ГОСТ Р 50577-2018")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Государственный регистрационный знак для автомобильных прицепов и полуприцепов."
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "home-services-item-info-plate",
+                staticStyle: { "background-image": "url(/img/type2.png)" }
+              })
             ])
           ])
         ])
