@@ -5,7 +5,7 @@
                 <div class="home-carousel-inner">
                     <h1>Изготовление <br/>госномеров <strong>в Уфе</strong></h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
-                    <router-link :to="{ name: 'OrderCreate' }" class="btn btn-standard">Заказать номер</router-link>
+                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать номер</router-link>
                 </div>
                 <div class="home-carousel-img"></div>
             </div>
@@ -14,7 +14,7 @@
         <div class="home-services">
             <div class="container">
                 <h2 class="home-block-title">Номера для вашего авто</h2>
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-12 col-md-6">
                         <div class="home-services-item">
                             <div class="row">
@@ -59,6 +59,26 @@
                         <div class="home-services-item">
                             <div class="row">
                                 <div class="col-5">
+                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-3.jpg);">
+                                        <button class="btn btn-standard">Заказать</button>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="home-services-item-info">
+                                        <h3>Квадратный номер</h3>
+                                        <h5><i>Тип 1А</i> ГОСТ Р 50577-2018</h5>
+                                        <p>Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов.</p>
+                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type1_without_flag.png)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="home-services-item">
+                            <div class="row">
+                                <div class="col-5">
                                     <div class="home-services-item-image" style="background-image:url(/img/home-services-4.jpg);">
                                         <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'moto'} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
@@ -79,7 +99,7 @@
                         <div class="home-services-item">
                             <div class="row">
                                 <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-3.jpg);">
+                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-5.jpg);">
                                         <button class="btn btn-standard">Заказать</button>
                                     </div>
                                 </div>

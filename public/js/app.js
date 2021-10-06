@@ -2362,6 +2362,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -25281,7 +25301,12 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-standard",
-                attrs: { to: { name: "OrderCreate" } }
+                attrs: {
+                  to: {
+                    name: "OrderCreate",
+                    params: { kto: "fz", transport: "legkovoy" }
+                  }
+                }
               },
               [_vm._v("Заказать номер")]
             )
@@ -25299,7 +25324,7 @@ var render = function() {
           _vm._v("Номера для вашего авто")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "row justify-content-center" }, [
           _c("div", { staticClass: "col-12 col-md-6" }, [
             _c("div", { staticClass: "home-services-item" }, [
               _c("div", { staticClass: "row" }, [
@@ -25338,6 +25363,8 @@ var render = function() {
           _vm._v(" "),
           _vm._m(3),
           _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
           _c("div", { staticClass: "col-12 col-md-6" }, [
             _c("div", { staticClass: "home-services-item" }, [
               _c("div", { staticClass: "row" }, [
@@ -25369,12 +25396,12 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(5)
               ])
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(6)
         ])
       ])
     ]),
@@ -25386,9 +25413,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row align-items-center" }, [
-          _vm._m(6),
-          _vm._v(" "),
           _vm._m(7),
+          _vm._v(" "),
+          _vm._m(8),
           _vm._v(" "),
           _c(
             "div",
@@ -25409,11 +25436,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(8),
-    _vm._v(" "),
     _vm._m(9),
     _vm._v(" "),
-    _vm._m(10)
+    _vm._m(10),
+    _vm._v(" "),
+    _vm._m(11)
   ])
 }
 var staticRenderFns = [
@@ -25516,6 +25543,57 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-6" }, [
+      _c("div", { staticClass: "home-services-item" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-5" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-services-item-image",
+                staticStyle: {
+                  "background-image": "url(/img/home-services-3.jpg)"
+                }
+              },
+              [
+                _c("button", { staticClass: "btn btn-standard" }, [
+                  _vm._v("Заказать")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-7" }, [
+            _c("div", { staticClass: "home-services-item-info" }, [
+              _c("h3", [_vm._v("Квадратный номер")]),
+              _vm._v(" "),
+              _c("h5", [
+                _c("i", [_vm._v("Тип 1А")]),
+                _vm._v(" ГОСТ Р 50577-2018")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "home-services-item-info-plate",
+                staticStyle: {
+                  "background-image": "url(/img/type1_without_flag.png)"
+                }
+              })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-7" }, [
       _c("div", { staticClass: "home-services-item-info" }, [
         _c("h3", [_vm._v("Номер для мотоцикла")]),
@@ -25548,7 +25626,7 @@ var staticRenderFns = [
               {
                 staticClass: "home-services-item-image",
                 staticStyle: {
-                  "background-image": "url(/img/home-services-3.jpg)"
+                  "background-image": "url(/img/home-services-5.jpg)"
                 }
               },
               [
