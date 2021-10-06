@@ -4,6 +4,8 @@
             <div class="container">
                 <div class="home-carousel-inner">
                     <h1>Изготовление <br/>госномеров <strong>в Уфе</strong></h1>
+                    <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
+                    <router-link :to="{ name: 'OrderCreate' }" class="btn btn-standard">Заказать номер</router-link>
                 </div>
                 <div class="home-carousel-img"></div>
             </div>

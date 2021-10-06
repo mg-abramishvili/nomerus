@@ -11,12 +11,161 @@ html, body {
     background-color: #f7f7f7;
 }
 
-.front header .bg-dark {
+.front header .header-top {
     background-color: #000001 !important;
+    padding: 15px 0;
 }
 
+.front header .header-logo {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.front header .header-logo a {
+    display: block;
+    text-decoration: none;
+}
+
+.front header .header-logo img {
+    width: 175px;
+}
+
+.front header .header-logo span {
+    display: block;
+    font-size: 15px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.front header .header-location {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+.front header .header-location button {
+    box-shadow: none;
+    border: 0;
+    color: #fff;
+    padding: 0;
+    background: none;
+    border-bottom: 1px solid;
+    font-size: 18px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.front header .header-location button:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url('/img/header-location.svg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -24px;
+    margin-top: 2px;
+}
+
+.front header .header-location span {
+    color: #fff;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.front header .header-social {
+    flex: 0 0 auto;
+    width: 15%;
+    text-align: right;
+}
+
+.front header .header-social a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0 2px;
+}
+
+.front header .header-social a img {
+    width: auto;
+    height: 32px;
+}
+
+.front header .header-callback {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.front header .header-callback .btn-standard {
+    font-size: 17px;
+    padding: 13px 20px;
+    width: 100%;
+    line-height: 1;
+}
+
+.front header .header-tel {
+    flex: 0 0 auto;
+    width: 20%;
+    text-align: right;
+    position: relative;
+}
+
+.front header .header-tel .header-tel-inner {
+    position: relative;
+}
+
+.front header .header-tel .header-tel-inner:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url('/img/header-tel.svg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+}
+
+.front header .header-tel a {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.front header .header-bottom .bg-dark {
+    background-color: #1F1F1F !important;
+    padding: 12px 0;
+}
+
+.header-bottom .navbar-nav {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-bottom .navbar-nav .nav-link {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 15px;
+    padding: 0;
+    border-bottom: 1px solid transparent;
+}
+
+.header-bottom .navbar-nav .nav-link:hover {
+    color: #EF5044;
+    border-color: #EF5044;
+}
+
+
+
 .home-carousel {
-    height: 500px;
+    height: 470px;
     background-color: #1F1F1F;
     position: relative;
     color: #fff;
@@ -46,7 +195,7 @@ html, body {
 .home-carousel-img {
     position: absolute;
     width: 550px;
-    height: 550px;
+    height: 400px;
     right: 0;
     bottom: 0;
     background-image: url('/img/home-carousel.png');
