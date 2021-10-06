@@ -2242,6 +2242,126 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -2271,6 +2391,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var maska__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! maska */ "./node_modules/maska/dist/maska.esm.js");
+//
+//
 //
 //
 //
@@ -24813,7 +24935,36 @@ var render = function() {
       _vm._m(4)
     ]),
     _vm._v(" "),
-    _c("div", [_c("router-view", { key: _vm.$route.path })], 1)
+    _c("div", [_c("router-view", { key: _vm.$route.path })], 1),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _c("footer", [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row align-items-center" }, [
+          _c(
+            "div",
+            { staticClass: "footer-logo" },
+            [
+              _c("router-link", { attrs: { to: { name: "Home" } } }, [
+                _c("img", { attrs: { src: "/img/logo.svg", alt: "Номерус" } }),
+                _vm._v(" "),
+                _c("span", [_vm._v("Изготовление госномеров")])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._m(6),
+          _vm._v(" "),
+          _vm._m(7),
+          _vm._v(" "),
+          _vm._m(8),
+          _vm._v(" "),
+          _vm._m(9)
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -24931,6 +25082,85 @@ var staticRenderFns = [
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-contacts" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Контакты")]),
+        _vm._v(" "),
+        _c("ul", [
+          _c("li", [_vm._v("Уфа, ул. Лесотехникума, 15\n                ")]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v("\n                    +7 927 236-66-29\n                ")
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v("\n                    +7 960 800-32-10\n                ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map" }, [
+          _c("iframe", {
+            staticStyle: { "pointer-events": "none" },
+            attrs: {
+              src:
+                "https://yandex.ru/map-widget/v1/?um=constructor%3A7be0ec96a4c612454138b57387fa53bcfc144805e5cd495f745d9839dd71ecc8&source=constructor",
+              width: "100%",
+              height: "100%",
+              frameborder: "0"
+            }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-policy" }, [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Политика конфиденциальности")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-social" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("img", { attrs: { src: "/img/whatsapp.svg" } })
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" } }, [
+        _c("img", { attrs: { src: "/img/telegram.svg" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-callback" }, [
+      _c("button", { staticClass: "btn btn-standard" }, [
+        _vm._v("Обратный звонок")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "footer-tel" }, [
+      _c("div", { staticClass: "footer-tel-inner" }, [
+        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 927 236-66-29")]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 960 800-32-10")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -24982,7 +25212,43 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _vm._m(2),
+    _vm._v(" "),
+    _c("div", { staticClass: "home-order-form" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [
+          _vm._v("Заказать номер")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row align-items-center" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-12 col-md-4" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-standard",
+                  attrs: { to: { name: "OrderCreate" } }
+                },
+                [_vm._v("Продолжить")]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(5),
+    _vm._v(" "),
+    _vm._m(6),
+    _vm._v(" "),
+    _vm._m(7)
   ])
 }
 var staticRenderFns = [
@@ -25053,8 +25319,9 @@ var staticRenderFns = [
                       )
                     ]),
                     _vm._v(" "),
-                    _c("img", {
-                      attrs: { src: "/img/type1.png", alt: "Тип 1" }
+                    _c("div", {
+                      staticClass: "home-services-item-info-plate",
+                      staticStyle: { "background-image": "url(/img/type1.png)" }
                     })
                   ])
                 ])
@@ -25097,10 +25364,10 @@ var staticRenderFns = [
                       )
                     ]),
                     _vm._v(" "),
-                    _c("img", {
-                      attrs: {
-                        src: "/img/type1_without_flag.png",
-                        alt: "Тип 1 без флага"
+                    _c("div", {
+                      staticClass: "home-services-item-info-plate",
+                      staticStyle: {
+                        "background-image": "url(/img/type1_without_flag.png)"
                       }
                     })
                   ])
@@ -25144,14 +25411,252 @@ var staticRenderFns = [
                       )
                     ]),
                     _vm._v(" "),
-                    _c("img", {
-                      attrs: { src: "/img/type2.png", alt: "Тип 2" }
+                    _c("div", {
+                      staticClass: "home-services-item-info-plate",
+                      staticStyle: { "background-image": "url(/img/type2.png)" }
+                    })
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-6" }, [
+            _c("div", { staticClass: "home-services-item" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-5" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "home-services-item-image",
+                      staticStyle: {
+                        "background-image": "url(/img/home-services-4.jpg)"
+                      }
+                    },
+                    [
+                      _c("button", { staticClass: "btn btn-standard" }, [
+                        _vm._v("Заказать")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-7" }, [
+                  _c("div", { staticClass: "home-services-item-info" }, [
+                    _c("h3", [_vm._v("Номер для мотоцикла")]),
+                    _vm._v(" "),
+                    _c("h5", [
+                      _c("i", [_vm._v("Тип 4")]),
+                      _vm._v(" ГОСТ Р 50577-2018")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "Государственный регистрационный знак для мотоциклов, моторолеров и мопедов."
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "home-services-item-info-plate",
+                      staticStyle: { "background-image": "url(/img/type4.png)" }
                     })
                   ])
                 ])
               ])
             ])
           ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-4" }, [
+      _c("select", { staticClass: "form-select form-select-lg" }, [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Физ. лицо")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Юр. лицо")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-4" }, [
+      _c("select", { staticClass: "form-select form-select-lg" }, [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Легковой")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "" } }, [_vm._v("Мото")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-why" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [
+          _vm._v("Почему стоит заказать номер у нас?")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-why-item",
+                staticStyle: {
+                  "background-image": "url(/img/home-why-item-1.jpg)"
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v("Даем гарантию "),
+                  _c("br"),
+                  _vm._v("3 года на номер")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-why-item",
+                staticStyle: {
+                  "background-image": "url(/img/home-why-item-2.jpg)"
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v("Мы есть "),
+                  _c("br"),
+                  _vm._v("в регистре ГАИ")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-why-item",
+                staticStyle: {
+                  "background-image": "url(/img/home-why-item-3.jpg)"
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v("Есть сертификаты "),
+                  _c("br"),
+                  _vm._v("и лицензии")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-why-item",
+                staticStyle: {
+                  "background-image": "url(/img/home-why-item-1.jpg)"
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v("Изготовим номер "),
+                  _c("br"),
+                  _vm._v("за 5 минут")
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-cert" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Сертификаты")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-6 col-md-2" }, [
+            _c("div", { staticClass: "cert-item" }, [
+              _c("img", { attrs: { src: "/img/cert/0001.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-2" }, [
+            _c("div", { staticClass: "cert-item" }, [
+              _c("img", { attrs: { src: "/img/cert/0002.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-2" }, [
+            _c("div", { staticClass: "cert-item" }, [
+              _c("img", { attrs: { src: "/img/cert/0003.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-2" }, [
+            _c("div", { staticClass: "cert-item" }, [
+              _c("img", { attrs: { src: "/img/cert/0004.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-2" }, [
+            _c("div", { staticClass: "cert-item" }, [
+              _c("img", { attrs: { src: "/img/cert/0005.jpg" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-2" }, [
+            _c("div", { staticClass: "cert-item" }, [
+              _c("img", { attrs: { src: "/img/cert/0006.jpg" } })
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-about" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [
+          _vm._v("Изготовление автомобильных номеров в Уфе")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Мы новая и динамично развивающаяся компания имеющая шестилетний опыт работы с одной из крупнейших компаний России по производству государственных регистрационных знаков для автомобилей, прицепов и мотоциклов ООО «Бластер Плюс»."
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Мы предлагаем нашим клиентам реставрацию, изготовлене дубликатов госномеров по приемлемой цене и отличного качества. Окраска госномеров производится специальным лаком Австрийской фирмы Rembrandtin, предназначенной для окраски заготовок со световозвращающей пленкой фирмы «Niрроn»(Япония)."
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Полный цикл производства осуществляется на высокотехнологичном оборудовании Немецкой фирмы UTSCH. Уникальность производства, квалифицированные сотрудники, многоуровневый контроль обеспечивают высочайшее качество выпускаемой продукции."
+          )
         ])
       ])
     ])
@@ -25179,194 +25684,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container order-page mb-4" }, [
-    _c("h1", { staticClass: "order-block-title mt-4 mb-4" }, [
-      _vm._v("Заказ номера")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 col-md-5" }, [
-        _c("div", { staticClass: "mb-4" }, [
-          _c("label", { staticClass: "form-label mb-1" }, [
-            _vm._v("Транспорт")
-          ]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selected_transport,
-                  expression: "selected_transport"
-                }
-              ],
-              staticClass: "form-select",
-              on: {
-                change: [
-                  function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.selected_transport = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
-                  function($event) {
-                    return _vm.selectTransport()
+  return _c("div", { staticStyle: { "background-color": "#fff" } }, [
+    _c("div", { staticClass: "container order-page" }, [
+      _c("h1", { staticClass: "order-block-title" }, [_vm._v("Заказ номера")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12 col-md-5" }, [
+          _c("div", { staticClass: "mb-4" }, [
+            _c("label", { staticClass: "form-label mb-1" }, [
+              _vm._v("Транспорт")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected_transport,
+                    expression: "selected_transport"
                   }
-                ]
-              }
-            },
-            _vm._l(_vm.transports, function(transport) {
-              return _c(
-                "option",
-                {
-                  key: "transport_" + transport.id,
-                  domProps: { value: transport }
-                },
-                [_vm._v(_vm._s(transport.name))]
-              )
-            }),
-            0
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-md-4" }, [
-        _vm.selected_transport && _vm.selected_transport.id
-          ? _c(
-              "div",
-              { staticClass: "mb-3" },
-              [
-                _c("label", { staticClass: "form-label mb-1" }, [
-                  _vm._v("Гос. номер")
-                ]),
-                _vm._v(" "),
-                _vm.selected_transport.namecode === "legkovoy"
-                  ? [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.number,
-                            expression: "number"
-                          },
-                          {
-                            name: "maska",
-                            rawName: "v-maska",
-                            value: {
-                              mask: "Z###ZZ",
-                              tokens: {
-                                Z: {
-                                  pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
-                                }
-                              }
-                            },
-                            expression:
-                              "{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { "text-transform": "uppercase" },
-                        attrs: { placeholder: "а000аа", type: "text" },
-                        domProps: { value: _vm.number },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.number = $event.target.value
-                          }
-                        }
-                      })
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.selected_transport.namecode === "moto"
-                  ? [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.number,
-                            expression: "number"
-                          },
-                          {
-                            name: "maska",
-                            rawName: "v-maska",
-                            value: {
-                              mask: "####ZZ",
-                              tokens: {
-                                Z: {
-                                  pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
-                                }
-                              }
-                            },
-                            expression:
-                              "{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        staticStyle: { "text-transform": "uppercase" },
-                        attrs: { placeholder: "000аа", type: "text" },
-                        domProps: { value: _vm.number },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.number = $event.target.value
-                          }
-                        }
-                      })
-                    ]
-                  : _vm._e()
-              ],
-              2
-            )
-          : _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "form-label mb-1" }, [
-                _vm._v("Гос. номер")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control",
-                staticStyle: { "text-transform": "uppercase" },
-                attrs: { disabled: "", placeholder: "а000аа", type: "text" }
-              })
-            ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-md-3" }, [
-        _vm.selected_transport && _vm.selected_transport.id
-          ? _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "form-label mb-1" }, [
-                _vm._v("Регион")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.number_region,
-                      expression: "number_region"
-                    }
-                  ],
-                  staticClass: "form-select",
-                  on: {
-                    change: function($event) {
+                ],
+                staticClass: "form-select form-select-lg",
+                on: {
+                  change: [
+                    function($event) {
                       var $$selectedVal = Array.prototype.filter
                         .call($event.target.options, function(o) {
                           return o.selected
@@ -25375,52 +25718,159 @@ var render = function() {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
-                      _vm.number_region = $event.target.multiple
+                      _vm.selected_transport = $event.target.multiple
                         ? $$selectedVal
                         : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.selectTransport()
                     }
-                  }
-                },
+                  ]
+                }
+              },
+              _vm._l(_vm.transports, function(transport) {
+                return _c(
+                  "option",
+                  {
+                    key: "transport_" + transport.id,
+                    domProps: { value: transport }
+                  },
+                  [_vm._v(_vm._s(transport.name))]
+                )
+              }),
+              0
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 col-md-4" }, [
+          _vm.selected_transport && _vm.selected_transport.id
+            ? _c(
+                "div",
+                { staticClass: "mb-3" },
                 [
-                  _c("option", { attrs: { value: "02" } }, [_vm._v("02")]),
+                  _c("label", { staticClass: "form-label mb-1" }, [
+                    _vm._v("Гос. номер")
+                  ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "102" } }, [_vm._v("102")])
-                ]
+                  _vm.selected_transport.namecode === "legkovoy"
+                    ? [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.number,
+                              expression: "number"
+                            },
+                            {
+                              name: "maska",
+                              rawName: "v-maska",
+                              value: {
+                                mask: "Z###ZZ",
+                                tokens: {
+                                  Z: {
+                                    pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
+                                  }
+                                }
+                              },
+                              expression:
+                                "{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
+                            }
+                          ],
+                          staticClass: "form-control form-control-lg",
+                          staticStyle: { "text-transform": "uppercase" },
+                          attrs: { placeholder: "а000аа", type: "text" },
+                          domProps: { value: _vm.number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.number = $event.target.value
+                            }
+                          }
+                        })
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.selected_transport.namecode === "moto"
+                    ? [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.number,
+                              expression: "number"
+                            },
+                            {
+                              name: "maska",
+                              rawName: "v-maska",
+                              value: {
+                                mask: "####ZZ",
+                                tokens: {
+                                  Z: {
+                                    pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
+                                  }
+                                }
+                              },
+                              expression:
+                                "{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
+                            }
+                          ],
+                          staticClass: "form-control form-control-lg",
+                          staticStyle: { "text-transform": "uppercase" },
+                          attrs: { placeholder: "000аа", type: "text" },
+                          domProps: { value: _vm.number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.number = $event.target.value
+                            }
+                          }
+                        })
+                      ]
+                    : _vm._e()
+                ],
+                2
               )
-            ])
-          : _c("div", { staticClass: "mb-3" }, [
-              _c("label", { staticClass: "form-label mb-1" }, [
-                _vm._v("Регион")
-              ]),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.selected_transport && _vm.selected_transport.id
-      ? _c("div", { staticClass: "order-form-item" }, [
-          _c("div", { staticClass: "row align-items-center" }, [
-            _c("div", { staticClass: "col-12 col-md-6" }, [
-              _c("label", { staticClass: "form-label mb-1" }, [
-                _vm._v("Тип номера")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.selected_type,
-                      expression: "selected_type"
-                    }
-                  ],
-                  staticClass: "form-select",
-                  on: {
-                    change: [
-                      function($event) {
+            : _c("div", { staticClass: "mb-3" }, [
+                _c("label", { staticClass: "form-label mb-1" }, [
+                  _vm._v("Гос. номер")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control form-control-lg",
+                  staticStyle: { "text-transform": "uppercase" },
+                  attrs: { disabled: "", placeholder: "а000аа", type: "text" }
+                })
+              ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 col-md-3" }, [
+          _vm.selected_transport && _vm.selected_transport.id
+            ? _c("div", { staticClass: "mb-3" }, [
+                _c("label", { staticClass: "form-label mb-1" }, [
+                  _vm._v("Регион")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.number_region,
+                        expression: "number_region"
+                      }
+                    ],
+                    staticClass: "form-select form-select-lg",
+                    on: {
+                      change: function($event) {
                         var $$selectedVal = Array.prototype.filter
                           .call($event.target.options, function(o) {
                             return o.selected
@@ -25429,303 +25879,371 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.selected_type = $event.target.multiple
+                        _vm.number_region = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
-                      },
-                      function($event) {
-                        return _vm.selectType()
                       }
-                    ]
-                  }
-                },
-                _vm._l(_vm.types, function(type) {
-                  return _c(
-                    "option",
-                    { key: "type_" + type.id, domProps: { value: type } },
-                    [_vm._v(_vm._s(type.name))]
-                  )
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12 col-md-6" }, [
-              _c("div", { staticClass: "order-plate-preview" }, [
-                _vm.selected_type.namecode === "type1_with_flag" ||
-                _vm.selected_type.namecode === "type1_without_flag"
-                  ? _c("div", { staticClass: "type1_with_flag" }, [
-                      _vm.number && _vm.number.length > 0
-                        ? _c("div", { staticClass: "numbers" }, [
-                            _c("span", [
-                              _vm._v(_vm._s(_vm.number.slice(0, 1)))
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [
-                              _vm._v(_vm._s(_vm.number.slice(1, 4)))
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_vm._v(_vm._s(_vm.number.slice(4, 6)))])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.number &&
-                      _vm.number.length > 0 &&
-                      _vm.number_region &&
-                      _vm.number_region.length > 0
-                        ? _c("div", { staticClass: "reg" }, [
-                            _c("span", [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.number_region) +
-                                  "\n                            "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "reg-inner" }, [
-                              _c("i", [_vm._v("RUS")]),
-                              _vm._v(" "),
-                              _vm.selected_type.namecode === "type1_with_flag"
-                                ? _c("img", { attrs: { src: "/img/rus.svg" } })
-                                : _vm._e()
-                            ])
-                          ])
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.selected_type.namecode === "type4"
-                  ? _c("div", { staticClass: "type4" }, [
-                      _vm.number && _vm.number.length > 0
-                        ? _c("div", { staticClass: "numbers" }, [
-                            _c("span", [_vm._v(_vm._s(_vm.number.slice(0, 4)))])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.number && _vm.number.length > 0
-                        ? _c("div", { staticClass: "letters" }, [
-                            _c("span", [_vm._v(_vm._s(_vm.number.slice(4, 6)))])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.number &&
-                      _vm.number.length > 0 &&
-                      _vm.number_region &&
-                      _vm.number_region.length > 0
-                        ? _c("div", { staticClass: "reg" }, [
-                            _vm._m(1),
-                            _vm._v(" "),
-                            _c("span", [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.number_region) +
-                                  "\n                            "
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ])
-                  : _vm._e()
-              ])
-            ])
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.selected_type &&
-    _vm.selected_type.id &&
-    _vm.selected_transport.komplekt == true
-      ? _c("div", { staticClass: "form-check mb-3" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.add_komplekt,
-                expression: "add_komplekt"
-              }
-            ],
-            staticClass: "form-check-input",
-            attrs: { type: "checkbox", value: "1", id: "flexCheckDefault" },
-            domProps: {
-              checked: Array.isArray(_vm.add_komplekt)
-                ? _vm._i(_vm.add_komplekt, "1") > -1
-                : _vm.add_komplekt
-            },
-            on: {
-              change: [
-                function($event) {
-                  var $$a = _vm.add_komplekt,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = "1",
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.add_komplekt = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.add_komplekt = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
                     }
-                  } else {
-                    _vm.add_komplekt = $$c
-                  }
-                },
-                function($event) {
-                  return _vm.addKomplekt()
-                }
-              ]
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "form-check-label",
-              attrs: { for: "flexCheckDefault" }
-            },
-            [_vm._v("\n            Заказать комплект (+ 1шт.)\n        ")]
-          )
+                  },
+                  [
+                    _c("option", { attrs: { value: "02" } }, [_vm._v("02")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "102" } }, [_vm._v("102")])
+                  ]
+                )
+              ])
+            : _c("div", { staticClass: "mb-3" }, [
+                _c("label", { staticClass: "form-label mb-1" }, [
+                  _vm._v("Регион")
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.add_komplekt
-      ? _c("div", { staticClass: "order-form-item" }, [
-          _c("div", { staticClass: "row align-items-center" }, [
-            _c(
-              "div",
-              { staticClass: "col-12 col-md-6" },
-              [
-                _vm.selected_transport &&
-                _vm.selected_transport.komplekt == true
-                  ? [
-                      _c("label", { staticClass: "form-label mb-1" }, [
-                        _vm._v("Тип номера")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected_komplekt_type,
-                              expression: "selected_komplekt_type"
-                            }
-                          ],
-                          staticClass: "form-select",
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.selected_komplekt_type = $event.target
-                                  .multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              function($event) {
-                                return _vm.selectKomplektType()
-                              }
-                            ]
-                          }
+      ]),
+      _vm._v(" "),
+      _vm.selected_transport && _vm.selected_transport.id
+        ? _c("div", { staticClass: "order-form-item" }, [
+            _c("div", { staticClass: "row align-items-center" }, [
+              _c("div", { staticClass: "col-12 col-md-6" }, [
+                _c("label", { staticClass: "form-label mb-1" }, [
+                  _vm._v("Тип номера")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected_type,
+                        expression: "selected_type"
+                      }
+                    ],
+                    staticClass: "form-select",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.selected_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
                         },
-                        _vm._l(_vm.types, function(type) {
-                          return _c(
-                            "option",
-                            {
-                              key: "type_" + type.id,
-                              domProps: { value: type }
-                            },
-                            [_vm._v(_vm._s(type.name))]
-                          )
-                        }),
-                        0
-                      )
-                    ]
-                  : _vm._e()
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-12 col-md-6" }, [
-              _c("div", { staticClass: "order-plate-preview" }, [
-                _vm.selected_komplekt_type.namecode === "type1_with_flag" ||
-                _vm.selected_komplekt_type.namecode === "type1_without_flag"
-                  ? _c("div", { staticClass: "type1_with_flag" }, [
-                      _vm.number && _vm.number.length > 0
-                        ? _c("div", { staticClass: "numbers" }, [
-                            _c("span", [
-                              _vm._v(_vm._s(_vm.number.slice(0, 1)))
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [
-                              _vm._v(_vm._s(_vm.number.slice(1, 4)))
-                            ]),
-                            _vm._v(" "),
-                            _c("span", [_vm._v(_vm._s(_vm.number.slice(4, 6)))])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.number &&
-                      _vm.number.length > 0 &&
-                      _vm.number_region &&
-                      _vm.number_region.length > 0
-                        ? _c("div", { staticClass: "reg" }, [
-                            _c("span", [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.number_region) +
-                                  "\n                            "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "reg-inner" }, [
-                              _c("i", [_vm._v("RUS")]),
+                        function($event) {
+                          return _vm.selectType()
+                        }
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.types, function(type) {
+                    return _c(
+                      "option",
+                      { key: "type_" + type.id, domProps: { value: type } },
+                      [_vm._v(_vm._s(type.name))]
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12 col-md-6" }, [
+                _c("div", { staticClass: "order-plate-preview" }, [
+                  _vm.selected_type.namecode === "type1_with_flag" ||
+                  _vm.selected_type.namecode === "type1_without_flag"
+                    ? _c("div", { staticClass: "type1_with_flag" }, [
+                        _vm.number && _vm.number.length > 0
+                          ? _c("div", { staticClass: "numbers" }, [
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(0, 1)))
+                              ]),
                               _vm._v(" "),
-                              _vm.selected_komplekt_type.namecode ===
-                              "type1_with_flag"
-                                ? _c("img", { attrs: { src: "/img/rus.svg" } })
-                                : _vm._e()
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(1, 4)))
+                              ]),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(4, 6)))
+                              ])
                             ])
-                          ])
-                        : _vm._e()
-                    ])
-                  : _vm._e()
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.number &&
+                        _vm.number.length > 0 &&
+                        _vm.number_region &&
+                        _vm.number_region.length > 0
+                          ? _c("div", { staticClass: "reg" }, [
+                              _c("span", [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.number_region) +
+                                    "\n                            "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "reg-inner" }, [
+                                _c("i", [_vm._v("RUS")]),
+                                _vm._v(" "),
+                                _vm.selected_type.namecode === "type1_with_flag"
+                                  ? _c("img", {
+                                      attrs: { src: "/img/rus.svg" }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.selected_type.namecode === "type4"
+                    ? _c("div", { staticClass: "type4" }, [
+                        _vm.number && _vm.number.length > 0
+                          ? _c("div", { staticClass: "numbers" }, [
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(0, 4)))
+                              ])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.number && _vm.number.length > 0
+                          ? _c("div", { staticClass: "letters" }, [
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(4, 6)))
+                              ])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.number &&
+                        _vm.number.length > 0 &&
+                        _vm.number_region &&
+                        _vm.number_region.length > 0
+                          ? _c("div", { staticClass: "reg" }, [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.number_region) +
+                                    "\n                            "
+                                )
+                              ])
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ])
               ])
             ])
           ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.number &&
-    _vm.number.length > 0 &&
-    _vm.number_region &&
-    _vm.number_region.length > 0
-      ? _c("h4", { staticClass: "mt-4 text-center" }, [
-          _vm._v(_vm._s(_vm.price) + " руб.")
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.number &&
-    _vm.number.length > 0 &&
-    _vm.number_region &&
-    _vm.number_region.length > 0
-      ? _c("div", { staticClass: "text-center mb-4" }, [
-          _c("button", { staticClass: "btn btn-lg btn-standard" }, [
-            _vm._v("Заказать")
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.selected_type &&
+      _vm.selected_type.id &&
+      _vm.selected_transport.komplekt == true
+        ? _c("div", { staticClass: "form-check mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.add_komplekt,
+                  expression: "add_komplekt"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", value: "1", id: "flexCheckDefault" },
+              domProps: {
+                checked: Array.isArray(_vm.add_komplekt)
+                  ? _vm._i(_vm.add_komplekt, "1") > -1
+                  : _vm.add_komplekt
+              },
+              on: {
+                change: [
+                  function($event) {
+                    var $$a = _vm.add_komplekt,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = "1",
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.add_komplekt = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.add_komplekt = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.add_komplekt = $$c
+                    }
+                  },
+                  function($event) {
+                    return _vm.addKomplekt()
+                  }
+                ]
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "form-check-label",
+                attrs: { for: "flexCheckDefault" }
+              },
+              [_vm._v("\n            Заказать комплект (+ 1шт.)\n        ")]
+            )
           ])
-        ])
-      : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.add_komplekt
+        ? _c("div", { staticClass: "order-form-item" }, [
+            _c("div", { staticClass: "row align-items-center" }, [
+              _c(
+                "div",
+                { staticClass: "col-12 col-md-6" },
+                [
+                  _vm.selected_transport &&
+                  _vm.selected_transport.komplekt == true
+                    ? [
+                        _c("label", { staticClass: "form-label mb-1" }, [
+                          _vm._v("Тип номера")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selected_komplekt_type,
+                                expression: "selected_komplekt_type"
+                              }
+                            ],
+                            staticClass: "form-select",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.selected_komplekt_type = $event.target
+                                    .multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                function($event) {
+                                  return _vm.selectKomplektType()
+                                }
+                              ]
+                            }
+                          },
+                          _vm._l(_vm.types, function(type) {
+                            return _c(
+                              "option",
+                              {
+                                key: "type_" + type.id,
+                                domProps: { value: type }
+                              },
+                              [_vm._v(_vm._s(type.name))]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    : _vm._e()
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12 col-md-6" }, [
+                _c("div", { staticClass: "order-plate-preview" }, [
+                  _vm.selected_komplekt_type.namecode === "type1_with_flag" ||
+                  _vm.selected_komplekt_type.namecode === "type1_without_flag"
+                    ? _c("div", { staticClass: "type1_with_flag" }, [
+                        _vm.number && _vm.number.length > 0
+                          ? _c("div", { staticClass: "numbers" }, [
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(0, 1)))
+                              ]),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(1, 4)))
+                              ]),
+                              _vm._v(" "),
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.number.slice(4, 6)))
+                              ])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.number &&
+                        _vm.number.length > 0 &&
+                        _vm.number_region &&
+                        _vm.number_region.length > 0
+                          ? _c("div", { staticClass: "reg" }, [
+                              _c("span", [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.number_region) +
+                                    "\n                            "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "reg-inner" }, [
+                                _c("i", [_vm._v("RUS")]),
+                                _vm._v(" "),
+                                _vm.selected_komplekt_type.namecode ===
+                                "type1_with_flag"
+                                  ? _c("img", {
+                                      attrs: { src: "/img/rus.svg" }
+                                    })
+                                  : _vm._e()
+                              ])
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ])
+              ])
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.number &&
+      _vm.number.length > 0 &&
+      _vm.number_region &&
+      _vm.number_region.length > 0
+        ? _c("h4", { staticClass: "mt-4 text-center" }, [
+            _vm._v(_vm._s(_vm.price) + " руб.")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.number &&
+      _vm.number.length > 0 &&
+      _vm.number_region &&
+      _vm.number_region.length > 0
+        ? _c("div", { staticClass: "text-center mb-4" }, [
+            _c("button", { staticClass: "btn btn-lg btn-standard" }, [
+              _vm._v("Заказать")
+            ])
+          ])
+        : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = [
@@ -25735,7 +26253,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "select",
-      { staticClass: "form-select", attrs: { disabled: "" } },
+      { staticClass: "form-select form-select-lg", attrs: { disabled: "" } },
       [_c("option", { attrs: { value: "" } })]
     )
   },

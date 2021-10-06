@@ -70,5 +70,57 @@
         <div>
             <router-view :key="$route.path"></router-view>
         </div>
+
+        <div class="home-contacts">
+            <div class="container">
+                <h2 class="home-block-title">Контакты</h2>
+                <ul>
+                    <li>Уфа, ул. Лесотехникума, 15
+                    </li>
+                    <li>
+                        +7 927 236-66-29
+                    </li>
+                    <li>
+                        +7 960 800-32-10
+                    </li>
+                </ul>
+                <div class="map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A7be0ec96a4c612454138b57387fa53bcfc144805e5cd495f745d9839dd71ecc8&amp;source=constructor" width="100%" height="100%" frameborder="0" style="pointer-events: none;"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="footer-logo">
+                        <router-link :to="{ name: 'Home' }">
+                            <img src="/img/logo.svg" alt="Номерус">
+                            <span>Изготовление госномеров</span>
+                        </router-link>
+                    </div>
+                    <div class="footer-policy">
+                        <a href="#">Политика конфиденциальности</a>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#">
+                            <img src="/img/whatsapp.svg">
+                        </a>
+                        <a href="#">
+                            <img src="/img/telegram.svg">
+                        </a>
+                    </div>
+                    <div class="footer-callback">
+                        <button class="btn btn-standard">Обратный звонок</button>
+                    </div>
+                    <div class="footer-tel">
+                        <div class="footer-tel-inner">
+                            <a href="#">+7 927 236-66-29</a>
+                            <a href="#">+7 960 800-32-10</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>

@@ -1,12 +1,13 @@
 <template>
-    <div class="container order-page mb-4">
-        <h1 class="order-block-title mt-4 mb-4">Заказ номера</h1>
+    <div style="background-color: #fff;">
+    <div class="container order-page">
+        <h1 class="order-block-title">Заказ номера</h1>
 
         <div class="row">
             <div class="col-12 col-md-5">
                 <div class="mb-4">
                     <label class="form-label mb-1">Транспорт</label>
-                    <select v-model="selected_transport" @change="selectTransport()" class="form-select">
+                    <select v-model="selected_transport" @change="selectTransport()" class="form-select form-select-lg">
                         <option v-for="transport in transports" :key="'transport_' + transport.id" :value="transport">{{ transport.name }}</option>
                     </select>
                 </div>
@@ -15,28 +16,28 @@
                 <div v-if="selected_transport && selected_transport.id" class="mb-3">
                     <label class="form-label mb-1">Гос. номер</label>
                     <template v-if="selected_transport.namecode === 'legkovoy'">
-                        <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="а000аа" type="text" class="form-control" style="text-transform: uppercase;">
+                        <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="а000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                     </template>
                     <template v-if="selected_transport.namecode === 'moto'">
-                        <input v-model="number" v-maska="{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="000аа" type="text" class="form-control" style="text-transform: uppercase;">
+                        <input v-model="number" v-maska="{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" placeholder="000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                     </template>
                 </div>
                 <div v-else class="mb-3">
                     <label class="form-label mb-1">Гос. номер</label>
-                    <input disabled placeholder="а000аа" type="text" class="form-control" style="text-transform: uppercase;">
+                    <input disabled placeholder="а000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                 </div>
             </div>
             <div class="col-12 col-md-3">
                 <div v-if="selected_transport && selected_transport.id" class="mb-3">
                     <label class="form-label mb-1">Регион</label>
-                    <select v-model="number_region" class="form-select">
+                    <select v-model="number_region" class="form-select form-select-lg">
                         <option value="02">02</option>
                         <option value="102">102</option>
                     </select>
                 </div>
                 <div v-else class="mb-3">
                     <label class="form-label mb-1">Регион</label>
-                    <select disabled class="form-select">
+                    <select disabled class="form-select form-select-lg">
                         <option value></option>
                     </select>
                 </div>
@@ -137,6 +138,7 @@
             <button class="btn btn-lg btn-standard">Заказать</button>
         </div>
 
+    </div>
     </div>
 </template>
 
