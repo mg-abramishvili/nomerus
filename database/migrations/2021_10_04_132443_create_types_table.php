@@ -12,9 +12,10 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('namecode');
-            $table->boolean('flag')->nullable();
+            $table->boolean('bold');
             $table->decimal('price');
-            $table->decimal('komplekt_price')->nullable();
+            $table->decimal('komplekt_price');
+            $table->decimal('komplekt_same_type_price');
             $table->timestamps();
         });
     }

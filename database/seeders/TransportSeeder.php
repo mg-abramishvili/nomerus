@@ -16,13 +16,11 @@ class TransportSeeder extends Seeder
                 'id' => 1,
                 'name' => 'Легковой',
                 'namecode' => 'legkovoy',
-                'komplekt' => 1,
             ],
             [
                 'id' => 2,
                 'name' => 'Мото',
                 'namecode' => 'moto',
-                'komplekt' => 0,
             ],
         ]);
     }

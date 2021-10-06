@@ -12,7 +12,6 @@ class CreateTransportsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('namecode');
-            $table->boolean('komplekt');
             $table->timestamps();
         });
     }

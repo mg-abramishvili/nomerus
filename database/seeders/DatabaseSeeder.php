@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             TransportSeeder::class,
             CitySeeder::class,
             TransportTypeSeeder::class,
+            KomplektTypeSeeder::class,
         ]);
     }
 }

@@ -13,4 +13,9 @@ class Type extends Model
     {
         return $this->belongsToMany('App\Models\Transport');
     }
+
+    public function komplekt()
+    {
+        return $this->belongsToMany('App\Models\Type', 'komplekt_type', 'type_id', 'komplekt_id');
+    }
 }

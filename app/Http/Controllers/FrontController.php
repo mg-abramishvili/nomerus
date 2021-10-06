@@ -17,6 +17,6 @@ class FrontController extends Controller
     {
         $transport = Transport::find($id);
 
-        return Type::whereRelation('transports', 'transport_id', $id)->get();
+        return Type::with('komplekt')->whereRelation('transports', 'transport_id', $id)->get();
     }
 }
