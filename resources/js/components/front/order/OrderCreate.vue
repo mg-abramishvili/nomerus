@@ -348,6 +348,24 @@
                 this.order_fields = false
             }
         },
+        mounted() {
+            this.$watch(
+            "$parent.current_city_id",
+            (new_value, old_value) => {
+                this.selected_transport = ''
+                this.selected_type = ''
+                this.number = ''
+                this.number_region = ''
+                this.price = ''
+                this.add_komplekt = false
+
+                this.constructor = true
+                this.order_fields = false
+
+                this.order_list = []
+            }
+            );
+        },
         components: {
         }
     }

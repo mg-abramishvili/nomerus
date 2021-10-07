@@ -2951,6 +2951,21 @@ __webpack_require__.r(__webpack_exports__);
       this.order_fields = false;
     }
   },
+  mounted: function mounted() {
+    var _this4 = this;
+
+    this.$watch("$parent.current_city_id", function (new_value, old_value) {
+      _this4.selected_transport = '';
+      _this4.selected_type = '';
+      _this4.number = '';
+      _this4.number_region = '';
+      _this4.price = '';
+      _this4.add_komplekt = false;
+      _this4.constructor = true;
+      _this4.order_fields = false;
+      _this4.order_list = [];
+    });
+  },
   components: {}
 });
 

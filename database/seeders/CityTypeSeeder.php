@@ -24,7 +24,7 @@ class CityTypeSeeder extends Seeder
                 'id' => 2,
                 'city_id' => 2,
                 'type_id' => 1,
-                'price' => 800,
+                'price' => 850,
                 'komplekt_same_type_price' => 750,
                 'komplekt_price' => 800
             ],
