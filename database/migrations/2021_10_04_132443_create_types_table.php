@@ -13,9 +13,6 @@ class CreateTypesTable extends Migration
             $table->string('name');
             $table->string('namecode');
             $table->boolean('bold');
-            $table->decimal('price');
-            $table->decimal('komplekt_price');
-            $table->decimal('komplekt_same_type_price');
             $table->timestamps();
         });
     }

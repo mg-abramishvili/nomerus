@@ -11,7 +11,7 @@
                             </router-link>
                         </div>
                         <div class="header-location">
-                            <button>Уфа</button>
+                            <button @click="openCityModal()">{{ current_city_name }}</button>
                             <span>ул. Лесотехникума 15</span>
                         </div>
                         <div class="header-social">
@@ -122,5 +122,64 @@
                 </div>
             </div>
         </footer>
+
+        <div v-if="city_modal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Где вы находитесь?</h5>
+                        <button @click="city_modal = false" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li v-for="city in cities" :key="'city_' + city.id">
+                                <a @click="selectCity(city.id, city.name, city.namecode)">{{ city.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
+
+<script>
+    import { maska } from 'maska'
+
+    export default {
+        directives: { maska },
+        data() {
+            return {
+                cities: [],
+
+                current_city_id: 1,
+                current_city_name: 'Уфа',
+                current_city_namecode: 'ufa',
+
+                city_modal: false,
+            }
+        },
+        created() {
+            axios
+            .get('/api/cities')
+            .then((response => {
+                this.cities = response.data
+            }));
+        },
+        methods: {
+            openCityModal() {
+                this.city_modal = true
+            },
+            selectCity(id, name, namecode) {
+                this.current_city_id = id
+                this.current_city_name = name
+                this.current_city_namecode = namecode
+
+                this.city_modal = false
+            }
+        },
+        components: {
+        }
+    }
+</script>

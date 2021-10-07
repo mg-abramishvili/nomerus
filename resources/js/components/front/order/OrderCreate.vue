@@ -1,6 +1,6 @@
 <template>
     <div style="background-color: #fff;">
-        <div class="container order-page">
+        <div class="container order-page" id="order-page">
             <h1 class="order-block-title">Заказ номера</h1>
             <div class="row">
 
@@ -267,11 +267,11 @@
         methods: {
             selectTransport() {
                 axios
-                .get(`/api/transport/${this.selected_transport.id}/types`)
+                .get(`/api/${this.$parent.current_city_id}/transport/${this.selected_transport.id}/types`)
                 .then(response => (
                     this.types = response.data,
                     this.selected_type = this.types[0],
-                    this.price = this.types[0].price
+                    this.price = this.types[0].cities[0].pivot.price
                 ));
                 this.number = ''
                 this.number_region = ''
@@ -291,7 +291,7 @@
                     this.priceCalculate()
                 } else {
                     this.selected_komplekt_type = ''
-                    this.price = this.selected_type.price
+                    this.price = this.selected_type.cities[0].pivot.price
                 }
             },
             selectKomplektType() {
@@ -300,16 +300,17 @@
             priceCalculate() {
                 if(this.add_komplekt == true) {
                     if(this.selected_type.id === this.selected_komplekt_type.id) {
-                        this.price = parseInt(this.selected_type.komplekt_same_type_price) + parseInt(this.selected_komplekt_type.komplekt_same_type_price)
+                        this.price = parseInt(this.selected_type.cities[0].pivot.komplekt_same_type_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.komplekt_same_type_price)
                     } else {
-                        this.price = parseInt(this.selected_type.komplekt_price) + parseInt(this.selected_komplekt_type.komplekt_price)
+                        this.price = parseInt(this.selected_type.cities[0].pivot.komplekt_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.komplekt_price)
                     }
                 } else {
-                    this.price = parseInt(this.selected_type.price)
+                    this.price = parseInt(this.selected_type.cities[0].pivot.price)
                 }
             },
             saveOrderItem() {
                 if(this.selected_transport && this.selected_type && this.number && this.number_region) {
+                    //document.getElementById('order-page').scrollIntoView();
                     this.constructor = false
                     this.order_fields = true
                     axios

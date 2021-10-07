@@ -18,4 +18,9 @@ class Type extends Model
     {
         return $this->belongsToMany('App\Models\Type', 'komplekt_type', 'type_id', 'komplekt_id');
     }
+
+    public function cities()
+    {
+        return $this->belongsToMany('App\Models\City')->withPivot(['price', 'komplekt_price', 'komplekt_same_type_price']);
+    }
 }

@@ -15,6 +15,10 @@ html, body {
     background-color: #f7f7f7;
 }
 
+.modal {
+    display: block;
+}
+
 .front header .header-top {
     background-color: #000001 !important;
     padding: 15px 0;
