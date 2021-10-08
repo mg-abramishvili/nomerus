@@ -646,6 +646,54 @@ html, body {
 
 
 
+.city_modal .modal-body {
+    padding: 40px;
+}
+
+.city_modal .modal-body ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.city_modal .modal-body ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.city_modal .modal-body ul li:before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #EF5044;
+    border-radius: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    display: block;
+}
+
+.city_modal .modal-body ul li:last-child {
+    margin-bottom: 0;
+}
+
+.city_modal .modal-body ul li a {
+    font-weight: 400;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.city_modal .modal-body ul li a:hover {
+    cursor: pointer;
+    color: #EF5044;
+}
+
+
+
+
+
 .callback_modal .modal-body {
     padding: 40px;
 }

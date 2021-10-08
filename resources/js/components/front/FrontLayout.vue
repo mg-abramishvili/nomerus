@@ -12,7 +12,7 @@
                         </div>
                         <div class="header-location">
                             <button @click="openCityModal()">{{ current_city_name }}</button>
-                            <span>ул. Лесотехникума 15</span>
+                            <span>ул. Лесотехникума, 15</span>
                         </div>
                         <div class="header-social">
                             <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
@@ -129,7 +129,7 @@
             </div>
         </footer>
 
-        <div v-if="city_modal" class="modal" tabindex="-1">
+        <div v-if="city_modal" class="modal city_modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

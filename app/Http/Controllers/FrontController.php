@@ -64,7 +64,8 @@ class FrontController extends Controller
 
         return response()->json([
             'uid' => $order->uid,
-            'number' => $order->number
+            'number' => $order->number,
+            'price' => $order->price
         ]);
     }
 }

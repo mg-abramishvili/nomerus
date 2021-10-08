@@ -202,12 +202,12 @@
                                         {{ orderItem.number }}
                                     </div>
                                     <div class="col-6 text-end">
-                                        000 руб.
+                                        {{ orderItem.price }} руб.
                                     </div>
                                 </div>
                             </li>
                         </ul>
-                        <h4 v-if="order_list && order_list.length > 0" class="order-total-price text-center">{{ price }} руб.</h4>
+                        <h4 v-if="order_list && order_list.length > 0" class="order-total-price text-center">{{ price_total }} руб.</h4>
                         <div v-else class="text-center text-muted mb-4">Заказ пуст</div>
                         <div class="order-buttons text-center">
                             <button v-if="order_list && order_list.length > 0 && constructor == false" @click="addAnotherNumber()" class="btn btn-lg btn-standard btn-standard-outline">Добавить еще номер</button>
@@ -241,6 +241,7 @@
                 number_region: '',
 
                 price: '',
+                price_total: '',
 
                 order_list: [],
 
@@ -321,7 +322,8 @@
                         })
                     .then(response => (
                         //console.log(response.data)
-                        this.order_list.push(response.data)
+                        this.order_list.push(response.data),
+                        this.price_total = this.order_list.reduce((n, {price}) => n + parseInt(price), 0)
                     ))
                     .catch((error) => {
                         if(error.response) {

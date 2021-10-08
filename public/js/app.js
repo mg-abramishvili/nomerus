@@ -2921,6 +2921,7 @@ __webpack_require__.r(__webpack_exports__);
       number: '',
       number_region: '',
       price: '',
+      price_total: '',
       order_list: [],
       constructor: true,
       order_fields: false
@@ -3001,7 +3002,10 @@ __webpack_require__.r(__webpack_exports__);
           price: this.price
         }).then(function (response) {
           return (//console.log(response.data)
-            _this3.order_list.push(response.data)
+            _this3.order_list.push(response.data), _this3.price_total = _this3.order_list.reduce(function (n, _ref) {
+              var price = _ref.price;
+              return n + parseInt(price);
+            }, 0)
           );
         })["catch"](function (error) {
           if (error.response) {
@@ -25409,7 +25413,7 @@ var render = function() {
                 [_vm._v(_vm._s(_vm.current_city_name))]
               ),
               _vm._v(" "),
-              _c("span", [_vm._v("ул. Лесотехникума 15")])
+              _c("span", [_vm._v("ул. Лесотехникума, 15")])
             ]),
             _vm._v(" "),
             _vm._m(0),
@@ -25482,57 +25486,61 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.city_modal
-      ? _c("div", { staticClass: "modal", attrs: { tabindex: "-1" } }, [
-          _c("div", { staticClass: "modal-dialog" }, [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h5", { staticClass: "modal-title" }, [
-                  _vm._v("Где вы находитесь?")
+      ? _c(
+          "div",
+          { staticClass: "modal city_modal", attrs: { tabindex: "-1" } },
+          [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Где вы находитесь?")
+                  ]),
+                  _vm._v(" "),
+                  _c("button", {
+                    staticClass: "btn-close",
+                    attrs: {
+                      type: "button",
+                      "data-bs-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeCityModal()
+                      }
+                    }
+                  })
                 ]),
                 _vm._v(" "),
-                _c("button", {
-                  staticClass: "btn-close",
-                  attrs: {
-                    type: "button",
-                    "data-bs-dismiss": "modal",
-                    "aria-label": "Close"
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.closeCityModal()
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "ul",
-                  _vm._l(_vm.cities, function(city) {
-                    return _c("li", { key: "city_" + city.id }, [
-                      _c(
-                        "a",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.selectCity(
-                                city.id,
-                                city.name,
-                                city.namecode
-                              )
+                _c("div", { staticClass: "modal-body" }, [
+                  _c(
+                    "ul",
+                    _vm._l(_vm.cities, function(city) {
+                      return _c("li", { key: "city_" + city.id }, [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.selectCity(
+                                  city.id,
+                                  city.name,
+                                  city.namecode
+                                )
+                              }
                             }
-                          }
-                        },
-                        [_vm._v(_vm._s(city.name))]
-                      )
-                    ])
-                  }),
-                  0
-                )
+                          },
+                          [_vm._v(_vm._s(city.name))]
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ])
               ])
             ])
-          ])
-        ])
+          ]
+        )
       : _vm._e(),
     _vm._v(" "),
     _vm.callback_modal
@@ -27259,7 +27267,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "col-6 text-end" }, [
                         _vm._v(
-                          "\n                                    000 руб.\n                                "
+                          "\n                                    " +
+                            _vm._s(orderItem.price) +
+                            " руб.\n                                "
                         )
                       ])
                     ])
@@ -27270,7 +27280,7 @@ var render = function() {
               _vm._v(" "),
               _vm.order_list && _vm.order_list.length > 0
                 ? _c("h4", { staticClass: "order-total-price text-center" }, [
-                    _vm._v(_vm._s(_vm.price) + " руб.")
+                    _vm._v(_vm._s(_vm.price_total) + " руб.")
                   ])
                 : _c("div", { staticClass: "text-center text-muted mb-4" }, [
                     _vm._v("Заказ пуст")
