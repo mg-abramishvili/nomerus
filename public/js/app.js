@@ -2177,11 +2177,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      orders: []
+    };
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    axios.get('/api/admin/orders').then(function (response) {
+      return _this.orders = response.data;
+    });
+  },
   methods: {},
   components: {}
 });
@@ -25655,7 +25680,7 @@ var render = function() {
         ? [_c("FrontLayout")]
         : _vm._e(),
       _vm._v(" "),
-      _vm.$route.name === "Leads" ? [_c("AdminLayout")] : _vm._e()
+      _vm.$route.name === "Orders" ? [_c("AdminLayout")] : _vm._e()
     ],
     2
   )
@@ -25733,9 +25758,9 @@ var render = function() {
                                   "router-link",
                                   {
                                     staticClass: "nav-link",
-                                    attrs: { to: { name: "Leads" } }
+                                    attrs: { to: { name: "Orders" } }
                                   },
-                                  [_vm._v("Заявки")]
+                                  [_vm._v("Заказы")]
                                 )
                               ],
                               1
@@ -25816,18 +25841,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("table", { staticClass: "table table-striped" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.orders, function(order) {
+          return _c("tr", { key: "order_" + order.id }, [
+            _c("td", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(order.created_at) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(order.email) +
+                  "\n                    " +
+                  _vm._s(order.tel) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(order.price) +
+                  " руб.\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "ul",
+                _vm._l(order.order_items, function(orderItem) {
+                  return _c("li", { key: "orderItem_" + orderItem.id }, [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(orderItem.number) +
+                        "\n                        "
+                    )
+                  ])
+                }),
+                0
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("table", [
-        _c("thead", [_c("tr", [_c("th")])]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Дата")]),
         _vm._v(" "),
-        _c("tbody", [_c("tr", [_c("td")])])
+        _c("th", [_vm._v("Контакты")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Сумма")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Состав заказа")])
       ])
     ])
   }
