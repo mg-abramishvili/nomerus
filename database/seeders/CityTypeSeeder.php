@@ -52,6 +52,38 @@ class CityTypeSeeder extends Seeder
                 'komplekt_same_type_price' => 1500,
                 'komplekt_price' => 1500
             ],
+            [
+                'id' => 6,
+                'city_id' => 1,
+                'type_id' => 5,
+                'price' => 1500,
+                'komplekt_same_type_price' => 1500,
+                'komplekt_price' => 1500
+            ],
+            [
+                'id' => 7,
+                'city_id' => 1,
+                'type_id' => 6,
+                'price' => 1500,
+                'komplekt_same_type_price' => 1500,
+                'komplekt_price' => 1500
+            ],
+            [
+                'id' => 8,
+                'city_id' => 1,
+                'type_id' => 7,
+                'price' => 1500,
+                'komplekt_same_type_price' => 1500,
+                'komplekt_price' => 1500
+            ],
+            [
+                'id' => 9,
+                'city_id' => 1,
+                'type_id' => 8,
+                'price' => 1500,
+                'komplekt_same_type_price' => 1500,
+                'komplekt_price' => 1500
+            ],
         ]);
     }
 }
