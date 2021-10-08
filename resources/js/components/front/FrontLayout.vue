@@ -15,6 +15,9 @@
                             <span>ул. Лесотехникума 15</span>
                         </div>
                         <div class="header-social">
+                            <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
+                                <img src="/img/insta.svg">
+                            </a>
                             <a href="#">
                                 <img src="/img/whatsapp.svg">
                             </a>
@@ -23,7 +26,7 @@
                             </a>
                         </div>
                         <div class="header-callback">
-                            <button class="btn btn-standard">Обратный звонок</button>
+                            <button @click="openCallbackModal()" class="btn btn-standard">Обратный звонок</button>
                         </div>
                         <div class="header-tel">
                             <div class="header-tel-inner">
@@ -103,6 +106,9 @@
                         <a href="#">Политика конфиденциальности</a>
                     </div>
                     <div class="footer-social">
+                        <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
+                            <img src="/img/insta.svg">
+                        </a>
                         <a href="#">
                             <img src="/img/whatsapp.svg">
                         </a>
@@ -111,7 +117,7 @@
                         </a>
                     </div>
                     <div class="footer-callback">
-                        <button class="btn btn-standard">Обратный звонок</button>
+                        <button @click="openCallbackModal()" class="btn btn-standard">Обратный звонок</button>
                     </div>
                     <div class="footer-tel">
                         <div class="footer-tel-inner">
@@ -128,7 +134,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Где вы находитесь?</h5>
-                        <button @click="city_modal = false" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button @click="closeCityModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <ul>
@@ -140,6 +146,30 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="callback_modal" class="modal callback_modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Обратный звонок</h5>
+                        <button @click="closeCallbackModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-4">
+                            <input type="text" class="form-control form-control-lg text-center" placeholder="Имя">
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control form-control-lg text-center" placeholder="Телефон">
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-standard">Отправить заявку</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="modal_bg" class="modal-backdrop fade show"></div>
 
     </div>
 </template>
@@ -158,6 +188,8 @@
                 current_city_namecode: 'ufa',
 
                 city_modal: false,
+                callback_modal: false,
+                modal_bg: false,
             }
         },
         created() {
@@ -168,15 +200,28 @@
             }));
         },
         methods: {
+            openCallbackModal() {
+                this.modal_bg = true
+                this.callback_modal = true
+            },
+            closeCallbackModal() {
+                this.modal_bg = false
+                this.callback_modal = false
+            },
             openCityModal() {
+                this.modal_bg = true
                 this.city_modal = true
+            },
+            closeCityModal() {
+                this.modal_bg = false
+                this.city_modal = false
             },
             selectCity(id, name, namecode) {
                 this.current_city_id = id
                 this.current_city_name = name
                 this.current_city_namecode = namecode
 
-                this.city_modal = false
+                this.closeCityModal()
             }
         },
         components: {

@@ -2305,6 +2305,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -2316,7 +2346,9 @@ __webpack_require__.r(__webpack_exports__);
       current_city_id: 1,
       current_city_name: 'Уфа',
       current_city_namecode: 'ufa',
-      city_modal: false
+      city_modal: false,
+      callback_modal: false,
+      modal_bg: false
     };
   },
   created: function created() {
@@ -2327,14 +2359,27 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    openCallbackModal: function openCallbackModal() {
+      this.modal_bg = true;
+      this.callback_modal = true;
+    },
+    closeCallbackModal: function closeCallbackModal() {
+      this.modal_bg = false;
+      this.callback_modal = false;
+    },
     openCityModal: function openCityModal() {
+      this.modal_bg = true;
       this.city_modal = true;
+    },
+    closeCityModal: function closeCityModal() {
+      this.modal_bg = false;
+      this.city_modal = false;
     },
     selectCity: function selectCity(id, name, namecode) {
       this.current_city_id = id;
       this.current_city_name = name;
       this.current_city_namecode = namecode;
-      this.city_modal = false;
+      this.closeCityModal();
     }
   },
   components: {}
@@ -2353,6 +2398,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -25338,19 +25414,32 @@ var render = function() {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _vm._m(1),
+            _c("div", { staticClass: "header-callback" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-standard",
+                  on: {
+                    click: function($event) {
+                      return _vm.openCallbackModal()
+                    }
+                  }
+                },
+                [_vm._v("Обратный звонок")]
+              )
+            ]),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ])
         ])
       ]),
       _vm._v(" "),
-      _vm._m(3)
+      _vm._m(2)
     ]),
     _vm._v(" "),
     _c("div", [_c("router-view", { key: _vm.$route.path })], 1),
     _vm._v(" "),
-    _vm._m(4),
+    _vm._m(3),
     _vm._v(" "),
     _c("footer", [
       _c("div", { staticClass: "container" }, [
@@ -25368,13 +25457,26 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
-          _vm._m(6),
+          _c("div", { staticClass: "footer-callback" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-standard",
+                on: {
+                  click: function($event) {
+                    return _vm.openCallbackModal()
+                  }
+                }
+              },
+              [_vm._v("Обратный звонок")]
+            )
+          ]),
           _vm._v(" "),
-          _vm._m(7),
-          _vm._v(" "),
-          _vm._m(8)
+          _vm._m(6)
         ])
       ])
     ]),
@@ -25397,7 +25499,7 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      _vm.city_modal = false
+                      return _vm.closeCityModal()
                     }
                   }
                 })
@@ -25431,6 +25533,44 @@ var render = function() {
             ])
           ])
         ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.callback_modal
+      ? _c(
+          "div",
+          { staticClass: "modal callback_modal", attrs: { tabindex: "-1" } },
+          [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Обратный звонок")
+                  ]),
+                  _vm._v(" "),
+                  _c("button", {
+                    staticClass: "btn-close",
+                    attrs: {
+                      type: "button",
+                      "data-bs-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeCallbackModal()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(7)
+              ])
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.modal_bg
+      ? _c("div", { staticClass: "modal-backdrop fade show" })
       : _vm._e()
   ])
 }
@@ -25440,22 +25580,23 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "header-social" }, [
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "https://www.instagram.com/nomerus_ufa/",
+            target: "_blank"
+          }
+        },
+        [_c("img", { attrs: { src: "/img/insta.svg" } })]
+      ),
+      _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [
         _c("img", { attrs: { src: "/img/whatsapp.svg" } })
       ]),
       _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [
         _c("img", { attrs: { src: "/img/telegram.svg" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header-callback" }, [
-      _c("button", { staticClass: "btn btn-standard" }, [
-        _vm._v("Обратный звонок")
       ])
     ])
   },
@@ -25588,6 +25729,17 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "footer-social" }, [
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "https://www.instagram.com/nomerus_ufa/",
+            target: "_blank"
+          }
+        },
+        [_c("img", { attrs: { src: "/img/insta.svg" } })]
+      ),
+      _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [
         _c("img", { attrs: { src: "/img/whatsapp.svg" } })
       ]),
@@ -25601,9 +25753,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-callback" }, [
-      _c("button", { staticClass: "btn btn-standard" }, [
-        _vm._v("Обратный звонок")
+    return _c("div", { staticClass: "footer-tel" }, [
+      _c("div", { staticClass: "footer-tel-inner" }, [
+        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 927 236-66-29")]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 960 800-32-10")])
       ])
     ])
   },
@@ -25611,11 +25765,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-tel" }, [
-      _c("div", { staticClass: "footer-tel-inner" }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 927 236-66-29")]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 960 800-32-10")])
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "mb-4" }, [
+        _c("input", {
+          staticClass: "form-control form-control-lg text-center",
+          attrs: { type: "text", placeholder: "Имя" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "mb-4" }, [
+        _c("input", {
+          staticClass: "form-control form-control-lg text-center",
+          attrs: { type: "text", placeholder: "Телефон" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-center" }, [
+        _c("button", { staticClass: "btn btn-standard" }, [
+          _vm._v("Отправить заявку")
+        ])
       ])
     ])
   }
@@ -25796,7 +25964,43 @@ var render = function() {
     _vm._v(" "),
     _vm._m(10),
     _vm._v(" "),
-    _vm._m(11)
+    _vm._m(11),
+    _vm._v(" "),
+    _c("div", { staticClass: "home-restoration" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [
+          _vm._v("Реставрация госномеров")
+        ]),
+        _vm._v(" "),
+        _c("img", {
+          attrs: {
+            src: "/img/home-restoration.jpg",
+            alt: "Реставрация госномеров"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Мы также предалгаем услугу по реставрации госномеров.")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-standard",
+              on: {
+                click: function($event) {
+                  return _vm.$parent.openCallbackModal()
+                }
+              }
+            },
+            [_vm._v("Заказать реставрацию")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(12)
   ])
 }
 var staticRenderFns = [
@@ -26083,9 +26287,9 @@ var staticRenderFns = [
               },
               [
                 _c("p", [
-                  _vm._v("Мы есть "),
+                  _vm._v("Мы есть в реестре "),
                   _c("br"),
-                  _vm._v("в регистре ГАИ")
+                  _vm._v("изготовителей ГРЗ")
                 ])
               ]
             )
@@ -26206,6 +26410,34 @@ var staticRenderFns = [
           _vm._v(
             "Полный цикл производства осуществляется на высокотехнологичном оборудовании Немецкой фирмы UTSCH. Уникальность производства, квалифицированные сотрудники, многоуровневый контроль обеспечивают высочайшее качество выпускаемой продукции."
           )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-partners" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Нам доверяют")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row align-items-center" }, [
+          _c("div", { staticClass: "col-6 col-md-3" }, [
+            _c("img", { attrs: { src: "/img/bashkirenergo.svg" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-3" }, [
+            _c("img", { attrs: { src: "/img/moi_dokumenty.svg" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-3" }, [
+            _c("img", { attrs: { src: "/img/rn-transport.svg" } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6 col-md-3" }, [
+            _c("img", { attrs: { src: "/img/evroplan.svg" } })
+          ])
         ])
       ])
     ])

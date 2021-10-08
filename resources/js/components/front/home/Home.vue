@@ -155,7 +155,7 @@
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="home-why-item" style="background-image:url(/img/home-why-item-2.jpg)">
-                            <p>Мы есть <br>в регистре ГАИ</p>
+                            <p>Мы есть в реестре <br>изготовителей ГРЗ</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
@@ -216,6 +216,37 @@
                 <p>Мы новая и динамично развивающаяся компания имеющая шестилетний опыт работы с одной из крупнейших компаний России по производству государственных регистрационных знаков для автомобилей, прицепов и мотоциклов ООО «Бластер Плюс».</p>
                 <p>Мы предлагаем нашим клиентам реставрацию, изготовлене дубликатов госномеров по приемлемой цене и отличного качества. Окраска госномеров производится специальным лаком Австрийской фирмы Rembrandtin, предназначенной для окраски заготовок со световозвращающей пленкой фирмы «Niрроn»(Япония).</p>
                 <p>Полный цикл производства осуществляется на высокотехнологичном оборудовании Немецкой фирмы UTSCH. Уникальность производства, квалифицированные сотрудники, многоуровневый контроль обеспечивают высочайшее качество выпускаемой продукции.</p>
+            </div>
+        </div>
+
+        <div class="home-restoration">
+            <div class="container">
+                <h2 class="home-block-title">Реставрация госномеров</h2>
+                <img src="/img/home-restoration.jpg" alt="Реставрация госномеров">
+                <p>Мы также предалгаем услугу по реставрации госномеров.</p>
+                <div class="text-center">
+                    <button @click="$parent.openCallbackModal()" class="btn btn-standard">Заказать реставрацию</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-partners">
+            <div class="container">
+                <h2 class="home-block-title">Нам доверяют</h2>
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3">
+                        <img src="/img/bashkirenergo.svg" />
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <img src="/img/moi_dokumenty.svg" />
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <img src="/img/rn-transport.svg" />
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <img src="/img/evroplan.svg" />
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -57,6 +57,7 @@ html, body {
     font-size: 14px;
     position: relative;
     margin-left: 20px;
+    font-weight: 300;
 }
 
 .front header .header-location button:before {
@@ -77,9 +78,9 @@ html, body {
 
 .front header .header-location span {
     color: #fff;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 300;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .front header .header-social {
@@ -448,6 +449,45 @@ html, body {
 }
 
 
+
+.home-restoration {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.home-restoration img {
+    width: auto;
+    max-width: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.home-restoration p {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+.home-partners {
+    background-color: #fff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.home-partners img {
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+
+
 .home-contacts {
     position: relative;
     padding-top: 60px;
@@ -606,7 +646,9 @@ html, body {
 
 
 
-
+.callback_modal .modal-body {
+    padding: 40px;
+}
 
 
 
