@@ -405,7 +405,7 @@
                     this.constructor = false
                     this.order_fields = true
                     axios
-                    .post(`/api/order`, {
+                    .post(`/api/order-item`, {
                             transport: this.selected_transport.id,
                             number: this.number + this.number_region,
                             price: this.price,
@@ -451,7 +451,23 @@
                         this.email && this.email.length > 0 &&
                         this.passport && this.passport.length > 0
                     ) {
-                        this.$router.push({name: 'OrderComplete'})
+                        axios
+                        .post(`/api/order`, {
+                                tel: this.tel,
+                                email: this.email,
+                                price: parseInt(this.price_total),
+                                orderItems: this.order_list.map( (item) => item.uid )
+                            })
+                        .then(response => (
+                            this.$router.push({name: 'OrderComplete'})
+                        ))
+                        .catch((error) => {
+                            if(error.response) {
+                                for(var key in error.response.data.errors){
+                                    console.log(key)
+                                }
+                            }
+                        });
                     } else {
                         if(!this.name) {
                             document.getElementById('name_label').classList.add('text-danger')

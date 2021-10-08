@@ -10,4 +10,9 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = ['transport', 'number', 'price'];
+
+    public function orderItems()
+    {
+        return $this->belongsToMany('App\Models\OrderItem');
+    }
 }
