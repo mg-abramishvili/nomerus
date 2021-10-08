@@ -1055,6 +1055,31 @@ html, body {
 }
 
 
+
+
+.admin_panel table tr td {
+    vertical-align: middle;
+}
+
+.admin_panel table tr td ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.admin_panel table tr td ul li {
+    margin-bottom: 5px;
+}
+
+.admin_panel table tr td ul li:last-child {
+    margin-bottom: 0;
+}
+
+
+
+
+
+
 @font-face {
     font-family: 'Stolzl';
     src: local('Stolzl Light'), local('Stolzl-Light'),

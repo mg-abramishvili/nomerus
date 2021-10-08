@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Дата</th>
