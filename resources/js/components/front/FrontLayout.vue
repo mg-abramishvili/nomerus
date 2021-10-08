@@ -21,9 +21,9 @@
                             <a href="#">
                                 <img src="/img/whatsapp.svg">
                             </a>
-                            <a href="#">
+                            <!--<a href="#">
                                 <img src="/img/telegram.svg">
-                            </a>
+                            </a>-->
                         </div>
                         <div class="header-callback">
                             <button @click="openCallbackModal()" class="btn btn-standard">Обратный звонок</button>
@@ -112,9 +112,9 @@
                         <a href="#">
                             <img src="/img/whatsapp.svg">
                         </a>
-                        <a href="#">
+                        <!--<a href="#">
                             <img src="/img/telegram.svg">
-                        </a>
+                        </a>-->
                     </div>
                     <div class="footer-callback">
                         <button @click="openCallbackModal()" class="btn btn-standard">Обратный звонок</button>

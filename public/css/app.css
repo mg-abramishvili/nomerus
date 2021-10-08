@@ -954,6 +954,9 @@ html, body {
     left: -5px;
     top: 2px;
     background: #ececec;
+    min-height: 10px;
+    min-width: 30px;
+    text-align: left;
 }
 .order-plate-preview .type4 .reg .reg-inner i {
     font-style: normal;
@@ -981,7 +984,6 @@ html, body {
     background: rgba(239, 80, 68, 0.075);
     border: 1px solid rgba(239, 80, 68, 0.1);
     margin-left: 20px;
-    margin-top: 26px;
     border-radius: 4px;
     position: -webkit-sticky;
     position: sticky;
@@ -1048,6 +1050,14 @@ html, body {
     margin-bottom: 20px;
 }
 
+
+
+.order-complete {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+    background-color: #fff;
+}
 
 
 @font-face {

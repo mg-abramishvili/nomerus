@@ -68,7 +68,7 @@
                                         <h3>Квадратный номер</h3>
                                         <h5><i>Тип 1А</i> ГОСТ Р 50577-2018</h5>
                                         <p>Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type1_without_flag.png)"></div>
+                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type1a.png)"></div>
                                     </div>
                                 </div>
                             </div>

@@ -30,7 +30,7 @@ class KomplektTypeSeeder extends Seeder
             [
                 'id' => 4,
                 'type_id' => 2,
-                'komplekt_id' => 3,
+                'komplekt_id' => 4,
             ],
             [
                 'id' => 5,
@@ -41,6 +41,16 @@ class KomplektTypeSeeder extends Seeder
                 'id' => 6,
                 'type_id' => 3,
                 'komplekt_id' => 1,
+            ],
+            [
+                'id' => 7,
+                'type_id' => 4,
+                'komplekt_id' => 4,
+            ],
+            [
+                'id' => 8,
+                'type_id' => 4,
+                'komplekt_id' => 2,
             ],
         ]);
     }
