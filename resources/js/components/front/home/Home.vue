@@ -40,7 +40,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="home-services-item-image" style="background-image:url(/img/home-services-2.jpg);">
-                                        <button class="btn btn-standard">Заказать</button>
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -60,7 +60,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="home-services-item-image" style="background-image:url(/img/home-services-3.jpg);">
-                                        <button class="btn btn-standard">Заказать</button>
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -100,7 +100,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="home-services-item-image" style="background-image:url(/img/home-services-5.jpg);">
-                                        <button class="btn btn-standard">Заказать</button>
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -137,7 +137,7 @@
                         </select>
                     </div>
                     <div class="col-12 col-md-4">
-                        <router-link :to="{ name: 'OrderCreate' }" class="btn btn-standard">Продолжить</router-link>
+                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Продолжить</router-link>
                     </div>
                 </div>
             </div>
