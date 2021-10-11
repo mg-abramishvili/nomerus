@@ -268,6 +268,7 @@ export default {
             homeCertHooper: {
                 itemsToShow: 1,
                 wheelControl: false,
+                transition: 0,
             },
         };
     },

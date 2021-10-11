@@ -2914,7 +2914,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       homeCertHooper: {
         itemsToShow: 1,
-        wheelControl: false
+        wheelControl: false,
+        transition: 0
       }
     };
   },
