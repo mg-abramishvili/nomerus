@@ -15,6 +15,7 @@ Route::get('transports','App\Http\Controllers\Front\TransportController@transpor
 Route::get('{city}/transport/{id}/types','App\Http\Controllers\Front\TypeController@transport_types');
 
 Route::get('certificates','App\Http\Controllers\Front\CertificateController@index');
+Route::get('gallery','App\Http\Controllers\Front\GalleryController@index');
 
 
 // ADMIN
@@ -25,6 +26,9 @@ Route::get('admin/certificates','App\Http\Controllers\Admin\CertificateControlle
 Route::post('admin/certificates','App\Http\Controllers\Admin\CertificateController@store');
 Route::post('admin/temp-cert-upload','App\Http\Controllers\Admin\CertificateController@temp_cert_image_store');
 
+Route::get('admin/gallery','App\Http\Controllers\Admin\GalleryController@index');
+Route::post('admin/gallery','App\Http\Controllers\Admin\GalleryController@store');
+Route::post('admin/temp-gal-upload','App\Http\Controllers\Admin\GalleryController@temp_gal_image_store');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

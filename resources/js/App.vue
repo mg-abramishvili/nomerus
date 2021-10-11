@@ -1,12 +1,12 @@
 <template>
     <div class="wrapper">
         {{$route.params.name}}
-        <template v-if="$route.name === 'Home' || $route.name === 'OrderCreate' || $route.name === 'OrderComplete'">
+        <template v-if="$route.name === 'Home' || $route.name === 'Gallery' || $route.name === 'OrderCreate' || $route.name === 'OrderComplete'">
             <FrontLayout />
         </template>
 
         <template
-            v-if="$route.name === 'Orders' || $route.name === 'Certificates' || $route.name === 'CertificateCreate'">
+            v-if="$route.name === 'AdminOrders' || $route.name === 'AdminCertificates' || $route.name === 'AdminCertificateCreate' || $route.name === 'AdminGallery' || $route.name === 'AdminGalleryCreate'">
             <AdminLayout />
         </template>
     </div>

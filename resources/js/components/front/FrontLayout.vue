@@ -50,16 +50,10 @@
                                     <a class="nav-link">О компании</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link">Лицензии</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link">Способы оплаты</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link">Отзывы</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link">Фотогалерея</a>
+                                    <router-link :to="{name: 'Gallery'}" class="nav-link">Фотогалерея</router-link>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link">Контакты</a>

@@ -490,6 +490,10 @@ html, body {
     overflow: hidden;
 }
 
+.home-cert .cert-item:hover {
+    cursor: pointer;
+}
+
 .home-cert .cert-item img {
     width: auto;
     display: block;
@@ -799,6 +803,50 @@ html, body {
     padding: 40px;
 }
 
+
+.gallery-page {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #fff;
+}
+
+.gal-m-item {
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.gal-m-item:hover {
+    cursor: pointer;
+}
+
+.nomerus-modal-gallery .galleryHooper {
+    height: 100vh;
+}
+
+.nomerus-modal-gallery .galleryHooper .hooper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomerus-modal-gallery .galleryHooper .gal-item img {
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: block;
+    margin: 0 auto;
+}
+
+.nomerus-modal-gallery .hooper_nav_button_prev {
+    left: 30px;
+}
+
+.nomerus-modal-gallery .hooper_nav_button_next {
+    right: 30px;
+}
 
 
 

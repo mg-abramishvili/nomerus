@@ -11,10 +11,13 @@
                         <div class="d-flex">
                             <ul class="navbar-nav mb-2 me-2 mb-md-0">
                                 <li class="nav-item">
-                                    <router-link :to="{name: 'Orders'}" class="nav-link">Заказы</router-link>
+                                    <router-link :to="{name: 'AdminOrders'}" class="nav-link">Заказы</router-link>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link :to="{name: 'Certificates'}" class="nav-link">Сертификаты</router-link>
+                                    <router-link :to="{name: 'AdminGallery'}" class="nav-link">Фотогалерея</router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link :to="{name: 'AdminCertificates'}" class="nav-link">Сертификаты</router-link>
                                 </li>
                             </ul>
                             <router-link :to="{name: 'Home'}" class="btn btn-secondary">Выйти</router-link>
