@@ -13,6 +13,9 @@
                                 <li class="nav-item">
                                     <router-link :to="{name: 'Orders'}" class="nav-link">Заказы</router-link>
                                 </li>
+                                <li class="nav-item">
+                                    <router-link :to="{name: 'Certificates'}" class="nav-link">Сертификаты</router-link>
+                                </li>
                             </ul>
                             <router-link :to="{name: 'Home'}" class="btn btn-secondary">Выйти</router-link>
                         </div>

@@ -170,6 +170,57 @@ html, body {
 }
 
 
+.nomerus-modal {
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.nomerus-modal-close {
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    z-index: 999;
+    color: #fff;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    line-height: 1;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.hooper_nav_button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    width: 30px;
+    height: 30px;
+    box-shadow: none;
+    border: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    z-index: 999;
+}
+
+.hooper_nav_button_prev {
+    left: 0;
+    background-image: url('/img/hooper_prev.svg');
+}
+
+.hooper_nav_button_next {
+    right: 0;
+    background-image: url('/img/hooper_next.svg');
+}
+
 
 .home-carousel {
     height: 470px;
@@ -419,15 +470,65 @@ html, body {
     padding-bottom: 60px;
 }
 
+.home-cert .homeCertMiniHooperWrapper {
+    position: relative;
+}
+
+.home-cert .homeCertMiniHooper {
+    height: 300px;
+}
+
+.homeCertMiniHooperWrapper .hooper_nav_button_prev {
+    left: -25px;
+}
+
+.homeCertMiniHooperWrapper .hooper_nav_button_next {
+    right: -25px;
+}
+
 .home-cert .cert-item {
-    border: 2px solid #EF5044;
-    border-radius: 6px;
     overflow: hidden;
 }
 
 .home-cert .cert-item img {
-    width: 100%;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    height: 300px;
+    width: auto;
+    border: 2px solid #EF5044;
+    border-radius: 6px;
 }
+
+.nomerus-modal-certs .homeCertHooper {
+    height: 100vh;
+}
+
+.nomerus-modal-certs .homeCertHooper .hooper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomerus-modal-certs .homeCertHooper .cert-item img {
+    width: auto;
+    height: auto;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: block;
+    margin: 0 auto;
+}
+
+.nomerus-modal-certs .hooper_nav_button_prev {
+    left: 30px;
+}
+
+.nomerus-modal-certs .hooper_nav_button_next {
+    right: 30px;
+}
+
+
+
 
 
 

@@ -14,10 +14,16 @@ Route::get('transports','App\Http\Controllers\Front\TransportController@transpor
 
 Route::get('{city}/transport/{id}/types','App\Http\Controllers\Front\TypeController@transport_types');
 
+Route::get('certificates','App\Http\Controllers\Front\CertificateController@index');
+
+
 // ADMIN
 Route::get('admin/orders','App\Http\Controllers\Admin\OrderController@orders_index');
 Route::get('admin/order-items','App\Http\Controllers\Admin\OrderItemController@orderItems_index');
 
+Route::get('admin/certificates','App\Http\Controllers\Admin\CertificateController@index');
+Route::post('admin/certificates','App\Http\Controllers\Admin\CertificateController@store');
+Route::post('admin/temp-cert-upload','App\Http\Controllers\Admin\CertificateController@temp_cert_image_store');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

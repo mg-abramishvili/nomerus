@@ -175,37 +175,33 @@
         <div class="home-cert">
             <div class="container">
                 <h2 class="home-block-title">Сертификаты</h2>
-                <div class="row">
-                    <div class="col-6 col-md-2">
-                        <div class="cert-item">
-                            <img src="/img/cert/0001.jpg">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2">
-                        <div class="cert-item">
-                            <img src="/img/cert/0002.jpg">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2">
-                        <div class="cert-item">
-                            <img src="/img/cert/0003.jpg">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2">
-                        <div class="cert-item">
-                            <img src="/img/cert/0004.jpg">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2">
-                        <div class="cert-item">
-                            <img src="/img/cert/0005.jpg">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-2">
-                        <div class="cert-item">
-                            <img src="/img/cert/0006.jpg">
-                        </div>
-                    </div>
+
+                <div class="homeCertMiniHooperWrapper">
+                    <button @click.prevent="homeCertMiniPrev" class="hooper_nav_button hooper_nav_button_prev"></button>
+                    <button @click.prevent="homeCertMiniNext" class="hooper_nav_button hooper_nav_button_next"></button>
+
+                    <hooper ref="homeCertMiniHooper" :settings="homeCertMiniHooper" class="homeCertMiniHooper">
+                        <slide v-for="(certItem, index) in certificates" :key="'cert_m_' + certItem.id">
+                            <div @click="openModalCerts(index)" class="cert-item">
+                                <img :src="certItem.image">
+                            </div>
+                        </slide>
+                    </hooper>
+                </div>
+
+                <div v-show="nomerus_modal_certs" class="nomerus-modal nomerus-modal-certs">
+                    <button @click="nomerus_modal_certs = false" class="nomerus-modal-close">&times;</button>
+                    
+                    <button @click.prevent="homeCertPrev" class="hooper_nav_button hooper_nav_button_prev"></button>
+                    <button @click.prevent="homeCertNext" class="hooper_nav_button hooper_nav_button_next"></button>
+
+                    <hooper ref="homeCertHooper" :settings="homeCertHooper" class="homeCertHooper">
+                        <slide v-for="certItem in certificates" :key="'cert_m_' + certItem.id">
+                            <div class="cert-item">
+                                <img :src="certItem.image">
+                            </div>
+                        </slide>
+                    </hooper>
                 </div>
             </div>
         </div>
@@ -254,22 +250,59 @@
 </template>
 
 <script>
+import { Hooper, Slide } from 'hooper';
+import 'hooper/dist/hooper.css';
+
 export default {
     data: function () {
         return {
-            
+            certificates: [],
+            nomerus_modal_certs: false,
+
+            homeCertMiniHooper: {
+                itemsToShow: 4,
+                trimWhiteSpace: true,
+                wheelControl: false,
+
+            },
+            homeCertHooper: {
+                itemsToShow: 1,
+                wheelControl: false,
+            },
         };
     },
     created() {
-            /*axios
-                .get('/api/products')
-                .then(response => (
-                    this.products = response.data
-                ));*/
+        axios
+            .get('/api/certificates')
+            .then(response => (
+                this.certificates = response.data
+            ));
         },
     methods: {
+        homeCertMiniPrev() {
+            this.$refs.homeCertMiniHooper.slidePrev();
+        },
+        homeCertMiniNext() {
+            this.$refs.homeCertMiniHooper.slideNext();
+        },
+        openModalCerts(index) {
+            this.nomerus_modal_certs = true
+            this.$refs.homeCertHooper.slideTo(index)
+            this.$refs.homeCertHooper.restart()
+        },
+        closeModalCerts() {
+            this.nomerus_modal_certs = false
+        },
+        homeCertPrev() {
+            this.$refs.homeCertHooper.slidePrev();
+        },
+        homeCertNext() {
+            this.$refs.homeCertHooper.slideNext();
+        },
     },
     components: {
+        Hooper,
+        Slide
     },
 };
 </script>
