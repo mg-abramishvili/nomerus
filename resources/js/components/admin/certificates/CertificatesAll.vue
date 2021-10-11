@@ -17,7 +17,7 @@
                         {{ certItem.name }}
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-sm btn-outline-danger">Удалить</button>
+                        <!--<button class="btn btn-sm btn-outline-danger">Удалить</button>-->
                     </td>
                 </tr>
             </tbody>
