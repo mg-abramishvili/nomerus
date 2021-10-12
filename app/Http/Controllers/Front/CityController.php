@@ -12,4 +12,18 @@ class CityController extends Controller
     {
         return City::with('addresses')->get();
     }
+
+    public function city_select($city, Request $request)
+    {
+        session()->put('city', $city);
+    }
+
+    public function city_detect(Request $request)
+    {
+        //return session('city');
+
+        $city = City::find(session('city'));
+
+        return $city;
+    }
 }

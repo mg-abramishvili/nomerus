@@ -11,11 +11,11 @@
                             </router-link>
                         </div>
                         <div class="header-location">
-                            <button @click="openCityModal()">{{ current_city_name }}</button>
+                            <button @click="openCityModal()">{{ current_city.name }}</button>
                             <router-link :to="{name: 'Addresses'}">Адреса</router-link>
                         </div>
                         <div class="header-social">
-                            <a v-if="current_city_instagram" :href="current_city_instagram" target="_blank">
+                            <a v-if="current_city.instagram" :href="current_city.instagram" target="_blank">
                                 <img src="/img/insta.svg">
                             </a>
                             <a href="#">
@@ -31,7 +31,7 @@
                         <div class="header-tel">
                             <div class="header-tel-inner">
                                 <template v-for="city in cities">
-                                    <template  v-if="city.id === current_city_id">
+                                    <template  v-if="city.id === current_city.id">
                                         <template v-for="address in city.addresses.slice(0,2)">
                                             <a :href="address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
                                         </template>
@@ -75,9 +75,10 @@
 
         <div class="home-contacts">
             <div class="container">
-                <h2 class="home-block-title">Контакты</h2>
+                <h2 v-if="$route.name === 'Addresses'" class="home-block-title">Адреса</h2>
+                <h2 v-else class="home-block-title">Контакты</h2>
                 <template v-for="city in cities">
-                    <template  v-if="city.id === current_city_id">
+                    <template  v-if="city.id === current_city.id">
                         <ul v-for="address in city.addresses">
                             <li>{{ address.name }}
                             </li>
@@ -133,7 +134,7 @@
                     <div class="footer-tel">
                         <div class="footer-tel-inner">
                             <template v-for="city in cities">
-                                <template  v-if="city.id === current_city_id">
+                                <template  v-if="city.id === current_city.id">
                                     <template v-for="address in city.addresses.slice(0,2)">
                                         <a :href="address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
                                     </template>
@@ -200,10 +201,7 @@
             return {
                 cities: [],
 
-                current_city_id: 1,
-                current_city_name: 'Уфа',
-                current_city_namecode: 'ufa',
-                current_city_instagram: 'https://www.instagram.com/nomerus_ufa/',
+                current_city: 1,
 
                 city_modal: false,
                 callback_modal: false,
@@ -218,6 +216,11 @@
             .get('/api/cities')
             .then((response => {
                 this.cities = response.data
+            }));
+            axios
+            .get('/api/city-detect')
+            .then((response => {
+                this.current_city = response.data
             }));
             axios
             .get('/api/addresses')
@@ -243,29 +246,34 @@
                 this.modal_bg = false
                 this.city_modal = false
             },
-            selectCity(id, name, namecode, instagram) {
-                this.current_city_id = id
-                this.current_city_name = name
-                this.current_city_namecode = namecode
-                this.current_city_instagram = instagram
+            selectCity(id) {
+                axios
+                .get(`/api/city-select/${id}`)
+                .then((response => {
+                    axios
+                    .get('/api/city-detect')
+                    .then((response => {
+                        this.current_city = response.data
+                    }));
+                }));
 
                 this.closeCityModal()
             },
             ymap_cityChange() {
-                if(this.current_city_namecode === 'ufa') {
+                if(this.current_city.namecode === 'ufa') {
                     this.ymap_city_coords = [54.730299568811866,56.03773349999993]
                 }
-                if(this.current_city_namecode === 'ekb') {
+                if(this.current_city.namecode === 'ekb') {
                     this.ymap_city_coords = [56.844860263326964,60.604154855468686]
                 }
-                if(this.current_city_namecode === 'strltmk') {
+                if(this.current_city.namecode === 'strltmk') {
                     this.ymap_city_coords = [53.63219996016489,55.929692909667935]
                 }
             },
         },
         mounted() {
             this.$watch(
-            "current_city_id",
+            "current_city.id",
             (new_value, old_value) => {
                 this.ymap_cityChange()
             }

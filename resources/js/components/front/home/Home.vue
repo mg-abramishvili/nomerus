@@ -3,9 +3,9 @@
         <div class="home-carousel">
             <div class="container">
                 <div class="home-carousel-inner">
-                    <h1>Изготовление <br/>госномеров 
-                        <strong v-if="$parent.current_city_name.substr(-1) === 'а'">в {{ $parent.current_city_name.slice(0, -1) + 'е' }}</strong>
-                        <strong v-else>в {{ $parent.current_city_name + 'е' }}</strong>
+                    <h1 v-if="$parent.current_city.name && $parent.current_city.name.length > 0">Изготовление <br/>госномеров 
+                        <strong v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</strong>
+                        <strong v-else>в {{ $parent.current_city.name + 'е' }}</strong>
                     </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
                     <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать номер</router-link>

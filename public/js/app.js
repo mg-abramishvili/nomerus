@@ -2952,6 +2952,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2961,10 +2962,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cities: [],
-      current_city_id: 1,
-      current_city_name: 'Уфа',
-      current_city_namecode: 'ufa',
-      current_city_instagram: 'https://www.instagram.com/nomerus_ufa/',
+      current_city: 1,
       city_modal: false,
       callback_modal: false,
       modal_bg: false,
@@ -2977,6 +2975,9 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/cities').then(function (response) {
       _this.cities = response.data;
+    });
+    axios.get('/api/city-detect').then(function (response) {
+      _this.current_city = response.data;
     });
     axios.get('/api/addresses').then(function (response) {
       _this.ymap_addresses = response.data;
@@ -3001,32 +3002,35 @@ __webpack_require__.r(__webpack_exports__);
       this.modal_bg = false;
       this.city_modal = false;
     },
-    selectCity: function selectCity(id, name, namecode, instagram) {
-      this.current_city_id = id;
-      this.current_city_name = name;
-      this.current_city_namecode = namecode;
-      this.current_city_instagram = instagram;
+    selectCity: function selectCity(id) {
+      var _this2 = this;
+
+      axios.get("/api/city-select/".concat(id)).then(function (response) {
+        axios.get('/api/city-detect').then(function (response) {
+          _this2.current_city = response.data;
+        });
+      });
       this.closeCityModal();
     },
     ymap_cityChange: function ymap_cityChange() {
-      if (this.current_city_namecode === 'ufa') {
+      if (this.current_city.namecode === 'ufa') {
         this.ymap_city_coords = [54.730299568811866, 56.03773349999993];
       }
 
-      if (this.current_city_namecode === 'ekb') {
+      if (this.current_city.namecode === 'ekb') {
         this.ymap_city_coords = [56.844860263326964, 60.604154855468686];
       }
 
-      if (this.current_city_namecode === 'strltmk') {
+      if (this.current_city.namecode === 'strltmk') {
         this.ymap_city_coords = [53.63219996016489, 55.929692909667935];
       }
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
-    this.$watch("current_city_id", function (new_value, old_value) {
-      _this2.ymap_cityChange();
+    this.$watch("current_city.id", function (new_value, old_value) {
+      _this3.ymap_cityChange();
     });
   },
   components: {
@@ -3074,6 +3078,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -3093,15 +3110,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ymap_cityChange: function ymap_cityChange() {
-      if (this.$parent.current_city_namecode === 'ufa') {
+      if (this.$parent.current_city.namecode === 'ufa') {
         this.ymap_city_coords = [54.730299568811866, 56.03773349999993];
       }
 
-      if (this.$parent.current_city_namecode === 'ekb') {
+      if (this.$parent.current_city.namecode === 'ekb') {
         this.ymap_city_coords = [56.844860263326964, 60.604154855468686];
       }
 
-      if (this.$parent.current_city_namecode === 'strltmk') {
+      if (this.$parent.current_city.namecode === 'strltmk') {
         this.ymap_city_coords = [53.63219996016489, 55.929692909667935];
       }
     }
@@ -3109,7 +3126,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this2 = this;
 
-    this.$watch("$parent.current_city_id", function (new_value, old_value) {
+    this.$watch("$parent.current_city.id", function (new_value, old_value) {
       _this2.ymap_cityChange();
     });
   },
@@ -46665,7 +46682,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(_vm._s(_vm.current_city_name))]
+                  [_vm._v(_vm._s(_vm.current_city.name))]
                 ),
                 _vm._v(" "),
                 _c("router-link", { attrs: { to: { name: "Addresses" } } }, [
@@ -46676,12 +46693,12 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "header-social" }, [
-              _vm.current_city_instagram
+              _vm.current_city.instagram
                 ? _c(
                     "a",
                     {
                       attrs: {
-                        href: _vm.current_city_instagram,
+                        href: _vm.current_city.instagram,
                         target: "_blank"
                       }
                     },
@@ -46714,7 +46731,7 @@ var render = function() {
                 [
                   _vm._l(_vm.cities, function(city) {
                     return [
-                      city.id === _vm.current_city_id
+                      city.id === _vm.current_city.id
                         ? [
                             _vm._l(city.addresses.slice(0, 2), function(
                               address
@@ -46800,11 +46817,15 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("h2", { staticClass: "home-block-title" }, [_vm._v("Контакты")]),
+          _vm.$route.name === "Addresses"
+            ? _c("h2", { staticClass: "home-block-title" }, [_vm._v("Адреса")])
+            : _c("h2", { staticClass: "home-block-title" }, [
+                _vm._v("Контакты")
+              ]),
           _vm._v(" "),
           _vm._l(_vm.cities, function(city) {
             return [
-              city.id === _vm.current_city_id
+              city.id === _vm.current_city.id
                 ? _vm._l(city.addresses, function(address) {
                     return _c("ul", [
                       _c("li", [
@@ -46898,7 +46919,7 @@ var render = function() {
               [
                 _vm._l(_vm.cities, function(city) {
                   return [
-                    city.id === _vm.current_city_id
+                    city.id === _vm.current_city.id
                       ? [
                           _vm._l(city.addresses.slice(0, 2), function(address) {
                             return [
@@ -47159,37 +47180,80 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "addresses-page" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Наши адреса")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "map-wrapper" },
-          [
+    _c(
+      "div",
+      { staticClass: "addresses-page", staticStyle: { display: "none" } },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("h2", { staticClass: "home-block-title" }, [
+            _vm._v("Наши адреса")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12 col-md-6" }, [
+              _c(
+                "div",
+                { staticClass: "map-wrapper" },
+                [
+                  _c(
+                    "yandex-map",
+                    { attrs: { coords: _vm.ymap_city_coords, zoom: 10 } },
+                    [
+                      _vm._l(_vm.ymap_addresses, function(address) {
+                        return [
+                          _c("ymap-marker", {
+                            attrs: {
+                              coords: address.coordinates.split(","),
+                              "marker-id": address.id,
+                              "hint-content": address.name
+                            }
+                          })
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
             _c(
-              "yandex-map",
-              { attrs: { coords: _vm.ymap_city_coords, zoom: 10 } },
-              [
-                _vm._l(_vm.ymap_addresses, function(address) {
-                  return [
-                    _c("ymap-marker", {
-                      attrs: {
-                        coords: address.coordinates.split(","),
-                        "marker-id": address.id,
-                        "hint-content": address.name
-                      }
+              "div",
+              { staticClass: "col-12 col-md-6" },
+              _vm._l(_vm.ymap_addresses, function(address) {
+                return _c(
+                  "ul",
+                  [
+                    _vm._l(address.cities, function(city) {
+                      return [
+                        city.id === _vm.$parent.current_city.id
+                          ? _c("li", [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(address.name) +
+                                  " "
+                              ),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(address.tel) +
+                                  "\n                            "
+                              )
+                            ])
+                          : _vm._e()
+                      ]
                     })
-                  ]
-                })
-              ],
-              2
+                  ],
+                  2
+                )
+              }),
+              0
             )
-          ],
-          1
-        )
-      ])
-    ])
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -47350,21 +47414,28 @@ var render = function() {
           "div",
           { staticClass: "home-carousel-inner" },
           [
-            _c("h1", [
-              _vm._v("Изготовление "),
-              _c("br"),
-              _vm._v("госномеров \n                    "),
-              _vm.$parent.current_city_name.substr(-1) === "а"
-                ? _c("strong", [
-                    _vm._v(
-                      "в " +
-                        _vm._s(_vm.$parent.current_city_name.slice(0, -1) + "е")
-                    )
-                  ])
-                : _c("strong", [
-                    _vm._v("в " + _vm._s(_vm.$parent.current_city_name + "е"))
-                  ])
-            ]),
+            _vm.$parent.current_city.name &&
+            _vm.$parent.current_city.name.length > 0
+              ? _c("h1", [
+                  _vm._v("Изготовление "),
+                  _c("br"),
+                  _vm._v("госномеров \n                    "),
+                  _vm.$parent.current_city.name.substr(-1) === "а"
+                    ? _c("strong", [
+                        _vm._v(
+                          "в " +
+                            _vm._s(
+                              _vm.$parent.current_city.name.slice(0, -1) + "е"
+                            )
+                        )
+                      ])
+                    : _c("strong", [
+                        _vm._v(
+                          "в " + _vm._s(_vm.$parent.current_city.name + "е")
+                        )
+                      ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
