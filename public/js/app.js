@@ -47541,11 +47541,13 @@ var render = function() {
                                   "a",
                                   {
                                     attrs: {
-                                      href: address.tel
-                                        .split(" ")
-                                        .join("")
-                                        .split("-")
-                                        .join("")
+                                      href:
+                                        "tel:" +
+                                        address.tel
+                                          .split(" ")
+                                          .join("")
+                                          .split("-")
+                                          .join("")
                                     }
                                   },
                                   [_vm._v(_vm._s(address.tel))]
@@ -47761,11 +47763,13 @@ var render = function() {
                                 "a",
                                 {
                                   attrs: {
-                                    href: address.tel
-                                      .split(" ")
-                                      .join("")
-                                      .split("-")
-                                      .join("")
+                                    href:
+                                      "tel:" +
+                                      address.tel
+                                        .split(" ")
+                                        .join("")
+                                        .split("-")
+                                        .join("")
                                   }
                                 },
                                 [_vm._v(_vm._s(address.tel))]

@@ -33,7 +33,7 @@
                                 <template v-for="city in cities">
                                     <template  v-if="city.id === current_city.id">
                                         <template v-for="address in city.addresses.slice(0,2)">
-                                            <a :href="address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
+                                            <a :href="'tel:' + address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
                                         </template>
                                     </template>
                                 </template>
@@ -137,7 +137,7 @@
                             <template v-for="city in cities">
                                 <template  v-if="city.id === current_city.id">
                                     <template v-for="address in city.addresses.slice(0,2)">
-                                        <a :href="address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
+                                        <a :href="'tel:' + address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
                                     </template>
                                 </template>
                             </template>
