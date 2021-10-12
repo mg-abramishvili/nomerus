@@ -1,5 +1,9 @@
 <template>
     <div class="w-100">
+        <select v-model="city" @change="changeCity()" class="form-select form-select-lg mb-4">
+            <option v-for="cityItem in cities" :value="cityItem.namecode">{{ cityItem.name }}</option>
+        </select>
+
         <table class="table">
             <thead>
                 <tr>
@@ -44,6 +48,9 @@
         data() {
             return {
                 types: [],
+                cities: [],
+
+                city: '',
             }
         },
         created() {
@@ -53,10 +60,16 @@
             .then(response => (
                 this.types = response.data
             ))
+            axios
+            .get(`/api/admin/cities`)
+            .then(response => (
+                this.cities = response.data
+            ))
+            this.city = this.$route.params.city
         },
         methods: {
-            updateType() {
-                
+            changeCity() {
+                this.$router.push({name: 'AdminTypes', params: {city: this.city}})
             }
         },
         components: {

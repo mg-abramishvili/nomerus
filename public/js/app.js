@@ -2876,10 +2876,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      types: []
+      types: [],
+      cities: [],
+      city: ''
     };
   },
   created: function created() {
@@ -2889,9 +2895,20 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("/api/admin/types/".concat(this.$route.params.city)).then(function (response) {
       return _this.types = response.data;
     });
+    axios.get("/api/admin/cities").then(function (response) {
+      return _this.cities = response.data;
+    });
+    this.city = this.$route.params.city;
   },
   methods: {
-    updateType: function updateType() {}
+    changeCity: function changeCity() {
+      this.$router.push({
+        name: 'AdminTypes',
+        params: {
+          city: this.city
+        }
+      });
+    }
   },
   components: {}
 });
@@ -47132,6 +47149,47 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-100" }, [
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.city,
+            expression: "city"
+          }
+        ],
+        staticClass: "form-select form-select-lg mb-4",
+        on: {
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.city = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+            function($event) {
+              return _vm.changeCity()
+            }
+          ]
+        }
+      },
+      _vm._l(_vm.cities, function(cityItem) {
+        return _c("option", { domProps: { value: cityItem.namecode } }, [
+          _vm._v(_vm._s(cityItem.name))
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
     _c("table", { staticClass: "table" }, [
       _vm._m(0),
       _vm._v(" "),
