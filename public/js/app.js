@@ -3583,92 +3583,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      services: [],
       certificates: [],
       nomerus_modal_certs: false,
+      banner_form_client_type: 'fz',
+      banner_form_transport: 'legkovoy',
       homeCertMiniHooper: {
         itemsToShow: 4,
         trimWhiteSpace: true,
@@ -3684,6 +3608,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    axios.get('/api/services').then(function (response) {
+      return _this.services = response.data;
+    });
     axios.get('/api/certificates').then(function (response) {
       return _this.certificates = response.data;
     });
@@ -46247,6 +46174,9 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
+                          class: {
+                            "text-danger": _vm.$route.name == "AdminTypes"
+                          },
                           attrs: {
                             to: { name: "AdminTypes", params: { city: "ufa" } }
                           }
@@ -46265,6 +46195,9 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
+                          class: {
+                            "text-danger": _vm.$route.name == "AdminOrders"
+                          },
                           attrs: { to: { name: "AdminOrders" } }
                         },
                         [_vm._v("Заказы")]
@@ -46281,6 +46214,9 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
+                          class: {
+                            "text-danger": _vm.$route.name == "AdminGallery"
+                          },
                           attrs: { to: { name: "AdminGallery" } }
                         },
                         [_vm._v("Фотогалерея")]
@@ -46297,6 +46233,9 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
+                          class: {
+                            "text-danger": _vm.$route.name == "AdminAddresses"
+                          },
                           attrs: { to: { name: "AdminAddresses" } }
                         },
                         [_vm._v("Адреса")]
@@ -46313,6 +46252,10 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
+                          class: {
+                            "text-danger":
+                              _vm.$route.name == "AdminCertificates"
+                          },
                           attrs: { to: { name: "AdminCertificates" } }
                         },
                         [_vm._v("Сертификаты")]
@@ -48139,187 +48082,65 @@ var render = function() {
           _vm._v("Номера для вашего авто")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-1.jpg)"
-                      }
-                    },
-                    [
+        _c(
+          "div",
+          { staticClass: "row justify-content-center" },
+          _vm._l(_vm.services, function(service) {
+            return _c(
+              "div",
+              { key: "key_" + service.id, staticClass: "col-12 col-md-6" },
+              [
+                _c("div", { staticClass: "home-services-item" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-5" }, [
                       _c(
-                        "router-link",
+                        "div",
                         {
-                          staticClass: "btn btn-standard",
-                          attrs: {
-                            to: {
-                              name: "OrderCreate",
-                              params: { kto: "fz", transport: "legkovoy" }
-                            }
+                          staticClass: "home-services-item-image",
+                          style: {
+                            "background-image": "url(" + service.image + ")"
                           }
                         },
-                        [_vm._v("Заказать")]
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-standard",
+                              attrs: {
+                                to: {
+                                  name: "OrderCreate",
+                                  params: { kto: "fz", transport: service.type }
+                                }
+                              }
+                            },
+                            [_vm._v("Заказать")]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(1)
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-2.jpg)"
-                      }
-                    },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-standard",
-                          attrs: {
-                            to: {
-                              name: "OrderCreate",
-                              params: { kto: "fz", transport: "legkovoy" }
-                            }
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-7" }, [
+                      _c("div", { staticClass: "home-services-item-info" }, [
+                        _c("h3", [_vm._v(_vm._s(service.name))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(service.text))]),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "home-services-item-info-plate",
+                          style: {
+                            "background-image": "url(" + service.plate + ")"
                           }
-                        },
-                        [_vm._v("Заказать")]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(2)
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-3.jpg)"
-                      }
-                    },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-standard",
-                          attrs: {
-                            to: {
-                              name: "OrderCreate",
-                              params: { kto: "fz", transport: "legkovoy" }
-                            }
-                          }
-                        },
-                        [_vm._v("Заказать")]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(3)
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-4.jpg)"
-                      }
-                    },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-standard",
-                          attrs: {
-                            to: {
-                              name: "OrderCreate",
-                              params: { kto: "fz", transport: "moto" }
-                            }
-                          }
-                        },
-                        [_vm._v("Заказать")]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(4)
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-6" }, [
-            _c("div", { staticClass: "home-services-item" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "home-services-item-image",
-                      staticStyle: {
-                        "background-image": "url(/img/home-services-5.jpg)"
-                      }
-                    },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-standard",
-                          attrs: {
-                            to: {
-                              name: "OrderCreate",
-                              params: { kto: "fz", transport: "legkovoy" }
-                            }
-                          }
-                        },
-                        [_vm._v("Заказать")]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(5)
-              ])
-            ])
-          ])
-        ])
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          }),
+          0
+        )
       ])
     ]),
     _vm._v(" "),
@@ -48330,9 +48151,81 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row align-items-center" }, [
-          _vm._m(6),
+          _c("div", { staticClass: "col-12 col-md-4" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.banner_form_client_type,
+                    expression: "banner_form_client_type"
+                  }
+                ],
+                staticClass: "form-select form-select-lg",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.banner_form_client_type = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "fz" } }, [_vm._v("Физ. лицо")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "ur" } }, [_vm._v("Юр. лицо")])
+              ]
+            )
+          ]),
           _vm._v(" "),
-          _vm._m(7),
+          _c("div", { staticClass: "col-12 col-md-4" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.banner_form_transport,
+                    expression: "banner_form_transport"
+                  }
+                ],
+                staticClass: "form-select form-select-lg",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.banner_form_transport = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "legkovoy" } }, [
+                  _vm._v("Легковой")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "moto" } }, [_vm._v("Мото")])
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -48345,7 +48238,10 @@ var render = function() {
                   attrs: {
                     to: {
                       name: "OrderCreate",
-                      params: { kto: "fz", transport: "legkovoy" }
+                      params: {
+                        kto: _vm.banner_form_client_type,
+                        transport: _vm.banner_form_transport
+                      }
                     }
                   }
                 },
@@ -48358,7 +48254,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(8),
+    _vm._m(1),
     _vm._v(" "),
     _c("div", { staticClass: "home-cert" }, [
       _c("div", { staticClass: "container" }, [
@@ -48486,7 +48382,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(9),
+    _vm._m(2),
     _vm._v(" "),
     _c("div", { staticClass: "home-restoration" }, [
       _c("div", { staticClass: "container" }, [
@@ -48522,7 +48418,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(10)
+    _vm._m(3)
   ])
 }
 var staticRenderFns = [
@@ -48534,147 +48430,6 @@ var staticRenderFns = [
       _vm._v("Быстро и качественно "),
       _c("br"),
       _vm._v("в соответствии с ГОСТ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-7" }, [
-      _c("div", { staticClass: "home-services-item-info" }, [
-        _c("h3", [_vm._v("Обычный номер")]),
-        _vm._v(" "),
-        _c("h5", [_c("i", [_vm._v("Тип 1")]), _vm._v(" ГОСТ Р 50577-2018")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "home-services-item-info-plate",
-          staticStyle: { "background-image": "url(/img/type1.png)" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-7" }, [
-      _c("div", { staticClass: "home-services-item-info" }, [
-        _c("h3", [_vm._v("Номер без флага")]),
-        _vm._v(" "),
-        _c("h5", [_c("i", [_vm._v("Тип 1")]), _vm._v(" ГОСТ Р 50577-2018")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "home-services-item-info-plate",
-          staticStyle: {
-            "background-image": "url(/img/type1_without_flag.png)"
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-7" }, [
-      _c("div", { staticClass: "home-services-item-info" }, [
-        _c("h3", [_vm._v("Квадратный номер")]),
-        _vm._v(" "),
-        _c("h5", [_c("i", [_vm._v("Тип 1А")]), _vm._v(" ГОСТ Р 50577-2018")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов."
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "home-services-item-info-plate",
-          staticStyle: { "background-image": "url(/img/type1a.png)" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-7" }, [
-      _c("div", { staticClass: "home-services-item-info" }, [
-        _c("h3", [_vm._v("Номер для мотоцикла")]),
-        _vm._v(" "),
-        _c("h5", [_c("i", [_vm._v("Тип 4")]), _vm._v(" ГОСТ Р 50577-2018")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Государственный регистрационный знак для мотоциклов, моторолеров и мопедов."
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "home-services-item-info-plate",
-          staticStyle: { "background-image": "url(/img/type4.png)" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-7" }, [
-      _c("div", { staticClass: "home-services-item-info" }, [
-        _c("h3", [_vm._v("Номер для прицепа")]),
-        _vm._v(" "),
-        _c("h5", [_c("i", [_vm._v("Тип 2")]), _vm._v(" ГОСТ Р 50577-2018")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Государственный регистрационный знак для автомобильных прицепов и полуприцепов."
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "home-services-item-info-plate",
-          staticStyle: { "background-image": "url(/img/type2.png)" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-md-4" }, [
-      _c("select", { staticClass: "form-select form-select-lg" }, [
-        _c("option", { attrs: { value: "" } }, [_vm._v("Физ. лицо")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Юр. лицо")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-md-4" }, [
-      _c("select", { staticClass: "form-select form-select-lg" }, [
-        _c("option", { attrs: { value: "" } }, [_vm._v("Легковой")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Мото")])
-      ])
     ])
   },
   function() {

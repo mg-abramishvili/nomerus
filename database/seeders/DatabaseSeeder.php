@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AddressSeeder::class,
             AddressCitySeeder::class,
             CertificateSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }

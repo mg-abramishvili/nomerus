@@ -18,100 +18,21 @@
             <div class="container">
                 <h2 class="home-block-title">Номера для вашего авто</h2>
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-6">
-                        <div class="home-services-item">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-1.jpg);">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="home-services-item-info">
-                                        <h3>Обычный номер</h3>
-                                        <h5><i>Тип 1</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type1.png)"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-12 col-md-6">
+                    <div v-for="service in services" :key="'key_' + service.id" class="col-12 col-md-6">
                         <div class="home-services-item">
                             <div class="row">
                                 <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-2.jpg);">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
+                                    <div class="home-services-item-image" v-bind:style="{ 'background-image': 'url(' + service.image + ')' }">
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
                                     <div class="home-services-item-info">
-                                        <h3>Номер без флага</h3>
-                                        <h5><i>Тип 1</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type1_without_flag.png)"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <div class="home-services-item">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-3.jpg);">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="home-services-item-info">
-                                        <h3>Квадратный номер</h3>
-                                        <h5><i>Тип 1А</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для легковых, грузовых автомобилей и автобусов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type1a.png)"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <div class="home-services-item">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-4.jpg);">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'moto'} }" class="btn btn-standard">Заказать</router-link>
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="home-services-item-info">
-                                        <h3>Номер для мотоцикла</h3>
-                                        <h5><i>Тип 4</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для мотоциклов, моторолеров и мопедов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type4.png)"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <div class="home-services-item">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="home-services-item-image" style="background-image:url(/img/home-services-5.jpg);">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать</router-link>
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="home-services-item-info">
-                                        <h3>Номер для прицепа</h3>
-                                        <h5><i>Тип 2</i> ГОСТ Р 50577-2018</h5>
-                                        <p>Государственный регистрационный знак для автомобильных прицепов и полуприцепов.</p>
-                                        <div class="home-services-item-info-plate" style="background-image:url(/img/type2.png)"></div>
+                                        <h3>{{ service.name }}</h3>
+                                        <!--<h5><i>Тип 1</i> ГОСТ Р 50577-2018</h5>-->
+                                        <p>{{ service.text }}</p>
+                                        <div class="home-services-item-info-plate" v-bind:style="{ 'background-image': 'url(' + service.plate + ')' }"></div>
                                     </div>
                                 </div>
                             </div>
@@ -128,19 +49,19 @@
                 <h2 class="home-block-title">Заказать номер</h2>
                 <div class="row align-items-center">
                     <div class="col-12 col-md-4">
-                        <select class="form-select form-select-lg">
-                            <option value="">Физ. лицо</option>
-                            <option value="">Юр. лицо</option>
+                        <select v-model="banner_form_client_type" class="form-select form-select-lg">
+                            <option value="fz">Физ. лицо</option>
+                            <option value="ur">Юр. лицо</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-4">
-                        <select class="form-select form-select-lg">
-                            <option value="">Легковой</option>
-                            <option value="">Мото</option>
+                        <select v-model="banner_form_transport" class="form-select form-select-lg">
+                            <option value="legkovoy">Легковой</option>
+                            <option value="moto">Мото</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-4">
-                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Продолжить</router-link>
+                        <router-link :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport} }" class="btn btn-standard">Продолжить</router-link>
                     </div>
                 </div>
             </div>
@@ -259,8 +180,12 @@ import 'hooper/dist/hooper.css';
 export default {
     data: function () {
         return {
+            services: [],
             certificates: [],
             nomerus_modal_certs: false,
+
+            banner_form_client_type: 'fz',
+            banner_form_transport: 'legkovoy',
 
             homeCertMiniHooper: {
                 itemsToShow: 4,
@@ -276,6 +201,11 @@ export default {
         };
     },
     created() {
+        axios
+            .get('/api/services')
+            .then(response => (
+                this.services = response.data
+            ));
         axios
             .get('/api/certificates')
             .then(response => (

@@ -12,6 +12,8 @@ Route::get('cities','App\Http\Controllers\Front\CityController@cities_index');
 Route::get('city-select/{city}','App\Http\Controllers\Front\CityController@city_select');
 Route::get('city-detect','App\Http\Controllers\Front\CityController@city_detect');
 
+Route::get('services','App\Http\Controllers\Front\ServiceController@index');
+
 Route::get('transports','App\Http\Controllers\Front\TransportController@transports_index');
 
 Route::get('{city}/transport/{id}/types','App\Http\Controllers\Front\TypeController@transport_types');
@@ -39,6 +41,8 @@ Route::post('admin/addresses','App\Http\Controllers\Admin\AddressController@stor
 Route::get('admin/types/{city}','App\Http\Controllers\Admin\TypeController@index');
 Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item');
 Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update');
+
+Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
