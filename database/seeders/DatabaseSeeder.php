@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CertificateSeeder::class,
             ServiceSeeder::class,
             GallerySeeder::class,
+            TextSeeder::class,
         ]);
     }
 }

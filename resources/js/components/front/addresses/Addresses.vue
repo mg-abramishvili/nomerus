@@ -8,7 +8,7 @@
                         <div class="map-wrapper">
                             <yandex-map 
                                 :coords="ymap_city_coords"
-                                :zoom="10" 
+                                :zoom="10"
                             >
                                 <template v-for="address in ymap_addresses">
                                     <ymap-marker 

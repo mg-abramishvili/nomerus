@@ -1,6 +1,8 @@
 import Home from './components/front/home/Home.vue';
 
 import Gallery from './components/front/gallery/Gallery.vue';
+import Reviews from './components/front/reviews/Reviews.vue';
+import About from './components/front/about/About.vue';
 
 import OrderCreate from './components/front/order/OrderCreate.vue';
 import OrderComplete from './components/front/order/OrderComplete.vue';
@@ -36,6 +38,16 @@ export const routes = [
         path: '/addresses',
         name: 'Addresses',
         component: Addresses
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: About
+    },
+    {
+        path: '/reviews',
+        name: 'Reviews',
+        component: Reviews
     },
     {
         path: '/order/:kto/:transport',

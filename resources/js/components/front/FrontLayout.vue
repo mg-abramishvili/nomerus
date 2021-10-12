@@ -55,13 +55,13 @@
                                     <a class="nav-link">О компании</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link">Отзывы</a>
+                                    <router-link :to="{name: 'Reviews'}" class="nav-link">Отзывы</router-link>
                                 </li>
                                 <li class="nav-item">
                                     <router-link :to="{name: 'Gallery'}" class="nav-link">Фотогалерея</router-link>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link">Контакты</a>
+                                    <router-link :to="{name: 'Addresses'}" class="nav-link">Контакты</router-link>
                                 </li>
                             </ul>
                         </div>
@@ -91,7 +91,8 @@
                 <div class="map">
                     <yandex-map 
                         :coords="ymap_city_coords"
-                        :zoom="10" 
+                        :zoom="10"
+                        :behaviors="ymap_behaviors"
                     >
                         <template v-for="address in ymap_addresses">
                             <ymap-marker 
@@ -209,6 +210,10 @@
 
                 ymap_addresses: [],
                 ymap_city_coords: [],
+                ymap_behaviors: [
+                    //'scrollZoom',
+                    'drag'
+                ], 
             }
         },
         created() {

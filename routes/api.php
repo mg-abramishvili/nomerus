@@ -14,6 +14,8 @@ Route::get('city-detect','App\Http\Controllers\Front\CityController@city_detect'
 
 Route::get('services','App\Http\Controllers\Front\ServiceController@index');
 
+Route::get('text','App\Http\Controllers\Front\TextController@index');
+
 Route::get('transports','App\Http\Controllers\Front\TransportController@transports_index');
 
 Route::get('{city}/transport/{id}/types','App\Http\Controllers\Front\TypeController@transport_types');

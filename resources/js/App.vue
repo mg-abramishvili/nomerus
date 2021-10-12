@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         {{$route.params.name}}
-        <template v-if="$route.name === 'Home' || $route.name === 'Gallery' || $route.name === 'OrderCreate' || $route.name === 'OrderComplete' || $route.name === 'Addresses'">
+        <template v-if="$route.name === 'Home' || $route.name === 'Gallery' || $route.name === 'OrderCreate' || $route.name === 'OrderComplete' || $route.name === 'Addresses' || $route.name === 'Reviews' || $route.name === 'About'">
             <FrontLayout />
         </template>
 

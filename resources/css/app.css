@@ -859,6 +859,43 @@ html, body {
 
 
 
+
+.reviews-page {
+    background-color: #fff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.reviews-page .reviews-item {
+    position: relative;
+}
+
+.reviews-page .reviews-item a {
+    display: block;
+    text-align: center;
+    color: #EF5044;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.reviews-page .reviews-item img {
+    width: auto;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.reviews-page .reviews-item a span {
+    border-bottom: 1px dashed;
+}
+
+
+
+
+
+
+
 .order-page {
     /*max-width: 700px;*/
     padding-top: 60px;
