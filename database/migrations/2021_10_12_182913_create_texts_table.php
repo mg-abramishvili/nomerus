@@ -10,8 +10,8 @@ class CreateTextsTable extends Migration
     {
         Schema::create('texts', function (Blueprint $table) {
             $table->id();
-            $table->lognText('company_text');
-            $table->lognText('privacy_policy');
+            $table->longText('company_text');
+            $table->longText('privacy_policy');
             $table->timestamps();
         });
     }

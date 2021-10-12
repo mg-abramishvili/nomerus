@@ -47910,7 +47910,7 @@ var render = function() {
               "div",
               {
                 key: "galleryItem_m_" + galleryItem.id,
-                staticClass: "col-12 col-md-3"
+                staticClass: "col-12 col-md-3 mb-4"
               },
               [
                 _c("div", {

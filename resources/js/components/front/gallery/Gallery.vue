@@ -5,7 +5,7 @@
                 <h2 class="home-block-title">Фотогалерея Номерус</h2>
 
                 <div class="row">
-                    <div class="col-12 col-md-3" v-for="(galleryItem, index) in gallery" :key="'galleryItem_m_' + galleryItem.id">
+                    <div class="col-12 col-md-3 mb-4" v-for="(galleryItem, index) in gallery" :key="'galleryItem_m_' + galleryItem.id">
                         <div @click="openModalGal(index)" class="gal-m-item" v-bind:style="{ 'background-image': 'url(' + galleryItem.image + ')' }"></div>
                     </div>
                 </div>

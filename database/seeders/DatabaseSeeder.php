@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AddressCitySeeder::class,
             CertificateSeeder::class,
             ServiceSeeder::class,
+            GallerySeeder::class,
         ]);
     }
 }
