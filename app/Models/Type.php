@@ -21,6 +21,6 @@ class Type extends Model
 
     public function cities()
     {
-        return $this->belongsToMany('App\Models\City')->withPivot(['price', 'komplekt_price', 'komplekt_same_type_price']);
+        return $this->belongsToMany('App\Models\City')->withPivot(['price', 'min_price']);
     }
 }

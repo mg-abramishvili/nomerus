@@ -6,11 +6,10 @@
 
                 <div class="map-wrapper">
                     <yandex-map 
-                        :coords="city_coords"
+                        :coords="ymap_city_coords"
                         :zoom="10" 
-                        @click="onClick"
                     >
-                        <template v-for="address in addresses">
+                        <template v-for="address in ymap_addresses">
                             <ymap-marker 
                                 :coords="address.coordinates.split(',')" 
                                 :marker-id="address.id" 
@@ -30,36 +29,36 @@ import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 export default {
     data: function () {
         return {
-            addresses: [],
-            city_coords: [],
+            ymap_addresses: [],
+            ymap_city_coords: [],
         };
     },
     created() {
         axios
             .get('/api/addresses')
             .then((response => {
-                this.addresses = response.data
-                this.cityChange()
+                this.ymap_addresses = response.data
+                this.ymap_cityChange()
             }));
         },
     methods: {
-        cityChange() {
+        ymap_cityChange() {
             if(this.$parent.current_city_namecode === 'ufa') {
-                this.city_coords = [54.730299568811866,56.03773349999993]
+                this.ymap_city_coords = [54.730299568811866,56.03773349999993]
             }
             if(this.$parent.current_city_namecode === 'ekb') {
-                this.city_coords = [56.844860263326964,60.604154855468686]
+                this.ymap_city_coords = [56.844860263326964,60.604154855468686]
             }
-        },
-        onClick(e) {
-            this.coords = e.get('coords');
+            if(this.$parent.current_city_namecode === 'strltmk') {
+                this.ymap_city_coords = [53.63219996016489,55.929692909667935]
+            }
         },
     },
     mounted() {
         this.$watch(
         "$parent.current_city_id",
         (new_value, old_value) => {
-            this.cityChange()
+            this.ymap_cityChange()
         }
         );
     },

@@ -13,8 +13,7 @@ class CityTypeTable extends Migration
             $table->integer('city_id');
             $table->integer('type_id');
             $table->decimal('price');
-            $table->decimal('komplekt_price');
-            $table->decimal('komplekt_same_type_price');
+            $table->decimal('min_price');
         });
     }
 

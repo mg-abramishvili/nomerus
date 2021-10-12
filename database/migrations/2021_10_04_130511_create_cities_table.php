@@ -12,6 +12,7 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('namecode');
+            $table->string('instagram')->nullable();
             $table->timestamps();
         });
     }

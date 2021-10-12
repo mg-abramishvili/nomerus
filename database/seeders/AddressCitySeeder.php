@@ -37,6 +37,11 @@ class AddressCitySeeder extends Seeder
                 'city_id' => 2,
                 'address_id' => 5,
             ],
+            [
+                'id' => 6,
+                'city_id' => 3,
+                'address_id' => 6,
+            ],
         ]);
     }
 }

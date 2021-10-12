@@ -385,9 +385,9 @@
             priceCalculate() {
                 if(this.add_komplekt == true) {
                     if(this.selected_type.id === this.selected_komplekt_type.id) {
-                        this.price = parseInt(this.selected_type.cities[0].pivot.komplekt_same_type_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.komplekt_same_type_price)
+                        this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price)
                     } else {
-                        this.price = parseInt(this.selected_type.cities[0].pivot.komplekt_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.komplekt_price)
+                        this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price)
                     }
                 } else {
                     this.price = parseInt(this.selected_type.cities[0].pivot.price)

@@ -3,7 +3,10 @@
         <div class="home-carousel">
             <div class="container">
                 <div class="home-carousel-inner">
-                    <h1>Изготовление <br/>госномеров <strong>в Уфе</strong></h1>
+                    <h1>Изготовление <br/>госномеров 
+                        <strong v-if="$parent.current_city_name.substr(-1) === 'а'">в {{ $parent.current_city_name.slice(0, -1) + 'е' }}</strong>
+                        <strong v-else>в {{ $parent.current_city_name + 'е' }}</strong>
+                    </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
                     <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать номер</router-link>
                 </div>
@@ -149,18 +152,18 @@
                 <h2 class="home-block-title">Почему стоит заказать номер у нас?</h2>
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <div class="home-why-item" style="background-image:url(/img/home-why-item-1.jpg)">
-                            <p>Даем гарантию <br>3 года на номер</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
                         <div class="home-why-item" style="background-image:url(/img/home-why-item-2.jpg)">
-                            <p>Мы есть в реестре <br>изготовителей ГРЗ</p>
+                            <p>Мы состоим в реестре <br>изготовителей ГРЗ </p>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="home-why-item" style="background-image:url(/img/home-why-item-3.jpg)">
-                            <p>Есть сертификаты <br>и лицензии</p>
+                            <p>Есть все необходимые <br>сертификаты</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="home-why-item" style="background-image:url(/img/home-why-item-1.jpg)">
+                            <p>Даем гарантию <br>3 года на номер</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">

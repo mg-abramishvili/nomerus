@@ -15,7 +15,7 @@
                             <router-link :to="{name: 'Addresses'}">Адреса</router-link>
                         </div>
                         <div class="header-social">
-                            <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
+                            <a v-if="current_city_instagram" :href="current_city_instagram" target="_blank">
                                 <img src="/img/insta.svg">
                             </a>
                             <a href="#">
@@ -30,8 +30,13 @@
                         </div>
                         <div class="header-tel">
                             <div class="header-tel-inner">
-                                <a href="#">+7 927 236-66-29</a>
-                                <a href="#">+7 960 800-32-10</a>
+                                <template v-for="city in cities">
+                                    <template  v-if="city.id === current_city_id">
+                                        <template v-for="address in city.addresses.slice(0,2)">
+                                            <a :href="address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
+                                        </template>
+                                    </template>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -71,18 +76,30 @@
         <div class="home-contacts">
             <div class="container">
                 <h2 class="home-block-title">Контакты</h2>
-                <ul>
-                    <li>Уфа, ул. Лесотехникума, 15
-                    </li>
-                    <li>
-                        +7 927 236-66-29
-                    </li>
-                    <li>
-                        +7 960 800-32-10
-                    </li>
-                </ul>
+                <template v-for="city in cities">
+                    <template  v-if="city.id === current_city_id">
+                        <ul v-for="address in city.addresses">
+                            <li>{{ address.name }}
+                            </li>
+                            <li>
+                                {{ address.tel }}
+                            </li>
+                        </ul>
+                    </template>
+                </template>
                 <div class="map">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A7be0ec96a4c612454138b57387fa53bcfc144805e5cd495f745d9839dd71ecc8&amp;source=constructor" width="100%" height="100%" frameborder="0" style="pointer-events: none;"></iframe>
+                    <yandex-map 
+                        :coords="ymap_city_coords"
+                        :zoom="10" 
+                    >
+                        <template v-for="address in ymap_addresses">
+                            <ymap-marker 
+                                :coords="address.coordinates.split(',')" 
+                                :marker-id="address.id" 
+                                :hint-content="address.name" 
+                            />
+                        </template>
+                    </yandex-map>
                 </div>
             </div>
         </div>
@@ -115,8 +132,13 @@
                     </div>
                     <div class="footer-tel">
                         <div class="footer-tel-inner">
-                            <a href="#">+7 927 236-66-29</a>
-                            <a href="#">+7 960 800-32-10</a>
+                            <template v-for="city in cities">
+                                <template  v-if="city.id === current_city_id">
+                                    <template v-for="address in city.addresses.slice(0,2)">
+                                        <a :href="address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
+                                    </template>
+                                </template>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -133,7 +155,7 @@
                     <div class="modal-body">
                         <ul>
                             <li v-for="city in cities" :key="'city_' + city.id">
-                                <a @click="selectCity(city.id, city.name, city.namecode)">{{ city.name }}</a>
+                                <a @click="selectCity(city.id, city.name, city.namecode, city.instagram)">{{ city.name }}</a>
                             </li>
                         </ul>
                     </div>
@@ -170,6 +192,7 @@
 
 <script>
     import { maska } from 'maska'
+    import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 
     export default {
         directives: { maska },
@@ -180,10 +203,14 @@
                 current_city_id: 1,
                 current_city_name: 'Уфа',
                 current_city_namecode: 'ufa',
+                current_city_instagram: 'https://www.instagram.com/nomerus_ufa/',
 
                 city_modal: false,
                 callback_modal: false,
                 modal_bg: false,
+
+                ymap_addresses: [],
+                ymap_city_coords: [],
             }
         },
         created() {
@@ -191,6 +218,12 @@
             .get('/api/cities')
             .then((response => {
                 this.cities = response.data
+            }));
+            axios
+            .get('/api/addresses')
+            .then((response => {
+                this.ymap_addresses = response.data
+                this.ymap_cityChange()
             }));
         },
         methods: {
@@ -210,15 +243,37 @@
                 this.modal_bg = false
                 this.city_modal = false
             },
-            selectCity(id, name, namecode) {
+            selectCity(id, name, namecode, instagram) {
                 this.current_city_id = id
                 this.current_city_name = name
                 this.current_city_namecode = namecode
+                this.current_city_instagram = instagram
 
                 this.closeCityModal()
+            },
+            ymap_cityChange() {
+                if(this.current_city_namecode === 'ufa') {
+                    this.ymap_city_coords = [54.730299568811866,56.03773349999993]
+                }
+                if(this.current_city_namecode === 'ekb') {
+                    this.ymap_city_coords = [56.844860263326964,60.604154855468686]
+                }
+                if(this.current_city_namecode === 'strltmk') {
+                    this.ymap_city_coords = [53.63219996016489,55.929692909667935]
+                }
+            },
+        },
+        mounted() {
+            this.$watch(
+            "current_city_id",
+            (new_value, old_value) => {
+                this.ymap_cityChange()
             }
+            );
         },
         components: {
+            yandexMap,
+            ymapMarker
         }
     }
 </script>

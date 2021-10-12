@@ -2759,6 +2759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var maska__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! maska */ "./node_modules/maska/dist/maska.esm.js");
+/* harmony import */ var vue_yandex_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-yandex-maps */ "./node_modules/vue-yandex-maps/dist/vue-yandex-maps.esm.js");
 //
 //
 //
@@ -2929,6 +2930,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -2940,9 +2964,12 @@ __webpack_require__.r(__webpack_exports__);
       current_city_id: 1,
       current_city_name: 'Уфа',
       current_city_namecode: 'ufa',
+      current_city_instagram: 'https://www.instagram.com/nomerus_ufa/',
       city_modal: false,
       callback_modal: false,
-      modal_bg: false
+      modal_bg: false,
+      ymap_addresses: [],
+      ymap_city_coords: []
     };
   },
   created: function created() {
@@ -2950,6 +2977,11 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/cities').then(function (response) {
       _this.cities = response.data;
+    });
+    axios.get('/api/addresses').then(function (response) {
+      _this.ymap_addresses = response.data;
+
+      _this.ymap_cityChange();
     });
   },
   methods: {
@@ -2969,14 +3001,38 @@ __webpack_require__.r(__webpack_exports__);
       this.modal_bg = false;
       this.city_modal = false;
     },
-    selectCity: function selectCity(id, name, namecode) {
+    selectCity: function selectCity(id, name, namecode, instagram) {
       this.current_city_id = id;
       this.current_city_name = name;
       this.current_city_namecode = namecode;
+      this.current_city_instagram = instagram;
       this.closeCityModal();
+    },
+    ymap_cityChange: function ymap_cityChange() {
+      if (this.current_city_namecode === 'ufa') {
+        this.ymap_city_coords = [54.730299568811866, 56.03773349999993];
+      }
+
+      if (this.current_city_namecode === 'ekb') {
+        this.ymap_city_coords = [56.844860263326964, 60.604154855468686];
+      }
+
+      if (this.current_city_namecode === 'strltmk') {
+        this.ymap_city_coords = [53.63219996016489, 55.929692909667935];
+      }
     }
   },
-  components: {}
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.$watch("current_city_id", function (new_value, old_value) {
+      _this2.ymap_cityChange();
+    });
+  },
+  components: {
+    yandexMap: vue_yandex_maps__WEBPACK_IMPORTED_MODULE_1__.yandexMap,
+    ymapMarker: vue_yandex_maps__WEBPACK_IMPORTED_MODULE_1__.ymapMarker
+  }
 });
 
 /***/ }),
@@ -3018,43 +3074,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      addresses: [],
-      city_coords: []
+      ymap_addresses: [],
+      ymap_city_coords: []
     };
   },
   created: function created() {
     var _this = this;
 
     axios.get('/api/addresses').then(function (response) {
-      _this.addresses = response.data;
+      _this.ymap_addresses = response.data;
 
-      _this.cityChange();
+      _this.ymap_cityChange();
     });
   },
   methods: {
-    cityChange: function cityChange() {
+    ymap_cityChange: function ymap_cityChange() {
       if (this.$parent.current_city_namecode === 'ufa') {
-        this.city_coords = [54.730299568811866, 56.03773349999993];
+        this.ymap_city_coords = [54.730299568811866, 56.03773349999993];
       }
 
       if (this.$parent.current_city_namecode === 'ekb') {
-        this.city_coords = [56.844860263326964, 60.604154855468686];
+        this.ymap_city_coords = [56.844860263326964, 60.604154855468686];
       }
-    },
-    onClick: function onClick(e) {
-      this.coords = e.get('coords');
+
+      if (this.$parent.current_city_namecode === 'strltmk') {
+        this.ymap_city_coords = [53.63219996016489, 55.929692909667935];
+      }
     }
   },
   mounted: function mounted() {
     var _this2 = this;
 
     this.$watch("$parent.current_city_id", function (new_value, old_value) {
-      _this2.cityChange();
+      _this2.ymap_cityChange();
     });
   },
   components: {
@@ -3167,6 +3223,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var hooper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hooper */ "./node_modules/hooper/dist/hooper.esm.js");
 /* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hooper/dist/hooper.css */ "./node_modules/hooper/dist/hooper.css");
+//
+//
+//
 //
 //
 //
@@ -3897,9 +3956,9 @@ __webpack_require__.r(__webpack_exports__);
     priceCalculate: function priceCalculate() {
       if (this.add_komplekt == true) {
         if (this.selected_type.id === this.selected_komplekt_type.id) {
-          this.price = parseInt(this.selected_type.cities[0].pivot.komplekt_same_type_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.komplekt_same_type_price);
+          this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price);
         } else {
-          this.price = parseInt(this.selected_type.cities[0].pivot.komplekt_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.komplekt_price);
+          this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price);
         }
       } else {
         this.price = parseInt(this.selected_type.cities[0].pivot.price);
@@ -46616,7 +46675,22 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "header-social" }, [
+              _vm.current_city_instagram
+                ? _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: _vm.current_city_instagram,
+                        target: "_blank"
+                      }
+                    },
+                    [_c("img", { attrs: { src: "/img/insta.svg" } })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._m(0)
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "header-callback" }, [
               _c(
@@ -46633,7 +46707,42 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "header-tel" }, [
+              _c(
+                "div",
+                { staticClass: "header-tel-inner" },
+                [
+                  _vm._l(_vm.cities, function(city) {
+                    return [
+                      city.id === _vm.current_city_id
+                        ? [
+                            _vm._l(city.addresses.slice(0, 2), function(
+                              address
+                            ) {
+                              return [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: address.tel
+                                        .split(" ")
+                                        .join("")
+                                        .split("-")
+                                        .join("")
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(address.tel))]
+                                )
+                              ]
+                            })
+                          ]
+                        : _vm._e()
+                    ]
+                  })
+                ],
+                2
+              )
+            ])
           ])
         ])
       ]),
@@ -46644,7 +46753,7 @@ var render = function() {
           { staticClass: "navbar navbar-expand-md navbar-dark bg-dark" },
           [
             _c("div", { staticClass: "container" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "div",
@@ -46654,9 +46763,9 @@ var render = function() {
                 },
                 [
                   _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-md-0" }, [
-                    _vm._m(3),
+                    _vm._m(2),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c(
                       "li",
@@ -46674,7 +46783,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(5)
+                    _vm._m(4)
                   ])
                 ]
               )
@@ -46686,7 +46795,66 @@ var render = function() {
     _vm._v(" "),
     _c("div", [_c("router-view", { key: _vm.$route.path })], 1),
     _vm._v(" "),
-    _vm._m(6),
+    _c("div", { staticClass: "home-contacts" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h2", { staticClass: "home-block-title" }, [_vm._v("Контакты")]),
+          _vm._v(" "),
+          _vm._l(_vm.cities, function(city) {
+            return [
+              city.id === _vm.current_city_id
+                ? _vm._l(city.addresses, function(address) {
+                    return _c("ul", [
+                      _c("li", [
+                        _vm._v(
+                          _vm._s(address.name) + "\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(address.tel) +
+                            "\n                        "
+                        )
+                      ])
+                    ])
+                  })
+                : _vm._e()
+            ]
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "map" },
+            [
+              _c(
+                "yandex-map",
+                { attrs: { coords: _vm.ymap_city_coords, zoom: 10 } },
+                [
+                  _vm._l(_vm.ymap_addresses, function(address) {
+                    return [
+                      _c("ymap-marker", {
+                        attrs: {
+                          coords: address.coordinates.split(","),
+                          "marker-id": address.id,
+                          "hint-content": address.name
+                        }
+                      })
+                    ]
+                  })
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ],
+        2
+      )
+    ]),
     _vm._v(" "),
     _c("footer", [
       _c("div", { staticClass: "container" }, [
@@ -46704,9 +46872,9 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(7),
+          _vm._m(5),
           _vm._v(" "),
-          _vm._m(8),
+          _vm._m(6),
           _vm._v(" "),
           _c("div", { staticClass: "footer-callback" }, [
             _c(
@@ -46723,7 +46891,40 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(9)
+          _c("div", { staticClass: "footer-tel" }, [
+            _c(
+              "div",
+              { staticClass: "footer-tel-inner" },
+              [
+                _vm._l(_vm.cities, function(city) {
+                  return [
+                    city.id === _vm.current_city_id
+                      ? [
+                          _vm._l(city.addresses.slice(0, 2), function(address) {
+                            return [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: address.tel
+                                      .split(" ")
+                                      .join("")
+                                      .split("-")
+                                      .join("")
+                                  }
+                                },
+                                [_vm._v(_vm._s(address.tel))]
+                              )
+                            ]
+                          })
+                        ]
+                      : _vm._e()
+                  ]
+                })
+              ],
+              2
+            )
+          ])
         ])
       ])
     ]),
@@ -46768,7 +46969,8 @@ var render = function() {
                                 return _vm.selectCity(
                                   city.id,
                                   city.name,
-                                  city.namecode
+                                  city.namecode,
+                                  city.instagram
                                 )
                               }
                             }
@@ -46813,7 +47015,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(10)
+                _vm._m(7)
               ])
             ])
           ]
@@ -46830,33 +47032,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header-social" }, [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "https://www.instagram.com/nomerus_ufa/",
-            target: "_blank"
-          }
-        },
-        [_c("img", { attrs: { src: "/img/insta.svg" } })]
-      ),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("img", { attrs: { src: "/img/whatsapp.svg" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "header-tel" }, [
-      _c("div", { staticClass: "header-tel-inner" }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 927 236-66-29")]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 960 800-32-10")])
-      ])
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("img", { attrs: { src: "/img/whatsapp.svg" } })
     ])
   },
   function() {
@@ -46907,41 +47084,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "home-contacts" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Контакты")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [_vm._v("Уфа, ул. Лесотехникума, 15\n                ")]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v("\n                    +7 927 236-66-29\n                ")
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v("\n                    +7 960 800-32-10\n                ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "map" }, [
-          _c("iframe", {
-            staticStyle: { "pointer-events": "none" },
-            attrs: {
-              src:
-                "https://yandex.ru/map-widget/v1/?um=constructor%3A7be0ec96a4c612454138b57387fa53bcfc144805e5cd495f745d9839dd71ecc8&source=constructor",
-              width: "100%",
-              height: "100%",
-              frameborder: "0"
-            }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "footer-policy" }, [
       _c("a", { attrs: { href: "#" } }, [_vm._v("Политика конфиденциальности")])
     ])
@@ -46964,18 +47106,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [
         _c("img", { attrs: { src: "/img/whatsapp.svg" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-tel" }, [
-      _c("div", { staticClass: "footer-tel-inner" }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 927 236-66-29")]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("+7 960 800-32-10")])
       ])
     ])
   },
@@ -47039,12 +47169,9 @@ var render = function() {
           [
             _c(
               "yandex-map",
-              {
-                attrs: { coords: _vm.city_coords, zoom: 10 },
-                on: { click: _vm.onClick }
-              },
+              { attrs: { coords: _vm.ymap_city_coords, zoom: 10 } },
               [
-                _vm._l(_vm.addresses, function(address) {
+                _vm._l(_vm.ymap_addresses, function(address) {
                   return [
                     _c("ymap-marker", {
                       attrs: {
@@ -47223,9 +47350,23 @@ var render = function() {
           "div",
           { staticClass: "home-carousel-inner" },
           [
-            _vm._m(0),
+            _c("h1", [
+              _vm._v("Изготовление "),
+              _c("br"),
+              _vm._v("госномеров \n                    "),
+              _vm.$parent.current_city_name.substr(-1) === "а"
+                ? _c("strong", [
+                    _vm._v(
+                      "в " +
+                        _vm._s(_vm.$parent.current_city_name.slice(0, -1) + "е")
+                    )
+                  ])
+                : _c("strong", [
+                    _vm._v("в " + _vm._s(_vm.$parent.current_city_name + "е"))
+                  ])
+            ]),
             _vm._v(" "),
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c(
               "router-link",
@@ -47286,7 +47427,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(1)
               ])
             ])
           ]),
@@ -47322,7 +47463,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(3)
+                _vm._m(2)
               ])
             ])
           ]),
@@ -47358,7 +47499,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(3)
               ])
             ])
           ]),
@@ -47394,7 +47535,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(4)
               ])
             ])
           ]),
@@ -47430,7 +47571,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(6)
+                _vm._m(5)
               ])
             ])
           ])
@@ -47445,9 +47586,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row align-items-center" }, [
-          _vm._m(7),
+          _vm._m(6),
           _vm._v(" "),
-          _vm._m(8),
+          _vm._m(7),
           _vm._v(" "),
           _c(
             "div",
@@ -47473,7 +47614,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(9),
+    _vm._m(8),
     _vm._v(" "),
     _c("div", { staticClass: "home-cert" }, [
       _c("div", { staticClass: "container" }, [
@@ -47601,7 +47742,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(10),
+    _vm._m(9),
     _vm._v(" "),
     _c("div", { staticClass: "home-restoration" }, [
       _c("div", { staticClass: "container" }, [
@@ -47637,21 +47778,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(11)
+    _vm._m(10)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h1", [
-      _vm._v("Изготовление "),
-      _c("br"),
-      _vm._v("госномеров "),
-      _c("strong", [_vm._v("в Уфе")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -47820,33 +47950,14 @@ var staticRenderFns = [
               {
                 staticClass: "home-why-item",
                 staticStyle: {
-                  "background-image": "url(/img/home-why-item-1.jpg)"
-                }
-              },
-              [
-                _c("p", [
-                  _vm._v("Даем гарантию "),
-                  _c("br"),
-                  _vm._v("3 года на номер")
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-3" }, [
-            _c(
-              "div",
-              {
-                staticClass: "home-why-item",
-                staticStyle: {
                   "background-image": "url(/img/home-why-item-2.jpg)"
                 }
               },
               [
                 _c("p", [
-                  _vm._v("Мы есть в реестре "),
+                  _vm._v("Мы состоим в реестре "),
                   _c("br"),
-                  _vm._v("изготовителей ГРЗ")
+                  _vm._v("изготовителей ГРЗ ")
                 ])
               ]
             )
@@ -47863,9 +47974,28 @@ var staticRenderFns = [
               },
               [
                 _c("p", [
-                  _vm._v("Есть сертификаты "),
+                  _vm._v("Есть все необходимые "),
                   _c("br"),
-                  _vm._v("и лицензии")
+                  _vm._v("сертификаты")
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c(
+              "div",
+              {
+                staticClass: "home-why-item",
+                staticStyle: {
+                  "background-image": "url(/img/home-why-item-1.jpg)"
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v("Даем гарантию "),
+                  _c("br"),
+                  _vm._v("3 года на номер")
                 ])
               ]
             )
