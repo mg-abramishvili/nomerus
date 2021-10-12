@@ -11,9 +11,12 @@ class CreateOrderItemsTable extends Migration
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->string('transport');
+            $table->string('type');
             $table->string('number');
             $table->decimal('price');
             $table->string('uid');
+            $table->boolean('bold');
+            $table->boolean('noholes');
             $table->timestamps();
         });
     }

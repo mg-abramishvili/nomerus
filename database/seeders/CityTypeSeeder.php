@@ -18,6 +18,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 1,
                 'price' => 800,
                 'min_price' => 750,
+                'max_price' => 1000,
             ],
             [
                 'id' => 2,
@@ -25,6 +26,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 1,
                 'price' => 850,
                 'min_price' => 750,
+                'max_price' => 1000,
             ],
             [
                 'id' => 3,
@@ -32,6 +34,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 2,
                 'price' => 1000,
                 'min_price' => 1000,
+                'max_price' => 1000,
             ],
             [
                 'id' => 4,
@@ -39,13 +42,15 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 3,
                 'price' => 1500,
                 'min_price' => 1500,
+                'max_price' => 1500,
             ],
             [
                 'id' => 5,
                 'city_id' => 1,
                 'type_id' => 4,
-                'price' => 1500,
-                'min_price' => 1500,
+                'price' => 2000,
+                'min_price' => 2000,
+                'max_price' => 2000,
             ],
             [
                 'id' => 6,
@@ -53,6 +58,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 5,
                 'price' => 1500,
                 'min_price' => 1500,
+                'max_price' => 1500,
             ],
             [
                 'id' => 7,
@@ -60,6 +66,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 6,
                 'price' => 1500,
                 'min_price' => 1500,
+                'max_price' => 1500,
             ],
             [
                 'id' => 8,
@@ -67,6 +74,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 7,
                 'price' => 1500,
                 'min_price' => 1500,
+                'max_price' => 1500,
             ],
             [
                 'id' => 9,
@@ -74,6 +82,7 @@ class CityTypeSeeder extends Seeder
                 'type_id' => 8,
                 'price' => 1500,
                 'min_price' => 1500,
+                'max_price' => 1500,
             ],
         ]);
     }

@@ -3881,6 +3881,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -3896,6 +3912,8 @@ __webpack_require__.r(__webpack_exports__);
       selected_komplekt_type: {},
       number: '',
       number_region: '',
+      bold: false,
+      noholes: false,
       price: '',
       price_total: '',
       order_list: [],
@@ -3942,7 +3960,7 @@ __webpack_require__.r(__webpack_exports__);
     selectTransport: function selectTransport() {
       var _this2 = this;
 
-      axios.get("/api/".concat(this.$parent.current_city_id, "/transport/").concat(this.selected_transport.id, "/types")).then(function (response) {
+      axios.get("/api/".concat(this.$parent.current_city.id, "/transport/").concat(this.selected_transport.id, "/types")).then(function (response) {
         return _this2.types = response.data, _this2.selected_type = _this2.types[0], _this2.price = _this2.types[0].cities[0].pivot.price;
       });
       this.number = '';
@@ -3965,20 +3983,39 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.selected_komplekt_type = '';
         this.price = this.selected_type.cities[0].pivot.price;
+        this.priceCalculate();
       }
     },
     selectKomplektType: function selectKomplektType() {
       this.priceCalculate();
     },
+    changeBold: function changeBold() {
+      this.priceCalculate();
+    },
+    changeNoholes: function changeNoholes() {
+      this.priceCalculate();
+    },
     priceCalculate: function priceCalculate() {
       if (this.add_komplekt == true) {
         if (this.selected_type.id === this.selected_komplekt_type.id) {
-          this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price);
+          if (this.bold == true || this.noholes == true) {
+            this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price);
+          } else {
+            this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price);
+          }
         } else {
-          this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price);
+          if (this.bold == true || this.noholes == true) {
+            this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price);
+          } else {
+            this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price);
+          }
         }
       } else {
-        this.price = parseInt(this.selected_type.cities[0].pivot.price);
+        if (this.bold == true || this.noholes == true) {
+          this.price = parseInt(this.selected_type.cities[0].pivot.max_price);
+        } else {
+          this.price = parseInt(this.selected_type.cities[0].pivot.price);
+        }
       }
     },
     saveOrderItem: function saveOrderItem() {
@@ -3995,7 +4032,10 @@ __webpack_require__.r(__webpack_exports__);
         this.order_fields = true;
         axios.post("/api/order-item", {
           transport: this.selected_transport.id,
+          type: this.selected_type.name,
           number: this.number + this.number_region,
+          bold: this.bold,
+          noholes: this.noholes,
           price: this.price
         }).then(function (response) {
           return (//console.log(response.data)
@@ -4038,8 +4078,11 @@ __webpack_require__.r(__webpack_exports__);
 
         if (this.name && this.name.length > 0 && this.tel && this.tel.length > 0 && this.email && this.email.length > 0 && this.passport && this.passport.length > 0) {
           axios.post("/api/order", {
+            client_type: this.client_type,
             tel: this.tel,
             email: this.email,
+            name: this.name,
+            passport: this.passport,
             price: parseInt(this.price_total),
             orderItems: this.order_list.map(function (item) {
               return item.uid;
@@ -4191,7 +4234,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this5 = this;
 
-    this.$watch("$parent.current_city_id", function (new_value, old_value) {
+    this.$watch("$parent.current_city.id", function (new_value, old_value) {
       _this5.selected_transport = '';
       _this5.selected_type = '';
       _this5.number = '';
@@ -48523,7 +48566,147 @@ var render = function() {
                                 )
                               }),
                               0
-                            )
+                            ),
+                            _vm._v(" "),
+                            _vm.selected_type.namecode === "type1_with_flag" ||
+                            _vm.selected_type.namecode === "type1_without_flag"
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-check form-switch mt-2"
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.bold,
+                                          expression: "bold"
+                                        }
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: {
+                                        type: "checkbox",
+                                        value: "1",
+                                        id: "boldSwitch"
+                                      },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.bold)
+                                          ? _vm._i(_vm.bold, "1") > -1
+                                          : _vm.bold
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.bold,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = "1",
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.bold = $$a.concat([$$v]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.bold = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.bold = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.changeBold()
+                                          }
+                                        ]
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "form-check-label",
+                                        attrs: { for: "boldSwitch" }
+                                      },
+                                      [_vm._v("жирный шрифт")]
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.selected_type.namecode === "type1_with_flag" ||
+                            _vm.selected_type.namecode === "type1_without_flag"
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-check form-switch mt-2"
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.noholes,
+                                          expression: "noholes"
+                                        }
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: {
+                                        type: "checkbox",
+                                        value: "1",
+                                        id: "holesSwitch"
+                                      },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.noholes)
+                                          ? _vm._i(_vm.noholes, "1") > -1
+                                          : _vm.noholes
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.noholes,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = "1",
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.noholes = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.noholes = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.noholes = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.changeNoholes()
+                                          }
+                                        ]
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "form-check-label",
+                                        attrs: { for: "holesSwitch" }
+                                      },
+                                      [_vm._v("без отверстий")]
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-12 col-md-6" }, [
@@ -48534,7 +48717,10 @@ var render = function() {
                                 "type1_without_flag"
                                 ? _c(
                                     "div",
-                                    { staticClass: "type1_with_flag" },
+                                    {
+                                      staticClass: "type1_with_flag",
+                                      class: { "fw-bold": _vm.bold == true }
+                                    },
                                     [
                                       _vm.number && _vm.number.length > 0
                                         ? _c(
@@ -48869,7 +49055,166 @@ var render = function() {
                                         }
                                       ),
                                       0
-                                    )
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.selected_komplekt_type.namecode ===
+                                      "type1_with_flag" ||
+                                    _vm.selected_komplekt_type.namecode ===
+                                      "type1_without_flag"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "form-check form-switch mt-2"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.bold,
+                                                  expression: "bold"
+                                                }
+                                              ],
+                                              staticClass: "form-check-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                value: "1",
+                                                id: "boldSwitch"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(_vm.bold)
+                                                  ? _vm._i(_vm.bold, "1") > -1
+                                                  : _vm.bold
+                                              },
+                                              on: {
+                                                change: [
+                                                  function($event) {
+                                                    var $$a = _vm.bold,
+                                                      $$el = $event.target,
+                                                      $$c = $$el.checked
+                                                        ? true
+                                                        : false
+                                                    if (Array.isArray($$a)) {
+                                                      var $$v = "1",
+                                                        $$i = _vm._i($$a, $$v)
+                                                      if ($$el.checked) {
+                                                        $$i < 0 &&
+                                                          (_vm.bold = $$a.concat(
+                                                            [$$v]
+                                                          ))
+                                                      } else {
+                                                        $$i > -1 &&
+                                                          (_vm.bold = $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            ))
+                                                      }
+                                                    } else {
+                                                      _vm.bold = $$c
+                                                    }
+                                                  },
+                                                  function($event) {
+                                                    return _vm.changeBold()
+                                                  }
+                                                ]
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "form-check-label",
+                                                attrs: { for: "boldSwitch" }
+                                              },
+                                              [_vm._v("жирный шрифт")]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.selected_komplekt_type.namecode ===
+                                      "type1_with_flag" ||
+                                    _vm.selected_komplekt_type.namecode ===
+                                      "type1_without_flag"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "form-check form-switch mt-2"
+                                          },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.noholes,
+                                                  expression: "noholes"
+                                                }
+                                              ],
+                                              staticClass: "form-check-input",
+                                              attrs: {
+                                                type: "checkbox",
+                                                value: "1",
+                                                id: "holesSwitch"
+                                              },
+                                              domProps: {
+                                                checked: Array.isArray(
+                                                  _vm.noholes
+                                                )
+                                                  ? _vm._i(_vm.noholes, "1") >
+                                                    -1
+                                                  : _vm.noholes
+                                              },
+                                              on: {
+                                                change: [
+                                                  function($event) {
+                                                    var $$a = _vm.noholes,
+                                                      $$el = $event.target,
+                                                      $$c = $$el.checked
+                                                        ? true
+                                                        : false
+                                                    if (Array.isArray($$a)) {
+                                                      var $$v = "1",
+                                                        $$i = _vm._i($$a, $$v)
+                                                      if ($$el.checked) {
+                                                        $$i < 0 &&
+                                                          (_vm.noholes = $$a.concat(
+                                                            [$$v]
+                                                          ))
+                                                      } else {
+                                                        $$i > -1 &&
+                                                          (_vm.noholes = $$a
+                                                            .slice(0, $$i)
+                                                            .concat(
+                                                              $$a.slice($$i + 1)
+                                                            ))
+                                                      }
+                                                    } else {
+                                                      _vm.noholes = $$c
+                                                    }
+                                                  },
+                                                  function($event) {
+                                                    return _vm.changeNoholes()
+                                                  }
+                                                ]
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass: "form-check-label",
+                                                attrs: { for: "holesSwitch" }
+                                              },
+                                              [_vm._v("без отверстий")]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
                                   ]
                                 : _vm._e()
                             ],

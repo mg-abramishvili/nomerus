@@ -49,10 +49,18 @@
                                     <select v-model="selected_type" @change="selectType()" class="form-select">
                                         <option v-for="type in types" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
                                     </select>
+                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
+                                        <input v-model="bold" @change="changeBold()" class="form-check-input" type="checkbox" value="1" id="boldSwitch">
+                                        <label class="form-check-label" for="boldSwitch">жирный шрифт</label>
+                                    </div>
+                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
+                                        <input v-model="noholes" @change="changeNoholes()" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
+                                        <label class="form-check-label" for="holesSwitch">без отверстий</label>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="order-plate-preview">
-                                        <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="type1_with_flag">               
+                                        <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="type1_with_flag" :class="{ 'fw-bold' : bold == true}">               
                                             <div v-if="number && number.length > 0" class="numbers">
                                                 <span>{{ number.slice(0, 1) }}</span>
                                                 <span>{{ number.slice(1, 4) }}</span>
@@ -123,6 +131,14 @@
                                         <select v-model="selected_komplekt_type" @change="selectKomplektType()" class="form-select">
                                             <option v-for="type in selected_type.komplekt" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
                                         </select>
+                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
+                                            <input v-model="bold" @change="changeBold()" class="form-check-input" type="checkbox" value="1" id="boldSwitch">
+                                            <label class="form-check-label" for="boldSwitch">жирный шрифт</label>
+                                        </div>
+                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
+                                            <input v-model="noholes" @change="changeNoholes()" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
+                                            <label class="form-check-label" for="holesSwitch">без отверстий</label>
+                                        </div>
                                     </template>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -307,6 +323,9 @@
                 number: '',
                 number_region: '',
 
+                bold: false,
+                noholes: false,
+
                 price: '',
                 price_total: '',
 
@@ -352,7 +371,7 @@
         methods: {
             selectTransport() {
                 axios
-                .get(`/api/${this.$parent.current_city_id}/transport/${this.selected_transport.id}/types`)
+                .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
                 .then(response => (
                     this.types = response.data,
                     this.selected_type = this.types[0],
@@ -377,20 +396,39 @@
                 } else {
                     this.selected_komplekt_type = ''
                     this.price = this.selected_type.cities[0].pivot.price
+                    this.priceCalculate()
                 }
             },
             selectKomplektType() {
                 this.priceCalculate()
             },
+            changeBold() {
+                this.priceCalculate()
+            },
+            changeNoholes() {
+                this.priceCalculate()
+            },
             priceCalculate() {
                 if(this.add_komplekt == true) {
                     if(this.selected_type.id === this.selected_komplekt_type.id) {
-                        this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price)
+                        if(this.bold == true || this.noholes == true) {
+                            this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price)
+                        } else {
+                            this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price)
+                        }
                     } else {
-                        this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price)
+                        if(this.bold == true || this.noholes == true) {
+                            this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price)
+                        } else {
+                            this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price)
+                        }
                     }
                 } else {
-                    this.price = parseInt(this.selected_type.cities[0].pivot.price)
+                    if(this.bold == true || this.noholes == true) {
+                        this.price = parseInt(this.selected_type.cities[0].pivot.max_price)
+                    } else {
+                        this.price = parseInt(this.selected_type.cities[0].pivot.price)
+                    }
                 }
             },
             saveOrderItem() {
@@ -407,7 +445,10 @@
                     axios
                     .post(`/api/order-item`, {
                             transport: this.selected_transport.id,
+                            type: this.selected_type.name,
                             number: this.number + this.number_region,
+                            bold: this.bold,
+                            noholes: this.noholes,
                             price: this.price,
                         })
                     .then(response => (
@@ -453,8 +494,11 @@
                     ) {
                         axios
                         .post(`/api/order`, {
+                                client_type: this.client_type,
                                 tel: this.tel,
                                 email: this.email,
+                                name: this.name,
+                                passport: this.passport,
                                 price: parseInt(this.price_total),
                                 orderItems: this.order_list.map( (item) => item.uid )
                             })
@@ -600,7 +644,7 @@
         },
         mounted() {
             this.$watch(
-            "$parent.current_city_id",
+            "$parent.current_city.id",
             (new_value, old_value) => {
                 this.selected_transport = ''
                 this.selected_type = ''

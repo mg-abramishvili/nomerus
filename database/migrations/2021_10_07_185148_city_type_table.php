@@ -14,6 +14,7 @@ class CityTypeTable extends Migration
             $table->integer('type_id');
             $table->decimal('price');
             $table->decimal('min_price');
+            $table->decimal('max_price');
         });
     }
 
