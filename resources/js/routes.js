@@ -18,6 +18,9 @@ import AdminGalleryCreate from './components/admin/gallery/GalleryCreate.vue';
 import AdminAddresses from './components/admin/addresses/AddressesAll.vue';
 import AdminAddressCreate from './components/admin/addresses/AddressCreate.vue';
 
+import AdminTypes from './components/admin/types/TypesAll.vue';
+import AdminTypeEdit from './components/admin/types/TypeEdit.vue';
+
 export const routes = [
     {
         path: '/',
@@ -78,5 +81,15 @@ export const routes = [
         path: '/admin/addresses/create',
         name: 'AdminAddressCreate',
         component: AdminAddressCreate
+    },
+    {
+        path: '/admin/types/:city',
+        name: 'AdminTypes',
+        component: AdminTypes
+    },
+    {
+        path: '/admin/types/:type_id/:city_id/edit',
+        name: 'AdminTypeEdit',
+        component: AdminTypeEdit
     },
 ];

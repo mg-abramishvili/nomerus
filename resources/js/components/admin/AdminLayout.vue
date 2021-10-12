@@ -16,16 +16,19 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
+                                <router-link :to="{name: 'AdminTypes', params: {city: 'ufa'}}" class="nav-link">Цены</router-link>
+                            </li>
+                            <li class="nav-item">
                                 <router-link :to="{name: 'AdminOrders'}" class="nav-link">Заказы</router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{name: 'AdminGallery'}" class="nav-link">Фотогалерея</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{name: 'AdminCertificates'}" class="nav-link">Сертификаты</router-link>
+                                <router-link :to="{name: 'AdminAddresses'}" class="nav-link">Адреса</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{name: 'AdminAddresses'}" class="nav-link">Адреса</router-link>
+                                <router-link :to="{name: 'AdminCertificates'}" class="nav-link">Сертификаты</router-link>
                             </li>
                         </ul>
 

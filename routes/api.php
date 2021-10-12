@@ -36,6 +36,10 @@ Route::get('admin/cities','App\Http\Controllers\Admin\CityController@index');
 Route::get('admin/addresses','App\Http\Controllers\Admin\AddressController@index');
 Route::post('admin/addresses','App\Http\Controllers\Admin\AddressController@store');
 
+Route::get('admin/types/{city}','App\Http\Controllers\Admin\TypeController@index');
+Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item');
+Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
