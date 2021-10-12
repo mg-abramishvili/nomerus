@@ -21,9 +21,13 @@ class CityController extends Controller
     public function city_detect(Request $request)
     {
         //return session('city');
-
-        $city = City::find(session('city'));
-
-        return $city;
+        if(session('city')) {
+            $city = City::find(session('city'));
+            return $city;
+        } else {
+            $city = City::find(1);
+            return $city;
+        }
+        
     }
 }
