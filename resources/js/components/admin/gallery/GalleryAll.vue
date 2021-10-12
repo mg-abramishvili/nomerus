@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="w-100">
         <table class="table">
             <thead>
                 <tr>
@@ -29,6 +29,7 @@
             }
         },
         created() {
+            this.$parent.subheader = 'Фотогалерея'
             axios
             .get('/api/admin/gallery')
             .then(response => (

@@ -74,7 +74,7 @@ export default {
         }
     },
     created() {
-
+        this.$parent.subheader = 'Новый сертификат'
     },
     methods: {
         saveCert() {
@@ -83,7 +83,7 @@ export default {
                 axios
                 .post(`/api/admin/certificates`, { name: this.name, image: this.cert_image })
                 .then(response => (
-                    this.$router.push({name: 'Certificates'})
+                    this.$router.push({name: 'AdminCertificates'})
                 ))
                 .catch((error) => {
                     if(error.response) {

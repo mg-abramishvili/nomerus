@@ -5,7 +5,7 @@
                 <tr>
                     <th>Файл</th>
                     <th>Название</th>
-                    <th class="text-end"><router-link :to="{name: 'CertificateCreate'}" class="btn btn-sm btn-primary">Добавить</router-link></th>
+                    <th class="text-end"><router-link :to="{name: 'AdminCertificateCreate'}" class="btn btn-sm btn-primary">Добавить</router-link></th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +33,7 @@
             }
         },
         created() {
+            this.$parent.subheader = 'Сертификаты'
             axios
             .get('/api/admin/certificates')
             .then(response => (

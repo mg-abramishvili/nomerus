@@ -2142,11 +2142,178 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      subheader: 'панель управления'
+    };
   },
   created: function created() {},
+  methods: {},
+  components: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      name: '',
+      tel: '',
+      city: '',
+      coordinates: '',
+      cities: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$parent.subheader = 'Новый адрес';
+    axios.get('/api/admin/cities').then(function (response) {
+      return _this.cities = response.data;
+    });
+  },
+  methods: {
+    saveAddress: function saveAddress() {
+      var _this2 = this;
+
+      if (this.name && this.city && this.coordinates) {
+        axios.post("/api/admin/addresses", {
+          name: this.name,
+          tel: this.tel,
+          city: this.city,
+          coordinates: this.coordinates
+        }).then(function (response) {
+          return _this2.$router.push({
+            name: 'AdminAddresses'
+          });
+        })["catch"](function (error) {
+          if (error.response) {
+            for (var key in error.response.data.errors) {
+              console.log(key);
+            }
+          }
+        });
+      } else {
+        alert('Заполните поля');
+      }
+    }
+  },
+  components: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      addresses: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$parent.subheader = 'Адреса';
+    axios.get('/api/admin/addresses').then(function (response) {
+      return _this.addresses = response.data;
+    });
+  },
   methods: {},
   components: {}
 });
@@ -2242,7 +2409,9 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
       }
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.$parent.subheader = 'Новый сертификат';
+  },
   methods: {
     saveCert: function saveCert() {
       var _this = this;
@@ -2255,7 +2424,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
           image: this.cert_image
         }).then(function (response) {
           return _this.$router.push({
-            name: 'Certificates'
+            name: 'AdminCertificates'
           });
         })["catch"](function (error) {
           if (error.response) {
@@ -2323,6 +2492,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    this.$parent.subheader = 'Сертификаты';
     axios.get('/api/admin/certificates').then(function (response) {
       return _this.certificates = response.data;
     });
@@ -2376,6 +2546,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    this.$parent.subheader = 'Фотогалерея';
     axios.get('/api/admin/gallery').then(function (response) {
       return _this.gallery = response.data;
     });
@@ -2474,7 +2645,9 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
       }
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.$parent.subheader = 'Новое фото в галерею';
+  },
   methods: {
     saveGal: function saveGal() {
       var _this = this;
@@ -2563,6 +2736,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    this.$parent.subheader = 'Заказы';
     axios.get('/api/admin/orders').then(function (response) {
       return _this.orders = response.data;
     });
@@ -2803,6 +2977,90 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/addresses/Addresses.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/addresses/Addresses.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_yandex_maps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-yandex-maps */ "./node_modules/vue-yandex-maps/dist/vue-yandex-maps.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      addresses: [],
+      city_coords: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/api/addresses').then(function (response) {
+      _this.addresses = response.data;
+
+      _this.cityChange();
+    });
+  },
+  methods: {
+    cityChange: function cityChange() {
+      if (this.$parent.current_city_namecode === 'ufa') {
+        this.city_coords = [54.730299568811866, 56.03773349999993];
+      }
+
+      if (this.$parent.current_city_namecode === 'ekb') {
+        this.city_coords = [56.844860263326964, 60.604154855468686];
+      }
+    },
+    onClick: function onClick(e) {
+      this.coords = e.get('coords');
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.$watch("$parent.current_city_id", function (new_value, old_value) {
+      _this2.cityChange();
+    });
+  },
+  components: {
+    yandexMap: vue_yandex_maps__WEBPACK_IMPORTED_MODULE_0__.yandexMap,
+    ymapMarker: vue_yandex_maps__WEBPACK_IMPORTED_MODULE_0__.ymapMarker
+  }
 });
 
 /***/ }),
@@ -3938,11 +4196,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_front_gallery_Gallery_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/front/gallery/Gallery.vue */ "./resources/js/components/front/gallery/Gallery.vue");
 /* harmony import */ var _components_front_order_OrderCreate_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/front/order/OrderCreate.vue */ "./resources/js/components/front/order/OrderCreate.vue");
 /* harmony import */ var _components_front_order_OrderComplete_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/front/order/OrderComplete.vue */ "./resources/js/components/front/order/OrderComplete.vue");
-/* harmony import */ var _components_admin_orders_OrdersAll_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/admin/orders/OrdersAll.vue */ "./resources/js/components/admin/orders/OrdersAll.vue");
-/* harmony import */ var _components_admin_certificates_CertificatesAll_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/admin/certificates/CertificatesAll.vue */ "./resources/js/components/admin/certificates/CertificatesAll.vue");
-/* harmony import */ var _components_admin_certificates_CertificateCreate_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/admin/certificates/CertificateCreate.vue */ "./resources/js/components/admin/certificates/CertificateCreate.vue");
-/* harmony import */ var _components_admin_gallery_GalleryAll_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/admin/gallery/GalleryAll.vue */ "./resources/js/components/admin/gallery/GalleryAll.vue");
-/* harmony import */ var _components_admin_gallery_GalleryCreate_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/admin/gallery/GalleryCreate.vue */ "./resources/js/components/admin/gallery/GalleryCreate.vue");
+/* harmony import */ var _components_front_addresses_Addresses_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/front/addresses/Addresses.vue */ "./resources/js/components/front/addresses/Addresses.vue");
+/* harmony import */ var _components_admin_orders_OrdersAll_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/admin/orders/OrdersAll.vue */ "./resources/js/components/admin/orders/OrdersAll.vue");
+/* harmony import */ var _components_admin_certificates_CertificatesAll_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/admin/certificates/CertificatesAll.vue */ "./resources/js/components/admin/certificates/CertificatesAll.vue");
+/* harmony import */ var _components_admin_certificates_CertificateCreate_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/admin/certificates/CertificateCreate.vue */ "./resources/js/components/admin/certificates/CertificateCreate.vue");
+/* harmony import */ var _components_admin_gallery_GalleryAll_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/admin/gallery/GalleryAll.vue */ "./resources/js/components/admin/gallery/GalleryAll.vue");
+/* harmony import */ var _components_admin_gallery_GalleryCreate_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/admin/gallery/GalleryCreate.vue */ "./resources/js/components/admin/gallery/GalleryCreate.vue");
+/* harmony import */ var _components_admin_addresses_AddressesAll_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/admin/addresses/AddressesAll.vue */ "./resources/js/components/admin/addresses/AddressesAll.vue");
+/* harmony import */ var _components_admin_addresses_AddressCreate_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/admin/addresses/AddressCreate.vue */ "./resources/js/components/admin/addresses/AddressCreate.vue");
+
+
+
 
 
 
@@ -3961,6 +4225,10 @@ var routes = [{
   name: 'Gallery',
   component: _components_front_gallery_Gallery_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
+  path: '/addresses',
+  name: 'Addresses',
+  component: _components_front_addresses_Addresses_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
   path: '/order/:kto/:transport',
   name: 'OrderCreate',
   component: _components_front_order_OrderCreate_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -3971,23 +4239,31 @@ var routes = [{
 }, {
   path: '/admin/orders',
   name: 'AdminOrders',
-  component: _components_admin_orders_OrdersAll_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _components_admin_orders_OrdersAll_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/admin/certificates',
   name: 'AdminCertificates',
-  component: _components_admin_certificates_CertificatesAll_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _components_admin_certificates_CertificatesAll_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   path: '/admin/certificates/create',
   name: 'AdminCertificateCreate',
-  component: _components_admin_certificates_CertificateCreate_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: _components_admin_certificates_CertificateCreate_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
   path: '/admin/gallery',
   name: 'AdminGallery',
-  component: _components_admin_gallery_GalleryAll_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_admin_gallery_GalleryAll_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
   path: '/admin/gallery/create',
   name: 'AdminGalleryCreate',
-  component: _components_admin_gallery_GalleryCreate_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  component: _components_admin_gallery_GalleryCreate_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+}, {
+  path: '/admin/addresses',
+  name: 'AdminAddresses',
+  component: _components_admin_addresses_AddressesAll_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+}, {
+  path: '/admin/addresses/create',
+  name: 'AdminAddressCreate',
+  component: _components_admin_addresses_AddressCreate_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }];
 
 /***/ }),
@@ -44413,6 +44689,84 @@ component.options.__file = "resources/js/components/admin/AdminLayout.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/addresses/AddressCreate.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/admin/addresses/AddressCreate.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AddressCreate_vue_vue_type_template_id_b3071070___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressCreate.vue?vue&type=template&id=b3071070& */ "./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=template&id=b3071070&");
+/* harmony import */ var _AddressCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddressCreate.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddressCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddressCreate_vue_vue_type_template_id_b3071070___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AddressCreate_vue_vue_type_template_id_b3071070___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/addresses/AddressCreate.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/addresses/AddressesAll.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/admin/addresses/AddressesAll.vue ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AddressesAll_vue_vue_type_template_id_1b09c697___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressesAll.vue?vue&type=template&id=1b09c697& */ "./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=template&id=1b09c697&");
+/* harmony import */ var _AddressesAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddressesAll.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddressesAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddressesAll_vue_vue_type_template_id_1b09c697___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AddressesAll_vue_vue_type_template_id_1b09c697___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/addresses/AddressesAll.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/certificates/CertificateCreate.vue":
 /*!**************************************************************************!*\
   !*** ./resources/js/components/admin/certificates/CertificateCreate.vue ***!
@@ -44647,6 +45001,45 @@ component.options.__file = "resources/js/components/front/FrontLayout.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/front/addresses/Addresses.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/front/addresses/Addresses.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Addresses_vue_vue_type_template_id_d41b1598___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Addresses.vue?vue&type=template&id=d41b1598& */ "./resources/js/components/front/addresses/Addresses.vue?vue&type=template&id=d41b1598&");
+/* harmony import */ var _Addresses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Addresses.vue?vue&type=script&lang=js& */ "./resources/js/components/front/addresses/Addresses.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Addresses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Addresses_vue_vue_type_template_id_d41b1598___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Addresses_vue_vue_type_template_id_d41b1598___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/front/addresses/Addresses.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/front/gallery/Gallery.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/front/gallery/Gallery.vue ***!
@@ -44835,6 +45228,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddressCreate.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressCreate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressesAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddressesAll.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressesAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/certificates/CertificateCreate.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************!*\
   !*** ./resources/js/components/admin/certificates/CertificateCreate.vue?vue&type=script&lang=js& ***!
@@ -44928,6 +45353,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FrontLayout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FrontLayout.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/FrontLayout.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FrontLayout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/front/addresses/Addresses.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/front/addresses/Addresses.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Addresses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Addresses.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/addresses/Addresses.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Addresses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -45025,6 +45466,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminLayout_vue_vue_type_template_id_426a153e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminLayout_vue_vue_type_template_id_426a153e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminLayout.vue?vue&type=template&id=426a153e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/AdminLayout.vue?vue&type=template&id=426a153e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=template&id=b3071070&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=template&id=b3071070& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressCreate_vue_vue_type_template_id_b3071070___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressCreate_vue_vue_type_template_id_b3071070___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressCreate_vue_vue_type_template_id_b3071070___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddressCreate.vue?vue&type=template&id=b3071070& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=template&id=b3071070&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=template&id=1b09c697&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=template&id=1b09c697& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressesAll_vue_vue_type_template_id_1b09c697___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressesAll_vue_vue_type_template_id_1b09c697___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressesAll_vue_vue_type_template_id_1b09c697___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AddressesAll.vue?vue&type=template&id=1b09c697& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=template&id=1b09c697&");
 
 
 /***/ }),
@@ -45131,6 +45606,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/front/addresses/Addresses.vue?vue&type=template&id=d41b1598&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/front/addresses/Addresses.vue?vue&type=template&id=d41b1598& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Addresses_vue_vue_type_template_id_d41b1598___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Addresses_vue_vue_type_template_id_d41b1598___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Addresses_vue_vue_type_template_id_d41b1598___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Addresses.vue?vue&type=template&id=d41b1598& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/addresses/Addresses.vue?vue&type=template&id=d41b1598&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/front/gallery/Gallery.vue?vue&type=template&id=8a510e58&":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/front/gallery/Gallery.vue?vue&type=template&id=8a510e58& ***!
@@ -45223,7 +45715,8 @@ var render = function() {
       _vm.$route.name === "Home" ||
       _vm.$route.name === "Gallery" ||
       _vm.$route.name === "OrderCreate" ||
-      _vm.$route.name === "OrderComplete"
+      _vm.$route.name === "OrderComplete" ||
+      _vm.$route.name === "Addresses"
         ? [_c("FrontLayout")]
         : _vm._e(),
       _vm._v(" "),
@@ -45231,7 +45724,9 @@ var render = function() {
       _vm.$route.name === "AdminCertificates" ||
       _vm.$route.name === "AdminCertificateCreate" ||
       _vm.$route.name === "AdminGallery" ||
-      _vm.$route.name === "AdminGalleryCreate"
+      _vm.$route.name === "AdminGalleryCreate" ||
+      _vm.$route.name === "AdminAddresses" ||
+      _vm.$route.name === "AdminAddressCreate"
         ? [_c("AdminLayout")]
         : _vm._e()
     ],
@@ -45268,117 +45763,136 @@ var render = function() {
       staticStyle: { "min-height": "100vh" }
     },
     [
-      _c("header", [
-        _c(
-          "nav",
-          { staticClass: "navbar navbar-expand-md navbar-dark bg-dark mb-4" },
-          [
+      _c(
+        "header",
+        {
+          staticClass:
+            "navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+        },
+        [
+          _c("a", { staticClass: "navbar-brand col-md-3 col-lg-2 me-0 px-3" }, [
+            _vm._v("Номерус")
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "subheader w-100" }, [
+            _vm._v("\n            " + _vm._s(_vm.subheader) + "\n        ")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "nav",
+            {
+              staticClass:
+                "col-md-3 col-lg-2 d-md-block bg-light sidebar collapse",
+              attrs: { id: "sidebarMenu" }
+            },
+            [
+              _c("div", { staticClass: "position-sticky pt-3" }, [
+                _c("ul", { staticClass: "nav flex-column" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "AdminOrders" } }
+                        },
+                        [_vm._v("Заказы")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "AdminGallery" } }
+                        },
+                        [_vm._v("Фотогалерея")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "AdminCertificates" } }
+                        },
+                        [_vm._v("Сертификаты")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "AdminAddresses" } }
+                        },
+                        [_vm._v("Адреса")]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "nav flex-column mb-2" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "Home" } }
+                        },
+                        [_vm._v("Выйти")]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("main", { staticClass: "col-md-9 ms-sm-auto col-lg-10 px-md-4" }, [
             _c(
               "div",
-              { staticClass: "container" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "navbar-brand",
-                    attrs: { to: { name: "Products" } }
-                  },
-                  [_vm._v("Номерус :: панель управления")]
-                ),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse navbar-collapse",
-                    attrs: { id: "navbarCollapse" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "d-flex" },
-                      [
-                        _c(
-                          "ul",
-                          { staticClass: "navbar-nav mb-2 me-2 mb-md-0" },
-                          [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "AdminOrders" } }
-                                  },
-                                  [_vm._v("Заказы")]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "AdminGallery" } }
-                                  },
-                                  [_vm._v("Фотогалерея")]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    attrs: { to: { name: "AdminCertificates" } }
-                                  },
-                                  [_vm._v("Сертификаты")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "btn btn-secondary",
-                            attrs: { to: { name: "Home" } }
-                          },
-                          [_vm._v("Выйти")]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              ],
+              {
+                staticClass:
+                  "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3"
+              },
+              [_c("router-view", { key: _vm.$route.path })],
               1
             )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container" },
-        [_c("router-view", { key: _vm.$route.path })],
-        1
-      )
+          ])
+        ])
+      ])
     ]
   )
 }
@@ -45390,12 +45904,12 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "navbar-toggler",
+        staticClass: "navbar-toggler position-absolute d-md-none collapsed",
         attrs: {
           type: "button",
           "data-bs-toggle": "collapse",
-          "data-bs-target": "#navbarCollapse",
-          "aria-controls": "navbarCollapse",
+          "data-bs-target": "#sidebarMenu",
+          "aria-controls": "sidebarMenu",
           "aria-expanded": "false",
           "aria-label": "Toggle navigation"
         }
@@ -45404,6 +45918,259 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=template&id=b3071070&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressCreate.vue?vue&type=template&id=b3071070& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-100" }, [
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.city,
+            expression: "city"
+          }
+        ],
+        staticClass: "form-select mb-3",
+        on: {
+          change: function($event) {
+            var $$selectedVal = Array.prototype.filter
+              .call($event.target.options, function(o) {
+                return o.selected
+              })
+              .map(function(o) {
+                var val = "_value" in o ? o._value : o.value
+                return val
+              })
+            _vm.city = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+          }
+        }
+      },
+      _vm._l(_vm.cities, function(city) {
+        return _c(
+          "option",
+          { key: "city_" + city.id, domProps: { value: city.id } },
+          [_vm._v(_vm._s(city.name))]
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.name,
+          expression: "name"
+        }
+      ],
+      staticClass: "form-control mb-3",
+      attrs: { type: "text", placeholder: "Название" },
+      domProps: { value: _vm.name },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.name = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        { name: "model", rawName: "v-model", value: _vm.tel, expression: "tel" }
+      ],
+      staticClass: "form-control mb-3",
+      attrs: { type: "text", placeholder: "Телефон" },
+      domProps: { value: _vm.tel },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.tel = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.coordinates,
+          expression: "coordinates"
+        }
+      ],
+      staticClass: "form-control mb-3",
+      attrs: { type: "text", placeholder: "Координаты" },
+      domProps: { value: _vm.coordinates },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.coordinates = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        on: {
+          click: function($event) {
+            return _vm.saveAddress()
+          }
+        }
+      },
+      [_vm._v("Сохранить")]
+    ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        attrs: {
+          href: "https://yandex.ru/map-constructor/location-tool/",
+          target: "_blank"
+        }
+      },
+      [_vm._v("Сервис определения координат Яндекс")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=template&id=1b09c697&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/addresses/AddressesAll.vue?vue&type=template&id=1b09c697& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "w-100" }, [
+    _c("table", { staticClass: "table" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("Город")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Адрес")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Телефон")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Координаты")]),
+          _vm._v(" "),
+          _c(
+            "th",
+            { staticClass: "text-end" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-sm btn-primary",
+                  attrs: { to: { name: "AdminAddressCreate" } }
+                },
+                [_vm._v("Добавить")]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.addresses, function(address) {
+          return _c("tr", { key: "address_" + address.id }, [
+            _c(
+              "td",
+              [
+                _vm._l(address.cities, function(city) {
+                  return [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(city.name) +
+                        "\n                    "
+                    )
+                  ]
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(address.name) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(address.tel) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(address.coordinates) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("td")
+          ])
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45519,7 +46286,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-sm btn-primary",
-                  attrs: { to: { name: "CertificateCreate" } }
+                  attrs: { to: { name: "AdminCertificateCreate" } }
                 },
                 [_vm._v("Добавить")]
               )
@@ -45584,7 +46351,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "w-100" }, [
     _c("table", { staticClass: "table" }, [
       _c("thead", [
         _c("tr", [
@@ -45710,7 +46477,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "w-100" }, [
     _c("table", { staticClass: "table" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -45826,21 +46593,28 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "header-location" }, [
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.openCityModal()
+            _c(
+              "div",
+              { staticClass: "header-location" },
+              [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.openCityModal()
+                      }
                     }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.current_city_name))]
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("ул. Лесотехникума, 15")])
-            ]),
+                  },
+                  [_vm._v(_vm._s(_vm.current_city_name))]
+                ),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: { name: "Addresses" } } }, [
+                  _vm._v("Адреса")
+                ])
+              ],
+              1
+            ),
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
@@ -46232,6 +47006,66 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/addresses/Addresses.vue?vue&type=template&id=d41b1598&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/front/addresses/Addresses.vue?vue&type=template&id=d41b1598& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "addresses-page" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Наши адреса")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-wrapper" },
+          [
+            _c(
+              "yandex-map",
+              {
+                attrs: { coords: _vm.city_coords, zoom: 10 },
+                on: { click: _vm.onClick }
+              },
+              [
+                _vm._l(_vm.addresses, function(address) {
+                  return [
+                    _c("ymap-marker", {
+                      attrs: {
+                        coords: address.coordinates.split(","),
+                        "marker-id": address.id,
+                        "hint-content": address.name
+                      }
+                    })
+                  ]
+                })
+              ],
+              2
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -51947,6 +52781,25 @@ if (inBrowser && window.Vue) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VueRouter);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-yandex-maps/dist/vue-yandex-maps.esm.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/vue-yandex-maps/dist/vue-yandex-maps.esm.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "loadYmap": () => (/* binding */ k),
+/* harmony export */   "yandexMap": () => (/* binding */ v),
+/* harmony export */   "ymapMarker": () => (/* binding */ O)
+/* harmony export */ });
+function e(t){return(e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(t)}function t(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function o(e,t,o){return t in e?Object.defineProperty(e,t,{value:o,enumerable:!0,configurable:!0,writable:!0}):e[t]=o,e}function n(e){return function(e){if(Array.isArray(e)){for(var t=0,o=new Array(e.length);t<e.length;t++)o[t]=e[t];return o}}(e)||function(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function r(e,t){var o=t.options,r=t.callbacks,a=t.map,i=t.useObjectManager,s=t.objectManagerClusterize,c={},l=[];if(e.forEach(function(e){e.clusterName?c[e.clusterName]=c[e.clusterName]?[].concat(n(c[e.clusterName]),[e]):[e]:l.push(e)}),Object.keys(c).forEach(function(e){var t=o[e]||{},n=r[e]||{},l=t.layout||"\n      <div>{{ properties.balloonContentHeader }}</div>\n      <div>{{ properties.balloonContentBody }}</div>\n      <div>{{ properties.balloonContentFooter }}</div>\n    ";t.clusterBalloonItemContentLayout=ymaps.templateLayoutFactory.createClass(l);var u=t.clusterBalloonLayout||t.clusterLayout;delete t.clusterBalloonLayout;var p=u?ymaps.templateLayoutFactory.createClass(u):t.clusterBalloonContentLayout||"cluster#balloonTwoColumns";t.clusterBalloonContentLayout=p;var d=t.clusterIconContentLayout;if(t.clusterIconContentLayout=d&&ymaps.templateLayoutFactory.createClass(d),i){var m=new ymaps.ObjectManager(Object.assign({clusterize:s},t));Object.keys(n).forEach(function(e){m.clusters.events.add(e,n[e])}),m.add(c[e]),a.geoObjects.add(m)}else{var f=new ymaps.Clusterer(t);Object.keys(n).forEach(function(e){f.events.add(e,n[e])}),t.createCluster&&(f.createCluster=t.createCluster),f.add(c[e]),a.geoObjects.add(f)}}),l.length){var u=i?new ymaps.ObjectManager({clusterize:!1}):new ymaps.GeoObjectCollection;l.forEach(function(e){return u.add(e)}),a.geoObjects.add(u)}}function a(e){return e.charAt(0).toUpperCase()+e.slice(1)}function i(e){return(e.icon.color||"blue")+(e.icon.glyph?a(e.icon.glyph):e.icon.content?"Stretchy":"")}function s(e){return e.map(function(e){return Array.isArray(e)?s(e):+e})}function c(t,o){var n=[];return function t(o,r){if(o===r)return!0;if(o instanceof Date&&r instanceof Date)return+o==+r;if("object"!==e(o)||"object"!==e(r))return!1;if(function(e,t){for(var o=n.length;o--;)if(!(n[o][0]!==e&&n[o][0]!==t||n[o][1]!==t&&n[o][1]!==e))return!0;return!1}(o,r))return!0;n.push([o,r]);var a=Object.keys(o),i=a.length;if(Object.keys(r).length!==i)return!1;for(;i--;)if(!t(o[a[i]],r[a[i]]))return!1;return!0}(t,o)}var l=new(function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.events={},this.ymapReady=!1,this.scriptIsNotAttached=!0}var o,n,r;return o=e,(n=[{key:"$on",value:function(e,t){var o=this;return this.events[e]||(this.events[e]=[]),this.events[e].push(t),function(){o.events[e]=o.events[e].filter(function(e){return t!==e})}}},{key:"$emit",value:function(e,t){var o=this.events[e];o&&o.forEach(function(e){return e(t)})}}])&&t(o.prototype,n),r&&t(o,r),e}()),u=["fullscreenControl","geolocationControl","routeEditor","rulerControl","searchControl","trafficControl","typeSelector","zoomControl","routeButtonControl","routePanelControl"];function p(e){return 0===e.filter(function(e){return![].concat(u,["default"]).includes(e)}).length}function d(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};return new Promise(function(t,o){if(window.ymaps)return t();if(document.getElementById("vue-yandex-maps"))l.$on("scriptIsLoaded",t);else{var n=document.createElement("SCRIPT"),r=e.apiKey,a=void 0===r?"":r,i=e.lang,s=void 0===i?"ru_RU":i,c=e.version,u=void 0===c?"2.1":c,p=e.coordorder,d=void 0===p?"latlong":p,m=e.debug,f=void 0!==m&&m,h=e.enterprise,y=void 0!==h&&h,b=f?"debug":"release",g="lang=".concat(s).concat(a&&"&apikey=".concat(a),"&mode=").concat(b,"&coordorder=").concat(d),k="https://".concat(y?"enterprise.":"","api-maps.yandex.ru/").concat(u,"/?").concat(g);n.setAttribute("src",k),n.setAttribute("async",""),n.setAttribute("defer",""),n.setAttribute("id","vue-yandex-maps"),document.head.appendChild(n),l.scriptIsNotAttached=!1,n.onload=function(){ymaps.ready(function(){l.ymapReady=!0,l.$emit("scriptIsLoaded"),t()})},n.onerror=o}})}var m=l,f=["actionend","balloonclose","balloonopen","click","contextmenu","dblclick","destroy","hintclose","hintopen","optionschange","sizechange","typechange"],h={pluginOptions:{},provide:function(){var e,t,o=this,n=[],r=[];return{useObjectManager:this.useObjectManager,addMarker:this.addMarker,deleteMarker:function(t){o.myMap.geoObjects&&(n.push(t),e&&clearTimeout(e),e=setTimeout(function(){o.deleteMarkers(n),n=[]},0))},compareValues:function(e){var n=e.newVal,a=e.oldVal,i=e.marker;c(n,a)||(r.push(i),t&&clearTimeout(t),t=setTimeout(function(){o.setMarkers(r),r=[]},0))}}},data:function(){return{ymapId:"yandexMap".concat(Math.round(1e5*Math.random())),myMap:{},style:this.ymapClass?"":"width: 100%; height: 100%;",isReady:!1,debounce:null,markers:[]}},props:{coords:{type:Array,required:!0},zoom:{validator:function(e){return!Number.isNaN(e)},default:18},bounds:Array,clusterOptions:{type:Object,default:function(){return{}}},clusterCallbacks:{type:Object,default:function(){return{}}},behaviors:{type:Array,default:function(){return["default"]}},controls:{type:Array,default:function(){return["default"]},validator:function(e){return p(e)}},detailedControls:{type:Object,validator:function(e){return p(Object.keys(e))}},scrollZoom:{type:Boolean,default:!0},mapType:{type:String,default:"map",validator:function(e){return["map","satellite","hybrid"].includes(e)}},placemarks:{type:Array,default:function(){return[]}},useObjectManager:{type:Boolean,default:!1},objectManagerClusterize:{type:Boolean,default:!0},ymapClass:String,initWithoutMarkers:{type:Boolean,default:!0},debug:{type:Boolean,default:!1},settings:{type:Object,default:function(){return{}}},options:{type:Object,default:function(){return{}}},showAllMarkers:Boolean,disablePan:Boolean},computed:{coordinates:function(){return this.coords.map(function(e){return+e})}},methods:{init:function(){var e=this;if(window.ymaps&&ymaps.GeoObjectCollection&&(this.initWithoutMarkers||this.$slots.default||this.placemarks.length)){if(this.$emit("map-initialization-started"),this.myMap=new ymaps.Map(this.ymapId,{center:this.coordinates,zoom:+this.zoom,bounds:this.bounds,behaviors:this.behaviors,controls:this.controls,type:"yandex#".concat(this.mapType)},this.options),f.forEach(function(t){return e.myMap.events.add(t,function(o){return e.$emit(t,o)})}),this.myMap.events.add("boundschange",function(t){var o=t.originalEvent,n=o.newZoom,r=o.newCenter,a=o.newBounds;e.$emit("boundschange",t),e.$emit("update:zoom",n),e.$emit("update:coords",r),e.$emit("update:bounds",a)}),this.detailedControls)Object.keys(this.detailedControls).forEach(function(t){e.myMap.controls.remove(t),e.myMap.controls.add(t,e.detailedControls[t])});!1===this.scrollZoom&&this.myMap.behaviors.disable("scrollZoom"),this.isReady=!0,this.$emit("map-was-initialized",this.myMap)}},addMarker:function(e){var t=this;this.markers.push(e),this.debounce&&clearTimeout(this.debounce),this.debounce=setTimeout(function(){t.setMarkers(t.markers)},0)},setMarkers:function(e){var t=this,o={options:this.clusterOptions,callbacks:this.clusterCallbacks,map:this.myMap,useObjectManager:this.useObjectManager,objectManagerClusterize:this.objectManagerClusterize};if(this.markers!==e){var n=e.map(function(e){return t.useObjectManager?e.id:e.properties.get("markerId")});this.deleteMarkers(n),r(e,o),this.$emit("markers-was-change",n)}else r(e,o);this.markers=[],this.showAllMarkers&&this.myMap.setBounds(this.myMap.geoObjects.getBounds())},deleteMarkers:function(e){var t=this;this.myMap.geoObjects.each(function(o){var n=[];if(t.useObjectManager)o.remove(e);else{var r,a=function(t){var o=t.properties.get("markerId");e.includes(o)&&n.push(t)};if(o.each)o.each(a),r=o.getLength();else if(o.getGeoObjects){var i=o.getGeoObjects();i.forEach(a),r=i.length}0===r||r===n.length?t.myMap.geoObjects.remove(o):n.length&&n.forEach(function(e){return o.remove(e)})}}),this.$emit("markers-was-delete",e)}},watch:{coordinates:function(e){this.disablePan?this.myMap.setCenter&&this.myMap.setCenter(e):this.myMap.panTo&&this.myMap.getZoom()&&this.myMap.panTo(e,{checkZoomRange:!0})},zoom:function(){this.myMap.setZoom(this.zoom)},bounds:function(e){this.myMap.setBounds&&this.myMap.setBounds(e)}},render:function(e){return e("section",{class:"ymap-container",ref:"mapContainer"},[e("div",{attrs:{id:this.ymapId,class:this.ymapClass,style:this.style}}),this.isReady&&e("div",{ref:"markersContainer",attrs:{class:"ymap-markers"}},[this.$slots.default])])},mounted:function(){var e=this;if(this.$attrs["map-link"]||this.$attrs.mapLink)throw new Error("Vue-yandex-maps: Attribute mapLink is not supported. Use settings.");if(this.placemarks&&this.placemarks.length)throw new Error("Vue-yandex-maps: Attribute placemarks is not supported. Use marker component.");this.mapObserver=new MutationObserver(function(){e.myMap.container&&e.myMap.container.fitToViewport()});var t=this.$refs.mapContainer;if(this.mapObserver.observe(t,{attributes:!0,childList:!0,characterData:!0,subtree:!1}),m.scriptIsNotAttached){var n=this.debug;d(function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},r=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(r=r.concat(Object.getOwnPropertySymbols(n).filter(function(e){return Object.getOwnPropertyDescriptor(n,e).enumerable}))),r.forEach(function(t){o(e,t,n[t])})}return e}({},this.$options.pluginOptions,this.settings,{debug:n}))}m.ymapReady?ymaps.ready(this.init):m.$on("scriptIsLoaded",function(){ymaps.ready(e.init)})},beforeDestroy:function(){this.myMap.geoObjects&&this.myMap.geoObjects.removeAll()}},y=["placemark","polyline","rectangle","polygon","circle"],b=["balloonclose","balloonopen","click","contextmenu","dblclick","drag","dragend","dragstart","hintclose","hintopen","mouseenter","mouseleave"],g={inject:["useObjectManager","addMarker","deleteMarker","compareValues"],props:{coords:Array,hintContent:String,icon:Object,balloon:Object,markerType:{type:String,validator:function(e){return y.includes(e.toLowerCase())},default:"placemark"},markerFill:Object,markerStroke:Object,clusterName:[String,Number],circleRadius:{validator:function(e){return!Number.isNaN(e)},default:1e3},balloonTemplate:String,markerId:{type:[String,Number],required:!0},properties:Object,options:Object},data:function(){return{unwatchArr:[]}},render:function(e){return this.$slots.balloon&&e("div",{style:"display: none;"},[this.$slots.balloon])},mounted:function(){var e=this;Object.keys(this.$props).forEach(function(t){e.unwatchArr.push(e.$watch(t,function(t,o){return e.compareValues({newVal:t,oldVal:o,marker:e.defineMarker()})}))}),this.addMarker(this.defineMarker())},methods:{defineMarker:function(){var e=this,t={};this.balloonTemplate&&(t={balloonContentLayout:ymaps.templateLayoutFactory.createClass(this.balloonTemplate)});this.$slots.balloon&&(t={balloonContentLayout:ymaps.templateLayoutFactory.createClass(this.$slots.balloon[0].elm.outerHTML)});var o={markerId:this.markerId,markerType:this.markerType||"placemark",coords:s(this.coords),hintContent:this.hintContent,markerFill:this.markerFill,circleRadius:+this.circleRadius,clusterName:this.clusterName,markerStroke:this.markerStroke,balloon:this.balloon,properties:this.properties,options:this.options,balloonOptions:t};this.icon&&["default#image","default#imageWithContent"].includes(this.icon.layout)?(o.iconContent=this.icon.content,o.iconLayout=this.icon.layout,o.iconImageHref=this.icon.imageHref,o.iconImageSize=this.icon.imageSize,o.iconImageOffset=this.icon.imageOffset,o.iconContentOffset=this.icon.contentOffset,this.icon.contentLayout&&"string"==typeof this.icon.contentLayout&&(o.iconContentLayout=ymaps.templateLayoutFactory.createClass(this.icon.contentLayout))):o.icon=this.icon;var n=function(e,t){var o=a(e);if(!t)return o;switch(o){case"Placemark":return"Point";case"Polyline":return"LineString";default:return o}}(o.markerType,this.useObjectManager),r={hintContent:o.hintContent,iconContent:o.icon?o.icon.content:o.iconContent,markerId:o.markerId},c=o.balloon?{balloonContentHeader:o.balloon.header,balloonContentBody:o.balloon.body,balloonContentFooter:o.balloon.footer}:{},l=Object.assign(r,c,o.properties),u=o.iconLayout?{iconLayout:o.iconLayout,iconImageHref:o.iconImageHref,iconImageSize:o.iconImageSize,iconImageOffset:o.iconImageOffset,iconContentOffset:o.iconContentOffset,iconContentLayout:o.iconContentLayout}:{preset:o.icon&&"islands#".concat(i(o),"Icon")},p=o.markerStroke?{strokeColor:o.markerStroke.color||"0066ffff",strokeOpacity:parseFloat(o.markerStroke.opacity)>=0?parseFloat(o.markerStroke.opacity):1,strokeStyle:o.markerStroke.style,strokeWidth:parseFloat(o.markerStroke.width)>=0?parseFloat(o.markerStroke.width):1}:{},d=o.markerFill?{fill:o.markerFill.enabled||!0,fillColor:o.markerFill.color||"0066ff99",fillOpacity:parseFloat(o.markerFill.opacity)>=0?parseFloat(o.markerFill.opacity):1,fillImageHref:o.markerFill.imageHref||""}:{},m=Object.assign(u,p,d,o.balloonOptions,o.options);"Circle"===n&&(o.coords=[o.coords,o.circleRadius]);var f=function(e,t){var o=t?{type:"Feature",id:e.properties.markerId,geometry:{type:e.markerType,coordinates:e.coords},properties:e.properties,options:e.options}:new ymaps[e.markerType](e.coords,e.properties,e.options);return o.clusterName=e.clusterName,o}({properties:l,options:m,markerType:n,coords:o.coords,clusterName:o.clusterName},this.useObjectManager,this.$emit);return this.useObjectManager||b.forEach(function(t){return f.events.add(t,function(o){return e.$emit(t,o)})}),f}},beforeDestroy:function(){this.unwatchArr.forEach(function(e){return e()}),this.deleteMarker(this.markerId)}};h.install=function e(t){var o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};e.installed||(e.installed=!0,h.pluginOptions=o,t.component("yandex-map",h),t.component("ymap-marker",g))},"undefined"!=typeof window&&window.Vue&&window.Vue.use(h);var k=d,v=h,O=g;/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (h);
 
 
 /***/ }),

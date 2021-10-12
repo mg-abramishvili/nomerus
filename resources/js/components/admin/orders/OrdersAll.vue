@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="w-100">
         <table class="table">
             <thead>
                 <tr>
@@ -42,6 +42,7 @@
             }
         },
         created() {
+            this.$parent.subheader = 'Заказы'
             axios
             .get('/api/admin/orders')
             .then(response => (

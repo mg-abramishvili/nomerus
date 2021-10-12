@@ -1,0 +1,60 @@
+<template>
+    <div class="w-100">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Город</th>
+                    <th>Адрес</th>
+                    <th>Телефон</th>
+                    <th>Координаты</th>
+                    <th class="text-end">
+                        <router-link :to="{name: 'AdminAddressCreate'}" class="btn btn-sm btn-primary">Добавить</router-link>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="address in addresses" :key="'address_' + address.id">
+                    <td>
+                        <template v-for="city in address.cities">
+                            {{ city.name }}
+                        </template>
+                    </td>
+                    <td>
+                        {{ address.name }}
+                    </td>
+                    <td>
+                        {{ address.tel }}
+                    </td>
+                    <td>
+                        {{ address.coordinates }}
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                addresses: [],
+            }
+        },
+        created() {
+            this.$parent.subheader = 'Адреса'
+            axios
+            .get('/api/admin/addresses')
+            .then(response => (
+                this.addresses = response.data
+            ))
+        },
+        methods: {
+        },
+        components: {
+        }
+    }
+</script>

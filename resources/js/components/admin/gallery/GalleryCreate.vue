@@ -73,7 +73,7 @@ export default {
         }
     },
     created() {
-
+        this.$parent.subheader = 'Новое фото в галерею'
     },
     methods: {
         saveGal() {

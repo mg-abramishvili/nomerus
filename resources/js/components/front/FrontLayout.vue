@@ -12,7 +12,7 @@
                         </div>
                         <div class="header-location">
                             <button @click="openCityModal()">{{ current_city_name }}</button>
-                            <span>ул. Лесотехникума, 15</span>
+                            <router-link :to="{name: 'Addresses'}">Адреса</router-link>
                         </div>
                         <div class="header-social">
                             <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
