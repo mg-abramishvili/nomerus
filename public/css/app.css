@@ -1490,10 +1490,10 @@ html, body {
     transform: translateY(-50%);
 }
 .order-plate-preview .hole1 {
-    left: 0;
+    left: 10px;
 }
 .order-plate-preview .hole2 {
-    right: 0;
+    right: 10px;
 }
 /* TYPE 1 PLATE */
 
@@ -1757,10 +1757,10 @@ html, body {
     transform: translateY(-50%);
 }
 .order-plate-preview .hole1 {
-    left: 0;
+    left: 10px;
 }
 .order-plate-preview .hole2 {
-    right: 0;
+    right: 10px;
 }
 /* TYPE 2 PLATE */
 
