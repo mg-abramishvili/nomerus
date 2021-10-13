@@ -392,6 +392,10 @@
                         this.selected_transport =  this.transports[1]
                         this.selectTransport()
                     }
+                    if(this.$route.params.transport === 'pricep') {
+                        this.selected_transport =  this.transports[2]
+                        this.selectTransport()
+                    }
                 }));
         },
         methods: {

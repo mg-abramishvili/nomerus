@@ -3956,6 +3956,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4486,6 +4487,12 @@ __webpack_require__.r(__webpack_exports__);
 
       if (_this.$route.params.transport === 'moto') {
         _this.selected_transport = _this.transports[1];
+
+        _this.selectTransport();
+      }
+
+      if (_this.$route.params.transport === 'pricep') {
+        _this.selected_transport = _this.transports[2];
 
         _this.selectTransport();
       }
@@ -49773,7 +49780,9 @@ var render = function() {
                   _vm._v("Легковой")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "moto" } }, [_vm._v("Мото")])
+                _c("option", { attrs: { value: "moto" } }, [_vm._v("Мото")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "pricep" } }, [_vm._v("Прицеп")])
               ]
             )
           ]),

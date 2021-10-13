@@ -58,6 +58,7 @@
                         <select v-model="banner_form_transport" class="form-select form-select-lg">
                             <option value="legkovoy">Легковой</option>
                             <option value="moto">Мото</option>
+                            <option value="pricep">Прицеп</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-4">
