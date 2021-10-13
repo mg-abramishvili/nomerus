@@ -3122,6 +3122,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3157,6 +3159,12 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    goToPage: function goToPage(route_name) {
+      this.toggleMenu();
+      this.$router.push({
+        name: route_name
+      });
+    },
     openCallbackModal: function openCallbackModal() {
       this.modal_bg = true;
       this.callback_modal = true;
@@ -3194,6 +3202,15 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.current_city.namecode === 'strltmk') {
         this.ymap_city_coords = [53.63219996016489, 55.929692909667935];
+      }
+    },
+    toggleMenu: function toggleMenu() {
+      if (document.getElementById('navbarCollapse').classList.contains('collapse')) {
+        document.getElementById('navbarCollapse').classList.remove('collapse');
+        document.getElementById('navbarCollapse').classList.add('collapsed');
+      } else {
+        document.getElementById('navbarCollapse').classList.remove('collapsed');
+        document.getElementById('navbarCollapse').classList.add('collapse');
       }
     }
   },
@@ -3595,7 +3612,30 @@ __webpack_require__.r(__webpack_exports__);
       homeCertMiniHooper: {
         itemsToShow: 4,
         trimWhiteSpace: true,
-        wheelControl: false
+        wheelControl: false,
+        breakpoints: {
+          300: {
+            itemsToShow: 1
+          },
+          400: {
+            itemsToShow: 1
+          },
+          500: {
+            itemsToShow: 1
+          },
+          600: {
+            itemsToShow: 1
+          },
+          700: {
+            itemsToShow: 2
+          },
+          800: {
+            itemsToShow: 2
+          },
+          900: {
+            itemsToShow: 2
+          }
+        }
       },
       homeCertHooper: {
         itemsToShow: 1,
@@ -3605,7 +3645,30 @@ __webpack_require__.r(__webpack_exports__);
       homePartnersHooper: {
         itemsToShow: 4,
         trimWhiteSpace: true,
-        wheelControl: false
+        wheelControl: false,
+        breakpoints: {
+          300: {
+            itemsToShow: 1
+          },
+          400: {
+            itemsToShow: 1
+          },
+          500: {
+            itemsToShow: 1
+          },
+          600: {
+            itemsToShow: 1
+          },
+          700: {
+            itemsToShow: 2
+          },
+          800: {
+            itemsToShow: 2
+          },
+          900: {
+            itemsToShow: 2
+          }
+        }
       }
     };
   },
@@ -47613,6 +47676,29 @@ var render = function() {
                 ],
                 2
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "header-menu" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "navbar-toggler",
+                  attrs: {
+                    type: "button",
+                    "data-bs-toggle": "collapse",
+                    "data-bs-target": "#navbarCollapse",
+                    "aria-controls": "navbarCollapse",
+                    "aria-expanded": "false",
+                    "aria-label": "Toggle navigation"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.toggleMenu()
+                    }
+                  }
+                },
+                [_c("span", { staticClass: "navbar-toggler-icon" })]
+              )
             ])
           ])
         ])
@@ -47624,8 +47710,6 @@ var render = function() {
           { staticClass: "navbar navbar-expand-md navbar-dark bg-dark" },
           [
             _c("div", { staticClass: "container" }, [
-              _vm._m(1),
-              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -47634,55 +47718,52 @@ var render = function() {
                 },
                 [
                   _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-md-0" }, [
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "Reviews" } }
-                          },
-                          [_vm._v("Отзывы")]
-                        )
-                      ],
-                      1
-                    ),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          on: {
+                            click: function($event) {
+                              return _vm.goToPage("Reviews")
+                            }
+                          }
+                        },
+                        [_vm._v("Отзывы")]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "Gallery" } }
-                          },
-                          [_vm._v("Фотогалерея")]
-                        )
-                      ],
-                      1
-                    ),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          on: {
+                            click: function($event) {
+                              return _vm.goToPage("Gallery")
+                            }
+                          }
+                        },
+                        [_vm._v("Фотогалерея")]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "Addresses" } }
-                          },
-                          [_vm._v("Контакты")]
-                        )
-                      ],
-                      1
-                    )
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          on: {
+                            click: function($event) {
+                              return _vm.goToPage("Addresses")
+                            }
+                          }
+                        },
+                        [_vm._v("Контакты")]
+                      )
+                    ])
                   ])
                 ]
               )
@@ -47781,9 +47862,9 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "footer-callback" }, [
             _c(
@@ -47926,7 +48007,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(4)
               ])
             ])
           ]
@@ -47946,26 +48027,6 @@ var staticRenderFns = [
     return _c("a", { attrs: { href: "#" } }, [
       _c("img", { attrs: { src: "/img/whatsapp.svg" } })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          type: "button",
-          "data-bs-toggle": "collapse",
-          "data-bs-target": "#navbarCollapse",
-          "aria-controls": "navbarCollapse",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation"
-        }
-      },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
   },
   function() {
     var _vm = this

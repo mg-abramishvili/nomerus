@@ -39,6 +39,11 @@
                                 </template>
                             </div>
                         </div>
+                        <div class="header-menu">
+                            <button @click="toggleMenu()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
                     </div>
                     
                 </div>
@@ -46,22 +51,19 @@
             <div class="header-bottom">
                 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                     <div class="container">          
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                                 <li class="nav-item">
                                     <a class="nav-link">О компании</a>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link :to="{name: 'Reviews'}" class="nav-link">Отзывы</router-link>
+                                    <a @click="goToPage('Reviews')" class="nav-link">Отзывы</a>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link :to="{name: 'Gallery'}" class="nav-link">Фотогалерея</router-link>
+                                    <a @click="goToPage('Gallery')" class="nav-link">Фотогалерея</a>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link :to="{name: 'Addresses'}" class="nav-link">Контакты</router-link>
+                                    <a @click="goToPage('Addresses')" class="nav-link">Контакты</a>
                                 </li>
                             </ul>
                         </div>
@@ -213,7 +215,7 @@
                 ymap_behaviors: [
                     //'scrollZoom',
                     'drag'
-                ], 
+                ],
             }
         },
         created() {
@@ -235,6 +237,10 @@
             }));
         },
         methods: {
+            goToPage(route_name) {
+                this.toggleMenu()
+                this.$router.push({name: route_name})
+            },
             openCallbackModal() {
                 this.modal_bg = true
                 this.callback_modal = true
@@ -273,6 +279,15 @@
                 }
                 if(this.current_city.namecode === 'strltmk') {
                     this.ymap_city_coords = [53.63219996016489,55.929692909667935]
+                }
+            },
+            toggleMenu() {
+                if(document.getElementById('navbarCollapse').classList.contains('collapse')) {
+                    document.getElementById('navbarCollapse').classList.remove('collapse')
+                    document.getElementById('navbarCollapse').classList.add('collapsed')
+                } else {
+                    document.getElementById('navbarCollapse').classList.remove('collapsed')
+                    document.getElementById('navbarCollapse').classList.add('collapse')
                 }
             },
         },
