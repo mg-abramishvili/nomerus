@@ -3957,6 +3957,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -49944,9 +49947,22 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "home-about" }, [
       _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "home-block-title" }, [
-          _vm._v("Изготовление автомобильных номеров в Уфе")
-        ]),
+        _c(
+          "h2",
+          { staticClass: "home-block-title" },
+          [
+            _vm._v("Изготовление автомобильных номеров \n                "),
+            _vm.$parent.current_city.name.substr(-1) === "а"
+              ? [
+                  _vm._v(
+                    "в " +
+                      _vm._s(_vm.$parent.current_city.name.slice(0, -1) + "е")
+                  )
+                ]
+              : [_vm._v("в " + _vm._s(_vm.$parent.current_city.name + "е"))]
+          ],
+          2
+        ),
         _vm._v(" "),
         _vm.text && _vm.text.company_text
           ? _c("div", {

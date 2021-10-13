@@ -133,7 +133,10 @@
 
         <div class="home-about">
             <div class="container">
-                <h2 class="home-block-title">Изготовление автомобильных номеров в Уфе</h2>
+                <h2 class="home-block-title">Изготовление автомобильных номеров 
+                    <template v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</template>
+                    <template v-else>в {{ $parent.current_city.name + 'е' }}</template>
+                </h2>
                 <div v-if="text && text.company_text" v-html="text.company_text.split('***').join('<br><br>')"></div>
             </div>
         </div>
