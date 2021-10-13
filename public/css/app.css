@@ -1447,6 +1447,12 @@ html, body {
     display: inline-block;
     margin: 0 -5px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type1_with_flag .numbers span {
+        display: block;
+        float: left;
+    }
+}
 .order-plate-preview .type1_with_flag .reg {
     width: 66px;
     text-align: center;
