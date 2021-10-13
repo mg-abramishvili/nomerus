@@ -175,14 +175,17 @@
                         <button @click="closeCallbackModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-4">
-                            <input type="text" class="form-control form-control-lg text-center" placeholder="Имя">
+                        <div v-if="lead_success" class="alert alert-success" role="alert">
+                            Заявка отправлена! Мы с вами свяжемся!
                         </div>
                         <div class="mb-4">
-                            <input type="text" class="form-control form-control-lg text-center" placeholder="Телефон">
+                            <input v-model="lead_name" type="text" class="form-control form-control-lg text-center" placeholder="Имя">
+                        </div>
+                        <div class="mb-4">
+                            <input v-model="lead_tel" type="text" class="form-control form-control-lg text-center" placeholder="Телефон">
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-standard">Отправить заявку</button>
+                            <button @click="saveLead()" class="btn btn-standard">Отправить заявку</button>
                         </div>
                     </div>
                 </div>
@@ -216,6 +219,11 @@
                     //'scrollZoom',
                     'drag'
                 ],
+
+                lead_name: '',
+                lead_tel: '',
+                lead_city: '',
+                lead_success: false,
             }
         },
         created() {
@@ -228,6 +236,7 @@
             .get('/api/city-detect')
             .then((response => {
                 this.current_city = response.data
+                this.lead_city = response.data.name
             }));
             axios
             .get('/api/addresses')
@@ -244,6 +253,9 @@
             openCallbackModal() {
                 this.modal_bg = true
                 this.callback_modal = true
+                this.lead_name = ''
+                this.lead_tel = ''
+                this.lead_success = false
             },
             closeCallbackModal() {
                 this.modal_bg = false
@@ -265,6 +277,7 @@
                     .get('/api/city-detect')
                     .then((response => {
                         this.current_city = response.data
+                        this.lead_city = response.data.name
                     }));
                 }));
 
@@ -290,6 +303,30 @@
                     document.getElementById('navbarCollapse').classList.add('collapse')
                 }
             },
+            saveLead() {
+                if(this.lead_name && this.lead_tel && this.lead_city) {
+                axios
+                    .post(`/api/lead`, {
+                            name: this.lead_name,
+                            tel: this.lead_tel,
+                            city: this.lead_city
+                        })
+                    .then(response => (
+                        this.lead_name = '',
+                        this.lead_tel = '',
+                        this.lead_success = true
+                    ))
+                    .catch((error) => {
+                        if(error.response) {
+                            for(var key in error.response.data.errors){
+                                console.log(key)
+                            }
+                        }
+                    });
+                } else {
+                    alert('Заполните поля')
+                }
+            }
         },
         mounted() {
             this.$watch(

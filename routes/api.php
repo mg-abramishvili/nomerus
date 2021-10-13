@@ -26,6 +26,8 @@ Route::get('certificates','App\Http\Controllers\Front\CertificateController@inde
 Route::get('gallery','App\Http\Controllers\Front\GalleryController@index');
 Route::get('addresses','App\Http\Controllers\Front\AddressController@index');
 
+Route::post('lead','App\Http\Controllers\Front\LeadController@store');
+
 // ADMIN
 Route::get('admin/orders','App\Http\Controllers\Admin\OrderController@orders_index');
 Route::get('admin/order-items','App\Http\Controllers\Admin\OrderItemController@orderItems_index');
@@ -49,6 +51,7 @@ Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeCont
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index');
 
 Route::get('admin/partners','App\Http\Controllers\Admin\PartnerController@index');
+Route::get('admin/leads','App\Http\Controllers\Admin\LeadController@index');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

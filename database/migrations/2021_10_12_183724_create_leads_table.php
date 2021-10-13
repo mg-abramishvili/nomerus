@@ -12,6 +12,7 @@ class CreateLeadsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('tel');
+            $table->string('city');
             $table->timestamps();
         });
     }

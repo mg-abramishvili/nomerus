@@ -24,6 +24,7 @@ import AdminTypes from './components/admin/types/TypesAll.vue';
 import AdminTypeEdit from './components/admin/types/TypeEdit.vue';
 
 import AdminPartners from './components/admin/partners/PartnersAll.vue';
+import AdminLeads from './components/admin/leads/LeadsAll.vue';
 
 export const routes = [
     {
@@ -110,5 +111,10 @@ export const routes = [
         path: '/admin/partners',
         name: 'AdminPartners',
         component: AdminPartners
+    },
+    {
+        path: '/admin/leads',
+        name: 'AdminLeads',
+        component: AdminLeads
     },
 ];

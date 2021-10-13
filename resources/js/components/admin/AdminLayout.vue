@@ -16,10 +16,13 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <router-link :to="{name: 'AdminTypes', params: {city: 'ufa'}}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminTypes'}">Цены</router-link>
+                                <router-link :to="{name: 'AdminOrders'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminOrders'}">Заказы</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{name: 'AdminOrders'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminOrders'}">Заказы</router-link>
+                                <router-link :to="{name: 'AdminLeads'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminLeads'}">Заявки</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="{name: 'AdminTypes', params: {city: 'ufa'}}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminTypes'}">Цены</router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{name: 'AdminGallery'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminGallery'}">Фотогалерея</router-link>
