@@ -3617,23 +3617,11 @@ __webpack_require__.r(__webpack_exports__);
           300: {
             itemsToShow: 1
           },
-          400: {
-            itemsToShow: 1
-          },
-          500: {
-            itemsToShow: 1
-          },
-          600: {
-            itemsToShow: 1
-          },
-          700: {
-            itemsToShow: 2
-          },
-          800: {
-            itemsToShow: 2
-          },
           900: {
             itemsToShow: 2
+          },
+          1200: {
+            itemsToShow: 4
           }
         }
       },
@@ -3650,23 +3638,11 @@ __webpack_require__.r(__webpack_exports__);
           300: {
             itemsToShow: 1
           },
-          400: {
-            itemsToShow: 1
-          },
-          500: {
-            itemsToShow: 1
-          },
-          600: {
-            itemsToShow: 1
-          },
-          700: {
-            itemsToShow: 2
-          },
-          800: {
-            itemsToShow: 2
-          },
           900: {
             itemsToShow: 2
+          },
+          1200: {
+            itemsToShow: 4
           }
         }
       }
