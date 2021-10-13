@@ -1450,6 +1450,7 @@ html, body {
 @media (max-width: 900px) {
     .order-plate-preview .type1_with_flag .numbers span {
         letter-spacing: 0;
+        margin: 0 -10px;
     }
 }
 .order-plate-preview .type1_with_flag .reg {
