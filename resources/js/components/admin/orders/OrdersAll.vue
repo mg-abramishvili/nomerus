@@ -82,7 +82,7 @@
                                         жирный шрифт<br>
                                     </template>
                                     <template v-if="orderItem.noholes == true">
-                                        <br>без отверстий
+                                        без отверстий<br>
                                     </template>
                                     {{ orderItem.price }} руб.
                                 </div>

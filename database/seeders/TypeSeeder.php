@@ -48,6 +48,18 @@ class TypeSeeder extends Seeder
                 'namecode' => 'type4mini_without_flag',
                 'bold' => 0
             ],
+            [
+                'id' => 7,
+                'name' => 'Тип 2',
+                'namecode' => 'type2_with_flag',
+                'bold' => 1
+            ],
+            [
+                'id' => 8,
+                'name' => 'Тип 2 (без флага)',
+                'namecode' => 'type2_without_flag',
+                'bold' => 1
+            ],
         ]);
     }
 }

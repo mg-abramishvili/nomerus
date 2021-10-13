@@ -4407,6 +4407,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -48109,10 +48134,10 @@ var render = function() {
                         _vm._v(" "),
                         orderItem.noholes == true
                           ? [
-                              _c("br"),
                               _vm._v(
-                                "без отверстий\n                                "
-                              )
+                                "\n                                    без отверстий"
+                              ),
+                              _c("br")
                             ]
                           : _vm._e(),
                         _vm._v(
@@ -50351,6 +50376,54 @@ var render = function() {
                                       }
                                     })
                                   ]
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.selected_transport.namecode === "pricep"
+                                ? [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.number,
+                                          expression: "number"
+                                        },
+                                        {
+                                          name: "maska",
+                                          rawName: "v-maska",
+                                          value: {
+                                            mask: "ZZ####",
+                                            tokens: {
+                                              Z: {
+                                                pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/
+                                              }
+                                            }
+                                          },
+                                          expression:
+                                            "{ mask: 'ZZ####', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-lg",
+                                      staticStyle: {
+                                        "text-transform": "uppercase"
+                                      },
+                                      attrs: {
+                                        id: "number_input",
+                                        placeholder: "аа0000",
+                                        type: "text"
+                                      },
+                                      domProps: { value: _vm.number },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.number = $event.target.value
+                                        }
+                                      }
+                                    })
+                                  ]
                                 : _vm._e()
                             ],
                             2
@@ -50487,7 +50560,10 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _vm.selected_type.namecode === "type1_with_flag" ||
-                            _vm.selected_type.namecode === "type1_without_flag"
+                            _vm.selected_type.namecode ===
+                              "type1_without_flag" ||
+                            _vm.selected_type.namecode === "type2_with_flag" ||
+                            _vm.selected_type.namecode === "type2_without_flag"
                               ? _c(
                                   "div",
                                   {
@@ -50556,7 +50632,10 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _vm.selected_type.namecode === "type1_with_flag" ||
-                            _vm.selected_type.namecode === "type1_without_flag"
+                            _vm.selected_type.namecode ===
+                              "type1_without_flag" ||
+                            _vm.selected_type.namecode === "type2_with_flag" ||
+                            _vm.selected_type.namecode === "type2_without_flag"
                               ? _c(
                                   "div",
                                   {
@@ -50696,6 +50775,18 @@ var render = function() {
                                               ]
                                             )
                                           ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.noholes == false
+                                        ? _c("div", {
+                                            staticClass: "holes hole1"
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.noholes == false
+                                        ? _c("div", {
+                                            staticClass: "holes hole2"
+                                          })
                                         : _vm._e()
                                     ]
                                   )
@@ -50826,6 +50917,90 @@ var render = function() {
                                         ])
                                       : _vm._e()
                                   ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.selected_type.namecode ===
+                                "type2_with_flag" ||
+                              _vm.selected_type.namecode ===
+                                "type2_without_flag"
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass: "type2_with_flag",
+                                      class: { "fw-bold": _vm.bold == true }
+                                    },
+                                    [
+                                      _vm.number && _vm.number.length > 0
+                                        ? _c(
+                                            "div",
+                                            { staticClass: "numbers" },
+                                            [
+                                              _c("span", [
+                                                _vm._v(
+                                                  _vm._s(_vm.number.slice(0, 1))
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm._v(
+                                                  _vm._s(_vm.number.slice(1, 4))
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm._v(
+                                                  _vm._s(_vm.number.slice(4, 6))
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.number &&
+                                      _vm.number.length > 0 &&
+                                      _vm.number_region &&
+                                      _vm.number_region.length > 0
+                                        ? _c("div", { staticClass: "reg" }, [
+                                            _c("span", [
+                                              _vm._v(
+                                                "\n                                                " +
+                                                  _vm._s(_vm.number_region) +
+                                                  "\n                                            "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "reg-inner" },
+                                              [
+                                                _c("i", [_vm._v("RUS")]),
+                                                _vm._v(" "),
+                                                _vm.selected_type.namecode ===
+                                                "type2_with_flag"
+                                                  ? _c("img", {
+                                                      attrs: {
+                                                        src: "/img/rus.svg"
+                                                      }
+                                                    })
+                                                  : _vm._e()
+                                              ]
+                                            )
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.noholes == false
+                                        ? _c("div", {
+                                            staticClass: "holes hole1"
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.noholes == false
+                                        ? _c("div", {
+                                            staticClass: "holes hole2"
+                                          })
+                                        : _vm._e()
+                                    ]
+                                  )
                                 : _vm._e()
                             ])
                           ])
@@ -51206,6 +51381,18 @@ var render = function() {
                                               ]
                                             )
                                           ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.noholes == false
+                                        ? _c("div", {
+                                            staticClass: "holes hole1"
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _vm.noholes == false
+                                        ? _c("div", {
+                                            staticClass: "holes hole2"
+                                          })
                                         : _vm._e()
                                     ]
                                   )

@@ -24,6 +24,9 @@
                                     <template v-if="selected_transport.namecode === 'moto'">
                                         <input v-model="number" v-maska="{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" id="number_input" placeholder="0000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                                     </template>
+                                    <template v-if="selected_transport.namecode === 'pricep'">
+                                        <input v-model="number" v-maska="{ mask: 'ZZ####', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" id="number_input" placeholder="аа0000" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
+                                    </template>
                                 </div>
                                 <div v-else class="mb-3">
                                     <label class="form-label mb-1">Госномер</label>
@@ -49,11 +52,11 @@
                                     <select v-model="selected_type" @change="selectType()" class="form-select">
                                         <option v-for="type in types" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
                                     </select>
-                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
+                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag' || selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="form-check form-switch mt-2">
                                         <input v-model="bold" @change="changeBold()" class="form-check-input" type="checkbox" value="1" id="boldSwitch">
                                         <label class="form-check-label" for="boldSwitch">жирный шрифт</label>
                                     </div>
-                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
+                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag' || selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="form-check form-switch mt-2">
                                         <input v-model="noholes" @change="changeNoholes()" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
                                         <label class="form-check-label" for="holesSwitch">без отверстий</label>
                                     </div>
@@ -75,6 +78,8 @@
                                                     <img v-if="selected_type.namecode === 'type1_with_flag'" src="/img/rus.svg"/>
                                                 </div>
                                             </div>
+                                            <div v-if="noholes == false" class="holes hole1"></div>
+                                            <div v-if="noholes == false" class="holes hole2"></div>
                                         </div>
                                         <div v-if="selected_type.namecode === 'type1a' || selected_type.namecode === 'type1a_without_flag'" class="type1a">               
                                             <div v-if="number && number.length > 0" class="numbers">
@@ -110,6 +115,24 @@
                                                     {{ number_region }}
                                                 </span>
                                             </div>
+                                        </div>
+                                        <div v-if="selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="type2_with_flag" :class="{ 'fw-bold' : bold == true}">               
+                                            <div v-if="number && number.length > 0" class="numbers">
+                                                <span>{{ number.slice(0, 1) }}</span>
+                                                <span>{{ number.slice(1, 4) }}</span>
+                                                <span>{{ number.slice(4, 6) }}</span>
+                                            </div>
+                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
+                                                <span>
+                                                    {{ number_region }}
+                                                </span>
+                                                <div class="reg-inner">
+                                                    <i>RUS</i>
+                                                    <img v-if="selected_type.namecode === 'type2_with_flag'" src="/img/rus.svg"/>
+                                                </div>
+                                            </div>
+                                            <div v-if="noholes == false" class="holes hole1"></div>
+                                            <div v-if="noholes == false" class="holes hole2"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -158,6 +181,8 @@
                                                     <img v-if="selected_komplekt_type.namecode === 'type1_with_flag'" src="/img/rus.svg"/>
                                                 </div>
                                             </div>
+                                            <div v-if="noholes == false" class="holes hole1"></div>
+                                            <div v-if="noholes == false" class="holes hole2"></div>
                                         </div>
                                         <div v-if="selected_komplekt_type.namecode === 'type1a' || selected_komplekt_type.namecode === 'type1a_without_flag'" class="type1a">               
                                             <div v-if="number && number.length > 0" class="numbers">

@@ -22,6 +22,11 @@ class TransportSeeder extends Seeder
                 'name' => 'Мото',
                 'namecode' => 'moto',
             ],
+            [
+                'id' => 3,
+                'name' => 'Прицеп',
+                'namecode' => 'pricep',
+            ],
         ]);
     }
 }

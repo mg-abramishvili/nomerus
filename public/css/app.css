@@ -1474,6 +1474,21 @@ html, body {
     display: inline-block;
     vertical-align: middle;
 }
+.order-plate-preview .holes {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: gray;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.order-plate-preview .hole1 {
+    left: 0;
+}
+.order-plate-preview .hole2 {
+    right: 0;
+}
 /* TYPE 1 PLATE */
 
 /* TYPE 1A PLATE */
@@ -1655,6 +1670,93 @@ html, body {
 }
 /* TYPE 4 PLATE */
 
+
+/* TYPE 2 PLATE */
+.order-plate-preview .type2_with_flag {
+    background-color: #ececec;
+    width: 230px;
+    height: 60px;
+    border-radius: 8px;
+    position: relative;
+    line-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.order-plate-preview .type2_with_flag:before {
+    content: '';
+    width: calc(100% - 10px);
+    height: calc(100% - 12px);
+    border: 2px solid #222;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+    right: 5px;
+}
+.order-plate-preview .type2_with_flag:after {
+    content: '';
+    width: 2px;
+    height: calc(100% - 12px);
+    background-color: #222;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 65px;
+}
+.order-plate-preview .type2_with_flag .numbers {
+    width: 164px;
+    padding-left: 7px;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+.order-plate-preview .type2_with_flag .numbers span {
+    display: inline-block;
+    margin: 0 -5px;
+}
+.order-plate-preview .type2_with_flag .reg {
+    width: 66px;
+    text-align: center;
+    padding-right: 7px;
+    font-size: 30px;
+    margin-top: -7px;
+}
+.order-plate-preview .type2_with_flag .reg .reg-inner {
+    margin-top: -27px;
+    display: block;
+    line-height: 1;
+}
+.order-plate-preview .type2_with_flag .reg .reg-inner i {
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+.order-plate-preview .type2_with_flag .reg .reg-inner img {
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.order-plate-preview .holes {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    background-color: gray;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.order-plate-preview .hole1 {
+    left: 0;
+}
+.order-plate-preview .hole2 {
+    right: 0;
+}
+/* TYPE 2 PLATE */
 
 
 
