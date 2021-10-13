@@ -1445,8 +1445,7 @@ html, body {
 }
 @media (max-width: 900px) {
     .order-plate-preview .type1_with_flag .numbers span {
-        display: block;
-        float: left;
+        letter-spacing: 0;
     }
 }
 .order-plate-preview .type1_with_flag .reg {
