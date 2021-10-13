@@ -135,6 +135,9 @@ html, body {
 @media (max-width: 900px) {
     .front header .header-location a {
         font-size: 12px;
+        margin-top: 7px;
+        display: inline-block;
+        padding: 3px 10px;
     }
 }
 
@@ -288,6 +291,7 @@ html, body {
 .header-bottom .navbar-nav .nav-link:hover {
     color: #EF5044;
     border-color: #EF5044;
+    cursor: pointer;
 }
 
 .front header .header-menu {
@@ -1748,6 +1752,21 @@ html, body {
     height: 100%;
 }
 
+
+
+
+.about-page {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #fff;
+}
+
+@media (max-width: 900px) {
+    .about-page {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
 
 
 

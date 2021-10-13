@@ -54,7 +54,7 @@
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                                 <li class="nav-item">
-                                    <a class="nav-link">О компании</a>
+                                    <a @click="goToPage('About')" class="nav-link">О компании</a>
                                 </li>
                                 <li class="nav-item">
                                     <a @click="goToPage('Reviews')" class="nav-link">Отзывы</a>
