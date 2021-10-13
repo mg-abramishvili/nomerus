@@ -17,6 +17,7 @@ class CreateOrderItemsTable extends Migration
             $table->string('uid');
             $table->boolean('bold');
             $table->boolean('noholes');
+            $table->boolean('komplekt_type')->nullable();
             $table->timestamps();
         });
     }

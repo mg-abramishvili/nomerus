@@ -2795,10 +2795,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      orders: []
+      orders: [],
+      moment: moment
     };
   },
   created: function created() {
@@ -2810,6 +2872,21 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {},
+  filters: {
+    moment: function (_moment) {
+      function moment(_x) {
+        return _moment.apply(this, arguments);
+      }
+
+      moment.toString = function () {
+        return _moment.toString();
+      };
+
+      return moment;
+    }(function (date) {
+      return moment(date).format('DD.MM.YYYY');
+    })
+  },
   components: {}
 });
 
@@ -4466,6 +4543,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post("/api/order-item", {
           transport: this.selected_transport.id,
           type: this.selected_type.name,
+          komplekt_type: this.selected_komplekt_type.name,
           number: this.number + this.number_region,
           bold: this.bold,
           noholes: this.noholes,
@@ -4605,8 +4683,35 @@ __webpack_require__.r(__webpack_exports__);
         document.getElementById('director_input').classList.remove('border-danger');
 
         if (this.company && this.company.length > 0 && this.inn && this.inn.length > 0 && this.kpp && this.kpp.length > 0 && this.ogrn && this.ogrn.length > 0 && this.uraddress && this.uraddress.length > 0 && this.faktaddress && this.faktaddress.length > 0 && this.ras_schet && this.ras_schet.length > 0 && this.bank && this.bank.length > 0 && this.korr && this.korr.length > 0 && this.bik && this.bik.length > 0 && this.director && this.director.length > 0 && this.tel && this.tel.length > 0 && this.email && this.email.length > 0) {
-          this.$router.push({
-            name: 'OrderComplete'
+          axios.post("/api/order", {
+            client_type: this.client_type,
+            tel: this.tel,
+            email: this.email,
+            company: this.company,
+            inn: this.inn,
+            kpp: this.kpp,
+            ogrn: this.ogrn,
+            uraddress: this.uraddress,
+            faktaddress: this.faktaddress,
+            ras_schet: this.ras_schet,
+            bank: this.bank,
+            korr: this.korr,
+            bik: this.bik,
+            director: this.director,
+            price: parseInt(this.price_total),
+            orderItems: this.order_list.map(function (item) {
+              return item.uid;
+            })
+          }).then(function (response) {
+            return _this5.$router.push({
+              name: 'OrderComplete'
+            });
+          })["catch"](function (error) {
+            if (error.response) {
+              for (var key in error.response.data.errors) {
+                console.log(key);
+              }
+            }
           });
         } else {
           if (!this.tel) {
@@ -47821,20 +47926,134 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(order.created_at) +
+                  _vm._s(_vm._f("moment")(order.created_at)) +
                   "\n                "
               )
             ]),
             _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(order.email) +
+            _c(
+              "td",
+              [
+                order.client_type === "fz"
+                  ? [_vm._v("\n                        физ. лицо"), _c("br")]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.client_type === "ur"
+                  ? [_vm._v("\n                        юр. лицо"), _c("br")]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.name
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.name)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.passport
+                  ? [
+                      _vm._v(
+                        "\n                        " + _vm._s(order.passport)
+                      ),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.company
+                  ? [
+                      _vm._v(
+                        "\n                        " + _vm._s(order.company)
+                      ),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.inn
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.inn)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.kpp
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.kpp)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.ogrn
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.ogrn)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.uraddress
+                  ? [
+                      _vm._v(
+                        "\n                        " + _vm._s(order.uraddress)
+                      ),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.faktaddress
+                  ? [
+                      _vm._v(
+                        "\n                        " + _vm._s(order.faktaddress)
+                      ),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.ras_schet
+                  ? [
+                      _vm._v(
+                        "\n                        " + _vm._s(order.ras_schet)
+                      ),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.bank
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.bank)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.bik
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.bik)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.korr
+                  ? [
+                      _vm._v("\n                        " + _vm._s(order.korr)),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.director
+                  ? [
+                      _vm._v(
+                        "\n                        " + _vm._s(order.director)
+                      ),
+                      _c("br")
+                    ]
+                  : _vm._e(),
+                _vm._v("\n\n                    " + _vm._s(order.tel)),
+                _c("br"),
+                _vm._v(
                   "\n                    " +
-                  _vm._s(order.tel) +
-                  "\n                "
-              )
-            ]),
+                    _vm._s(order.email) +
+                    "\n                "
+                )
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("td", [
               _vm._v(
@@ -47849,10 +48068,60 @@ var render = function() {
                 "ul",
                 _vm._l(order.order_items, function(orderItem) {
                   return _c("li", { key: "orderItem_" + orderItem.id }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(orderItem.number) +
-                        "\n                        "
+                    _c(
+                      "div",
+                      { staticClass: "my-2" },
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(orderItem.type)
+                        ),
+                        _c("br"),
+                        _vm._v(" "),
+                        orderItem.komplekt_type
+                          ? [
+                              _vm._v(
+                                "\n                                    + " +
+                                  _vm._s(orderItem.komplekt_type)
+                              ),
+                              _c("br")
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "strong",
+                          {
+                            staticClass: "text-danger",
+                            staticStyle: { "text-transform": "uppercase" }
+                          },
+                          [_vm._v(_vm._s(orderItem.number))]
+                        ),
+                        _c("br"),
+                        _vm._v(" "),
+                        orderItem.bold == true
+                          ? [
+                              _vm._v(
+                                "\n                                    жирный шрифт"
+                              ),
+                              _c("br")
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        orderItem.noholes == true
+                          ? [
+                              _c("br"),
+                              _vm._v(
+                                "без отверстий\n                                "
+                              )
+                            ]
+                          : _vm._e(),
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(orderItem.price) +
+                            " руб.\n                            "
+                        )
+                      ],
+                      2
                     )
                   ])
                 }),
@@ -47875,7 +48144,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Дата")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Контакты")]),
+        _c("th", [_vm._v("Данные")]),
         _vm._v(" "),
         _c("th", [_vm._v("Сумма")]),
         _vm._v(" "),
