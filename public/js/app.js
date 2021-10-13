@@ -51347,7 +51347,10 @@ var render = function() {
                                 "type1_without_flag"
                                 ? _c(
                                     "div",
-                                    { staticClass: "type1_with_flag" },
+                                    {
+                                      staticClass: "type1_with_flag",
+                                      class: { "fw-bold": _vm.bold == true }
+                                    },
                                     [
                                       _vm.number && _vm.number.length > 0
                                         ? _c(

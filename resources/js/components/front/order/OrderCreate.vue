@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="order-plate-preview">
-                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="type1_with_flag">               
+                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="type1_with_flag" :class="{ 'fw-bold' : bold == true}">               
                                             <div v-if="number && number.length > 0" class="numbers">
                                                 <span>{{ number.slice(0, 1) }}</span>
                                                 <span>{{ number.slice(1, 4) }}</span>
