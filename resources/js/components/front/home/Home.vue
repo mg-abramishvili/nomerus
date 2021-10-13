@@ -133,7 +133,7 @@
         <div class="home-about">
             <div class="container">
                 <h2 class="home-block-title">Изготовление автомобильных номеров в Уфе</h2>
-                <div v-html="text.company_text.split('***').join('<br><br>')"></div>
+                <div v-if="text && text.company_text" v-html="text.company_text.split('***').join('<br><br>')"></div>
             </div>
         </div>
 
@@ -151,19 +151,15 @@
         <div class="home-partners">
             <div class="container">
                 <h2 class="home-block-title">Нам доверяют</h2>
-                <div class="row align-items-center">
-                    <div class="col-6 col-md-3">
-                        <img src="/img/bashkirenergo.svg" />
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <img src="/img/moi_dokumenty.svg" />
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <img src="/img/rn-transport.svg" />
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <img src="/img/evroplan.svg" />
-                    </div>
+                <div class="homePartnersHooperWrapper">
+                    <button @click.prevent="homePartnersPrev" class="hooper_nav_button hooper_nav_button_prev"></button>
+                    <button @click.prevent="homePartnersNext" class="hooper_nav_button hooper_nav_button_next"></button>
+
+                    <hooper ref="homePartnersHooper" :settings="homePartnersHooper" class="homePartnersHooper">
+                        <slide v-for="partner in partners" :key="'partner_' + partner.id">
+                            <div class="home-partners-item" v-bind:style="{ 'background-image': 'url(' + partner.image + ')' }"></div>
+                        </slide>
+                    </hooper>
                 </div>
             </div>
         </div>
@@ -181,6 +177,7 @@ export default {
             services: [],
             certificates: [],
             text: {},
+            partners: [],
             nomerus_modal_certs: false,
 
             banner_form_client_type: 'fz',
@@ -196,6 +193,11 @@ export default {
                 itemsToShow: 1,
                 wheelControl: false,
                 transition: 0,
+            },
+            homePartnersHooper: {
+                itemsToShow: 4,
+                trimWhiteSpace: true,
+                wheelControl: false,
             },
         };
     },
@@ -214,6 +216,11 @@ export default {
             .get('/api/certificates')
             .then(response => (
                 this.certificates = response.data
+            ));
+        axios
+            .get('/api/partners')
+            .then(response => (
+                this.partners = response.data
             ));
         },
     methods: {
@@ -236,6 +243,12 @@ export default {
         },
         homeCertNext() {
             this.$refs.homeCertHooper.slideNext();
+        },
+        homePartnersPrev() {
+            this.$refs.homePartnersHooper.slidePrev();
+        },
+        homePartnersNext() {
+            this.$refs.homePartnersHooper.slideNext();
         },
     },
     components: {

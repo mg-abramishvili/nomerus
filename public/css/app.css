@@ -590,12 +590,32 @@ html, body {
     padding-bottom: 60px;
 }
 
-.home-partners img {
-    width: auto;
-    height: auto;
-    max-width: 80%;
-    display: block;
-    margin: 0 auto;
+.home-partners .homePartnersHooperWrapper {
+    position: relative;
+}
+
+.home-partners .homePartnersHooper {
+    height: 100px;
+}
+
+.homePartnersHooperWrapper .hooper_nav_button_prev {
+    left: -25px;
+}
+
+.homePartnersHooperWrapper .hooper_nav_button_next {
+    right: -25px;
+}
+
+.home-partners .homePartnersHooper .hooper-slide {
+    padding: 0 30px;
+}
+
+.home-partners-item {
+    position: relative;
+    height: 100px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 

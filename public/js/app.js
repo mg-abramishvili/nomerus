@@ -3580,10 +3580,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3592,6 +3588,7 @@ __webpack_require__.r(__webpack_exports__);
       services: [],
       certificates: [],
       text: {},
+      partners: [],
       nomerus_modal_certs: false,
       banner_form_client_type: 'fz',
       banner_form_transport: 'legkovoy',
@@ -3604,6 +3601,11 @@ __webpack_require__.r(__webpack_exports__);
         itemsToShow: 1,
         wheelControl: false,
         transition: 0
+      },
+      homePartnersHooper: {
+        itemsToShow: 4,
+        trimWhiteSpace: true,
+        wheelControl: false
       }
     };
   },
@@ -3618,6 +3620,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios.get('/api/certificates').then(function (response) {
       return _this.certificates = response.data;
+    });
+    axios.get('/api/partners').then(function (response) {
+      return _this.partners = response.data;
     });
   },
   methods: {
@@ -3640,6 +3645,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     homeCertNext: function homeCertNext() {
       this.$refs.homeCertHooper.slideNext();
+    },
+    homePartnersPrev: function homePartnersPrev() {
+      this.$refs.homePartnersHooper.slidePrev();
+    },
+    homePartnersNext: function homePartnersNext() {
+      this.$refs.homePartnersHooper.slideNext();
     }
   },
   components: {
@@ -4486,6 +4497,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_addresses_AddressCreate_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/admin/addresses/AddressCreate.vue */ "./resources/js/components/admin/addresses/AddressCreate.vue");
 /* harmony import */ var _components_admin_types_TypesAll_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/admin/types/TypesAll.vue */ "./resources/js/components/admin/types/TypesAll.vue");
 /* harmony import */ var _components_admin_types_TypeEdit_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/admin/types/TypeEdit.vue */ "./resources/js/components/admin/types/TypeEdit.vue");
+/* harmony import */ var _components_admin_partners_PartnersAll_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/admin/partners/PartnersAll.vue */ "./resources/js/components/admin/partners/PartnersAll.vue");
+
 
 
 
@@ -4566,6 +4579,10 @@ var routes = [{
   path: '/admin/types/:type_id/:city_id/edit',
   name: 'AdminTypeEdit',
   component: _components_admin_types_TypeEdit_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+}, {
+  path: '/admin/partners',
+  name: 'AdminPartners',
+  component: _components_admin_partners_PartnersAll_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }];
 
 /***/ }),
@@ -45264,6 +45281,40 @@ component.options.__file = "resources/js/components/admin/orders/OrdersAll.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/partners/PartnersAll.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/admin/partners/PartnersAll.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/admin/partners/PartnersAll.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/types/TypeEdit.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/admin/types/TypeEdit.vue ***!
@@ -46282,7 +46333,8 @@ var render = function() {
       _vm.$route.name === "AdminAddresses" ||
       _vm.$route.name === "AdminAddressCreate" ||
       _vm.$route.name === "AdminTypes" ||
-      _vm.$route.name === "AdminTypeEdit"
+      _vm.$route.name === "AdminTypeEdit" ||
+      _vm.$route.name === "AdminPartners"
         ? [_c("AdminLayout")]
         : _vm._e()
     ],
@@ -48594,13 +48646,15 @@ var render = function() {
           _vm._v("Изготовление автомобильных номеров в Уфе")
         ]),
         _vm._v(" "),
-        _c("div", {
-          domProps: {
-            innerHTML: _vm._s(
-              _vm.text.company_text.split("***").join("<br><br>")
-            )
-          }
-        })
+        _vm.text && _vm.text.company_text
+          ? _c("div", {
+              domProps: {
+                innerHTML: _vm._s(
+                  _vm.text.company_text.split("***").join("<br><br>")
+                )
+              }
+            })
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
@@ -48638,7 +48692,56 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2)
+    _c("div", { staticClass: "home-partners" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Нам доверяют")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "homePartnersHooperWrapper" },
+          [
+            _c("button", {
+              staticClass: "hooper_nav_button hooper_nav_button_prev",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.homePartnersPrev.apply(null, arguments)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("button", {
+              staticClass: "hooper_nav_button hooper_nav_button_next",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.homePartnersNext.apply(null, arguments)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "hooper",
+              {
+                ref: "homePartnersHooper",
+                staticClass: "homePartnersHooper",
+                attrs: { settings: _vm.homePartnersHooper }
+              },
+              _vm._l(_vm.partners, function(partner) {
+                return _c("slide", { key: "partner_" + partner.id }, [
+                  _c("div", {
+                    staticClass: "home-partners-item",
+                    style: { "background-image": "url(" + partner.image + ")" }
+                  })
+                ])
+              }),
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -48737,34 +48840,6 @@ var staticRenderFns = [
                 ])
               ]
             )
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "home-partners" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "home-block-title" }, [_vm._v("Нам доверяют")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row align-items-center" }, [
-          _c("div", { staticClass: "col-6 col-md-3" }, [
-            _c("img", { attrs: { src: "/img/bashkirenergo.svg" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6 col-md-3" }, [
-            _c("img", { attrs: { src: "/img/moi_dokumenty.svg" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6 col-md-3" }, [
-            _c("img", { attrs: { src: "/img/rn-transport.svg" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6 col-md-3" }, [
-            _c("img", { attrs: { src: "/img/evroplan.svg" } })
           ])
         ])
       ])

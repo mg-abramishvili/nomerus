@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             GallerySeeder::class,
             TextSeeder::class,
+            PartnerSeeder::class,
         ]);
     }
 }

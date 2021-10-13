@@ -16,6 +16,8 @@ Route::get('services','App\Http\Controllers\Front\ServiceController@index');
 
 Route::get('text','App\Http\Controllers\Front\TextController@index');
 
+Route::get('partners','App\Http\Controllers\Front\PartnerController@index');
+
 Route::get('transports','App\Http\Controllers\Front\TransportController@transports_index');
 
 Route::get('{city}/transport/{id}/types','App\Http\Controllers\Front\TypeController@transport_types');
@@ -45,6 +47,8 @@ Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeCont
 Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update');
 
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index');
+
+Route::get('admin/partners','App\Http\Controllers\Admin\PartnerController@index');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

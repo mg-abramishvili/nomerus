@@ -23,6 +23,8 @@ import AdminAddressCreate from './components/admin/addresses/AddressCreate.vue';
 import AdminTypes from './components/admin/types/TypesAll.vue';
 import AdminTypeEdit from './components/admin/types/TypeEdit.vue';
 
+import AdminPartners from './components/admin/partners/PartnersAll.vue';
+
 export const routes = [
     {
         path: '/',
@@ -103,5 +105,10 @@ export const routes = [
         path: '/admin/types/:type_id/:city_id/edit',
         name: 'AdminTypeEdit',
         component: AdminTypeEdit
+    },
+    {
+        path: '/admin/partners',
+        name: 'AdminPartners',
+        component: AdminPartners
     },
 ];
