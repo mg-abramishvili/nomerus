@@ -46,4 +46,10 @@ class OrderItemController extends Controller
             'price' => $orderItem->price
         ]);
     }
+
+    public function orderItem_delete($uid, Request $request)
+    {
+        $orderItem = OrderItem::where('uid', $uid)->first();
+        $orderItem->delete();
+    }
 }

@@ -1239,6 +1239,28 @@ html, body {
     padding: 40px;
 }
 
+.callback_modal .modal-body .policy {
+    height: 150px;
+    overflow-y: auto;
+    border: 2px solid #ececec;
+    padding: 15px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.callback_modal .modal-body p {
+    font-size: 11px;
+}
+
+.callback_modal .modal-body p i {
+    font-style: normal;
+    text-decoration: underline;
+}
+
+.callback_modal .modal-body p i:hover {
+    cursor: pointer;
+}
+
 
 .gallery-page {
     padding-top: 60px;
@@ -1706,6 +1728,15 @@ html, body {
 .order-total-price {
     margin-top: 50px;
     margin-bottom: 20px;
+}
+
+
+
+.order-list ul li .btn-del {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 1;
 }
 
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // FRONT
 Route::post('order-item','App\Http\Controllers\Front\OrderItemController@orderItem_store');
 Route::get('order-item/{uid}','App\Http\Controllers\Front\OrderItemController@orderItem');
+Route::get('order-item-del/{uid}','App\Http\Controllers\Front\OrderItemController@orderItem_delete');
 Route::post('order','App\Http\Controllers\Front\OrderController@order_store');
 
 Route::get('cities','App\Http\Controllers\Front\CityController@cities_index');

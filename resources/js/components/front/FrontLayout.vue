@@ -118,7 +118,7 @@
                         </router-link>
                     </div>
                     <div class="footer-policy">
-                        <a href="#">Политика конфиденциальности</a>
+                        <router-link :to="{name: 'Policy'}">Политика конфиденциальности</router-link>
                     </div>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
@@ -184,6 +184,10 @@
                         <div class="mb-4">
                             <input v-model="lead_tel" type="text" class="form-control form-control-lg text-center" placeholder="Телефон">
                         </div>
+                        <p>Нажимая кнопку "Отправить заявку" вы соглашаетесь с <i @click="policyToggle()">политикой конфиденциальности</i>.</p>
+                        <div v-if="show_policy" class="policy">
+                            <div v-if="text && text.company_text" v-html="text.privacy_policy.split('***').join('<br><br>')"></div>
+                        </div>
                         <div class="text-center">
                             <button @click="saveLead()" class="btn btn-standard">Отправить заявку</button>
                         </div>
@@ -206,6 +210,7 @@
         data() {
             return {
                 cities: [],
+                text: {},
 
                 current_city: 1,
 
@@ -224,6 +229,8 @@
                 lead_tel: '',
                 lead_city: '',
                 lead_success: false,
+
+                show_policy: false,
             }
         },
         created() {
@@ -244,6 +251,11 @@
                 this.ymap_addresses = response.data
                 this.ymap_cityChange()
             }));
+            axios
+            .get('/api/text')
+            .then(response => (
+                this.text = response.data
+            ));
         },
         methods: {
             goToPage(route_name) {
@@ -325,6 +337,13 @@
                     });
                 } else {
                     alert('Заполните поля')
+                }
+            },
+            policyToggle() {
+                if(this.show_policy == true) {
+                    this.show_policy = false
+                } else {
+                    this.show_policy = true
                 }
             }
         },

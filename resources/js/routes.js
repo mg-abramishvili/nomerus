@@ -3,6 +3,7 @@ import Home from './components/front/home/Home.vue';
 import Gallery from './components/front/gallery/Gallery.vue';
 import Reviews from './components/front/reviews/Reviews.vue';
 import About from './components/front/about/About.vue';
+import Policy from './components/front/policy/Policy.vue';
 
 import OrderCreate from './components/front/order/OrderCreate.vue';
 import OrderComplete from './components/front/order/OrderComplete.vue';
@@ -46,6 +47,11 @@ export const routes = [
         path: '/about',
         name: 'About',
         component: About
+    },
+    {
+        path: '/policy',
+        name: 'Policy',
+        component: Policy
     },
     {
         path: '/reviews',

@@ -282,6 +282,7 @@
                             <li v-for="orderItem in order_list">
                                 <div class="row">
                                     <div class="col-6">
+                                        <button @click="removeOrderItem(orderItem.uid)" class="btn btn-del">&times;</button>
                                         {{ orderItem.number }}
                                     </div>
                                     <div class="col-6 text-end">
@@ -473,6 +474,24 @@
                         document.getElementById('number_region_input').classList.add('border-danger')
                     }
                 }
+            },
+            removeOrderItem(uid) {
+                axios
+                .get(`/api/admin/order-item-del/${uid}`)
+                .then((response => {
+                    this.order_list = this.order_list.filter(function( obj ) {
+                        return obj.uid !== uid
+                    });
+                    this.price_total = this.order_list.reduce((n, {price}) => n + parseInt(price), 0)
+                    if(this.order_list.length == 0) {
+                        this.constructor = true
+                        this.order_fields = false
+                        this.selected_transport = ''
+                        this.selected_type = ''
+                        this.number = ''
+                        this.number_region = ''
+                    }
+                }));
             },
             saveOrder() {
 
