@@ -1641,14 +1641,6 @@ html, body {
     text-align: center;
     letter-spacing: 3.5px;
 }
-@media (max-width: 900px) {
-    .order-plate-preview .type4 .numbers {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        line-height: 77px;
-    }
-}
 .order-plate-preview .type4 .numbers span {
     display: inline-block;
     margin: 0 -5px;
@@ -1742,9 +1734,23 @@ html, body {
     text-align: center;
     letter-spacing: 1.5px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type2_with_flag .numbers {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: 77px;
+    }
+}
 .order-plate-preview .type2_with_flag .numbers span {
     display: inline-block;
     margin: 0 -5px;
+}
+@media (max-width: 900px) {
+    .order-plate-preview .type2_with_flag .numbers span {
+        letter-spacing: 0;
+        margin: 0 1px;
+    }
 }
 .order-plate-preview .type2_with_flag .reg {
     width: 66px;
