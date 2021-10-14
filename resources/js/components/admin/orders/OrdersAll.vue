@@ -43,6 +43,9 @@
                         <ul>
                             <li v-for="orderItem in order.order_items" :key="'orderItem_' + orderItem.id">
                                 <div class="my-2">
+                                    <template v-for="transport in transports">
+                                        <template v-if="transport.id == orderItem.transport"><strong><u>{{ transport.name }}</u></strong><br></template>
+                                    </template>
                                     {{ orderItem.type }}<br>
                                     <template v-if="orderItem.komplekt_type">
                                         + {{ orderItem.komplekt_type }}<br>
@@ -70,6 +73,7 @@
         data() {
             return {
                 orders: [],
+                transports: [],
                 moment: moment,
             }
         },
@@ -79,6 +83,11 @@
             .get('/api/admin/orders')
             .then(response => (
                 this.orders = response.data
+            ))
+            axios
+            .get('/api/admin/transports')
+            .then(response => (
+                this.transports = response.data
             ))
         },
         methods: {

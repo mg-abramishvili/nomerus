@@ -2826,10 +2826,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       orders: [],
+      transports: [],
       moment: moment
     };
   },
@@ -2839,6 +2843,9 @@ __webpack_require__.r(__webpack_exports__);
     this.$parent.subheader = 'Заказы';
     axios.get('/api/admin/orders').then(function (response) {
       return _this.orders = response.data;
+    });
+    axios.get('/api/admin/transports').then(function (response) {
+      return _this.transports = response.data;
     });
   },
   methods: {},
@@ -4366,6 +4373,7 @@ __webpack_require__.r(__webpack_exports__);
       selected_type: {},
       add_komplekt: '',
       selected_komplekt_type: {},
+      selected_komplekt_type_name: '',
       number: '',
       number_region: '',
       bold: false,
@@ -4379,18 +4387,7 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       tel: '',
       email: '',
-      passport: '',
-      company: '',
-      inn: '',
-      kpp: '',
-      ogrn: '',
-      uraddress: '',
-      faktaddress: '',
-      ras_schet: '',
-      bank: '',
-      bik: '',
-      korr: '',
-      director: ''
+      company: ''
     };
   },
   created: function created() {
@@ -4418,17 +4415,7 @@ __webpack_require__.r(__webpack_exports__);
           if (type.namecode == _this.$route.params.type) {
             _this.selected_type = type;
 
-            if (_this.selected_type.komplekt && _this.selected_type.komplekt.length > 0) {
-              _this.selected_komplekt_type = _this.selected_type.komplekt[0];
-              _this.add_komplekt = true;
-            } else {
-              _this.add_komplekt = false;
-              _this.selected_komplekt_type.name = '';
-            }
-
-            _this.price = _this.types[0].cities[0].pivot.price;
-
-            _this.priceCalculate();
+            _this.selectType();
           }
         });
       });
@@ -4442,26 +4429,24 @@ __webpack_require__.r(__webpack_exports__);
         _this2.types = response.data;
         _this2.selected_type = response.data[0];
 
-        if (_this2.selected_type.komplekt && _this2.selected_type.komplekt.length > 0) {
-          _this2.selected_komplekt_type = _this2.selected_type.komplekt[0];
-          _this2.add_komplekt = true;
-        } else {
-          _this2.add_komplekt = false;
-          _this2.selected_komplekt_type.name = '';
-        }
-
-        _this2.price = _this2.types[0].cities[0].pivot.price;
-
-        _this2.priceCalculate();
+        _this2.selectType();
       });
       this.number = '';
       this.number_region = '';
-      this.bold = false, this.noholes = false;
     },
     selectType: function selectType() {
       if (this.selected_type && this.selected_type.id) {
-        if (this.add_komplekt == true) {
-          this.selected_komplekt_type = this.selected_type.komplekt[0];
+        if (this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
+          if (this.selected_type.default_komplekt == true) {
+            this.add_komplekt = true;
+            this.selected_komplekt_type = this.selected_type.komplekt[0];
+          } else {
+            this.add_komplekt = false;
+            this.selected_komplekt_type = '';
+          }
+        } else {
+          this.add_komplekt = false;
+          this.selected_komplekt_type = '';
         }
 
         this.bold = false, this.noholes = false, this.priceCalculate();
@@ -4521,10 +4506,17 @@ __webpack_require__.r(__webpack_exports__);
         //document.getElementById('order-page').scrollIntoView();
         this.constructor = false;
         this.order_fields = true;
+
+        if (!this.selected_komplekt_type) {
+          this.selected_komplekt_type_name = '';
+        } else {
+          this.selected_komplekt_type_name = this.selected_komplekt_type.name;
+        }
+
         axios.post("/api/order-item", {
           transport: this.selected_transport.id,
           type: this.selected_type.name,
-          komplekt_type: this.selected_komplekt_type.name,
+          komplekt_type: this.selected_komplekt_type_name,
           number: this.number + this.number_region,
           bold: this.bold,
           noholes: this.noholes,
@@ -47877,6 +47869,18 @@ var render = function() {
                       "div",
                       { staticClass: "my-2" },
                       [
+                        _vm._l(_vm.transports, function(transport) {
+                          return [
+                            transport.id == orderItem.transport
+                              ? [
+                                  _c("strong", [
+                                    _c("u", [_vm._v(_vm._s(transport.name))])
+                                  ]),
+                                  _c("br")
+                                ]
+                              : _vm._e()
+                          ]
+                        }),
                         _vm._v(
                           "\n                                " +
                             _vm._s(orderItem.type)

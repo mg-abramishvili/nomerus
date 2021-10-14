@@ -292,6 +292,7 @@
 
                 add_komplekt: '',
                 selected_komplekt_type: {},
+                selected_komplekt_type_name: '',
 
                 number: '',
                 number_region: '',
@@ -311,18 +312,7 @@
                 name: '',
                 tel: '',
                 email: '',
-                passport: '',
                 company: '',
-                inn: '',
-                kpp: '',
-                ogrn: '',
-                uraddress: '',
-                faktaddress: '',
-                ras_schet: '',
-                bank: '',
-                bik: '',
-                korr: '',
-                director: '',
             }
         },
         created() {
@@ -348,15 +338,7 @@
                         this.types.forEach((type) => {
                             if(type.namecode == this.$route.params.type) {
                                 this.selected_type = type
-                                if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
-                                    this.selected_komplekt_type = this.selected_type.komplekt[0]
-                                    this.add_komplekt = true
-                                } else {
-                                    this.add_komplekt = false
-                                    this.selected_komplekt_type.name = ''
-                                }
-                                this.price = this.types[0].cities[0].pivot.price
-                                this.priceCalculate()
+                                this.selectType()
                             }
                         })
                     }));
@@ -370,26 +352,24 @@
                 .then((response => {
                     this.types = response.data
                     this.selected_type = response.data[0]
-
-                    if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
-                        this.selected_komplekt_type = this.selected_type.komplekt[0]
-                        this.add_komplekt = true
-                    } else {
-                        this.add_komplekt = false
-                        this.selected_komplekt_type.name = ''
-                    }
-                    this.price = this.types[0].cities[0].pivot.price
-                    this.priceCalculate()
+                    this.selectType()
                 }));
                 this.number = ''
                 this.number_region = ''
-                this.bold = false,
-                this.noholes = false
             },
             selectType() {
                 if(this.selected_type && this.selected_type.id) {
-                    if(this.add_komplekt == true) {
-                        this.selected_komplekt_type = this.selected_type.komplekt[0]
+                    if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
+                        if(this.selected_type.default_komplekt == true) {
+                            this.add_komplekt = true
+                            this.selected_komplekt_type = this.selected_type.komplekt[0]
+                        } else {
+                            this.add_komplekt = false
+                            this.selected_komplekt_type = ''
+                        }
+                    } else {
+                        this.add_komplekt = false
+                        this.selected_komplekt_type = ''
                     }
                     this.bold = false,
                     this.noholes = false,
@@ -449,11 +429,18 @@
                     //document.getElementById('order-page').scrollIntoView();
                     this.constructor = false
                     this.order_fields = true
+
+                    if(!this.selected_komplekt_type) {
+                        this.selected_komplekt_type_name = ''
+                    } else {
+                        this.selected_komplekt_type_name = this.selected_komplekt_type.name
+                    }
+
                     axios
                     .post(`/api/order-item`, {
                             transport: this.selected_transport.id,
                             type: this.selected_type.name,
-                            komplekt_type: this.selected_komplekt_type.name,
+                            komplekt_type: this.selected_komplekt_type_name,
                             number: this.number + this.number_region,
                             bold: this.bold,
                             noholes: this.noholes,

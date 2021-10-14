@@ -12,7 +12,7 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('namecode');
-            $table->boolean('bold');
+            $table->boolean('default_komplekt');
             $table->timestamps();
         });
     }

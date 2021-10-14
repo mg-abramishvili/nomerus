@@ -51,6 +51,8 @@ Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeCont
 
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index');
 
+Route::get('admin/transports','App\Http\Controllers\Admin\TransportController@transports_index');
+
 Route::get('admin/partners','App\Http\Controllers\Admin\PartnerController@index');
 Route::get('admin/leads','App\Http\Controllers\Admin\LeadController@index');
 
