@@ -1452,6 +1452,12 @@ html, body {
     text-align: center;
     letter-spacing: 1.5px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type1_with_flag .numbers {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
 .order-plate-preview .type1_with_flag .numbers span {
     display: inline-block;
     margin: 0 -5px;
@@ -1459,7 +1465,7 @@ html, body {
 @media (max-width: 900px) {
     .order-plate-preview .type1_with_flag .numbers span {
         letter-spacing: 0;
-        margin: 0 -10px;
+        margin: 0;
     }
 }
 .order-plate-preview .type1_with_flag .reg {
