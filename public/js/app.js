@@ -4401,21 +4401,37 @@ __webpack_require__.r(__webpack_exports__);
 
       if (_this.$route.params.transport === 'legkovoy') {
         _this.selected_transport = _this.transports[0];
-
-        _this.selectTransport();
       }
 
       if (_this.$route.params.transport === 'moto') {
         _this.selected_transport = _this.transports[1];
-
-        _this.selectTransport();
       }
 
       if (_this.$route.params.transport === 'pricep') {
         _this.selected_transport = _this.transports[2];
-
-        _this.selectTransport();
       }
+
+      axios.get("/api/".concat(_this.$parent.current_city.id, "/transport/").concat(_this.selected_transport.id, "/types")).then(function (response) {
+        _this.types = response.data;
+
+        _this.types.forEach(function (type) {
+          if (type.namecode == _this.$route.params.type) {
+            _this.selected_type = type;
+
+            if (_this.selected_type.komplekt && _this.selected_type.komplekt.length > 0) {
+              _this.selected_komplekt_type = _this.selected_type.komplekt[0];
+              _this.add_komplekt = true;
+            } else {
+              _this.add_komplekt = false;
+              _this.selected_komplekt_type.name = '';
+            }
+
+            _this.price = _this.types[0].cities[0].pivot.price;
+
+            _this.priceCalculate();
+          }
+        });
+      });
     });
   },
   methods: {
@@ -4424,12 +4440,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/".concat(this.$parent.current_city.id, "/transport/").concat(this.selected_transport.id, "/types")).then(function (response) {
         _this2.types = response.data;
-
-        _this2.types.forEach(function (type) {
-          if (type.namecode == _this2.$route.params.type) {
-            _this2.selected_type = type;
-          }
-        });
+        _this2.selected_type = response.data[0];
 
         if (_this2.selected_type.komplekt && _this2.selected_type.komplekt.length > 0) {
           _this2.selected_komplekt_type = _this2.selected_type.komplekt[0];

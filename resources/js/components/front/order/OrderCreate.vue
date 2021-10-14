@@ -333,16 +333,34 @@
 
                     if(this.$route.params.transport === 'legkovoy') {
                         this.selected_transport =  this.transports[0]
-                        this.selectTransport()
                     }
                     if(this.$route.params.transport === 'moto') {
                         this.selected_transport =  this.transports[1]
-                        this.selectTransport()
                     }
                     if(this.$route.params.transport === 'pricep') {
                         this.selected_transport =  this.transports[2]
-                        this.selectTransport()
                     }
+
+                    axios
+                    .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
+                    .then((response => {
+                        this.types = response.data
+                        this.types.forEach((type) => {
+                            if(type.namecode == this.$route.params.type) {
+                                this.selected_type = type
+                                if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
+                                    this.selected_komplekt_type = this.selected_type.komplekt[0]
+                                    this.add_komplekt = true
+                                } else {
+                                    this.add_komplekt = false
+                                    this.selected_komplekt_type.name = ''
+                                }
+                                this.price = this.types[0].cities[0].pivot.price
+                                this.priceCalculate()
+                            }
+                        })
+                    }));
+
                 }));
         },
         methods: {
@@ -351,12 +369,7 @@
                 .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
                 .then((response => {
                     this.types = response.data
-
-                    this.types.forEach((type) => {
-                        if(type.namecode == this.$route.params.type) {
-                            this.selected_type = type
-                        }
-                    })
+                    this.selected_type = response.data[0]
 
                     if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
                         this.selected_komplekt_type = this.selected_type.komplekt[0]
