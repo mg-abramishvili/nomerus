@@ -34,7 +34,11 @@ class OrderItemController extends Controller
         $orderItem = new OrderItem();
         $orderItem->transport = $data['transport'];
         $orderItem->type = $data['type'];
-        
+        if($data['komplekt_type']) {
+            $orderItem->komplekt_type = $data['komplekt_type'];
+        } else {
+            $orderItem->komplekt_type = NULL;
+        }
         $orderItem->bold = $data['bold'];
         $orderItem->noholes = $data['noholes'];
         $orderItem->number = $data['number'];
