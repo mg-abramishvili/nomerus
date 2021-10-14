@@ -177,7 +177,7 @@
                             <div v-if="text && text.company_text" v-html="text.privacy_policy.split('***').join('<br><br>')"></div>
                         </div>
                         <div class="text-center">
-                            <button @click="saveLead()" class="btn btn-standard">Отправить заявку</button>
+                            <button v-if="saveLead_button" @click="saveLead()" class="btn btn-standard">Отправить заявку</button>
                         </div>
                     </div>
                 </div>
@@ -217,6 +217,7 @@
                 lead_tel: '',
                 lead_city: '',
                 lead_success: false,
+                saveLead_button: true,
 
                 show_policy: false,
             }
@@ -305,6 +306,7 @@
             },
             saveLead() {
                 if(this.lead_name && this.lead_tel && this.lead_city) {
+                this.saveLead_button = false
                 axios
                     .post(`/api/lead`, {
                             name: this.lead_name,
@@ -314,7 +316,8 @@
                     .then(response => (
                         this.lead_name = '',
                         this.lead_tel = '',
-                        this.lead_success = true
+                        this.lead_success = true,
+                        this.saveLead_button = true
                     ))
                     .catch((error) => {
                         if(error.response) {

@@ -3480,6 +3480,7 @@ __webpack_require__.r(__webpack_exports__);
       lead_tel: '',
       lead_city: '',
       lead_success: false,
+      saveLead_button: true,
       show_policy: false
     };
   },
@@ -3565,12 +3566,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.lead_name && this.lead_tel && this.lead_city) {
+        this.saveLead_button = false;
         axios.post("/api/lead", {
           name: this.lead_name,
           tel: this.lead_tel,
           city: this.lead_city
         }).then(function (response) {
-          return _this3.lead_name = '', _this3.lead_tel = '', _this3.lead_success = true;
+          return _this3.lead_name = '', _this3.lead_tel = '', _this3.lead_success = true, _this3.saveLead_button = true;
         })["catch"](function (error) {
           if (error.response) {
             for (var key in error.response.data.errors) {
@@ -49311,18 +49313,20 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-center" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-standard",
-                        on: {
-                          click: function($event) {
-                            return _vm.saveLead()
-                          }
-                        }
-                      },
-                      [_vm._v("Отправить заявку")]
-                    )
+                    _vm.saveLead_button
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-standard",
+                            on: {
+                              click: function($event) {
+                                return _vm.saveLead()
+                              }
+                            }
+                          },
+                          [_vm._v("Отправить заявку")]
+                        )
+                      : _vm._e()
                   ])
                 ])
               ])

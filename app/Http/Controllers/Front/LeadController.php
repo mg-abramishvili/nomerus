@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Lead;
 use App\Http\Controllers\Controller;
+use App\Mail\LeadMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
@@ -23,5 +25,7 @@ class LeadController extends Controller
         $lead->tel = $data['tel'];
         $lead->city = $data['city'];
         $lead->save();
+        $lead = Lead::find($lead->id);
+        Mail::to('mg@abramishvili.net')->send(new LeadMail($lead));
     }
 }
