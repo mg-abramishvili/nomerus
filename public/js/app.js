@@ -4424,7 +4424,12 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/".concat(this.$parent.current_city.id, "/transport/").concat(this.selected_transport.id, "/types")).then(function (response) {
         _this2.types = response.data;
-        _this2.selected_type = _this2.types[0];
+
+        _this2.types.forEach(function (type) {
+          if (type.namecode == _this2.$route.params.type) {
+            _this2.selected_type = type;
+          }
+        });
 
         if (_this2.selected_type.komplekt && _this2.selected_type.komplekt.length > 0) {
           _this2.selected_komplekt_type = _this2.selected_type.komplekt[0];
@@ -4910,7 +4915,7 @@ var routes = [{
   name: 'Reviews',
   component: _components_front_reviews_Reviews_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: '/order/:kto/:transport',
+  path: '/order/:kto/:transport/:type',
   name: 'OrderCreate',
   component: _components_front_order_OrderCreate_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
@@ -49345,6 +49350,7 @@ var render = function() {
           "div",
           { staticClass: "home-carousel-inner" },
           [
+            _vm.$parent.current_city &&
             _vm.$parent.current_city.name &&
             _vm.$parent.current_city.name.length > 0
               ? _c("h1", [
@@ -49377,7 +49383,11 @@ var render = function() {
                 attrs: {
                   to: {
                     name: "OrderCreate",
-                    params: { kto: "fz", transport: "legkovoy" }
+                    params: {
+                      kto: "fz",
+                      transport: "legkovoy",
+                      type: "type1_with_flag"
+                    }
                   }
                 }
               },
@@ -49424,7 +49434,11 @@ var render = function() {
                               attrs: {
                                 to: {
                                   name: "OrderCreate",
-                                  params: { kto: "fz", transport: service.type }
+                                  params: {
+                                    kto: "fz",
+                                    transport: service.type,
+                                    type: service.types[0].namecode
+                                  }
                                 }
                               }
                             },
@@ -49557,7 +49571,8 @@ var render = function() {
                       name: "OrderCreate",
                       params: {
                         kto: _vm.banner_form_client_type,
-                        transport: _vm.banner_form_transport
+                        transport: _vm.banner_form_transport,
+                        type: "type1_with_flag"
                       }
                     }
                   }
@@ -49701,22 +49716,26 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "home-about" }, [
       _c("div", { staticClass: "container" }, [
-        _c(
-          "h2",
-          { staticClass: "home-block-title" },
-          [
-            _vm._v("Изготовление автомобильных номеров \n                "),
-            _vm.$parent.current_city.name.substr(-1) === "а"
-              ? [
-                  _vm._v(
-                    "в " +
-                      _vm._s(_vm.$parent.current_city.name.slice(0, -1) + "е")
-                  )
-                ]
-              : [_vm._v("в " + _vm._s(_vm.$parent.current_city.name + "е"))]
-          ],
-          2
-        ),
+        _vm.$parent.current_city && _vm.$parent.current_city.name
+          ? _c(
+              "h2",
+              { staticClass: "home-block-title" },
+              [
+                _vm._v("Изготовление автомобильных номеров \n                "),
+                _vm.$parent.current_city.name.substr(-1) === "а"
+                  ? [
+                      _vm._v(
+                        "в " +
+                          _vm._s(
+                            _vm.$parent.current_city.name.slice(0, -1) + "е"
+                          )
+                      )
+                    ]
+                  : [_vm._v("в " + _vm._s(_vm.$parent.current_city.name + "е"))]
+              ],
+              2
+            )
+          : _vm._e(),
         _vm._v(" "),
         _vm.text && _vm.text.company_text
           ? _c("div", {

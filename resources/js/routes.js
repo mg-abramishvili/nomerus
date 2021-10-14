@@ -59,7 +59,7 @@ export const routes = [
         component: Reviews
     },
     {
-        path: '/order/:kto/:transport',
+        path: '/order/:kto/:transport/:type',
         name: 'OrderCreate',
         component: OrderCreate
     },

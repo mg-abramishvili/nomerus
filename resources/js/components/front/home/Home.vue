@@ -3,12 +3,12 @@
         <div class="home-carousel">
             <div class="container">
                 <div class="home-carousel-inner">
-                    <h1 v-if="$parent.current_city.name && $parent.current_city.name.length > 0">Изготовление <br/>госномеров 
+                    <h1 v-if="$parent.current_city && $parent.current_city.name && $parent.current_city.name.length > 0">Изготовление <br/>госномеров 
                         <strong v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</strong>
                         <strong v-else>в {{ $parent.current_city.name + 'е' }}</strong>
                     </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
-                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy'} }" class="btn btn-standard">Заказать номер</router-link>
+                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy', type: 'type1_with_flag'} }" class="btn btn-standard">Заказать номер</router-link>
                 </div>
                 <div class="home-carousel-img"></div>
             </div>
@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="home-services-item-image" v-bind:style="{ 'background-image': 'url(' + service.image + ')' }">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type} }" class="btn btn-standard">Заказать</router-link>
+                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, type: service.types[0].namecode} }" class="btn btn-standard">Заказать</router-link>
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -62,7 +62,7 @@
                         </select>
                     </div>
                     <div class="col-12 col-md-4">
-                        <router-link :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport} }" class="btn btn-standard">Продолжить</router-link>
+                        <router-link :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport, type: 'type1_with_flag'} }" class="btn btn-standard">Продолжить</router-link>
                     </div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
 
         <div class="home-about">
             <div class="container">
-                <h2 class="home-block-title">Изготовление автомобильных номеров 
+                <h2 v-if="$parent.current_city && $parent.current_city.name" class="home-block-title">Изготовление автомобильных номеров 
                     <template v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</template>
                     <template v-else>в {{ $parent.current_city.name + 'е' }}</template>
                 </h2>

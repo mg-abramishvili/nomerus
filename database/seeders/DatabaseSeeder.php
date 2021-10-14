@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             GallerySeeder::class,
             TextSeeder::class,
             PartnerSeeder::class,
+            ServiceTypeSeeder::class,
         ]);
     }
 }

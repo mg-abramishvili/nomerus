@@ -351,7 +351,13 @@
                 .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
                 .then((response => {
                     this.types = response.data
-                    this.selected_type = this.types[0]
+
+                    this.types.forEach((type) => {
+                        if(type.namecode == this.$route.params.type) {
+                            this.selected_type = type
+                        }
+                    })
+
                     if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
                         this.selected_komplekt_type = this.selected_type.komplekt[0]
                         this.add_komplekt = true

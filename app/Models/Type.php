@@ -23,4 +23,9 @@ class Type extends Model
     {
         return $this->belongsToMany('App\Models\City')->withPivot(['price', 'min_price', 'max_price']);
     }
+
+    public function services()
+    {
+        return $this->belongsToMany('App\Models\Service');
+    }
 }
