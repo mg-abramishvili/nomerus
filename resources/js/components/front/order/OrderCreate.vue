@@ -147,67 +147,6 @@
                             </div>
                         </div>
 
-                        <div v-if="add_komplekt" class="order-form-item" style="display:none;">
-                            <div class="row align-items-center">
-                                <div class="col-12 col-md-6">
-                                    <template v-if="selected_transport && selected_type.komplekt && selected_type.komplekt.length > 0">
-                                        <label class="form-label mb-1">Тип номера</label>
-                                        <select v-model="selected_komplekt_type" @change="selectKomplektType()" class="form-select">
-                                            <option v-for="type in selected_type.komplekt" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
-                                        </select>
-                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
-                                            <input v-model="bold" @change="changeBold()" class="form-check-input" type="checkbox" value="1" id="boldSwitch">
-                                            <label class="form-check-label" for="boldSwitch">жирный шрифт</label>
-                                        </div>
-                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="form-check form-switch mt-2">
-                                            <input v-model="noholes" @change="changeNoholes()" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
-                                            <label class="form-check-label" for="holesSwitch">без отверстий</label>
-                                        </div>
-                                    </template>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="order-plate-preview">
-                                        <div v-if="selected_komplekt_type.namecode === 'type1_with_flag' || selected_komplekt_type.namecode === 'type1_without_flag'" class="type1_with_flag" :class="{ 'fw-bold' : bold == true}">               
-                                            <div v-if="number && number.length > 0" class="numbers">
-                                                <span>{{ number.slice(0, 1) }}</span>
-                                                <span>{{ number.slice(1, 4) }}</span>
-                                                <span>{{ number.slice(4, 6) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                                <span>
-                                                    {{ number_region }}
-                                                </span>
-                                                <div class="reg-inner">
-                                                    <i>RUS</i>
-                                                    <img v-if="selected_komplekt_type.namecode === 'type1_with_flag'" src="/img/rus.svg"/>
-                                                </div>
-                                            </div>
-                                            <div v-if="noholes == false" class="holes hole1"></div>
-                                            <div v-if="noholes == false" class="holes hole2"></div>
-                                        </div>
-                                        <div v-if="selected_komplekt_type.namecode === 'type1a' || selected_komplekt_type.namecode === 'type1a_without_flag'" class="type1a">               
-                                            <div v-if="number && number.length > 0" class="numbers">
-                                                <span>{{ number.slice(0, 1) }}</span>
-                                                <span>{{ number.slice(1, 4) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0" class="letters">
-                                                <span>{{ number.slice(4, 6) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                                <span>
-                                                    {{ number_region }}
-                                                </span>
-                                                <div class="reg-inner">
-                                                    <i>RUS</i>
-                                                    <img v-if="selected_komplekt_type.namecode === 'type1a'" src="/img/rus.svg"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="text-center mb-4">
                             <h5 v-if="selected_transport && selected_transport.id" class="mt-4 text-center">{{ price }} руб.</h5>
                             <button @click="saveOrderItem()" class="btn btn-standard mt-1">Добавить к заказу</button>
@@ -363,13 +302,16 @@
                         if(this.selected_type.default_komplekt == true) {
                             this.add_komplekt = true
                             this.selected_komplekt_type = this.selected_type.komplekt[0]
+                            this.selected_komplekt_type_name = this.selected_type.komplekt[0].name
                         } else {
                             this.add_komplekt = false
                             this.selected_komplekt_type = ''
+                            this.selected_komplekt_type_name = ''
                         }
                     } else {
                         this.add_komplekt = false
                         this.selected_komplekt_type = ''
+                        this.selected_komplekt_type_name = ''
                     }
                     this.bold = false,
                     this.noholes = false,
@@ -379,9 +321,11 @@
             addKomplekt() {
                 if(this.add_komplekt == true) {
                     this.selected_komplekt_type = this.selected_type.komplekt[0]
+                    this.selected_komplekt_type_name = this.selected_type.komplekt[0].name
                     this.priceCalculate()
                 } else {
                     this.selected_komplekt_type = ''
+                    this.selected_komplekt_type_name = ''
                     this.price = this.selected_type.cities[0].pivot.price
                     this.priceCalculate()
                 }
@@ -429,12 +373,6 @@
                     //document.getElementById('order-page').scrollIntoView();
                     this.constructor = false
                     this.order_fields = true
-
-                    if(this.selected_komplekt_type) {
-                        this.selected_komplekt_type_name = this.selected_komplekt_type.name
-                    } else {
-                        this.selected_komplekt_type_name = ''
-                    }
 
                     axios
                     .post(`/api/order-item`, {
