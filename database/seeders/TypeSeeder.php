@@ -14,49 +14,49 @@ class TypeSeeder extends Seeder
         DB::table('types')->insert([
             [
                 'id' => 1,
-                'name' => 'Тип 1',
+                'name' => 'Обычный номер',
                 'namecode' => 'type1_with_flag',
                 'bold' => 1
             ],
             [
                 'id' => 2,
-                'name' => 'Тип 1 (без флага)',
+                'name' => 'Номер без флага',
                 'namecode' => 'type1_without_flag',
                 'bold' => 1
             ],
             [
                 'id' => 3,
-                'name' => 'Тип 1А',
+                'name' => 'Квадратный номер',
                 'namecode' => 'type1a',
                 'bold' => 0
             ],
             [
                 'id' => 4,
-                'name' => 'Тип 1А (без флага)',
+                'name' => 'Квадратный (без флага)',
                 'namecode' => 'type1a_without_flag',
                 'bold' => 0
             ],
             [
                 'id' => 5,
-                'name' => 'Тип 4',
+                'name' => 'Обычный номер',
                 'namecode' => 'type4mini',
                 'bold' => 0
             ],
             [
                 'id' => 6,
-                'name' => 'Тип 4 (без флага)',
+                'name' => 'Номер без флага',
                 'namecode' => 'type4mini_without_flag',
                 'bold' => 0
             ],
             [
                 'id' => 7,
-                'name' => 'Тип 2',
+                'name' => 'Обычный номер',
                 'namecode' => 'type2_with_flag',
                 'bold' => 1
             ],
             [
                 'id' => 8,
-                'name' => 'Тип 2 (без флага)',
+                'name' => 'Номер без флага',
                 'namecode' => 'type2_without_flag',
                 'bold' => 1
             ],

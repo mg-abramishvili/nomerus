@@ -7,7 +7,7 @@
                 <div class="col-12 col-md-7">
                     <div v-if="constructor" class="order-constructor">
                         <div class="row">
-                            <div class="col-12 col-md-5">
+                            <div class="col-12 col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label mb-1">Транспорт</label>
                                     <select v-model="selected_transport" @change="selectTransport()" class="form-select form-select-lg">
@@ -33,7 +33,7 @@
                                     <input disabled placeholder="а000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-2">
                                 <div v-if="selected_transport && selected_transport.id" class="mb-3">
                                     <label id="number_region_label" class="form-label mb-1">Регион</label>
                                     <input v-model="number_region" v-maska="{ mask: '###', tokens: { '###': { pattern: /[0-9]/ }}}" id="number_region_input" class="form-control form-control-lg">
@@ -49,7 +49,7 @@
                             <div class="row align-items-center">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label mb-1">Тип номера</label>
-                                    <select v-model="selected_type" @change="selectType()" class="form-select">
+                                    <select v-model="selected_type" @change="selectType()" class="form-select mb-3">
                                         <option v-for="type in types" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
                                     </select>
                                     <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag' || selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="form-check form-switch mt-2">
@@ -59,6 +59,14 @@
                                     <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag' || selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="form-check form-switch mt-2">
                                         <input v-model="noholes" @change="changeNoholes()" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
                                         <label class="form-check-label" for="holesSwitch">без отверстий</label>
+                                    </div>
+                                    <div v-if="selected_type && selected_type.id && selected_type.komplekt && selected_type.komplekt.length > 0" class="form-check form-switch mt-2">
+                                        <input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="komplSwitch">
+                                        <label class="form-check-label" for="komplSwitch">комплект (2 номера) <small v-if="selected_komplekt_type">↳ {{ selected_type.name }}<br>↳ {{ selected_komplekt_type.name }}</small></label>
+                                        <!--<input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Заказать комплект (+ 1шт.)
+                                        </label>-->
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -139,14 +147,7 @@
                             </div>
                         </div>
 
-                        <div v-if="selected_type && selected_type.id && selected_type.komplekt && selected_type.komplekt.length > 0" class="form-check mb-3">
-                            <input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Заказать комплект (+ 1шт.)
-                            </label>
-                        </div>
-
-                        <div v-if="add_komplekt" class="order-form-item">
+                        <div v-if="add_komplekt" class="order-form-item" style="display:none;">
                             <div class="row align-items-center">
                                 <div class="col-12 col-md-6">
                                     <template v-if="selected_transport && selected_type.komplekt && selected_type.komplekt.length > 0">
@@ -405,11 +406,13 @@
                 .then(response => (
                     this.types = response.data,
                     this.selected_type = this.types[0],
-                    this.price = this.types[0].cities[0].pivot.price
+                    this.selected_komplekt_type = this.selected_type.komplekt[0],
+                    this.price = this.types[0].cities[0].pivot.price,
+                    this.add_komplekt = true,
+                    this.priceCalculate()
                 ));
                 this.number = ''
                 this.number_region = ''
-                this.add_komplekt = false
             },
             selectType() {
                 if(this.selected_type && this.selected_type.id) {
@@ -713,7 +716,7 @@
                 this.selected_type = ''
                 this.number = ''
                 this.number_region = ''
-                this.add_komplekt = false
+                this.add_komplekt = true
 
                 this.constructor = true
                 this.order_fields = false
@@ -728,7 +731,7 @@
                 this.number = ''
                 this.number_region = ''
                 this.price = ''
-                this.add_komplekt = false
+                this.add_komplekt = true
 
                 this.constructor = true
                 this.order_fields = false

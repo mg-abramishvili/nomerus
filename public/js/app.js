@@ -4436,6 +4436,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -4506,11 +4507,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("/api/".concat(this.$parent.current_city.id, "/transport/").concat(this.selected_transport.id, "/types")).then(function (response) {
-        return _this2.types = response.data, _this2.selected_type = _this2.types[0], _this2.price = _this2.types[0].cities[0].pivot.price;
+        return _this2.types = response.data, _this2.selected_type = _this2.types[0], _this2.selected_komplekt_type = _this2.selected_type.komplekt[0], _this2.price = _this2.types[0].cities[0].pivot.price, _this2.add_komplekt = true, _this2.priceCalculate();
       });
       this.number = '';
       this.number_region = '';
-      this.add_komplekt = false;
     },
     selectType: function selectType() {
       if (this.selected_type && this.selected_type.id) {
@@ -4821,7 +4821,7 @@ __webpack_require__.r(__webpack_exports__);
       this.selected_type = '';
       this.number = '';
       this.number_region = '';
-      this.add_komplekt = false;
+      this.add_komplekt = true;
       this.constructor = true;
       this.order_fields = false;
     }
@@ -4835,7 +4835,7 @@ __webpack_require__.r(__webpack_exports__);
       _this6.number = '';
       _this6.number_region = '';
       _this6.price = '';
-      _this6.add_komplekt = false;
+      _this6.add_komplekt = true;
       _this6.constructor = true;
       _this6.order_fields = false;
       _this6.order_list = [];
@@ -50236,7 +50236,7 @@ var render = function() {
             _vm.constructor
               ? _c("div", { staticClass: "order-constructor" }, [
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-12 col-md-5" }, [
+                    _c("div", { staticClass: "col-12 col-md-6" }, [
                       _c("div", { staticClass: "mb-4" }, [
                         _c("label", { staticClass: "form-label mb-1" }, [
                           _vm._v("Транспорт")
@@ -50470,7 +50470,7 @@ var render = function() {
                           ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-12 col-md-3" }, [
+                    _c("div", { staticClass: "col-12 col-md-2" }, [
                       _vm.selected_transport && _vm.selected_transport.id
                         ? _c("div", { staticClass: "mb-3" }, [
                             _c(
@@ -50546,7 +50546,7 @@ var render = function() {
                                     expression: "selected_type"
                                   }
                                 ],
-                                staticClass: "form-select",
+                                staticClass: "form-select mb-3",
                                 on: {
                                   change: [
                                     function($event) {
@@ -50725,6 +50725,97 @@ var render = function() {
                                         attrs: { for: "holesSwitch" }
                                       },
                                       [_vm._v("без отверстий")]
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.selected_type &&
+                            _vm.selected_type.id &&
+                            _vm.selected_type.komplekt &&
+                            _vm.selected_type.komplekt.length > 0
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-check form-switch mt-2"
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.add_komplekt,
+                                          expression: "add_komplekt"
+                                        }
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: {
+                                        type: "checkbox",
+                                        value: "1",
+                                        id: "komplSwitch"
+                                      },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.add_komplekt)
+                                          ? _vm._i(_vm.add_komplekt, "1") > -1
+                                          : _vm.add_komplekt
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.add_komplekt,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = "1",
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.add_komplekt = $$a.concat(
+                                                    [$$v]
+                                                  ))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.add_komplekt = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.add_komplekt = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.addKomplekt()
+                                          }
+                                        ]
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "form-check-label",
+                                        attrs: { for: "komplSwitch" }
+                                      },
+                                      [
+                                        _vm._v("комплект (2 номера) "),
+                                        _vm.selected_komplekt_type
+                                          ? _c("small", [
+                                              _vm._v(
+                                                "↳ " +
+                                                  _vm._s(_vm.selected_type.name)
+                                              ),
+                                              _c("br"),
+                                              _vm._v(
+                                                "↳ " +
+                                                  _vm._s(
+                                                    _vm.selected_komplekt_type
+                                                      .name
+                                                  )
+                                              )
+                                            ])
+                                          : _vm._e()
+                                      ]
                                     )
                                   ]
                                 )
@@ -51033,467 +51124,447 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.selected_type &&
-                  _vm.selected_type.id &&
-                  _vm.selected_type.komplekt &&
-                  _vm.selected_type.komplekt.length > 0
-                    ? _c("div", { staticClass: "form-check mb-3" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.add_komplekt,
-                              expression: "add_komplekt"
-                            }
-                          ],
-                          staticClass: "form-check-input",
-                          attrs: {
-                            type: "checkbox",
-                            value: "1",
-                            id: "flexCheckDefault"
-                          },
-                          domProps: {
-                            checked: Array.isArray(_vm.add_komplekt)
-                              ? _vm._i(_vm.add_komplekt, "1") > -1
-                              : _vm.add_komplekt
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$a = _vm.add_komplekt,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = "1",
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      (_vm.add_komplekt = $$a.concat([$$v]))
-                                  } else {
-                                    $$i > -1 &&
-                                      (_vm.add_komplekt = $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1)))
-                                  }
-                                } else {
-                                  _vm.add_komplekt = $$c
-                                }
-                              },
-                              function($event) {
-                                return _vm.addKomplekt()
-                              }
-                            ]
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-check-label",
-                            attrs: { for: "flexCheckDefault" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Заказать комплект (+ 1шт.)\n                        "
-                            )
-                          ]
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
                   _vm.add_komplekt
-                    ? _c("div", { staticClass: "order-form-item" }, [
-                        _c("div", { staticClass: "row align-items-center" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-12 col-md-6" },
-                            [
-                              _vm.selected_transport &&
-                              _vm.selected_type.komplekt &&
-                              _vm.selected_type.komplekt.length > 0
-                                ? [
-                                    _c(
-                                      "label",
-                                      { staticClass: "form-label mb-1" },
-                                      [_vm._v("Тип номера")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "select",
-                                      {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.selected_komplekt_type,
-                                            expression: "selected_komplekt_type"
-                                          }
-                                        ],
-                                        staticClass: "form-select",
-                                        on: {
-                                          change: [
-                                            function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.selected_komplekt_type = $event
-                                                .target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            },
-                                            function($event) {
-                                              return _vm.selectKomplektType()
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      _vm._l(
-                                        _vm.selected_type.komplekt,
-                                        function(type) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: "type_" + type.id,
-                                              domProps: { value: type }
-                                            },
-                                            [_vm._v(_vm._s(type.name))]
-                                          )
-                                        }
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "order-form-item",
+                          staticStyle: { display: "none" }
+                        },
+                        [
+                          _c("div", { staticClass: "row align-items-center" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-6" },
+                              [
+                                _vm.selected_transport &&
+                                _vm.selected_type.komplekt &&
+                                _vm.selected_type.komplekt.length > 0
+                                  ? [
+                                      _c(
+                                        "label",
+                                        { staticClass: "form-label mb-1" },
+                                        [_vm._v("Тип номера")]
                                       ),
-                                      0
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.selected_komplekt_type.namecode ===
-                                      "type1_with_flag" ||
-                                    _vm.selected_komplekt_type.namecode ===
-                                      "type1_without_flag"
-                                      ? _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check form-switch mt-2"
-                                          },
-                                          [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.bold,
-                                                  expression: "bold"
-                                                }
-                                              ],
-                                              staticClass: "form-check-input",
-                                              attrs: {
-                                                type: "checkbox",
-                                                value: "1",
-                                                id: "boldSwitch"
-                                              },
-                                              domProps: {
-                                                checked: Array.isArray(_vm.bold)
-                                                  ? _vm._i(_vm.bold, "1") > -1
-                                                  : _vm.bold
-                                              },
-                                              on: {
-                                                change: [
-                                                  function($event) {
-                                                    var $$a = _vm.bold,
-                                                      $$el = $event.target,
-                                                      $$c = $$el.checked
-                                                        ? true
-                                                        : false
-                                                    if (Array.isArray($$a)) {
-                                                      var $$v = "1",
-                                                        $$i = _vm._i($$a, $$v)
-                                                      if ($$el.checked) {
-                                                        $$i < 0 &&
-                                                          (_vm.bold = $$a.concat(
-                                                            [$$v]
-                                                          ))
-                                                      } else {
-                                                        $$i > -1 &&
-                                                          (_vm.bold = $$a
-                                                            .slice(0, $$i)
-                                                            .concat(
-                                                              $$a.slice($$i + 1)
-                                                            ))
-                                                      }
-                                                    } else {
-                                                      _vm.bold = $$c
+                                      _vm._v(" "),
+                                      _c(
+                                        "select",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.selected_komplekt_type,
+                                              expression:
+                                                "selected_komplekt_type"
+                                            }
+                                          ],
+                                          staticClass: "form-select",
+                                          on: {
+                                            change: [
+                                              function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
                                                     }
-                                                  },
-                                                  function($event) {
-                                                    return _vm.changeBold()
-                                                  }
-                                                ]
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.selected_komplekt_type = $event
+                                                  .target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              },
+                                              function($event) {
+                                                return _vm.selectKomplektType()
                                               }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
+                                            ]
+                                          }
+                                        },
+                                        _vm._l(
+                                          _vm.selected_type.komplekt,
+                                          function(type) {
+                                            return _c(
+                                              "option",
                                               {
-                                                staticClass: "form-check-label",
-                                                attrs: { for: "boldSwitch" }
+                                                key: "type_" + type.id,
+                                                domProps: { value: type }
                                               },
-                                              [_vm._v("жирный шрифт")]
+                                              [_vm._v(_vm._s(type.name))]
                                             )
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.selected_komplekt_type.namecode ===
-                                      "type1_with_flag" ||
-                                    _vm.selected_komplekt_type.namecode ===
-                                      "type1_without_flag"
-                                      ? _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-check form-switch mt-2"
-                                          },
-                                          [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.noholes,
-                                                  expression: "noholes"
-                                                }
-                                              ],
-                                              staticClass: "form-check-input",
-                                              attrs: {
-                                                type: "checkbox",
-                                                value: "1",
-                                                id: "holesSwitch"
-                                              },
-                                              domProps: {
-                                                checked: Array.isArray(
-                                                  _vm.noholes
-                                                )
-                                                  ? _vm._i(_vm.noholes, "1") >
-                                                    -1
-                                                  : _vm.noholes
-                                              },
-                                              on: {
-                                                change: [
-                                                  function($event) {
-                                                    var $$a = _vm.noholes,
-                                                      $$el = $event.target,
-                                                      $$c = $$el.checked
-                                                        ? true
-                                                        : false
-                                                    if (Array.isArray($$a)) {
-                                                      var $$v = "1",
-                                                        $$i = _vm._i($$a, $$v)
-                                                      if ($$el.checked) {
-                                                        $$i < 0 &&
-                                                          (_vm.noholes = $$a.concat(
-                                                            [$$v]
-                                                          ))
-                                                      } else {
-                                                        $$i > -1 &&
-                                                          (_vm.noholes = $$a
-                                                            .slice(0, $$i)
-                                                            .concat(
-                                                              $$a.slice($$i + 1)
-                                                            ))
-                                                      }
-                                                    } else {
-                                                      _vm.noholes = $$c
-                                                    }
-                                                  },
-                                                  function($event) {
-                                                    return _vm.changeNoholes()
-                                                  }
-                                                ]
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass: "form-check-label",
-                                                attrs: { for: "holesSwitch" }
-                                              },
-                                              [_vm._v("без отверстий")]
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                : _vm._e()
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-12 col-md-6" }, [
-                            _c("div", { staticClass: "order-plate-preview" }, [
-                              _vm.selected_komplekt_type.namecode ===
-                                "type1_with_flag" ||
-                              _vm.selected_komplekt_type.namecode ===
-                                "type1_without_flag"
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass: "type1_with_flag",
-                                      class: { "fw-bold": _vm.bold == true }
-                                    },
-                                    [
-                                      _vm.number && _vm.number.length > 0
+                                          }
+                                        ),
+                                        0
+                                      ),
+                                      _vm._v(" "),
+                                      _vm.selected_komplekt_type.namecode ===
+                                        "type1_with_flag" ||
+                                      _vm.selected_komplekt_type.namecode ===
+                                        "type1_without_flag"
                                         ? _c(
                                             "div",
-                                            { staticClass: "numbers" },
+                                            {
+                                              staticClass:
+                                                "form-check form-switch mt-2"
+                                            },
                                             [
-                                              _c("span", [
-                                                _vm._v(
-                                                  _vm._s(_vm.number.slice(0, 1))
-                                                )
-                                              ]),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.bold,
+                                                    expression: "bold"
+                                                  }
+                                                ],
+                                                staticClass: "form-check-input",
+                                                attrs: {
+                                                  type: "checkbox",
+                                                  value: "1",
+                                                  id: "boldSwitch"
+                                                },
+                                                domProps: {
+                                                  checked: Array.isArray(
+                                                    _vm.bold
+                                                  )
+                                                    ? _vm._i(_vm.bold, "1") > -1
+                                                    : _vm.bold
+                                                },
+                                                on: {
+                                                  change: [
+                                                    function($event) {
+                                                      var $$a = _vm.bold,
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = "1",
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            (_vm.bold = $$a.concat(
+                                                              [$$v]
+                                                            ))
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            (_vm.bold = $$a
+                                                              .slice(0, $$i)
+                                                              .concat(
+                                                                $$a.slice(
+                                                                  $$i + 1
+                                                                )
+                                                              ))
+                                                        }
+                                                      } else {
+                                                        _vm.bold = $$c
+                                                      }
+                                                    },
+                                                    function($event) {
+                                                      return _vm.changeBold()
+                                                    }
+                                                  ]
+                                                }
+                                              }),
                                               _vm._v(" "),
-                                              _c("span", [
-                                                _vm._v(
-                                                  _vm._s(_vm.number.slice(1, 4))
-                                                )
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("span", [
-                                                _vm._v(
-                                                  _vm._s(_vm.number.slice(4, 6))
-                                                )
-                                              ])
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "form-check-label",
+                                                  attrs: { for: "boldSwitch" }
+                                                },
+                                                [_vm._v("жирный шрифт")]
+                                              )
                                             ]
                                           )
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      _vm.number &&
-                                      _vm.number.length > 0 &&
-                                      _vm.number_region &&
-                                      _vm.number_region.length > 0
-                                        ? _c("div", { staticClass: "reg" }, [
-                                            _c("span", [
-                                              _vm._v(
-                                                "\n                                                " +
-                                                  _vm._s(_vm.number_region) +
-                                                  "\n                                            "
-                                              )
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "reg-inner" },
-                                              [
-                                                _c("i", [_vm._v("RUS")]),
-                                                _vm._v(" "),
-                                                _vm.selected_komplekt_type
-                                                  .namecode ===
-                                                "type1_with_flag"
-                                                  ? _c("img", {
-                                                      attrs: {
-                                                        src: "/img/rus.svg"
+                                      _vm.selected_komplekt_type.namecode ===
+                                        "type1_with_flag" ||
+                                      _vm.selected_komplekt_type.namecode ===
+                                        "type1_without_flag"
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "form-check form-switch mt-2"
+                                            },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.noholes,
+                                                    expression: "noholes"
+                                                  }
+                                                ],
+                                                staticClass: "form-check-input",
+                                                attrs: {
+                                                  type: "checkbox",
+                                                  value: "1",
+                                                  id: "holesSwitch"
+                                                },
+                                                domProps: {
+                                                  checked: Array.isArray(
+                                                    _vm.noholes
+                                                  )
+                                                    ? _vm._i(_vm.noholes, "1") >
+                                                      -1
+                                                    : _vm.noholes
+                                                },
+                                                on: {
+                                                  change: [
+                                                    function($event) {
+                                                      var $$a = _vm.noholes,
+                                                        $$el = $event.target,
+                                                        $$c = $$el.checked
+                                                          ? true
+                                                          : false
+                                                      if (Array.isArray($$a)) {
+                                                        var $$v = "1",
+                                                          $$i = _vm._i($$a, $$v)
+                                                        if ($$el.checked) {
+                                                          $$i < 0 &&
+                                                            (_vm.noholes = $$a.concat(
+                                                              [$$v]
+                                                            ))
+                                                        } else {
+                                                          $$i > -1 &&
+                                                            (_vm.noholes = $$a
+                                                              .slice(0, $$i)
+                                                              .concat(
+                                                                $$a.slice(
+                                                                  $$i + 1
+                                                                )
+                                                              ))
+                                                        }
+                                                      } else {
+                                                        _vm.noholes = $$c
                                                       }
-                                                    })
-                                                  : _vm._e()
-                                              ]
-                                            )
-                                          ])
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.noholes == false
-                                        ? _c("div", {
-                                            staticClass: "holes hole1"
-                                          })
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.noholes == false
-                                        ? _c("div", {
-                                            staticClass: "holes hole2"
-                                          })
+                                                    },
+                                                    function($event) {
+                                                      return _vm.changeNoholes()
+                                                    }
+                                                  ]
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "form-check-label",
+                                                  attrs: { for: "holesSwitch" }
+                                                },
+                                                [_vm._v("без отверстий")]
+                                              )
+                                            ]
+                                          )
                                         : _vm._e()
                                     ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.selected_komplekt_type.namecode ===
-                                "type1a" ||
-                              _vm.selected_komplekt_type.namecode ===
-                                "type1a_without_flag"
-                                ? _c("div", { staticClass: "type1a" }, [
-                                    _vm.number && _vm.number.length > 0
-                                      ? _c("div", { staticClass: "numbers" }, [
-                                          _c("span", [
-                                            _vm._v(
-                                              _vm._s(_vm.number.slice(0, 1))
-                                            )
-                                          ]),
+                                  : _vm._e()
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-12 col-md-6" }, [
+                              _c(
+                                "div",
+                                { staticClass: "order-plate-preview" },
+                                [
+                                  _vm.selected_komplekt_type.namecode ===
+                                    "type1_with_flag" ||
+                                  _vm.selected_komplekt_type.namecode ===
+                                    "type1_without_flag"
+                                    ? _c(
+                                        "div",
+                                        {
+                                          staticClass: "type1_with_flag",
+                                          class: { "fw-bold": _vm.bold == true }
+                                        },
+                                        [
+                                          _vm.number && _vm.number.length > 0
+                                            ? _c(
+                                                "div",
+                                                { staticClass: "numbers" },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.number.slice(0, 1)
+                                                      )
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.number.slice(1, 4)
+                                                      )
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.number.slice(4, 6)
+                                                      )
+                                                    )
+                                                  ])
+                                                ]
+                                              )
+                                            : _vm._e(),
                                           _vm._v(" "),
-                                          _c("span", [
-                                            _vm._v(
-                                              _vm._s(_vm.number.slice(1, 4))
-                                            )
-                                          ])
-                                        ])
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.number && _vm.number.length > 0
-                                      ? _c("div", { staticClass: "letters" }, [
-                                          _c("span", [
-                                            _vm._v(
-                                              _vm._s(_vm.number.slice(4, 6))
-                                            )
-                                          ])
-                                        ])
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.number &&
-                                    _vm.number.length > 0 &&
-                                    _vm.number_region &&
-                                    _vm.number_region.length > 0
-                                      ? _c("div", { staticClass: "reg" }, [
-                                          _c("span", [
-                                            _vm._v(
-                                              "\n                                                " +
-                                                _vm._s(_vm.number_region) +
-                                                "\n                                            "
-                                            )
-                                          ]),
+                                          _vm.number &&
+                                          _vm.number.length > 0 &&
+                                          _vm.number_region &&
+                                          _vm.number_region.length > 0
+                                            ? _c(
+                                                "div",
+                                                { staticClass: "reg" },
+                                                [
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      "\n                                                " +
+                                                        _vm._s(
+                                                          _vm.number_region
+                                                        ) +
+                                                        "\n                                            "
+                                                    )
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "reg-inner"
+                                                    },
+                                                    [
+                                                      _c("i", [_vm._v("RUS")]),
+                                                      _vm._v(" "),
+                                                      _vm.selected_komplekt_type
+                                                        .namecode ===
+                                                      "type1_with_flag"
+                                                        ? _c("img", {
+                                                            attrs: {
+                                                              src:
+                                                                "/img/rus.svg"
+                                                            }
+                                                          })
+                                                        : _vm._e()
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
                                           _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "reg-inner" },
-                                            [
-                                              _c("i", [_vm._v("RUS")]),
+                                          _vm.noholes == false
+                                            ? _c("div", {
+                                                staticClass: "holes hole1"
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.noholes == false
+                                            ? _c("div", {
+                                                staticClass: "holes hole2"
+                                              })
+                                            : _vm._e()
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.selected_komplekt_type.namecode ===
+                                    "type1a" ||
+                                  _vm.selected_komplekt_type.namecode ===
+                                    "type1a_without_flag"
+                                    ? _c("div", { staticClass: "type1a" }, [
+                                        _vm.number && _vm.number.length > 0
+                                          ? _c(
+                                              "div",
+                                              { staticClass: "numbers" },
+                                              [
+                                                _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.number.slice(0, 1)
+                                                    )
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.number.slice(1, 4)
+                                                    )
+                                                  )
+                                                ])
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _vm.number && _vm.number.length > 0
+                                          ? _c(
+                                              "div",
+                                              { staticClass: "letters" },
+                                              [
+                                                _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.number.slice(4, 6)
+                                                    )
+                                                  )
+                                                ])
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        _vm.number &&
+                                        _vm.number.length > 0 &&
+                                        _vm.number_region &&
+                                        _vm.number_region.length > 0
+                                          ? _c("div", { staticClass: "reg" }, [
+                                              _c("span", [
+                                                _vm._v(
+                                                  "\n                                                " +
+                                                    _vm._s(_vm.number_region) +
+                                                    "\n                                            "
+                                                )
+                                              ]),
                                               _vm._v(" "),
-                                              _vm.selected_komplekt_type
-                                                .namecode === "type1a"
-                                                ? _c("img", {
-                                                    attrs: {
-                                                      src: "/img/rus.svg"
-                                                    }
-                                                  })
-                                                : _vm._e()
-                                            ]
-                                          )
-                                        ])
-                                      : _vm._e()
-                                  ])
-                                : _vm._e()
+                                              _c(
+                                                "div",
+                                                { staticClass: "reg-inner" },
+                                                [
+                                                  _c("i", [_vm._v("RUS")]),
+                                                  _vm._v(" "),
+                                                  _vm.selected_komplekt_type
+                                                    .namecode === "type1a"
+                                                    ? _c("img", {
+                                                        attrs: {
+                                                          src: "/img/rus.svg"
+                                                        }
+                                                      })
+                                                    : _vm._e()
+                                                ]
+                                              )
+                                            ])
+                                          : _vm._e()
+                                      ])
+                                    : _vm._e()
+                                ]
+                              )
                             ])
                           ])
-                        ])
-                      ])
+                        ]
+                      )
                     : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-center mb-4" }, [

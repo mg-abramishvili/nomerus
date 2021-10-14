@@ -1379,6 +1379,15 @@ html, body {
     }
 }
 
+.order-page .form-label {
+    color: #777;
+}
+
+.order-page .form-check-label small {
+    display: block;
+    font-size: 12px;
+}
+
 .order-form-item {
     border: 2px solid #ececec;
     padding: 25px;

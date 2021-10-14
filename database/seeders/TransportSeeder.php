@@ -14,12 +14,12 @@ class TransportSeeder extends Seeder
         DB::table('transports')->insert([
             [
                 'id' => 1,
-                'name' => 'Легковой',
+                'name' => 'Автомобиль',
                 'namecode' => 'legkovoy',
             ],
             [
                 'id' => 2,
-                'name' => 'Мото',
+                'name' => 'Мотоцикл',
                 'namecode' => 'moto',
             ],
             [
