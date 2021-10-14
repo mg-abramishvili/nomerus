@@ -1477,6 +1477,11 @@ html, body {
     font-size: 30px;
     margin-top: -7px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type1_with_flag .reg {
+        margin-top: 0;
+    }
+}
 .order-plate-preview .type1_with_flag .reg .reg-inner {
     margin-top: -27px;
     display: block;
