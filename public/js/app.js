@@ -4667,7 +4667,7 @@ __webpack_require__.r(__webpack_exports__);
           noholes: this.noholes,
           price: this.price
         }).then(function (response) {
-          return _this3.order_list.push(response.data), _this3.price_total = _this3.order_list.reduce(function (n, _ref) {
+          return console.log(response), _this3.order_list.push(response.data), _this3.price_total = _this3.order_list.reduce(function (n, _ref) {
             var price = _ref.price;
             return n + parseInt(price);
           }, 0);
