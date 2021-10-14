@@ -18,7 +18,7 @@
                             <a v-if="current_city.instagram" :href="current_city.instagram" target="_blank">
                                 <img src="/img/insta.svg">
                             </a>
-                            <a href="#">
+                            <a v-if="current_city.whatsapp" :href="'https://wa.me/' + current_city.whatsapp">
                                 <img src="/img/whatsapp.svg">
                             </a>
                             <!--<a href="#">
@@ -30,13 +30,7 @@
                         </div>
                         <div class="header-tel">
                             <div class="header-tel-inner">
-                                <template v-for="city in cities">
-                                    <template  v-if="city.id === current_city.id">
-                                        <template v-for="address in city.addresses.slice(0,2)">
-                                            <a :href="'tel:' + address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
-                                        </template>
-                                    </template>
-                                </template>
+                                <a v-if="current_city.tel" :href="'tel:' + current_city.tel.split(' ').join('').split('-').join('')">{{ current_city.tel }}</a>
                             </div>
                         </div>
                         <div class="header-menu">
@@ -136,13 +130,7 @@
                     </div>
                     <div class="footer-tel">
                         <div class="footer-tel-inner">
-                            <template v-for="city in cities">
-                                <template  v-if="city.id === current_city.id">
-                                    <template v-for="address in city.addresses.slice(0,2)">
-                                        <a :href="'tel:' + address.tel.split(' ').join('').split('-').join('')">{{ address.tel }}</a>
-                                    </template>
-                                </template>
-                            </template>
+                            <a v-if="current_city.tel" :href="'tel:' + current_city.tel.split(' ').join('').split('-').join('')">{{ current_city.tel }}</a>
                         </div>
                     </div>
                 </div>

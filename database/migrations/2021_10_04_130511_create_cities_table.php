@@ -13,6 +13,9 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->string('namecode');
             $table->string('instagram')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
             $table->timestamps();
         });
     }

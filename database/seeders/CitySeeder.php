@@ -17,18 +17,24 @@ class CitySeeder extends Seeder
                 'name' => 'Уфа',
                 'namecode' => 'ufa',
                 'instagram' => 'https://www.instagram.com/nomerus_ufa/',
+                'whatsapp' => '79378600900',
+                'tel' => '+7 937 860 09 00'
             ],
             [
                 'id' => 2,
                 'name' => 'Екатеринбург',
                 'namecode' => 'ekb',
                 'instagram' => 'https://www.instagram.com/nomerus_ekb/',
+                'whatsapp' => '79378600900',
+                'tel' => '+7 937 860 09 00'
             ],
             [
                 'id' => 3,
                 'name' => 'Стерлитамак',
                 'namecode' => 'strltmk',
-                'instagram' => NULL,
+                'instagram' => 'https://www.instagram.com/nomerus_ufa/',
+                'whatsapp' => '79378600900',
+                'tel' => '+7 937 860 09 00'
             ],
         ]);
     }

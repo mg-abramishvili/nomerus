@@ -3238,18 +3238,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -48327,7 +48315,17 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm._m(0)
+              _vm.current_city.whatsapp
+                ? _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "https://wa.me/" + _vm.current_city.whatsapp
+                      }
+                    },
+                    [_c("img", { attrs: { src: "/img/whatsapp.svg" } })]
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "header-callback" }, [
@@ -48346,42 +48344,25 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "header-tel" }, [
-              _c(
-                "div",
-                { staticClass: "header-tel-inner" },
-                [
-                  _vm._l(_vm.cities, function(city) {
-                    return [
-                      city.id === _vm.current_city.id
-                        ? [
-                            _vm._l(city.addresses.slice(0, 2), function(
-                              address
-                            ) {
-                              return [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: {
-                                      href:
-                                        "tel:" +
-                                        address.tel
-                                          .split(" ")
-                                          .join("")
-                                          .split("-")
-                                          .join("")
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(address.tel))]
-                                )
-                              ]
-                            })
-                          ]
-                        : _vm._e()
-                    ]
-                  })
-                ],
-                2
-              )
+              _c("div", { staticClass: "header-tel-inner" }, [
+                _vm.current_city.tel
+                  ? _c(
+                      "a",
+                      {
+                        attrs: {
+                          href:
+                            "tel:" +
+                            _vm.current_city.tel
+                              .split(" ")
+                              .join("")
+                              .split("-")
+                              .join("")
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.current_city.tel))]
+                    )
+                  : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "header-menu" }, [
@@ -48592,7 +48573,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "footer-callback" }, [
             _c(
@@ -48610,40 +48591,25 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "footer-tel" }, [
-            _c(
-              "div",
-              { staticClass: "footer-tel-inner" },
-              [
-                _vm._l(_vm.cities, function(city) {
-                  return [
-                    city.id === _vm.current_city.id
-                      ? [
-                          _vm._l(city.addresses.slice(0, 2), function(address) {
-                            return [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href:
-                                      "tel:" +
-                                      address.tel
-                                        .split(" ")
-                                        .join("")
-                                        .split("-")
-                                        .join("")
-                                  }
-                                },
-                                [_vm._v(_vm._s(address.tel))]
-                              )
-                            ]
-                          })
-                        ]
-                      : _vm._e()
-                  ]
-                })
-              ],
-              2
-            )
+            _c("div", { staticClass: "footer-tel-inner" }, [
+              _vm.current_city.tel
+                ? _c(
+                    "a",
+                    {
+                      attrs: {
+                        href:
+                          "tel:" +
+                          _vm.current_city.tel
+                            .split(" ")
+                            .join("")
+                            .split("-")
+                            .join("")
+                      }
+                    },
+                    [_vm._v(_vm._s(_vm.current_city.tel))]
+                  )
+                : _vm._e()
+            ])
           ])
         ])
       ])
@@ -48860,14 +48826,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("img", { attrs: { src: "/img/whatsapp.svg" } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
