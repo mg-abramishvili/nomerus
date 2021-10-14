@@ -9,6 +9,17 @@ class OrderItem extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'transport',
+        'type',
+        'number',
+        'price',
+        'uid',
+        'bold',
+        'noholes',
+        'komplekt_type',
+    ];
+
     public function orders()
     {
         return $this->belongsToMany('App\Models\Order');
