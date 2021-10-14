@@ -1456,6 +1456,7 @@ html, body {
     .order-plate-preview .type1_with_flag .numbers {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 }
 .order-plate-preview .type1_with_flag .numbers span {
