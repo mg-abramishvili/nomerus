@@ -27,9 +27,20 @@ class OrderItemController extends Controller
             'price' => 'required|numeric',
         ];
 
-        $this->validate($request, $rules);
+        //$this->validate($request, $rules);
 
         $data = request()->all();
+        return response()->json([
+            'transport' => $data['transport'],
+            'type' => $data['type'],
+            'price' => $data['price'],
+            'komplekt_type' => $data['komplekt_type'],
+            'bold' => $data['bold'],
+            'noholes' => $data['noholes'],
+            'number' => $data['number'],
+            'price' => $data['price'],
+        ]);
+        
         $orderItem = new OrderItem();
         $orderItem->transport = $data['transport'];
         $orderItem->type = $data['type'];

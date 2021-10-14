@@ -385,7 +385,6 @@
                             price: this.price,
                         })
                     .then(response => (
-                        console.log(response),
                         this.order_list.push(response.data),
                         this.price_total = this.order_list.reduce((n, {price}) => n + parseInt(price), 0)
                     ))
