@@ -419,6 +419,8 @@
                     if(this.add_komplekt == true) {
                         this.selected_komplekt_type = this.selected_type.komplekt[0]
                     }
+                    this.bold = false,
+                    this.noholes = false,
                     this.priceCalculate()
                 }
             },

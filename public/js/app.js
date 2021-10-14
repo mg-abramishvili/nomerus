@@ -4518,7 +4518,7 @@ __webpack_require__.r(__webpack_exports__);
           this.selected_komplekt_type = this.selected_type.komplekt[0];
         }
 
-        this.priceCalculate();
+        this.bold = false, this.noholes = false, this.priceCalculate();
       }
     },
     addKomplekt: function addKomplekt() {
