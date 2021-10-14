@@ -3703,8 +3703,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       homeCertHooper: {
         itemsToShow: 1,
-        wheelControl: false,
-        transition: 0
+        wheelControl: false
       },
       homePartnersHooper: {
         itemsToShow: 4,
@@ -3923,8 +3922,7 @@ __webpack_require__.r(__webpack_exports__);
       nomerus_modal_gallery: false,
       galleryHooper: {
         itemsToShow: 1,
-        wheelControl: false,
-        transition: 0
+        wheelControl: false
       }
     };
   },
@@ -4176,7 +4174,7 @@ __webpack_require__.r(__webpack_exports__);
       homeCertHooper: {
         itemsToShow: 1,
         wheelControl: false,
-        transition: 0
+        shortDrag: true
       },
       homePartnersHooper: {
         itemsToShow: 4,

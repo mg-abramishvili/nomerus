@@ -792,6 +792,14 @@ html, body {
     align-items: center;
 }
 
+.nomerus-modal-certs .homeCertHooper .cert-item {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    align-items: center;
+}
+
 .nomerus-modal-certs .homeCertHooper .cert-item img {
     width: auto;
     height: auto;
@@ -799,6 +807,8 @@ html, body {
     max-height: 95vh;
     display: block;
     margin: 0 auto;
+    border: 0;
+    border-radius: 0;
 }
 
 .nomerus-modal-certs .hooper_nav_button_prev {

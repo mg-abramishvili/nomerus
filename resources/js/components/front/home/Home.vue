@@ -206,7 +206,7 @@ export default {
             homeCertHooper: {
                 itemsToShow: 1,
                 wheelControl: false,
-                transition: 0,
+                shortDrag: true,
             },
             homePartnersHooper: {
                 itemsToShow: 4,

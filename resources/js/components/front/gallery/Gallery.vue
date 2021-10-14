@@ -42,7 +42,6 @@ export default {
             galleryHooper: {
                 itemsToShow: 1,
                 wheelControl: false,
-                transition: 0,
             },
         };
     },
