@@ -16,13 +16,13 @@ class OrderController extends Controller
 
         $fz_rules = [
             'tel' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required',
             'name' => 'required',
         ];
         $ur_rules = [
             'tel' => 'required',
             'email' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required',
             'company' => 'required',
         ];
 

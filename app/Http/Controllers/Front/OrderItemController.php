@@ -24,7 +24,7 @@ class OrderItemController extends Controller
             'bold' => 'required',
             'noholes' => 'required',
             'number' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required',
         ];
 
         $this->validate($request, $rules);
