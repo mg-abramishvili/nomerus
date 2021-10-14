@@ -430,10 +430,10 @@
                     this.constructor = false
                     this.order_fields = true
 
-                    if(!this.selected_komplekt_type) {
-                        this.selected_komplekt_type_name = ''
-                    } else {
+                    if(this.selected_komplekt_type) {
                         this.selected_komplekt_type_name = this.selected_komplekt_type.name
+                    } else {
+                        this.selected_komplekt_type_name = ''
                     }
 
                     axios
