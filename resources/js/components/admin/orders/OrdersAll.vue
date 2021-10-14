@@ -25,46 +25,16 @@
                         <template v-if="order.name">
                             {{ order.name }}<br>
                         </template>
-                        <template v-if="order.passport">
-                            {{ order.passport }}<br>
-                        </template>
 
                         <template v-if="order.company">
                             {{ order.company }}<br>
                         </template>
-                        <template v-if="order.inn">
-                            {{ order.inn }}<br>
-                        </template>
-                        <template v-if="order.kpp">
-                            {{ order.kpp }}<br>
-                        </template>
-                        <template v-if="order.ogrn">
-                            {{ order.ogrn }}<br>
-                        </template>
-                        <template v-if="order.uraddress">
-                            {{ order.uraddress }}<br>
-                        </template>
-                        <template v-if="order.faktaddress">
-                            {{ order.faktaddress }}<br>
-                        </template>
-                        <template v-if="order.ras_schet">
-                            {{ order.ras_schet }}<br>
-                        </template>
-                        <template v-if="order.bank">
-                            {{ order.bank }}<br>
-                        </template>
-                        <template v-if="order.bik">
-                            {{ order.bik }}<br>
-                        </template>
-                        <template v-if="order.korr">
-                            {{ order.korr }}<br>
-                        </template>
-                        <template v-if="order.director">
-                            {{ order.director }}<br>
-                        </template>
 
                         {{ order.tel }}<br>
-                        {{ order.email }}
+                        
+                        <template v-if="order.email">
+                            {{ order.email }}
+                        </template>
                     </td>
                     <td>
                         {{ order.price }} руб.

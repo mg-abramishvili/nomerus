@@ -230,71 +230,17 @@
                             <label id="name_label" class="form-label">Имя</label>
                             <input v-model="name" id="name_input" type="text" class="form-control mb-4">
                         </div>
-                        <div v-if="client_type == 'fz'" class="col-12 col-md-6">
-                            <label id="passport_label" class="form-label">Паспорт или водительские права</label>
-                            <input v-model="passport" id="passport_input" type="text" class="form-control mb-4">
-                        </div>
 
                         <div v-if="client_type == 'ur'" class="col-12 col-md-12">
                             <label id="company_label" class="form-label">Наименование организации</label>
                             <input v-model="company" id="company_input" type="text" class="form-control mb-3">
                         </div>
 
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-4">
-                            <label id="inn_label" class="form-label">ИНН</label>
-                            <input v-model="inn" id="inn_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-4">
-                            <label id="kpp_label" class="form-label">КПП</label>
-                            <input v-model="kpp" id="kpp_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-4">
-                            <label id="ogrn_label" class="form-label">ОГРН</label>
-                            <input v-model="ogrn" id="ogrn_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="uraddress_label" class="form-label">Юридический адрес</label>
-                            <input v-model="uraddress" id="uraddress_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="faktaddress_label" class="form-label">Фактический адрес</label>
-                            <input v-model="faktaddress" id="faktaddress_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="ras_schet_label" class="form-label">Расчетный счет</label>
-                            <input v-model="ras_schet" id="ras_schet_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="bank_label" class="form-label">Наименование банка</label>
-                            <input v-model="bank" id="bank_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="korr_label" class="form-label">Корреспондентский счет</label>
-                            <input v-model="korr" id="korr_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="bik_label" class="form-label">БИК</label>
-                            <input v-model="bik" id="bik_input" type="text" class="form-control mb-3">
-                        </div>
-
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-12">
-                            <label id="director_label" class="form-label">Директор</label>
-                            <input v-model="director" id="director_input" type="text" class="form-control mb-3">
-                        </div>
-
                         <div class="col-12 col-md-6">
                             <label id="tel_label" class="form-label">Телефон</label>
                             <input v-model="tel" id="tel_input" type="text" class="form-control mb-4">
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
                             <label id="email_label" class="form-label">E-mail</label>
                             <input v-model="email" id="email_input" type="text" class="form-control mb-4">
                         </div>
@@ -403,16 +349,23 @@
             selectTransport() {
                 axios
                 .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
-                .then(response => (
-                    this.types = response.data,
-                    this.selected_type = this.types[0],
-                    this.selected_komplekt_type = this.selected_type.komplekt[0],
-                    this.price = this.types[0].cities[0].pivot.price,
-                    this.add_komplekt = true,
+                .then((response => {
+                    this.types = response.data
+                    this.selected_type = this.types[0]
+                    if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
+                        this.selected_komplekt_type = this.selected_type.komplekt[0]
+                        this.add_komplekt = true
+                    } else {
+                        this.add_komplekt = false
+                        this.selected_komplekt_type.name = ''
+                    }
+                    this.price = this.types[0].cities[0].pivot.price
                     this.priceCalculate()
-                ));
+                }));
                 this.number = ''
                 this.number_region = ''
+                this.bold = false,
+                this.noholes = false
             },
             selectType() {
                 if(this.selected_type && this.selected_type.id) {
@@ -531,28 +484,22 @@
             saveOrder() {
 
                 if(this.client_type == 'fz') {
-                    document.getElementById('name_label').classList.remove('text-danger')
-                    document.getElementById('name_input').classList.remove('border-danger')
-                    document.getElementById('tel_label').classList.remove('text-danger')
-                    document.getElementById('tel_input').classList.remove('border-danger')
-                    document.getElementById('email_label').classList.remove('text-danger')
-                    document.getElementById('email_input').classList.remove('border-danger')
-                    document.getElementById('passport_label').classList.remove('text-danger')
-                    document.getElementById('passport_input').classList.remove('border-danger')
+                    document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
+                        el.classList.remove('text-danger')
+                    });
+                    document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
+                        el.classList.remove('border-danger')
+                    });
 
                     if(
                         this.name && this.name.length > 0 &&
-                        this.tel && this.tel.length > 0 &&
-                        this.email && this.email.length > 0 &&
-                        this.passport && this.passport.length > 0
+                        this.tel && this.tel.length > 0
                     ) {
                         axios
                         .post(`/api/order`, {
                                 client_type: this.client_type,
                                 tel: this.tel,
-                                email: this.email,
                                 name: this.name,
-                                passport: this.passport,
                                 price: parseInt(this.price_total),
                                 orderItems: this.order_list.map( (item) => item.uid )
                             })
@@ -575,56 +522,18 @@
                             document.getElementById('tel_label').classList.add('text-danger')
                             document.getElementById('tel_input').classList.add('border-danger')
                         }
-                        if(!this.email) {
-                            document.getElementById('email_label').classList.add('text-danger')
-                            document.getElementById('email_input').classList.add('border-danger')
-                        }
-                        if(!this.passport) {
-                            document.getElementById('passport_label').classList.add('text-danger')
-                            document.getElementById('passport_input').classList.add('border-danger')
-                        }
                     }
                 }
                 if(this.client_type == 'ur') {
-                    document.getElementById('tel_label').classList.remove('text-danger')
-                    document.getElementById('tel_input').classList.remove('border-danger')
-                    document.getElementById('email_label').classList.remove('text-danger')
-                    document.getElementById('email_input').classList.remove('border-danger')
-                    document.getElementById('company_label').classList.remove('text-danger')
-                    document.getElementById('company_input').classList.remove('border-danger')
-                    document.getElementById('inn_label').classList.remove('text-danger')
-                    document.getElementById('inn_input').classList.remove('border-danger')
-                    document.getElementById('kpp_label').classList.remove('text-danger')
-                    document.getElementById('kpp_input').classList.remove('border-danger')
-                    document.getElementById('ogrn_label').classList.remove('text-danger')
-                    document.getElementById('ogrn_input').classList.remove('border-danger')
-                    document.getElementById('uraddress_label').classList.remove('text-danger')
-                    document.getElementById('uraddress_input').classList.remove('border-danger')
-                    document.getElementById('faktaddress_label').classList.remove('text-danger')
-                    document.getElementById('faktaddress_input').classList.remove('border-danger')
-                    document.getElementById('ras_schet_label').classList.remove('text-danger')
-                    document.getElementById('ras_schet_input').classList.remove('border-danger')
-                    document.getElementById('bank_label').classList.remove('text-danger')
-                    document.getElementById('bank_input').classList.remove('border-danger')
-                    document.getElementById('korr_label').classList.remove('text-danger')
-                    document.getElementById('korr_input').classList.remove('border-danger')
-                    document.getElementById('bik_label').classList.remove('text-danger')
-                    document.getElementById('bik_input').classList.remove('border-danger')
-                    document.getElementById('director_label').classList.remove('text-danger')
-                    document.getElementById('director_input').classList.remove('border-danger')
+                    document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
+                        el.classList.remove('text-danger')
+                    });
+                    document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
+                        el.classList.remove('border-danger')
+                    });
 
                     if(
                         this.company && this.company.length > 0 &&
-                        this.inn && this.inn.length > 0 &&
-                        this.kpp && this.kpp.length > 0 &&
-                        this.ogrn && this.ogrn.length > 0 &&
-                        this.uraddress && this.uraddress.length > 0 &&
-                        this.faktaddress && this.faktaddress.length > 0 &&
-                        this.ras_schet && this.ras_schet.length > 0 &&
-                        this.bank && this.bank.length > 0 &&
-                        this.korr && this.korr.length > 0 &&
-                        this.bik && this.bik.length > 0 &&
-                        this.director && this.director.length > 0 &&
                         this.tel && this.tel.length > 0 &&
                         this.email && this.email.length > 0
                     ) {
@@ -634,16 +543,6 @@
                                 tel: this.tel,
                                 email: this.email,
                                 company: this.company,
-                                inn: this.inn,
-                                kpp: this.kpp,
-                                ogrn: this.ogrn,
-                                uraddress: this.uraddress,
-                                faktaddress: this.faktaddress,
-                                ras_schet: this.ras_schet,
-                                bank: this.bank,
-                                korr: this.korr,
-                                bik: this.bik,
-                                director: this.director,
                                 price: parseInt(this.price_total),
                                 orderItems: this.order_list.map( (item) => item.uid )
                             })
@@ -669,46 +568,6 @@
                         if(!this.company) {
                             document.getElementById('company_label').classList.add('text-danger')
                             document.getElementById('company_input').classList.add('border-danger')
-                        }
-                        if(!this.inn) {
-                            document.getElementById('inn_label').classList.add('text-danger')
-                            document.getElementById('inn_input').classList.add('border-danger')
-                        }
-                        if(!this.kpp) {
-                            document.getElementById('kpp_label').classList.add('text-danger')
-                            document.getElementById('kpp_input').classList.add('border-danger')
-                        }
-                        if(!this.ogrn) {
-                            document.getElementById('ogrn_label').classList.add('text-danger')
-                            document.getElementById('ogrn_input').classList.add('border-danger')
-                        }
-                        if(!this.uraddress) {
-                            document.getElementById('uraddress_label').classList.add('text-danger')
-                            document.getElementById('uraddress_input').classList.add('border-danger')
-                        }
-                        if(!this.faktaddress) {
-                            document.getElementById('faktaddress_label').classList.add('text-danger')
-                            document.getElementById('faktaddress_input').classList.add('border-danger')
-                        }
-                        if(!this.ras_schet) {
-                            document.getElementById('ras_schet_label').classList.add('text-danger')
-                            document.getElementById('ras_schet_input').classList.add('border-danger')
-                        }
-                        if(!this.bank) {
-                            document.getElementById('bank_label').classList.add('text-danger')
-                            document.getElementById('bank_input').classList.add('border-danger')
-                        }
-                        if(!this.korr) {
-                            document.getElementById('korr_label').classList.add('text-danger')
-                            document.getElementById('korr_input').classList.add('border-danger')
-                        }
-                        if(!this.bik) {
-                            document.getElementById('bik_label').classList.add('text-danger')
-                            document.getElementById('bik_input').classList.add('border-danger')
-                        }
-                        if(!this.director) {
-                            document.getElementById('director_label').classList.add('text-danger')
-                            document.getElementById('director_input').classList.add('border-danger')
                         }
                     }
                 }

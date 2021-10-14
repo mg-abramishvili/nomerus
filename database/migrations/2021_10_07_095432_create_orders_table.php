@@ -15,19 +15,8 @@ class CreateOrdersTable extends Migration
             $table->string('client_type');
             $table->string('name')->nullable();
             $table->string('tel');
-            $table->string('email');
-            $table->string('passport')->nullable();
+            $table->string('email')->nullable();
             $table->string('company')->nullable();
-            $table->string('inn')->nullable();
-            $table->string('kpp')->nullable();
-            $table->string('ogrn')->nullable();
-            $table->string('uraddress')->nullable();
-            $table->string('faktaddress')->nullable();
-            $table->string('ras_schet')->nullable();
-            $table->string('bank')->nullable();
-            $table->string('bik')->nullable();
-            $table->string('korr')->nullable();
-            $table->string('director')->nullable();
             $table->timestamps();
         });
     }
