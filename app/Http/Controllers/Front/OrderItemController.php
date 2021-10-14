@@ -36,8 +36,6 @@ class OrderItemController extends Controller
         $orderItem->type = $data['type'];
         if($data['komplekt_type']) {
             $orderItem->komplekt_type = $data['komplekt_type'];
-        } else {
-            $orderItem->komplekt_type = NULL;
         }
         $orderItem->bold = $data['bold'];
         $orderItem->noholes = $data['noholes'];
