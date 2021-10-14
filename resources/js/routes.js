@@ -27,6 +27,9 @@ import AdminTypeEdit from './components/admin/types/TypeEdit.vue';
 import AdminPartners from './components/admin/partners/PartnersAll.vue';
 import AdminLeads from './components/admin/leads/LeadsAll.vue';
 
+import AdminServices from './components/admin/services/ServicesAll.vue';
+import AdminServiceEdit from './components/admin/services/ServiceEdit.vue';
+
 export const routes = [
     {
         path: '/',
@@ -122,5 +125,15 @@ export const routes = [
         path: '/admin/leads',
         name: 'AdminLeads',
         component: AdminLeads
+    },
+    {
+        path: '/admin/services',
+        name: 'AdminServices',
+        component: AdminServices
+    },
+    {
+        path: '/admin/service/:id',
+        name: 'AdminServiceEdit',
+        component: AdminServiceEdit
     },
 ];

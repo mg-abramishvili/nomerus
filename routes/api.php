@@ -50,6 +50,9 @@ Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeCont
 Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update');
 
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index');
+Route::get('admin/service/{id}','App\Http\Controllers\Admin\ServiceController@service_item');
+Route::post('admin/service/{id}','App\Http\Controllers\Admin\ServiceController@service_update');
+Route::post('admin/services/add_image_upload','App\Http\Controllers\Admin\ServiceController@add_image_store');
 
 Route::get('admin/transports','App\Http\Controllers\Admin\TransportController@transports_index');
 
