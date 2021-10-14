@@ -9,5 +9,6 @@
     <body>
         <div id="app"></div>
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+        <script src="//code-ya.jivosite.com/widget/ymomWD6pKB" async></script>
     </body>
 </html>
