@@ -5682,8 +5682,8 @@ window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.$moment = (moment__WEBPACK_IMPORTED_MODULE_0___default());
 moment__WEBPACK_IMPORTED_MODULE_0___default().locale('ru');
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); //window.axios.defaults.withCredentials = true;
-
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.withCredentials = true;
 
 
 
