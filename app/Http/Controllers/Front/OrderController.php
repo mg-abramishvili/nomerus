@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Front;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -57,5 +59,8 @@ class OrderController extends Controller
             $orderItemID = OrderItem::where('uid', $orderItems[$orderItem])->first();
             $order->orderItems()->attach($orderItemID->id, ['order_id' => $order->id]);
         }
+
+        $order = Order::with('orderItems')->find($order->id);
+        Mail::to('mg@abramishvili.net')->send(new OrderMail($order));
     }
 }
