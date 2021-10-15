@@ -1726,7 +1726,7 @@ html, body {
 }
 @media (max-width: 900px) {
     .order-plate-preview .type4 .reg {
-        margin-top: -30px;
+        margin-top: -26px;
     }
 }
 .order-plate-preview .type4 .reg .reg-inner {
@@ -1748,7 +1748,7 @@ html, body {
         flex-wrap: wrap;
         line-height: 1;
         padding: 3px 4px;
-        margin-top: -6px;
+        margin-top: 0px;
         min-width: 15px;
     }
 }
