@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="w-100">
         <table class="table">
             <thead>
                 <tr>
@@ -12,7 +12,7 @@
             <tbody>
                 <tr v-for="lead in leads" :key="'lead_' + lead.id">
                     <td>
-                        {{ lead.created_at }}
+                        {{ lead.created_at | moment }}
                     </td>
                     <td>
                         {{ lead.name }}
@@ -34,6 +34,7 @@
         data() {
             return {
                 leads: [],
+                moment: moment,
             }
         },
         created() {
@@ -45,6 +46,11 @@
             ))
         },
         methods: {
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('DD.MM.YYYY');
+            }
         },
         components: {
         }

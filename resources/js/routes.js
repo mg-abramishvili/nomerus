@@ -14,12 +14,14 @@ import AdminOrders from './components/admin/orders/OrdersAll.vue';
 
 import AdminCertificates from './components/admin/certificates/CertificatesAll.vue';
 import AdminCertificateCreate from './components/admin/certificates/CertificateCreate.vue';
+import AdminCertificateEdit from './components/admin/certificates/CertificateEdit.vue';
 
 import AdminGallery from './components/admin/gallery/GalleryAll.vue';
 import AdminGalleryCreate from './components/admin/gallery/GalleryCreate.vue';
 
 import AdminAddresses from './components/admin/addresses/AddressesAll.vue';
 import AdminAddressCreate from './components/admin/addresses/AddressCreate.vue';
+import AdminAddressEdit from './components/admin/addresses/AddressEdit.vue';
 
 import AdminTypes from './components/admin/types/TypesAll.vue';
 import AdminTypeEdit from './components/admin/types/TypeEdit.vue';
@@ -87,6 +89,11 @@ export const routes = [
         component: AdminCertificateCreate
     },
     {
+        path: '/admin/certificates/:id',
+        name: 'AdminCertificateEdit',
+        component: AdminCertificateEdit
+    },
+    {
         path: '/admin/gallery',
         name: 'AdminGallery',
         component: AdminGallery
@@ -105,6 +112,11 @@ export const routes = [
         path: '/admin/addresses/create',
         name: 'AdminAddressCreate',
         component: AdminAddressCreate
+    },
+    {
+        path: '/admin/addresses/:id',
+        name: 'AdminAddressEdit',
+        component: AdminAddressEdit
     },
     {
         path: '/admin/types/:city',

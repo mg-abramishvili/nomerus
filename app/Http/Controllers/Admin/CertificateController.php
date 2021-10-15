@@ -14,6 +14,11 @@ class CertificateController extends Controller
         return Certificate::all();
     }
 
+    public function cert_item($id, Request $request)
+    {
+        return Certificate::find($id);
+    }
+
     public function store(Request $request) {
         $data = request()->all();
 
@@ -31,10 +36,32 @@ class CertificateController extends Controller
         $certificate->save();
     }
 
-    public function temp_cert_image_store(Request $request) {
-        if($request->hasFile('cert_image')) {
-            
-            $file = $request->file('cert_image');
+    public function cert_update($id, Request $request) {
+        $data = request()->all();
+        $certificate = Certificate::find($id);
+
+        if(TemporaryFile::where('folder', $data['image'])->first()) {
+            $temp_file = TemporaryFile::where('folder', $data['image'])->first();
+            rename(public_path() . '/temp_uploads/' . $temp_file->folder . '/' . $temp_file->filename, public_path() . '/uploads/' . now()->timestamp . '_' . $temp_file->filename);
+            rmdir(public_path('temp_uploads/' . $temp_file->folder));
+            $temp_file->delete();
+            $certificate->name = $data['name'];
+            $certificate->image = '/uploads/' . now()->timestamp . '_' . $temp_file->filename;
+        } else {
+            $certificate->name = $data['name'];
+            $certificate->image = $data['image'];
+        }
+
+        $certificate->save();
+    }
+
+    public function add_image_store(Request $request) {
+        if($request->hasFile('image')) {
+
+            if($request->hasFile('image')) {
+                $file = $request->file('image');
+            }
+
             $filename = $file->getClientOriginalName();
             $folder = uniqid() . '-' . now()->timestamp;
             $file->move(public_path() . '/temp_uploads/' . $folder, $filename);

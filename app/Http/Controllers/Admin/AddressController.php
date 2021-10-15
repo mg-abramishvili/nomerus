@@ -13,6 +13,11 @@ class AddressController extends Controller
         return Address::with('cities')->get();
     }
 
+    public function address_item($id, Request $request)
+    {
+        return Address::with('cities')->find($id);
+    }
+
     public function store(Request $request)
     {
         $data = request()->all();
@@ -26,5 +31,18 @@ class AddressController extends Controller
         $address->save();
 
         $address->cities()->attach($request->city, ['address_id' => $address->id]);
+    }
+
+    public function address_update($id, Request $request) {
+        $data = request()->all();
+        $address = Address::find($id);
+
+        $address->name = $data['name'];
+        $address->tel = $data['tel'];
+        $address->coordinates = $data['coordinates'];
+        $address->cities()->detach();
+        $address->cities()->attach($request->city, ['address_id' => $address->id]);
+
+        $address->save();
     }
 }

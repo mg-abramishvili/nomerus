@@ -29,7 +29,7 @@
                         {{ address.coordinates }}
                     </td>
                     <td>
-                        
+                        <router-link :to="{name: 'AdminAddressEdit', params: {id: address.id}}" class="btn btn-sm btn-outline-danger">Изменить</router-link>
                     </td>
                 </tr>
             </tbody>

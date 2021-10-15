@@ -35,7 +35,9 @@ Route::get('admin/order-items','App\Http\Controllers\Admin\OrderItemController@o
 
 Route::get('admin/certificates','App\Http\Controllers\Admin\CertificateController@index');
 Route::post('admin/certificates','App\Http\Controllers\Admin\CertificateController@store');
-Route::post('admin/temp-cert-upload','App\Http\Controllers\Admin\CertificateController@temp_cert_image_store');
+Route::get('admin/certificate/{id}','App\Http\Controllers\Admin\CertificateController@cert_item');
+Route::post('admin/certificate/{id}','App\Http\Controllers\Admin\CertificateController@cert_update');
+Route::post('admin/certificates/add_image_upload','App\Http\Controllers\Admin\CertificateController@add_image_store');
 
 Route::get('admin/gallery','App\Http\Controllers\Admin\GalleryController@index');
 Route::post('admin/gallery','App\Http\Controllers\Admin\GalleryController@store');
@@ -44,6 +46,8 @@ Route::post('admin/temp-gal-upload','App\Http\Controllers\Admin\GalleryControlle
 Route::get('admin/cities','App\Http\Controllers\Admin\CityController@index');
 Route::get('admin/addresses','App\Http\Controllers\Admin\AddressController@index');
 Route::post('admin/addresses','App\Http\Controllers\Admin\AddressController@store');
+Route::get('admin/address/{id}','App\Http\Controllers\Admin\AddressController@address_item');
+Route::post('admin/address/{id}','App\Http\Controllers\Admin\AddressController@address_update');
 
 Route::get('admin/types/{city}','App\Http\Controllers\Admin\TypeController@index');
 Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item');

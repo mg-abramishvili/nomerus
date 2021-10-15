@@ -10,10 +10,12 @@
                 $route.name === 'AdminOrders' ||
                 $route.name === 'AdminCertificates' ||
                 $route.name === 'AdminCertificateCreate' ||
+                $route.name === 'AdminCertificateEdit' ||
                 $route.name === 'AdminGallery' ||
                 $route.name === 'AdminGalleryCreate' ||
                 $route.name === 'AdminAddresses' ||
                 $route.name === 'AdminAddressCreate' ||
+                $route.name === 'AdminAddressEdit' ||
                 $route.name === 'AdminTypes' ||
                 $route.name === 'AdminTypeEdit' ||
                 $route.name === 'AdminPartners' ||

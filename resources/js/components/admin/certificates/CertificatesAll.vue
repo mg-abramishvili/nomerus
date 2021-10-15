@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="w-100">
         <table class="table">
             <thead>
                 <tr>
@@ -17,7 +17,7 @@
                         {{ certItem.name }}
                     </td>
                     <td class="text-end">
-                        <!--<button class="btn btn-sm btn-outline-danger">Удалить</button>-->
+                        <router-link :to="{name: 'AdminCertificateEdit', params: {id: certItem.id}}" class="btn btn-sm btn-outline-danger">Изменить</router-link>
                     </td>
                 </tr>
             </tbody>

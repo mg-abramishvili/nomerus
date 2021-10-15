@@ -1,40 +1,53 @@
 <template>
-    <div class="container">
+    <div class="w-100">
+        <label class="form-label mb-1">Название</label>
+        <input v-model="name" type="text" class="form-control mb-3" placeholder="Название">
+
         <file-pond
-            name="cert_image"
-            ref="cert_image"
+            name="image"
+            ref="image"
             label-idle="Выбрать картинку..."
             v-bind:allow-multiple="false"
-            accepted-file-types="image/jpeg"
-            server="/api/admin/temp-cert-upload"
-            v-bind:files="cert_filepond_files"
+            accepted-file-types="image/jpeg, image/png"
+            :server="server"
+            v-bind:files="filepond_files_edit"
         />
-        <input v-model="name" type="text" class="form-control my-4" placeholder="Название">
-        <button @click="saveCert()" class="btn btn-primary">Сохранить</button>
+        <button @click="updateCert(certificate.id)" class="btn btn-danger">Сохранить</button>
     </div>
 </template>
 
 <script>
-    import vueFilePond from "vue-filepond";
+import vueFilePond from "vue-filepond";
 
-    import "filepond/dist/filepond.min.css";
+import "filepond/dist/filepond.min.css";
 
-    import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
-    
-    import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-    import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-    
-    const FilePond = vueFilePond(
-        FilePondPluginFileValidateType,
-        FilePondPluginImagePreview
-    );
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
+
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+
+const FilePond = vueFilePond(
+    FilePondPluginFileValidateType,
+    FilePondPluginImagePreview
+);
 
 export default {
     data() {
         return {
+            certificate: {},
+
             name: '',
-            cert_image: '',
-            cert_filepond_files: [],
+            image: '',
+
+            filepond_files: [],
+            filepond_files_edit: [
+                {
+                    source: '1',
+                    options: {
+                        type: 'local',
+                    }
+                }
+            ],
             server: {
                 remove(filename, load) {
                     load('1');
@@ -43,7 +56,7 @@ export default {
                     const formData = new FormData();
                     formData.append(fieldName, file, file.name);
                     const request = new XMLHttpRequest();
-                    request.open('POST', '/api/admin/temp-cert-upload');
+                    request.open('POST', '/api/admin/certificates/add_image_upload');
                     request.upload.onprogress = (e) => {
                         progress(e.lengthComputable, e.loaded, e.total);
                     };
@@ -74,14 +87,28 @@ export default {
         }
     },
     created() {
-        this.$parent.subheader = 'Новый сертификат'
+        axios
+            .get(`/api/admin/certificate/${this.$route.params.id}`)
+            .then(response => (
+                this.certificate = response.data,
+                this.$parent.subheader = this.certificate.name,
+                this.name = response.data.name,
+                this.filepond_files_edit = [
+                    {
+                        source: response.data.image,
+                        options: {
+                            type: 'local',
+                        }
+                    }
+                ]
+            ))
     },
     methods: {
-        saveCert() {
-            this.cert_image = document.getElementsByName("cert_image")[0].value
-            if(this.name && this.cert_image) {
+        updateCert(id) {
+            this.image = document.getElementsByName("image")[0].value
+            if(this.name.length && this.image) {
                 axios
-                .post(`/api/admin/certificates`, { name: this.name, image: this.cert_image })
+                .post(`/api/admin/certificate/${id}`, { name: this.name, text: this.text, image: this.image })
                 .then(response => (
                     this.$router.push({name: 'AdminCertificates'})
                 ))
@@ -89,6 +116,7 @@ export default {
                     if(error.response) {
                         for(var key in error.response.data.errors){
                             console.log(key)
+                            alert(key)
                         }
                     }
                 });
