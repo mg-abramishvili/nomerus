@@ -156,6 +156,12 @@ html, body {
     margin: 0 2px;
 }
 
+@media (max-width: 900px) {
+    .front header .header-social a:nth-child(2) {
+        margin-right: -5px;
+    }
+}
+
 .front header .header-social a img {
     width: auto;
     height: 32px;
@@ -163,7 +169,7 @@ html, body {
 
 @media (max-width: 900px) {
     .front header .header-social a img {
-        height: 32px;
+        height: 28px;
     }
 }
 
