@@ -1696,6 +1696,14 @@ html, body {
     text-align: center;
     letter-spacing: 3.5px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type4 .numbers {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: 77px;
+    }
+}
 .order-plate-preview .type4 .numbers span {
     display: inline-block;
     margin: 0 -5px;
@@ -1730,6 +1738,13 @@ html, body {
     min-height: 10px;
     min-width: 30px;
     text-align: left;
+}
+@media (max-width: 900px) {
+    .order-plate-preview .type4 .reg .reg-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 .order-plate-preview .type4 .reg .reg-inner i {
     font-style: normal;
