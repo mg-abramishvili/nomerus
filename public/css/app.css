@@ -1724,6 +1724,11 @@ html, body {
     position: relative;
     padding-top: 8px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type4 .reg {
+        display: block;
+    }
+}
 .order-plate-preview .type4 .reg .reg-inner {
     line-height: 0;
     margin-top: 8px;
