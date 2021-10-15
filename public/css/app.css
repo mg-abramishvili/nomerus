@@ -1749,7 +1749,7 @@ html, body {
         line-height: 1;
         padding: 3px 4px;
         margin-top: 0px;
-        min-width: 15px;
+        min-width: 5px;
     }
 }
 .order-plate-preview .type4 .reg .reg-inner i {
@@ -1776,7 +1776,7 @@ html, body {
 }
 @media (max-width: 900px) {
     .order-plate-preview .type4 .reg .reg-inner img {
-        margin-top: -4px;
+        margin-top: -5px;
         margin-left: 5px;
     }
 }
