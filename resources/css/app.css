@@ -1587,6 +1587,7 @@ html, body {
 @media (max-width: 900px) {
     .order-plate-preview .type1a .numbers span {
         margin: 0;
+        margin-top: 4px;
     }
 }
 .order-plate-preview .type1a .numbers span:nth-child(1) {
