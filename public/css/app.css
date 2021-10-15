@@ -1741,7 +1741,7 @@ html, body {
     .order-plate-preview .type4 .reg .reg-inner {
         display: flex;
         flex-wrap: wrap;
-        margin-top: -5px;
+        margin-top: 0px;
     }
 }
 .order-plate-preview .type4 .reg .reg-inner i {
