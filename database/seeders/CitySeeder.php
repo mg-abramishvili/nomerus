@@ -18,7 +18,7 @@ class CitySeeder extends Seeder
                 'namecode' => 'ufa',
                 'instagram' => 'https://www.instagram.com/nomerus_ufa/',
                 'whatsapp' => '79378600900',
-                'tel' => '+7 937 860 09 00'
+                'tel' => '+7 937 8 600 900'
             ],
             [
                 'id' => 2,
@@ -26,7 +26,7 @@ class CitySeeder extends Seeder
                 'namecode' => 'ekb',
                 'instagram' => 'https://www.instagram.com/nomerus_ekb/',
                 'whatsapp' => '79378600900',
-                'tel' => '+7 937 860 09 00'
+                'tel' => '+7 937 8 600 900'
             ],
             [
                 'id' => 3,
@@ -34,7 +34,7 @@ class CitySeeder extends Seeder
                 'namecode' => 'strltmk',
                 'instagram' => 'https://www.instagram.com/nomerus_ufa/',
                 'whatsapp' => '79378600900',
-                'tel' => '+7 937 860 09 00'
+                'tel' => '+7 937 8 600 900'
             ],
         ]);
     }
