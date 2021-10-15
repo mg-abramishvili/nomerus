@@ -1744,6 +1744,7 @@ html, body {
         line-height: 1;
         padding: 3px 4px;
         margin-top: -6px;
+        min-width: 15px;
     }
 }
 .order-plate-preview .type4 .reg .reg-inner i {
