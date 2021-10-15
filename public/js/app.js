@@ -52356,7 +52356,20 @@ var render = function() {
                                   staticClass: "form-label mb-1",
                                   attrs: { id: "number_label" }
                                 },
-                                [_vm._v("Госномер")]
+                                [
+                                  _vm._v("Госномер "),
+                                  _c(
+                                    "i",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openStsModal()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("?")]
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _vm.selected_transport.namecode === "legkovoy"
@@ -52531,20 +52544,7 @@ var render = function() {
                                 staticClass: "form-label mb-1",
                                 attrs: { id: "number_region_label" }
                               },
-                              [
-                                _vm._v("Регион "),
-                                _c(
-                                  "i",
-                                  {
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.openStsModal()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("?")]
-                                )
-                              ]
+                              [_vm._v("Регион")]
                             ),
                             _vm._v(" "),
                             _c("input", {

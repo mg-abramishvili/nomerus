@@ -17,7 +17,7 @@
                             </div>
                             <div class="col-12 col-md-4">
                                 <div v-if="selected_transport && selected_transport.id" class="mb-3">
-                                    <label id="number_label" class="form-label mb-1">Госномер</label>
+                                    <label id="number_label" class="form-label mb-1">Госномер <i @click="openStsModal()">?</i></label>
                                     <template v-if="selected_transport.namecode === 'legkovoy'">
                                         <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" id="number_input" placeholder="а000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                                     </template>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-12 col-md-2">
                                 <div v-if="selected_transport && selected_transport.id" class="mb-3">
-                                    <label id="number_region_label" class="form-label mb-1">Регион <i @click="openStsModal()">?</i></label>
+                                    <label id="number_region_label" class="form-label mb-1">Регион</label>
                                     <input v-model="number_region" v-maska="{ mask: '###', tokens: { '###': { pattern: /[0-9]/ }}}" id="number_region_input" class="form-control form-control-lg">
                                 </div>
                                 <div v-else class="mb-3">
