@@ -50036,10 +50036,12 @@ var render = function() {
               },
               [
                 _c("option", { attrs: { value: "legkovoy" } }, [
-                  _vm._v("Легковой")
+                  _vm._v("Автомобиль")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "moto" } }, [_vm._v("Мото")]),
+                _c("option", { attrs: { value: "moto" } }, [
+                  _vm._v("Мотоцикл")
+                ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "pricep" } }, [_vm._v("Прицеп")])
               ]

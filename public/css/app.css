@@ -1570,9 +1570,22 @@ html, body {
     letter-spacing: 3.5px;
     margin-top: -3px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type1a .numbers {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: 77px;
+    }
+}
 .order-plate-preview .type1a .numbers span {
     display: inline-block;
     margin: 0 -5px;
+}
+@media (max-width: 900px) {
+    .order-plate-preview .type1a .numbers span {
+        margin: 0;
+    }
 }
 .order-plate-preview .type1a .numbers span:nth-child(1) {
     font-size: 62px;
