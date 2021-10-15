@@ -4798,6 +4798,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.selected_transport = _this.transports[2];
       }
 
+      _this.client_type = _this.$route.params.kto;
       axios.get("/api/".concat(_this.$parent.current_city.id, "/transport/").concat(_this.selected_transport.id, "/types")).then(function (response) {
         _this.types = response.data;
 
@@ -4910,7 +4911,7 @@ __webpack_require__.r(__webpack_exports__);
           noholes: this.noholes,
           price: this.price
         }).then(function (response) {
-          return console.log(response), _this3.order_list.push(response.data), _this3.price_total = _this3.order_list.reduce(function (n, _ref) {
+          return _this3.order_list.push(response.data), _this3.price_total = _this3.order_list.reduce(function (n, _ref) {
             var price = _ref.price;
             return n + parseInt(price);
           }, 0);

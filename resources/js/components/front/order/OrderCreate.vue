@@ -270,6 +270,8 @@
                         this.selected_transport =  this.transports[2]
                     }
 
+                    this.client_type = this.$route.params.kto
+
                     axios
                     .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
                     .then((response => {
@@ -385,7 +387,6 @@
                             price: this.price,
                         })
                     .then(response => (
-                        console.log(response),
                         this.order_list.push(response.data),
                         this.price_total = this.order_list.reduce((n, {price}) => n + parseInt(price), 0)
                     ))
