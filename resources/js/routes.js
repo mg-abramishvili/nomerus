@@ -37,6 +37,8 @@ import AdminServiceEdit from './components/admin/services/ServiceEdit.vue';
 
 import AdminTextEdit from './components/admin/text/TextEdit.vue';
 
+import AdminLoginPage from './components/admin/auth/LoginPage.vue';
+
 export const routes = [
     {
         path: '/',
@@ -167,5 +169,10 @@ export const routes = [
         path: '/admin/text',
         name: 'AdminTextEdit',
         component: AdminTextEdit
+    },
+    {
+        path: '/a',
+        name: 'AdminLoginPage',
+        component: AdminLoginPage
     },
 ];

@@ -2,9 +2,15 @@
     <div class="admin_panel bg-light" style="min-height: 100vh;">
 
         <div v-if="authenticated == false" class="admin_login">
-            <input v-model="auth.email" type="email" class="form-control" placeholder="Логин">
-            <input v-model="auth.password" type="password" class="form-control" placeholder="Пароль">
-            <button @click="login()" class="btn btn-danger">Войти</button>
+            <div class="container">
+                <div class="col-12 col-md-6 offset-3 mt-4">
+                    <p class="mb-1"><strong>Номерус.РФ :: панель управления</strong></p>
+                    <hr class="mt-0 mb-4">
+                    <input v-model="auth.email" type="email" class="form-control mb-2" placeholder="Логин">
+                    <input v-model="auth.password" type="password" class="form-control mb-2" placeholder="Пароль">
+                    <button @click="login()" class="btn btn-danger">Войти</button>
+                </div>
+            </div>
         </div>
 
         <header v-if="authenticated" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">

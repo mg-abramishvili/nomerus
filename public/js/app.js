@@ -2100,6 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2127,6 +2128,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2465,6 +2472,35 @@ __webpack_require__.r(__webpack_exports__);
     this.$parent.subheader = 'Адреса';
     axios.get('/api/admin/addresses').then(function (response) {
       return _this.addresses = response.data;
+    });
+  },
+  methods: {},
+  components: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/auth/LoginPage.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/auth/LoginPage.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    this.$router.push({
+      name: 'AdminLeads'
     });
   },
   methods: {},
@@ -5745,6 +5781,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_services_ServicesAll_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/admin/services/ServicesAll.vue */ "./resources/js/components/admin/services/ServicesAll.vue");
 /* harmony import */ var _components_admin_services_ServiceEdit_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/admin/services/ServiceEdit.vue */ "./resources/js/components/admin/services/ServiceEdit.vue");
 /* harmony import */ var _components_admin_text_TextEdit_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/admin/text/TextEdit.vue */ "./resources/js/components/admin/text/TextEdit.vue");
+/* harmony import */ var _components_admin_auth_LoginPage_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/admin/auth/LoginPage.vue */ "./resources/js/components/admin/auth/LoginPage.vue");
+
 
 
 
@@ -5875,6 +5913,10 @@ var routes = [{
   path: '/admin/text',
   name: 'AdminTextEdit',
   component: _components_admin_text_TextEdit_vue__WEBPACK_IMPORTED_MODULE_25__["default"]
+}, {
+  path: '/a',
+  name: 'AdminLoginPage',
+  component: _components_admin_auth_LoginPage_vue__WEBPACK_IMPORTED_MODULE_26__["default"]
 }];
 
 /***/ }),
@@ -46417,6 +46459,45 @@ component.options.__file = "resources/js/components/admin/addresses/AddressesAll
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/auth/LoginPage.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/admin/auth/LoginPage.vue ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LoginPage_vue_vue_type_template_id_40882648___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoginPage.vue?vue&type=template&id=40882648& */ "./resources/js/components/admin/auth/LoginPage.vue?vue&type=template&id=40882648&");
+/* harmony import */ var _LoginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginPage.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/auth/LoginPage.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LoginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LoginPage_vue_vue_type_template_id_40882648___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LoginPage_vue_vue_type_template_id_40882648___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/auth/LoginPage.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/certificates/CertificateCreate.vue":
 /*!**************************************************************************!*\
   !*** ./resources/js/components/admin/certificates/CertificateCreate.vue ***!
@@ -47433,6 +47514,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/auth/LoginPage.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/admin/auth/LoginPage.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LoginPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/auth/LoginPage.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/certificates/CertificateCreate.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************!*\
   !*** ./resources/js/components/admin/certificates/CertificateCreate.vue?vue&type=script&lang=js& ***!
@@ -47902,6 +47999,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/auth/LoginPage.vue?vue&type=template&id=40882648&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/auth/LoginPage.vue?vue&type=template&id=40882648& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPage_vue_vue_type_template_id_40882648___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPage_vue_vue_type_template_id_40882648___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginPage_vue_vue_type_template_id_40882648___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LoginPage.vue?vue&type=template&id=40882648& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/auth/LoginPage.vue?vue&type=template&id=40882648&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/certificates/CertificateCreate.vue?vue&type=template&id=be20c56a&":
 /*!*********************************************************************************************************!*\
   !*** ./resources/js/components/admin/certificates/CertificateCreate.vue?vue&type=template&id=be20c56a& ***!
@@ -48359,7 +48473,8 @@ var render = function() {
       _vm.$route.name === "AdminLeads" ||
       _vm.$route.name === "AdminServices" ||
       _vm.$route.name === "AdminServiceEdit" ||
-      _vm.$route.name === "AdminTextEdit"
+      _vm.$route.name === "AdminTextEdit" ||
+      _vm.$route.name === "AdminLoginPage"
         ? [_c("AdminLayout")]
         : _vm._e()
     ],
@@ -48398,62 +48513,70 @@ var render = function() {
     [
       _vm.authenticated == false
         ? _c("div", { staticClass: "admin_login" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.auth.email,
-                  expression: "auth.email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email", placeholder: "Логин" },
-              domProps: { value: _vm.auth.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "col-12 col-md-6 offset-3 mt-4" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("hr", { staticClass: "mt-0 mb-4" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.auth.email,
+                      expression: "auth.email"
+                    }
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "email", placeholder: "Логин" },
+                  domProps: { value: _vm.auth.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.auth, "email", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.auth, "email", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.auth.password,
-                  expression: "auth.password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password", placeholder: "Пароль" },
-              domProps: { value: _vm.auth.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.auth.password,
+                      expression: "auth.password"
+                    }
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "password", placeholder: "Пароль" },
+                  domProps: { value: _vm.auth.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.auth, "password", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.auth, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                on: {
-                  click: function($event) {
-                    return _vm.login()
-                  }
-                }
-              },
-              [_vm._v("Войти")]
-            )
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.login()
+                      }
+                    }
+                  },
+                  [_vm._v("Войти")]
+                )
+              ])
+            ])
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -48471,7 +48594,7 @@ var render = function() {
                 [_vm._v("Номерус")]
               ),
               _vm._v(" "),
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "subheader w-100" }, [
                 _vm._v("\n            " + _vm._s(_vm.subheader) + "\n        ")
@@ -48718,6 +48841,14 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mb-1" }, [
+      _c("strong", [_vm._v("Номерус.РФ :: панель управления")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -49156,6 +49287,31 @@ var render = function() {
       )
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/auth/LoginPage.vue?vue&type=template&id=40882648&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/auth/LoginPage.vue?vue&type=template&id=40882648& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
