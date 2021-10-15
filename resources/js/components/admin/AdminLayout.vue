@@ -1,6 +1,13 @@
 <template>
     <div class="admin_panel bg-light" style="min-height: 100vh;">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+
+        <div v-if="authenticated == false" class="admin_login">
+            <input v-model="auth.email" type="email" class="form-control" placeholder="Логин">
+            <input v-model="auth.password" type="password" class="form-control" placeholder="Пароль">
+            <button @click="login()" class="btn btn-danger">Войти</button>
+        </div>
+
+        <header v-if="authenticated" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3">Номерус</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -10,7 +17,7 @@
             </div>
         </header>
 
-        <div class="container-fluid">
+        <div v-if="authenticated" class="container-fluid">
             <div class="row">
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                     <div class="position-sticky pt-3">
@@ -72,12 +79,40 @@
     export default {
         data() {
             return {
-                subheader: 'панель управления'
+                subheader: 'панель управления',
+                auth: {
+                    email: '',
+                    password: ''
+                },
+                authenticated: false,
+                user: {},
             }
         },
         created() {
+            this.checkMe()
         },
         methods: {
+            login() {
+                axios.get('/sanctum/csrf-cookie').then(response => {
+                    axios.post('/api/login', this.auth).then(response => {
+                        if(response.data === 'bad_login') {
+							alert('Неверный E-mail или пароль')
+						} else {
+							this.checkMe()
+						}
+                    });
+                });
+            },
+            checkMe() {
+				axios.post('/api/me').then(response => {
+					this.user = response.data
+					if(this.user.name && this.user.name.length) {
+						this.authenticated = true
+					} else {
+						this.authenticated = false
+					}
+				})
+			},
         },
         components: {
         }

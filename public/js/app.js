@@ -2197,14 +2197,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      subheader: 'панель управления'
+      subheader: 'панель управления',
+      auth: {
+        email: '',
+        password: ''
+      },
+      authenticated: false,
+      user: {}
     };
   },
-  created: function created() {},
-  methods: {},
+  created: function created() {
+    this.checkMe();
+  },
+  methods: {
+    login: function login() {
+      var _this = this;
+
+      axios.get('/sanctum/csrf-cookie').then(function (response) {
+        axios.post('/api/login', _this.auth).then(function (response) {
+          if (response.data === 'bad_login') {
+            alert('Неверный E-mail или пароль');
+          } else {
+            _this.checkMe();
+          }
+        });
+      });
+    },
+    checkMe: function checkMe() {
+      var _this2 = this;
+
+      axios.post('/api/me').then(function (response) {
+        _this2.user = response.data;
+
+        if (_this2.user.name && _this2.user.name.length) {
+          _this2.authenticated = true;
+        } else {
+          _this2.authenticated = false;
+        }
+      });
+    }
+  },
   components: {}
 });
 
@@ -2476,7 +2518,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
   data: function data() {
     return {
       name: '',
-      cert_image: '',
+      image: '',
       cert_filepond_files: [],
       server: {
         remove: function remove(filename, load) {
@@ -2486,7 +2528,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
           var formData = new FormData();
           formData.append(fieldName, file, file.name);
           var request = new XMLHttpRequest();
-          request.open('POST', '/api/admin/temp-cert-upload');
+          request.open('POST', '/api/admin/certificates/add_image_upload');
 
           request.upload.onprogress = function (e) {
             progress(e.lengthComputable, e.loaded, e.total);
@@ -2527,12 +2569,12 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
     saveCert: function saveCert() {
       var _this = this;
 
-      this.cert_image = document.getElementsByName("cert_image")[0].value;
+      this.image = document.getElementsByName("image")[0].value;
 
-      if (this.name && this.cert_image) {
+      if (this.name && this.image) {
         axios.post("/api/admin/certificates", {
           name: this.name,
-          image: this.cert_image
+          image: this.image
         }).then(function (response) {
           return _this.$router.push({
             name: 'AdminCertificates'
@@ -2870,7 +2912,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
           var formData = new FormData();
           formData.append(fieldName, file, file.name);
           var request = new XMLHttpRequest();
-          request.open('POST', '/api/admin/temp-gal-upload');
+          request.open('POST', '/api/admin/gallery/add_image_upload');
 
           request.upload.onprogress = function (e) {
             progress(e.lengthComputable, e.loaded, e.total);
@@ -3183,7 +3225,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
   data: function data() {
     return {
       name: '',
-      partner_image: '',
+      image: '',
       partner_filepond_files: [],
       server: {
         remove: function remove(filename, load) {
@@ -3193,7 +3235,7 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
           var formData = new FormData();
           formData.append(fieldName, file, file.name);
           var request = new XMLHttpRequest();
-          request.open('POST', '/api/admin/temp-partner-upload');
+          request.open('POST', '/api/admin/partners/add_image_upload');
 
           request.upload.onprogress = function (e) {
             progress(e.lengthComputable, e.loaded, e.total);
@@ -3234,12 +3276,12 @@ var FilePond = vue_filepond__WEBPACK_IMPORTED_MODULE_0___default()((filepond_plu
     savePartner: function savePartner() {
       var _this = this;
 
-      this.partner_image = document.getElementsByName("partner_image")[0].value;
+      this.image = document.getElementsByName("image")[0].value;
 
-      if (this.name && this.partner_image) {
+      if (this.name && this.image) {
         axios.post("/api/admin/partners", {
           name: this.name,
-          image: this.partner_image
+          image: this.image
         }).then(function (response) {
           return _this.$router.push({
             name: 'AdminPartners'
@@ -48354,246 +48396,324 @@ var render = function() {
       staticStyle: { "min-height": "100vh" }
     },
     [
-      _c(
-        "header",
-        {
-          staticClass:
-            "navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
-        },
-        [
-          _c("a", { staticClass: "navbar-brand col-md-3 col-lg-2 me-0 px-3" }, [
-            _vm._v("Номерус")
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "subheader w-100" }, [
-            _vm._v("\n            " + _vm._s(_vm.subheader) + "\n        ")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "nav",
-            {
-              staticClass:
-                "col-md-3 col-lg-2 d-md-block bg-light sidebar collapse",
-              attrs: { id: "sidebarMenu" }
-            },
-            [
-              _c("div", { staticClass: "position-sticky pt-3" }, [
-                _c("ul", { staticClass: "nav flex-column" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminOrders"
-                          },
-                          attrs: { to: { name: "AdminOrders" } }
-                        },
-                        [_vm._v("Заказы")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminLeads"
-                          },
-                          attrs: { to: { name: "AdminLeads" } }
-                        },
-                        [_vm._v("Заявки")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminTypes"
-                          },
-                          attrs: {
-                            to: { name: "AdminTypes", params: { city: "ufa" } }
-                          }
-                        },
-                        [_vm._v("Цены")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminGallery"
-                          },
-                          attrs: { to: { name: "AdminGallery" } }
-                        },
-                        [_vm._v("Фотогалерея")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminAddresses"
-                          },
-                          attrs: { to: { name: "AdminAddresses" } }
-                        },
-                        [_vm._v("Адреса")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminServices"
-                          },
-                          attrs: { to: { name: "AdminServices" } }
-                        },
-                        [_vm._v("Виды услуг")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminPartners"
-                          },
-                          attrs: { to: { name: "AdminPartners" } }
-                        },
-                        [_vm._v("Партнеры")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger":
-                              _vm.$route.name == "AdminCertificates"
-                          },
-                          attrs: { to: { name: "AdminCertificates" } }
-                        },
-                        [_vm._v("Сертификаты")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          class: {
-                            "text-danger": _vm.$route.name == "AdminTextEdit"
-                          },
-                          attrs: { to: { name: "AdminTextEdit" } }
-                        },
-                        [_vm._v("Тексты на сайте")]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "nav flex-column mb-2" }, [
-                  _c(
-                    "li",
-                    { staticClass: "nav-item" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "Home" } }
-                        },
-                        [_vm._v("Выйти")]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("main", { staticClass: "col-md-9 ms-sm-auto col-lg-10 px-md-4" }, [
+      _vm.authenticated == false
+        ? _c("div", { staticClass: "admin_login" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.auth.email,
+                  expression: "auth.email"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "email", placeholder: "Логин" },
+              domProps: { value: _vm.auth.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.auth, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.auth.password,
+                  expression: "auth.password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "Пароль" },
+              domProps: { value: _vm.auth.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.auth, "password", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
             _c(
-              "div",
+              "button",
               {
-                staticClass:
-                  "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3"
+                staticClass: "btn btn-danger",
+                on: {
+                  click: function($event) {
+                    return _vm.login()
+                  }
+                }
               },
-              [_c("router-view", { key: _vm.$route.path })],
-              1
+              [_vm._v("Войти")]
             )
           ])
-        ])
-      ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.authenticated
+        ? _c(
+            "header",
+            {
+              staticClass:
+                "navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+            },
+            [
+              _c(
+                "a",
+                { staticClass: "navbar-brand col-md-3 col-lg-2 me-0 px-3" },
+                [_vm._v("Номерус")]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "subheader w-100" }, [
+                _vm._v("\n            " + _vm._s(_vm.subheader) + "\n        ")
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.authenticated
+        ? _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "nav",
+                {
+                  staticClass:
+                    "col-md-3 col-lg-2 d-md-block bg-light sidebar collapse",
+                  attrs: { id: "sidebarMenu" }
+                },
+                [
+                  _c("div", { staticClass: "position-sticky pt-3" }, [
+                    _c("ul", { staticClass: "nav flex-column" }, [
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger": _vm.$route.name == "AdminOrders"
+                              },
+                              attrs: { to: { name: "AdminOrders" } }
+                            },
+                            [_vm._v("Заказы")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger": _vm.$route.name == "AdminLeads"
+                              },
+                              attrs: { to: { name: "AdminLeads" } }
+                            },
+                            [_vm._v("Заявки")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger": _vm.$route.name == "AdminTypes"
+                              },
+                              attrs: {
+                                to: {
+                                  name: "AdminTypes",
+                                  params: { city: "ufa" }
+                                }
+                              }
+                            },
+                            [_vm._v("Цены")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger": _vm.$route.name == "AdminGallery"
+                              },
+                              attrs: { to: { name: "AdminGallery" } }
+                            },
+                            [_vm._v("Фотогалерея")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger":
+                                  _vm.$route.name == "AdminAddresses"
+                              },
+                              attrs: { to: { name: "AdminAddresses" } }
+                            },
+                            [_vm._v("Адреса")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger":
+                                  _vm.$route.name == "AdminServices"
+                              },
+                              attrs: { to: { name: "AdminServices" } }
+                            },
+                            [_vm._v("Виды услуг")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger":
+                                  _vm.$route.name == "AdminPartners"
+                              },
+                              attrs: { to: { name: "AdminPartners" } }
+                            },
+                            [_vm._v("Партнеры")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger":
+                                  _vm.$route.name == "AdminCertificates"
+                              },
+                              attrs: { to: { name: "AdminCertificates" } }
+                            },
+                            [_vm._v("Сертификаты")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              class: {
+                                "text-danger":
+                                  _vm.$route.name == "AdminTextEdit"
+                              },
+                              attrs: { to: { name: "AdminTextEdit" } }
+                            },
+                            [_vm._v("Тексты на сайте")]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("ul", { staticClass: "nav flex-column mb-2" }, [
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "Home" } }
+                            },
+                            [_vm._v("Выйти")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "main",
+                { staticClass: "col-md-9 ms-sm-auto col-lg-10 px-md-4" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3"
+                    },
+                    [_c("router-view", { key: _vm.$route.path })],
+                    1
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e()
     ]
   )
 }
@@ -49065,13 +49185,13 @@ var render = function() {
     { staticClass: "container" },
     [
       _c("file-pond", {
-        ref: "cert_image",
+        ref: "image",
         attrs: {
-          name: "cert_image",
+          name: "image",
           "label-idle": "Выбрать картинку...",
           "allow-multiple": false,
           "accepted-file-types": "image/jpeg",
-          server: "/api/admin/temp-cert-upload",
+          server: _vm.server,
           files: _vm.cert_filepond_files
         }
       }),
@@ -49420,7 +49540,7 @@ var render = function() {
           "label-idle": "Выбрать фото...",
           "allow-multiple": false,
           "accepted-file-types": "image/jpeg",
-          server: "/api/admin/temp-gal-upload",
+          server: _vm.server,
           files: _vm.gal_filepond_files
         }
       }),
@@ -49745,13 +49865,13 @@ var render = function() {
     { staticClass: "container" },
     [
       _c("file-pond", {
-        ref: "partner_image",
+        ref: "image",
         attrs: {
-          name: "partner_image",
+          name: "image",
           "label-idle": "Выбрать картинку...",
           "allow-multiple": false,
           "accepted-file-types": "image/jpeg",
-          server: "/api/admin/temp-partner-upload",
+          server: _vm.server,
           files: _vm.partner_filepond_files
         }
       }),

@@ -30,18 +30,22 @@ Route::get('addresses','App\Http\Controllers\Front\AddressController@index');
 Route::post('lead','App\Http\Controllers\Front\LeadController@store');
 
 // ADMIN
-Route::get('admin/orders','App\Http\Controllers\Admin\OrderController@orders_index');
+
+Route::post('/login', 'App\Http\Controllers\Admin\AuthController@login');
+Route::post('/me', 'App\Http\Controllers\Admin\AuthController@me');
+
+Route::get('admin/orders','App\Http\Controllers\Admin\OrderController@orders_index')->middleware('auth:sanctum');
 Route::get('admin/order-items','App\Http\Controllers\Admin\OrderItemController@orderItems_index');
 
 Route::get('admin/certificates','App\Http\Controllers\Admin\CertificateController@index');
 Route::post('admin/certificates','App\Http\Controllers\Admin\CertificateController@store');
 Route::get('admin/certificate/{id}','App\Http\Controllers\Admin\CertificateController@cert_item');
 Route::post('admin/certificate/{id}','App\Http\Controllers\Admin\CertificateController@cert_update');
-Route::post('admin/certificates/add_image_upload','App\Http\Controllers\Admin\CertificateController@add_image_store');
+Route::post('admin/certificates/add_image_upload','App\Http\Controllers\Admin\CertificateController@add_image_store')->middleware('auth:sanctum');
 
 Route::get('admin/gallery','App\Http\Controllers\Admin\GalleryController@index');
 Route::post('admin/gallery','App\Http\Controllers\Admin\GalleryController@store');
-Route::post('admin/temp-gal-upload','App\Http\Controllers\Admin\GalleryController@temp_gal_image_store');
+Route::post('admin/gallery/add_image_upload','App\Http\Controllers\Admin\GalleryController@temp_gal_image_store');
 Route::get('admin/gallery-del/{id}','App\Http\Controllers\Admin\GalleryController@delete_item');
 
 Route::get('admin/cities','App\Http\Controllers\Admin\CityController@index');
@@ -62,6 +66,7 @@ Route::post('admin/services/add_image_upload','App\Http\Controllers\Admin\Servic
 Route::get('admin/transports','App\Http\Controllers\Admin\TransportController@transports_index');
 
 Route::get('admin/partners','App\Http\Controllers\Admin\PartnerController@index');
+Route::post('admin/partners','App\Http\Controllers\Admin\PartnerController@store');
 Route::get('admin/partner/{id}','App\Http\Controllers\Admin\PartnerController@partner_item');
 Route::post('admin/partner/{id}','App\Http\Controllers\Admin\PartnerController@partner_update');
 Route::post('admin/partners/add_image_upload','App\Http\Controllers\Admin\PartnerController@add_image_store');

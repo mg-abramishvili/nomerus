@@ -6,7 +6,7 @@
             label-idle="Выбрать фото..."
             v-bind:allow-multiple="false"
             accepted-file-types="image/jpeg"
-            server="/api/admin/temp-gal-upload"
+            :server="server"
             v-bind:files="gal_filepond_files"
         />
         <button @click="saveGal()" class="btn btn-primary">Сохранить</button>
@@ -42,7 +42,7 @@ export default {
                     const formData = new FormData();
                     formData.append(fieldName, file, file.name);
                     const request = new XMLHttpRequest();
-                    request.open('POST', '/api/admin/temp-gal-upload');
+                    request.open('POST', '/api/admin/gallery/add_image_upload');
                     request.upload.onprogress = (e) => {
                         progress(e.lengthComputable, e.loaded, e.total);
                     };

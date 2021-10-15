@@ -6,12 +6,10 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 class VerifyCsrfToken extends Middleware
 {
-    /**
-     * The URIs that should be excluded from CSRF verification.
-     *
-     * @var array
-     */
     protected $except = [
-        //
+        '/api/admin/certificates/add_image_upload',
+        '/api/admin/gallery/add_image_upload',
+        '/api/admin/services/add_image_upload',
+        '/api/admin/partners/add_image_upload',
     ];
 }

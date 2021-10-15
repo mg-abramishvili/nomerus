@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <file-pond
-            name="partner_image"
-            ref="partner_image"
+            name="image"
+            ref="image"
             label-idle="Выбрать картинку..."
             v-bind:allow-multiple="false"
             accepted-file-types="image/jpeg"
-            server="/api/admin/temp-partner-upload"
+            :server="server"
             v-bind:files="partner_filepond_files"
         />
         <input v-model="name" type="text" class="form-control my-4" placeholder="Название">
@@ -33,7 +33,7 @@ export default {
     data() {
         return {
             name: '',
-            partner_image: '',
+            image: '',
             partner_filepond_files: [],
             server: {
                 remove(filename, load) {
@@ -43,7 +43,7 @@ export default {
                     const formData = new FormData();
                     formData.append(fieldName, file, file.name);
                     const request = new XMLHttpRequest();
-                    request.open('POST', '/api/admin/temp-partner-upload');
+                    request.open('POST', '/api/admin/partners/add_image_upload');
                     request.upload.onprogress = (e) => {
                         progress(e.lengthComputable, e.loaded, e.total);
                     };
@@ -78,10 +78,10 @@ export default {
     },
     methods: {
         savePartner() {
-            this.partner_image = document.getElementsByName("partner_image")[0].value
-            if(this.name && this.partner_image) {
+            this.image = document.getElementsByName("image")[0].value
+            if(this.name && this.image) {
                 axios
-                .post(`/api/admin/partners`, { name: this.name, image: this.partner_image })
+                .post(`/api/admin/partners`, { name: this.name, image: this.image })
                 .then(response => (
                     this.$router.push({name: 'AdminPartners'})
                 ))
