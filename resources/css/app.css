@@ -158,10 +158,10 @@ html, body {
 
 @media (max-width: 900px) {
     .front header .header-social a {
-        margin: 0 4px;
+        margin: 0 3px;
     }
     .front header .header-social a:nth-child(2) {
-        margin-right: -10px;
+        margin-right: -8px;
     }
 }
 
