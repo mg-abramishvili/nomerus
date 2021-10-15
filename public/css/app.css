@@ -1726,8 +1726,7 @@ html, body {
 }
 @media (max-width: 900px) {
     .order-plate-preview .type4 .reg {
-        display: block;
-        margin-top: -5px;
+        margin-top: -30px;
     }
 }
 .order-plate-preview .type4 .reg .reg-inner {
