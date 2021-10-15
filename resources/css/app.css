@@ -1639,6 +1639,11 @@ html, body {
     vertical-align: middle;
     margin-top: -1px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type1a .reg .reg-inner img {
+        margin-top: -5px;
+    }
+}
 /* TYPE 1A PLATE */
 
 /* TYPE 4 PLATE */
