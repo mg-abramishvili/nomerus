@@ -42,6 +42,7 @@ Route::post('admin/certificates/add_image_upload','App\Http\Controllers\Admin\Ce
 Route::get('admin/gallery','App\Http\Controllers\Admin\GalleryController@index');
 Route::post('admin/gallery','App\Http\Controllers\Admin\GalleryController@store');
 Route::post('admin/temp-gal-upload','App\Http\Controllers\Admin\GalleryController@temp_gal_image_store');
+Route::get('admin/gallery-del/{id}','App\Http\Controllers\Admin\GalleryController@delete_item');
 
 Route::get('admin/cities','App\Http\Controllers\Admin\CityController@index');
 Route::get('admin/addresses','App\Http\Controllers\Admin\AddressController@index');

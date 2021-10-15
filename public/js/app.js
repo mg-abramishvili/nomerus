@@ -2777,13 +2777,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2798,7 +2791,17 @@ __webpack_require__.r(__webpack_exports__);
       return _this.gallery = response.data;
     });
   },
-  methods: {},
+  methods: {
+    removeGal: function removeGal(id) {
+      var _this2 = this;
+
+      axios.get("/api/admin/gallery-del/".concat(id)).then(function (response) {
+        return axios.get('/api/admin/gallery').then(function (response) {
+          return _this2.gallery = response.data;
+        });
+      });
+    }
+  },
   components: {}
 });
 
@@ -48564,53 +48567,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w-100" }, [
-    _c("table", { staticClass: "table" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("Файл")]),
-          _vm._v(" "),
-          _c(
-            "th",
-            { staticClass: "text-end" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-sm btn-primary",
-                  attrs: { to: { name: "AdminGalleryCreate" } }
-                },
-                [_vm._v("Добавить")]
-              )
-            ],
-            1
-          )
-        ])
-      ]),
+  return _c(
+    "div",
+    { staticClass: "w-100" },
+    [
+      _c(
+        "router-link",
+        {
+          staticClass: "btn btn-sm btn-primary mb-4",
+          attrs: { to: { name: "AdminGalleryCreate" } }
+        },
+        [_vm._v("Добавить")]
+      ),
       _vm._v(" "),
       _c(
-        "tbody",
+        "div",
+        { staticClass: "row" },
         _vm._l(_vm.gallery, function(galleryItem) {
-          return _c("tr", { key: "galleryItem_" + galleryItem.id }, [
-            _c("td", { staticStyle: { width: "50px" } }, [
-              _c("img", {
-                staticStyle: {
-                  width: "auto",
-                  height: "60px",
-                  display: "block",
-                  margin: "0 auto"
+          return _c(
+            "div",
+            {
+              key: "galleryItem_" + galleryItem.id,
+              staticClass: "col-12 col-md-4"
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    "background-color": "#fff",
+                    padding: "15px",
+                    "margin-bottom": "20px",
+                    border: "1px solid #ddd"
+                  }
                 },
-                attrs: { src: galleryItem.image }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-end" })
-          ])
+                [
+                  _c("img", {
+                    staticStyle: {
+                      width: "auto",
+                      height: "120px",
+                      display: "block",
+                      margin: "0 auto"
+                    },
+                    attrs: { src: galleryItem.image }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text-center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-outline-danger mt-1",
+                        on: {
+                          click: function($event) {
+                            return _vm.removeGal(galleryItem.id)
+                          }
+                        }
+                      },
+                      [_vm._v("удалить")]
+                    )
+                  ])
+                ]
+              )
+            ]
+          )
         }),
         0
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

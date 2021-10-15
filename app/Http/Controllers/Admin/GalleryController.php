@@ -48,4 +48,10 @@ class GalleryController extends Controller
 
         return '';
     }
+
+    public function delete_item($id, Request $request)
+    {
+        $gallery = Gallery::find($id);
+        $gallery->delete();
+    }
 }

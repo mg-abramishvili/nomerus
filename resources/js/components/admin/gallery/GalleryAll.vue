@@ -1,23 +1,16 @@
 <template>
     <div class="w-100">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Файл</th>
-                    <th class="text-end"><router-link :to="{name: 'AdminGalleryCreate'}" class="btn btn-sm btn-primary">Добавить</router-link></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="galleryItem in gallery" :key="'galleryItem_' + galleryItem.id">
-                    <td style="width: 50px;">
-                        <img :src="galleryItem.image" style="width: auto; height: 60px; display: block; margin: 0 auto;">
-                    </td>
-                    <td class="text-end">
-                        <!--<button class="btn btn-sm btn-outline-danger">Удалить</button>-->
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <router-link :to="{name: 'AdminGalleryCreate'}" class="btn btn-sm btn-primary mb-4">Добавить</router-link>
+        <div class="row">
+            <div v-for="galleryItem in gallery" :key="'galleryItem_' + galleryItem.id" class="col-12 col-md-4">
+                <div style="background-color: #fff; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd;">
+                    <img :src="galleryItem.image" style="width: auto; height: 120px; display: block; margin: 0 auto;">
+                    <div class="text-center">
+                        <button @click="removeGal(galleryItem.id)" class="btn btn-sm btn-outline-danger mt-1">удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -37,6 +30,17 @@
             ))
         },
         methods: {
+            removeGal(id) {
+                axios
+                .get(`/api/admin/gallery-del/${id}`)
+                .then(response => (
+                    axios
+                    .get('/api/admin/gallery')
+                    .then(response => (
+                        this.gallery = response.data
+                    ))
+                ))
+            }
         },
         components: {
         }
