@@ -21,7 +21,8 @@
                 $route.name === 'AdminPartners' ||
                 $route.name === 'AdminLeads' ||
                 $route.name === 'AdminServices' ||
-                $route.name === 'AdminServiceEdit'
+                $route.name === 'AdminServiceEdit' ||
+                $route.name === 'AdminTextEdit'
             ">
             <AdminLayout />
         </template>

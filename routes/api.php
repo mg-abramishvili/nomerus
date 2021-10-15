@@ -64,6 +64,9 @@ Route::get('admin/transports','App\Http\Controllers\Admin\TransportController@tr
 Route::get('admin/partners','App\Http\Controllers\Admin\PartnerController@index');
 Route::get('admin/leads','App\Http\Controllers\Admin\LeadController@index');
 
+Route::get('admin/text','App\Http\Controllers\Admin\TextController@index');
+Route::post('admin/text','App\Http\Controllers\Admin\TextController@update');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

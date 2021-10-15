@@ -36,6 +36,9 @@
                             <li class="nav-item">
                                 <router-link :to="{name: 'AdminCertificates'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminCertificates'}">Сертификаты</router-link>
                             </li>
+                            <li class="nav-item">
+                                <router-link :to="{name: 'AdminTextEdit'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminTextEdit'}">Тексты на сайте</router-link>
+                            </li>
                         </ul>
 
                         <!--<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">

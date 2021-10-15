@@ -32,6 +32,8 @@ import AdminLeads from './components/admin/leads/LeadsAll.vue';
 import AdminServices from './components/admin/services/ServicesAll.vue';
 import AdminServiceEdit from './components/admin/services/ServiceEdit.vue';
 
+import AdminTextEdit from './components/admin/text/TextEdit.vue';
+
 export const routes = [
     {
         path: '/',
@@ -147,5 +149,10 @@ export const routes = [
         path: '/admin/service/:id',
         name: 'AdminServiceEdit',
         component: AdminServiceEdit
+    },
+    {
+        path: '/admin/text',
+        name: 'AdminTextEdit',
+        component: AdminTextEdit
     },
 ];
