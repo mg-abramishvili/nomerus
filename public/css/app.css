@@ -1618,9 +1618,10 @@ html, body {
 }
 @media (max-width: 900px) {
     .order-plate-preview .type1a .reg .reg-inner {
-        margin-top: -10px;
+        margin-top: -20px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 }
 .order-plate-preview .type1a .reg .reg-inner i {
