@@ -5158,6 +5158,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   directives: {
@@ -5185,7 +5202,9 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       tel: '',
       email: '',
-      company: ''
+      company: '',
+      sts_modal: false,
+      modal_bg: false
     };
   },
   created: function created() {
@@ -5463,6 +5482,14 @@ __webpack_require__.r(__webpack_exports__);
       this.add_komplekt = true;
       this.constructor = true;
       this.order_fields = false;
+    },
+    openStsModal: function openStsModal() {
+      this.sts_modal = true;
+      this.modal_bg = true;
+    },
+    closeStsModal: function closeStsModal() {
+      this.sts_modal = false;
+      this.modal_bg = false;
     }
   },
   mounted: function mounted() {
@@ -52504,7 +52531,20 @@ var render = function() {
                                 staticClass: "form-label mb-1",
                                 attrs: { id: "number_region_label" }
                               },
-                              [_vm._v("Регион")]
+                              [
+                                _vm._v("Регион "),
+                                _c(
+                                  "i",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.openStsModal()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("?")]
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -53446,10 +53486,66 @@ var render = function() {
           ])
         ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm.sts_modal
+      ? _c(
+          "div",
+          { staticClass: "modal sts_modal", attrs: { tabindex: "-1" } },
+          [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Госномер")
+                  ]),
+                  _vm._v(" "),
+                  _c("button", {
+                    staticClass: "btn-close",
+                    attrs: {
+                      type: "button",
+                      "data-bs-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.closeStsModal()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.modal_bg
+      ? _c("div", { staticClass: "modal-backdrop fade show" })
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("img", {
+        staticStyle: {
+          width: "auto",
+          "max-width": "100%",
+          "max-height": "90vh",
+          display: "block",
+          margin: "0 auto"
+        },
+        attrs: { src: "/img/sts.jpg" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 

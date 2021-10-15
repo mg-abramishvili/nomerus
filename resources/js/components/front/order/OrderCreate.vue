@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-12 col-md-2">
                                 <div v-if="selected_transport && selected_transport.id" class="mb-3">
-                                    <label id="number_region_label" class="form-label mb-1">Регион</label>
+                                    <label id="number_region_label" class="form-label mb-1">Регион <i @click="openStsModal()">?</i></label>
                                     <input v-model="number_region" v-maska="{ mask: '###', tokens: { '###': { pattern: /[0-9]/ }}}" id="number_region_input" class="form-control form-control-lg">
                                 </div>
                                 <div v-else class="mb-3">
@@ -213,6 +213,23 @@
 
             </div>
         </div>
+        
+        <div v-if="sts_modal" class="modal sts_modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Госномер</h5>
+                        <button @click="closeStsModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="/img/sts.jpg" style="width: auto; max-width: 100%; max-height: 90vh; display: block; margin: 0 auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="modal_bg" class="modal-backdrop fade show"></div>
+
     </div>
 </template>
 
@@ -252,6 +269,9 @@
                 tel: '',
                 email: '',
                 company: '',
+
+                sts_modal: false,
+                modal_bg: false,
             }
         },
         created() {
@@ -526,6 +546,14 @@
 
                 this.constructor = true
                 this.order_fields = false
+            },
+            openStsModal() {
+                this.sts_modal = true
+                this.modal_bg = true
+            },
+            closeStsModal() {
+                this.sts_modal = false
+                this.modal_bg = false
             }
         },
         mounted() {

@@ -1407,6 +1407,20 @@ html, body {
     color: #777;
 }
 
+.order-page .form-label i {
+    background-color: #EF5044;
+    border-radius: 100%;
+    font-style: normal;
+    width: 20px;
+    height: 20px;
+    line-height: 21px;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
 .order-page .form-check-label small {
     display: block;
     font-size: 12px;
