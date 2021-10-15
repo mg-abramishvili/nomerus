@@ -21,9 +21,9 @@
                             <a v-if="current_city.whatsapp" :href="'https://wa.me/' + current_city.whatsapp">
                                 <img src="/img/whatsapp.svg">
                             </a>
-                            <!--<a href="#">
+                            <a v-if="current_city.telegram" :href="'https://t.me/' + current_city.telegram">
                                 <img src="/img/telegram.svg">
-                            </a>-->
+                            </a>
                         </div>
                         <div class="header-callback">
                             <button @click="openCallbackModal()" class="btn btn-standard">Обратный звонок</button>
@@ -118,12 +118,12 @@
                         <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
                             <img src="/img/insta.svg">
                         </a>
-                        <a href="#">
-                            <img src="/img/whatsapp.svg">
-                        </a>
-                        <!--<a href="#">
+                        <a v-if="current_city.whatsapp" :href="'https://wa.me/' + current_city.whatsapp">
+                                <img src="/img/whatsapp.svg">
+                            </a>
+                        <a v-if="current_city.telegram" :href="'https://t.me/' + current_city.telegram">
                             <img src="/img/telegram.svg">
-                        </a>-->
+                        </a>
                     </div>
                     <div class="footer-callback">
                         <button @click="openCallbackModal()" class="btn btn-standard">Обратный звонок</button>

@@ -50627,6 +50627,18 @@ var render = function() {
                     },
                     [_c("img", { attrs: { src: "/img/whatsapp.svg" } })]
                   )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.current_city.telegram
+                ? _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "https://t.me/" + _vm.current_city.telegram
+                      }
+                    },
+                    [_c("img", { attrs: { src: "/img/telegram.svg" } })]
+                  )
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -50875,7 +50887,31 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "footer-social" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm.current_city.whatsapp
+              ? _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "https://wa.me/" + _vm.current_city.whatsapp
+                    }
+                  },
+                  [_c("img", { attrs: { src: "/img/whatsapp.svg" } })]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.current_city.telegram
+              ? _c(
+                  "a",
+                  {
+                    attrs: { href: "https://t.me/" + _vm.current_city.telegram }
+                  },
+                  [_c("img", { attrs: { src: "/img/telegram.svg" } })]
+                )
+              : _vm._e()
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "footer-callback" }, [
             _c(
@@ -51134,22 +51170,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-social" }, [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "https://www.instagram.com/nomerus_ufa/",
-            target: "_blank"
-          }
-        },
-        [_c("img", { attrs: { src: "/img/insta.svg" } })]
-      ),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c("img", { attrs: { src: "/img/whatsapp.svg" } })
-      ])
-    ])
+    return _c(
+      "a",
+      {
+        attrs: {
+          href: "https://www.instagram.com/nomerus_ufa/",
+          target: "_blank"
+        }
+      },
+      [_c("img", { attrs: { src: "/img/insta.svg" } })]
+    )
   }
 ]
 render._withStripped = true
