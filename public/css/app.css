@@ -1760,6 +1760,12 @@ html, body {
     vertical-align: middle;
     margin-top: -1px;
 }
+@media (max-width: 900px) {
+    .order-plate-preview .type4 .reg .reg-inner img {
+        margin-top: -4px;
+        margin-left: 5px;
+    }
+}
 /* TYPE 4 PLATE */
 
 
