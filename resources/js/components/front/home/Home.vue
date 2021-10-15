@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <div class="home-why-item" style="background-image:url(/img/home-why-item-1.jpg)">
+                        <div class="home-why-item" style="background-image:url(/img/home-why-item-2.jpg)">
                             <p>Изготовим номер <br>за 5 минут</p>
                         </div>
                     </div>

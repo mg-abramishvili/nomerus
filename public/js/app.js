@@ -51097,7 +51097,7 @@ var staticRenderFns = [
               {
                 staticClass: "home-why-item",
                 staticStyle: {
-                  "background-image": "url(/img/home-why-item-1.jpg)"
+                  "background-image": "url(/img/home-why-item-2.jpg)"
                 }
               },
               [
