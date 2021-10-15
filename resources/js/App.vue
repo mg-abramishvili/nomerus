@@ -19,6 +19,8 @@
                 $route.name === 'AdminTypes' ||
                 $route.name === 'AdminTypeEdit' ||
                 $route.name === 'AdminPartners' ||
+                $route.name === 'AdminPartnerCreate' ||
+                $route.name === 'AdminPartnerEdit' ||
                 $route.name === 'AdminLeads' ||
                 $route.name === 'AdminServices' ||
                 $route.name === 'AdminServiceEdit' ||

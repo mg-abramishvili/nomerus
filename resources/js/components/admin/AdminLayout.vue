@@ -34,6 +34,9 @@
                                 <router-link :to="{name: 'AdminServices'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminServices'}">Виды услуг</router-link>
                             </li>
                             <li class="nav-item">
+                                <router-link :to="{name: 'AdminPartners'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminPartners'}">Партнеры</router-link>
+                            </li>
+                            <li class="nav-item">
                                 <router-link :to="{name: 'AdminCertificates'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminCertificates'}">Сертификаты</router-link>
                             </li>
                             <li class="nav-item">

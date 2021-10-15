@@ -62,6 +62,10 @@ Route::post('admin/services/add_image_upload','App\Http\Controllers\Admin\Servic
 Route::get('admin/transports','App\Http\Controllers\Admin\TransportController@transports_index');
 
 Route::get('admin/partners','App\Http\Controllers\Admin\PartnerController@index');
+Route::get('admin/partner/{id}','App\Http\Controllers\Admin\PartnerController@partner_item');
+Route::post('admin/partner/{id}','App\Http\Controllers\Admin\PartnerController@partner_update');
+Route::post('admin/partners/add_image_upload','App\Http\Controllers\Admin\PartnerController@add_image_store');
+
 Route::get('admin/leads','App\Http\Controllers\Admin\LeadController@index');
 
 Route::get('admin/text','App\Http\Controllers\Admin\TextController@index');
