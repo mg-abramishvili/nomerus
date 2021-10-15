@@ -1631,11 +1631,6 @@ html, body {
     vertical-align: middle;
     margin-right: -4px;
 }
-@media (max-width: 900px) {
-    .order-plate-preview .type1a .reg .reg-inner i {
-        margin-right: -8px;
-    }
-}
 .order-plate-preview .type1a .reg .reg-inner img {
     width: 13px;
     display: inline-block;
