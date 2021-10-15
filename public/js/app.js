@@ -51060,25 +51060,7 @@ var render = function() {
                                         staticClass: "form-check-label",
                                         attrs: { for: "komplSwitch" }
                                       },
-                                      [
-                                        _vm._v("комплект (2 номера) "),
-                                        _vm.selected_komplekt_type
-                                          ? _c("small", [
-                                              _vm._v(
-                                                "↳ " +
-                                                  _vm._s(_vm.selected_type.name)
-                                              ),
-                                              _c("br"),
-                                              _vm._v(
-                                                "↳ " +
-                                                  _vm._s(
-                                                    _vm.selected_komplekt_type
-                                                      .name
-                                                  )
-                                              )
-                                            ])
-                                          : _vm._e()
-                                      ]
+                                      [_vm._v("комплект (2 номера) ")]
                                     )
                                   ]
                                 )

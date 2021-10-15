@@ -62,7 +62,7 @@
                                     </div>
                                     <div v-if="selected_type && selected_type.id && selected_type.komplekt && selected_type.komplekt.length > 0" class="form-check form-switch mt-2">
                                         <input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="komplSwitch">
-                                        <label class="form-check-label" for="komplSwitch">комплект (2 номера) <small v-if="selected_komplekt_type">↳ {{ selected_type.name }}<br>↳ {{ selected_komplekt_type.name }}</small></label>
+                                        <label class="form-check-label" for="komplSwitch">комплект (2 номера) <!--<small v-if="selected_komplekt_type">↳ {{ selected_type.name }}<br>↳ {{ selected_komplekt_type.name }}</small>--></label>
                                         <!--<input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
                                             Заказать комплект (+ 1шт.)
