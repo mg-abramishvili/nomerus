@@ -3966,6 +3966,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -50735,12 +50737,18 @@ var render = function() {
           ]
         }
       },
-      _vm._l(_vm.cities, function(cityItem) {
-        return _c("option", { domProps: { value: cityItem.namecode } }, [
-          _vm._v(_vm._s(cityItem.name))
-        ])
-      }),
-      0
+      [
+        _vm._l(_vm.cities, function(cityItem) {
+          return [
+            cityItem.addresses && cityItem.addresses.length > 0
+              ? _c("option", { domProps: { value: cityItem.namecode } }, [
+                  _vm._v(_vm._s(cityItem.name))
+                ])
+              : _vm._e()
+          ]
+        })
+      ],
+      2
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [

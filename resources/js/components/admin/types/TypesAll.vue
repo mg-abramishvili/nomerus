@@ -1,7 +1,9 @@
 <template>
     <div class="w-100">
         <select v-model="city" @change="changeCity()" class="form-select form-select-lg mb-4">
-            <option v-for="cityItem in cities" :value="cityItem.namecode">{{ cityItem.name }}</option>
+            <template v-for="cityItem in cities">
+                <option v-if="cityItem.addresses && cityItem.addresses.length > 0" :value="cityItem.namecode">{{ cityItem.name }}</option>
+            </template>
         </select>
 
         <table class="table">
