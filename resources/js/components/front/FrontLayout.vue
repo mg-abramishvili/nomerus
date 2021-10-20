@@ -146,9 +146,11 @@
                     </div>
                     <div class="modal-body">
                         <ul>
-                            <li v-for="city in cities" :key="'city_' + city.id">
-                                <a @click="selectCity(city.id, city.name, city.namecode, city.instagram)">{{ city.name }}</a>
-                            </li>
+                            <template v-for="city in cities">
+                                <li v-if="city.addresses && city.addresses.length > 0">
+                                    <a @click="selectCity(city.id, city.name, city.namecode, city.instagram)">{{ city.name }}</a>
+                                </li>
+                            </template>
                         </ul>
                     </div>
                 </div>

@@ -4205,6 +4205,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -51296,27 +51298,33 @@ var render = function() {
                 _c("div", { staticClass: "modal-body" }, [
                   _c(
                     "ul",
-                    _vm._l(_vm.cities, function(city) {
-                      return _c("li", { key: "city_" + city.id }, [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.selectCity(
-                                  city.id,
-                                  city.name,
-                                  city.namecode,
-                                  city.instagram
+                    [
+                      _vm._l(_vm.cities, function(city) {
+                        return [
+                          city.addresses && city.addresses.length > 0
+                            ? _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.selectCity(
+                                          city.id,
+                                          city.name,
+                                          city.namecode,
+                                          city.instagram
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(city.name))]
                                 )
-                              }
-                            }
-                          },
-                          [_vm._v(_vm._s(city.name))]
-                        )
-                      ])
-                    }),
-                    0
+                              ])
+                            : _vm._e()
+                        ]
+                      })
+                    ],
+                    2
                   )
                 ])
               ])
