@@ -296,6 +296,9 @@
                 if(this.current_city.namecode === 'strltmk') {
                     this.ymap_city_coords = [53.63219996016489,55.929692909667935]
                 }
+                if(this.current_city.namecode === 'tuimazy') {
+                    this.ymap_city_coords = [54.59935686492598,53.71163149999992]
+                }
             },
             toggleMenu() {
                 if(document.getElementById('navbarCollapse').classList.contains('collapse')) {
