@@ -11,7 +11,7 @@ Route::post('order','App\Http\Controllers\Front\OrderController@order_store');
 
 Route::get('cities','App\Http\Controllers\Front\CityController@cities_index');
 Route::get('city-select/{city}','App\Http\Controllers\Front\CityController@city_select');
-Route::get('city-detect','App\Http\Controllers\Front\CityController@city_detect');
+Route::get('city-detect/{ip}','App\Http\Controllers\Front\CityController@city_detect');
 
 Route::get('services','App\Http\Controllers\Front\ServiceController@index');
 

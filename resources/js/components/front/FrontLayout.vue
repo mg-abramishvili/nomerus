@@ -222,6 +222,8 @@
                 saveLead_button: true,
 
                 show_policy: false,
+
+                user_ip: '',
             }
         },
         created() {
@@ -231,16 +233,30 @@
                 this.cities = response.data
             }));
             axios
-            .get('/api/city-detect')
+            .get('https://api.ipify.org?format=json')
             .then((response => {
-                this.current_city = response.data
-                this.lead_city = response.data.name
-            }));
-            axios
-            .get('/api/addresses')
-            .then((response => {
-                this.ymap_addresses = response.data
-                this.ymap_cityChange()
+                this.user_ip = response.data.ip;
+                if(this.user_ip) {
+                    axios
+                    .get(`/api/city-detect/${this.user_ip}`)
+                    .then((response => {
+                        this.current_city = response.data
+                        this.lead_city = response.data.name
+                    }));
+                } else {
+                    axios
+                    .get(`/api/city-detect/0`)
+                    .then((response => {
+                        this.current_city = response.data
+                        this.lead_city = response.data.name
+                    }));
+                }
+                axios
+                    .get('/api/addresses')
+                    .then((response => {
+                        this.ymap_addresses = response.data
+                        this.ymap_cityChange()
+                    }));
             }));
             axios
             .get('/api/text')
@@ -277,7 +293,7 @@
                 .get(`/api/city-select/${id}`)
                 .then((response => {
                     axios
-                    .get('/api/city-detect')
+                    .get('/api/city-detect/0')
                     .then((response => {
                         this.current_city = response.data
                         this.lead_city = response.data.name

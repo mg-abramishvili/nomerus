@@ -18,15 +18,28 @@ class CityController extends Controller
         session()->put('city', $city);
     }
 
-    public function city_detect(Request $request)
+    public function city_detect($ip, Request $request)
     {
         //return session('city');
         if(session('city')) {
             $city = City::find(session('city'));
             return $city;
         } else {
-            $city = City::find(1);
-            return $city;
+            if($ip == 0) {
+                $city = City::where('name', 'Уфа')->first();
+                return $city;
+            } else {
+                $ch = curl_init('http://ip-api.com/json/' . $ip . '?lang=ru');
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_HEADER, false);
+                $res = curl_exec($ch);
+                curl_close($ch);
+                
+                $res = json_decode($res);
+                $city = City::where('name', $res->city)->first();
+                return $city;
+            }
         }
         
     }

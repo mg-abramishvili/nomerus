@@ -4232,7 +4232,8 @@ __webpack_require__.r(__webpack_exports__);
       lead_city: '',
       lead_success: false,
       saveLead_button: true,
-      show_policy: false
+      show_policy: false,
+      user_ip: ''
     };
   },
   created: function created() {
@@ -4241,14 +4242,26 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/cities').then(function (response) {
       _this.cities = response.data;
     });
-    axios.get('/api/city-detect').then(function (response) {
-      _this.current_city = response.data;
-      _this.lead_city = response.data.name;
-    });
-    axios.get('/api/addresses').then(function (response) {
-      _this.ymap_addresses = response.data;
+    axios.get('https://api.ipify.org?format=json').then(function (response) {
+      _this.user_ip = response.data.ip;
 
-      _this.ymap_cityChange();
+      if (_this.user_ip) {
+        axios.get("/api/city-detect/".concat(_this.user_ip)).then(function (response) {
+          _this.current_city = response.data;
+          _this.lead_city = response.data.name;
+        });
+      } else {
+        axios.get("/api/city-detect/0").then(function (response) {
+          _this.current_city = response.data;
+          _this.lead_city = response.data.name;
+        });
+      }
+
+      axios.get('/api/addresses').then(function (response) {
+        _this.ymap_addresses = response.data;
+
+        _this.ymap_cityChange();
+      });
     });
     axios.get('/api/text').then(function (response) {
       return _this.text = response.data;
@@ -4284,7 +4297,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("/api/city-select/".concat(id)).then(function (response) {
-        axios.get('/api/city-detect').then(function (response) {
+        axios.get('/api/city-detect/0').then(function (response) {
           _this2.current_city = response.data;
           _this2.lead_city = response.data.name;
         });
