@@ -4896,6 +4896,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -52002,6 +52004,17 @@ var render = function() {
                             )
                         )
                       ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$parent.current_city.name.substr(-1) === "ы"
+                    ? _c("strong", [
+                        _vm._v(
+                          "в " +
+                            _vm._s(
+                              _vm.$parent.current_city.name.slice(0, -1) + "ах"
+                            )
+                        )
+                      ])
                     : _c("strong", [
                         _vm._v(
                           "в " + _vm._s(_vm.$parent.current_city.name + "е")
@@ -52366,6 +52379,17 @@ var render = function() {
                         "в " +
                           _vm._s(
                             _vm.$parent.current_city.name.slice(0, -1) + "е"
+                          )
+                      )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.$parent.current_city.name.substr(-1) === "ы"
+                  ? [
+                      _vm._v(
+                        "в " +
+                          _vm._s(
+                            _vm.$parent.current_city.name.slice(0, -1) + "ах"
                           )
                       )
                     ]
