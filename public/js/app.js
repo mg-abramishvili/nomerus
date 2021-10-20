@@ -2358,6 +2358,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2402,6 +2409,17 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         alert('Заполните поля');
+      }
+    },
+    deleteAddress: function deleteAddress(id) {
+      var _this3 = this;
+
+      if (confirm("Точно удалить?")) {
+        axios.get("/api/admin/address/".concat(id, "/delete")).then(function (response) {
+          return _this3.$router.push({
+            name: 'AdminAddresses'
+          });
+        });
       }
     }
   },
@@ -49138,18 +49156,37 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
-        on: {
-          click: function($event) {
-            return _vm.updateAddress(_vm.address.id)
-          }
-        }
-      },
-      [_vm._v("Сохранить")]
-    ),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-6" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                return _vm.updateAddress(_vm.address.id)
+              }
+            }
+          },
+          [_vm._v("Сохранить")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6 text-end" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-danger",
+            on: {
+              click: function($event) {
+                return _vm.deleteAddress(_vm.address.id)
+              }
+            }
+          },
+          [_vm._v("Удалить")]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),

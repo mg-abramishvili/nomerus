@@ -45,4 +45,10 @@ class AddressController extends Controller
 
         $address->save();
     }
+
+    public function address_item_delete($id, Request $request) {
+        $address = Address::find($id);
+        $address->cities()->detach();
+        $address->delete();
+    }
 }

@@ -52,6 +52,7 @@ Route::get('admin/cities','App\Http\Controllers\Admin\CityController@index')->mi
 Route::get('admin/addresses','App\Http\Controllers\Admin\AddressController@index')->middleware('auth:sanctum');
 Route::post('admin/addresses','App\Http\Controllers\Admin\AddressController@store')->middleware('auth:sanctum');
 Route::get('admin/address/{id}','App\Http\Controllers\Admin\AddressController@address_item')->middleware('auth:sanctum');
+Route::get('admin/address/{id}/delete','App\Http\Controllers\Admin\AddressController@address_item_delete')->middleware('auth:sanctum');
 Route::post('admin/address/{id}','App\Http\Controllers\Admin\AddressController@address_update')->middleware('auth:sanctum');
 
 Route::get('admin/types/{city}','App\Http\Controllers\Admin\TypeController@index')->middleware('auth:sanctum');

@@ -6,7 +6,14 @@
         <input v-model="name" type="text" class="form-control mb-3" placeholder="Название">
         <input v-model="tel" type="text" class="form-control mb-3" placeholder="Телефон">
         <input v-model="coordinates" type="text" class="form-control mb-3" placeholder="Координаты">
-        <button @click="updateAddress(address.id)" class="btn btn-primary">Сохранить</button>
+        <div class="row">
+            <div class="col-6">
+                <button @click="updateAddress(address.id)" class="btn btn-primary">Сохранить</button>
+            </div>
+            <div class="col-6 text-end">
+                <button @click="deleteAddress(address.id)" class="btn btn-outline-danger">Удалить</button>
+            </div>
+        </div>
         <hr>
         <a href="https://yandex.ru/map-constructor/location-tool/" target="_blank">Сервис определения координат Яндекс</a>
     </div>
@@ -62,6 +69,15 @@ export default {
                 alert('Заполните поля')
             }
         },
+        deleteAddress(id) {
+            if (confirm("Точно удалить?")) {
+                axios
+                    .get(`/api/admin/address/${id}/delete`)
+                    .then(response => (
+                        this.$router.push({name: 'AdminAddresses'})
+                    ))
+            }
+        }
     },
     components: {
     }
