@@ -52008,9 +52008,7 @@ var render = function() {
                             )
                         )
                       ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.$parent.current_city.name.substr(-1) === "ы"
+                    : _vm.$parent.current_city.name.substr(-1) === "ы"
                     ? _c("strong", [
                         _vm._v(
                           "в " +
@@ -52386,9 +52384,7 @@ var render = function() {
                           )
                       )
                     ]
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.$parent.current_city.name.substr(-1) === "ы"
+                  : _vm.$parent.current_city.name.substr(-1) === "ы"
                   ? [
                       _vm._v(
                         "в " +
