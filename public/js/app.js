@@ -5417,9 +5417,13 @@ __webpack_require__.r(__webpack_exports__);
       if (this.add_komplekt == true) {
         if (this.selected_type.id === this.selected_komplekt_type.id) {
           if (this.bold == true || this.noholes == true) {
-            this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price);
+            if (this.selected_type.cities[0] && this.selected_type.cities[0].pivot) {
+              this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price);
+            }
           } else {
-            this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price);
+            if (this.selected_type.cities[0] && this.selected_type.cities[0].pivot) {
+              this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price);
+            }
           }
         } else {
           if (this.bold == true || this.noholes == true) {
