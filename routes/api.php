@@ -57,7 +57,7 @@ Route::post('admin/address/{id}','App\Http\Controllers\Admin\AddressController@a
 
 Route::get('admin/types/{city}','App\Http\Controllers\Admin\TypeController@index')->middleware('auth:sanctum');
 Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item')->middleware('auth:sanctum');
-Route::put('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update')->middleware('auth:sanctum');
+Route::post('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update')->middleware('auth:sanctum');
 
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index')->middleware('auth:sanctum');
 Route::get('admin/service/{id}','App\Http\Controllers\Admin\ServiceController@service_item')->middleware('auth:sanctum');

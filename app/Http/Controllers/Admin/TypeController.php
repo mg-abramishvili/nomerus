@@ -42,9 +42,11 @@ class TypeController extends Controller
     {
         $data = request()->all();
         $type = Type::find($type_id);
-        $type->cities()->sync(
+        $type->cities()->detach($city_id);
+        $type->cities()->attach(
             [$city_id => [
-                'type_id'=>$type->id,
+                'city_id'=>$city_id,
+                'type_id'=>$type_id,
                 'min_price'=>$data['min_price'],
                 'price'=>$data['price'],
                 'max_price'=>$data['max_price']

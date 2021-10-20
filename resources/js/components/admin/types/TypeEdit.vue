@@ -41,7 +41,7 @@
         methods: {
             updateType() {
                 axios
-                .put(`/api/admin/type/${this.$route.params.type_id}/${this.$route.params.city_id}`, { min_price: this.min_price, price: this.price, max_price: this.max_price })
+                .post(`/api/admin/type/${this.$route.params.type_id}/${this.$route.params.city_id}`, { min_price: this.min_price, price: this.price, max_price: this.max_price })
                 .then(response => (
                     this.$router.push({name: 'AdminTypes', params: {city: 'ufa'}})
                 ))

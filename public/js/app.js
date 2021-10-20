@@ -3885,7 +3885,7 @@ __webpack_require__.r(__webpack_exports__);
     updateType: function updateType() {
       var _this2 = this;
 
-      axios.put("/api/admin/type/".concat(this.$route.params.type_id, "/").concat(this.$route.params.city_id), {
+      axios.post("/api/admin/type/".concat(this.$route.params.type_id, "/").concat(this.$route.params.city_id), {
         min_price: this.min_price,
         price: this.price,
         max_price: this.max_price
