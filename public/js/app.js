@@ -4209,6 +4209,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4222,6 +4238,7 @@ __webpack_require__.r(__webpack_exports__);
       current_city: 1,
       city_modal: false,
       callback_modal: false,
+      city_correct_modal: false,
       modal_bg: false,
       ymap_addresses: [],
       ymap_city_coords: [],
@@ -4247,13 +4264,24 @@ __webpack_require__.r(__webpack_exports__);
 
       if (_this.user_ip) {
         axios.get("/api/city-detect/".concat(_this.user_ip)).then(function (response) {
-          _this.current_city = response.data;
-          _this.lead_city = response.data.name;
+          _this.current_city = response.data.city;
+          _this.lead_city = response.data.city.name;
+          _this.city_session = response.data.session;
+          console.log(response.data.session);
+
+          if (_this.city_session == '0') {
+            _this.openCityCorrectModal();
+          }
         });
       } else {
         axios.get("/api/city-detect/0").then(function (response) {
-          _this.current_city = response.data;
-          _this.lead_city = response.data.name;
+          _this.current_city = response.data.city;
+          _this.lead_city = response.data.city.name;
+          _this.city_session = response.data.session;
+
+          if (_this.city_session == '0') {
+            _this.openCityCorrectModal();
+          }
         });
       }
 
@@ -4289,17 +4317,30 @@ __webpack_require__.r(__webpack_exports__);
       this.modal_bg = true;
       this.city_modal = true;
     },
+    openCityCorrectModal: function openCityCorrectModal() {
+      this.modal_bg = true;
+      this.city_correct_modal = true;
+    },
     closeCityModal: function closeCityModal() {
       this.modal_bg = false;
       this.city_modal = false;
+    },
+    closeCityCorrectModal: function closeCityCorrectModal() {
+      this.modal_bg = false;
+      this.city_correct_modal = false;
     },
     selectCity: function selectCity(id) {
       var _this2 = this;
 
       axios.get("/api/city-select/".concat(id)).then(function (response) {
         axios.get('/api/city-detect/0').then(function (response) {
-          _this2.current_city = response.data;
-          _this2.lead_city = response.data.name;
+          _this2.current_city = response.data.city;
+          _this2.lead_city = response.data.city.name;
+          _this2.city_session = response.data.session;
+
+          if (_this2.city_session == '0') {
+            _this2.openCityCorrectModal();
+          }
         });
       });
       this.closeCityModal();
@@ -51356,6 +51397,86 @@ var render = function() {
                       })
                     ],
                     2
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.city_correct_modal
+      ? _c(
+          "div",
+          { staticClass: "modal city_modal", attrs: { tabindex: "-1" } },
+          [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Где вы находитесь?")
+                  ]),
+                  _vm._v(" "),
+                  _c("button", {
+                    staticClass: "btn-close",
+                    attrs: {
+                      type: "button",
+                      "data-bs-dismiss": "modal",
+                      "aria-label": "Close"
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.selectCity(
+                          _vm.current_city.id,
+                          _vm.current_city.name,
+                          _vm.current_city.namecode,
+                          _vm.current_city.instagram
+                        ),
+                          _vm.closeCityCorrectModal()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body text-center" }, [
+                  _vm._v(
+                    "\n                    Ваш город " +
+                      _vm._s(_vm.current_city.name) +
+                      "? "
+                  ),
+                  _c("br"),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.selectCity(
+                            _vm.current_city.id,
+                            _vm.current_city.name,
+                            _vm.current_city.namecode,
+                            _vm.current_city.instagram
+                          ),
+                            _vm.closeCityCorrectModal()
+                        }
+                      }
+                    },
+                    [_vm._v("Да")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.closeCityCorrectModal(), _vm.openCityModal()
+                        }
+                      }
+                    },
+                    [_vm._v("Нет")]
                   )
                 ])
               ])

@@ -157,6 +157,22 @@
             </div>
         </div>
 
+        <div v-if="city_correct_modal" class="modal city_modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Где вы находитесь?</h5>
+                        <button @click="selectCity(current_city.id, current_city.name, current_city.namecode, current_city.instagram), closeCityCorrectModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        Ваш город {{ current_city.name }}? <br/><br/>
+                        <button @click="selectCity(current_city.id, current_city.name, current_city.namecode, current_city.instagram), closeCityCorrectModal()" class="btn btn-outline-danger">Да</button>
+                        <button @click="closeCityCorrectModal(), openCityModal()" class="btn btn-outline-danger">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div v-if="callback_modal" class="modal callback_modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -206,6 +222,7 @@
 
                 city_modal: false,
                 callback_modal: false,
+                city_correct_modal: false,
                 modal_bg: false,
 
                 ymap_addresses: [],
@@ -240,15 +257,24 @@
                     axios
                     .get(`/api/city-detect/${this.user_ip}`)
                     .then((response => {
-                        this.current_city = response.data
-                        this.lead_city = response.data.name
+                        this.current_city = response.data.city
+                        this.lead_city = response.data.city.name
+                        this.city_session = response.data.session
+                        console.log(response.data.session)
+                        if(this.city_session == '0') {
+                            this.openCityCorrectModal()
+                        }
                     }));
                 } else {
                     axios
                     .get(`/api/city-detect/0`)
                     .then((response => {
-                        this.current_city = response.data
-                        this.lead_city = response.data.name
+                        this.current_city = response.data.city
+                        this.lead_city = response.data.city.name
+                        this.city_session = response.data.session
+                        if(this.city_session == '0') {
+                            this.openCityCorrectModal()
+                        }
                     }));
                 }
                 axios
@@ -284,9 +310,17 @@
                 this.modal_bg = true
                 this.city_modal = true
             },
+            openCityCorrectModal() {
+                this.modal_bg = true
+                this.city_correct_modal = true
+            },
             closeCityModal() {
                 this.modal_bg = false
                 this.city_modal = false
+            },
+            closeCityCorrectModal() {
+                this.modal_bg = false
+                this.city_correct_modal = false
             },
             selectCity(id) {
                 axios
@@ -295,8 +329,12 @@
                     axios
                     .get('/api/city-detect/0')
                     .then((response => {
-                        this.current_city = response.data
-                        this.lead_city = response.data.name
+                        this.current_city = response.data.city
+                        this.lead_city = response.data.city.name
+                        this.city_session = response.data.session
+                        if(this.city_session == '0') {
+                            this.openCityCorrectModal()
+                        }
                     }));
                 }));
 

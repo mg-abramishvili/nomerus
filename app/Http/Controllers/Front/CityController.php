@@ -23,11 +23,17 @@ class CityController extends Controller
         //return session('city');
         if(session('city')) {
             $city = City::find(session('city'));
-            return $city;
+            return response()->json([
+                'city' => $city,
+                'session' => '1',
+            ]);
         } else {
             if($ip == 0) {
                 $city = City::where('name', 'Уфа')->first();
-                return $city;
+                return response()->json([
+                    'city' => $city,
+                    'session' => '0',
+                ]);
             } else {
                 $ch = curl_init('http://ip-api.com/json/' . $ip . '?lang=ru');
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -43,7 +49,10 @@ class CityController extends Controller
                     $city = City::where('name', 'Уфа')->first();
                 }
                 
-                return $city;
+                return response()->json([
+                    'city' => $city,
+                    'session' => '0',
+                ]);
             }
         }
         
