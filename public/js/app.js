@@ -4262,8 +4262,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/city-detect/0').then(function (response) {
       _this.current_city = response.data.city;
       _this.lead_city = response.data.city.name;
-      _this.city_session = response.data.session;
-      console.log(response.data.session);
+      _this.city_session = response.data.session; //console.log(response.data.session)
 
       if (_this.city_session == '0') {
         _this.openCityCorrectModal();
