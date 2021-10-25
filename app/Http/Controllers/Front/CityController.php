@@ -27,6 +27,7 @@ class CityController extends Controller
             return response()->json([
                 'city' => $city,
                 'session' => '1',
+                'ip' => $ipAddress
             ]);
         } else {
             $ch = curl_init('http://ip-api.com/json/' . $ipAddress . '?lang=ru');
@@ -46,6 +47,7 @@ class CityController extends Controller
             return response()->json([
                 'city' => $city,
                 'session' => '0',
+                'ip' => $ipAddress
             ]);
         }
         
