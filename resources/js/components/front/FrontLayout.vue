@@ -259,7 +259,6 @@
                 if(this.city_session == '0') {
                     this.openCityCorrectModal()
                 }
-                console.log(response.data.ip)
                 
                 axios
                     .get('/api/addresses')

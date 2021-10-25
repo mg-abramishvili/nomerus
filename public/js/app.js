@@ -4268,7 +4268,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.openCityCorrectModal();
       }
 
-      console.log(response.data.ip);
       axios.get('/api/addresses').then(function (response) {
         _this.ymap_addresses = response.data;
 
