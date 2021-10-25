@@ -250,33 +250,16 @@
                 this.cities = response.data
             }));
             axios
-            .get('https://api.ipify.org?format=json')
+            .get('/api/city-detect/0')
             .then((response => {
-                this.user_ip = response.data.ip;
-                if(this.user_ip) {
-                    axios
-                    .get(`/api/city-detect/${this.user_ip}`)
-                    .then((response => {
-                        this.current_city = response.data.city
-                        this.lead_city = response.data.city.name
-                        this.city_session = response.data.session
-                        console.log(response.data.session)
-                        if(this.city_session == '0') {
-                            this.openCityCorrectModal()
-                        }
-                    }));
-                } else {
-                    axios
-                    .get(`/api/city-detect/0`)
-                    .then((response => {
-                        this.current_city = response.data.city
-                        this.lead_city = response.data.city.name
-                        this.city_session = response.data.session
-                        if(this.city_session == '0') {
-                            this.openCityCorrectModal()
-                        }
-                    }));
+                this.current_city = response.data.city
+                this.lead_city = response.data.city.name
+                this.city_session = response.data.session
+                console.log(response.data.session)
+                if(this.city_session == '0') {
+                    this.openCityCorrectModal()
                 }
+                
                 axios
                     .get('/api/addresses')
                     .then((response => {

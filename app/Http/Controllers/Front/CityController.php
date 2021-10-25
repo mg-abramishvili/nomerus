@@ -20,6 +20,7 @@ class CityController extends Controller
 
     public function city_detect($ip, Request $request)
     {
+        $ipAddress = $request->ip();
         //return session('city');
         if(session('city')) {
             $city = City::find(session('city'));
@@ -28,32 +29,24 @@ class CityController extends Controller
                 'session' => '1',
             ]);
         } else {
-            if($ip == 0) {
-                $city = City::where('name', 'Уфа')->first();
-                return response()->json([
-                    'city' => $city,
-                    'session' => '0',
-                ]);
+            $ch = curl_init('http://ip-api.com/json/' . $ipAddress . '?lang=ru');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            $res = curl_exec($ch);
+            curl_close($ch);
+            
+            $res = json_decode($res);
+            if(City::where('name', $res->city)->count() > 0) {
+                $city = City::where('name', $res->city)->first();
             } else {
-                $ch = curl_init('http://ip-api.com/json/' . $ip . '?lang=ru');
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_HEADER, false);
-                $res = curl_exec($ch);
-                curl_close($ch);
-                
-                $res = json_decode($res);
-                if(City::where('name', $res->city)->count() > 0) {
-                    $city = City::where('name', $res->city)->first();
-                } else {
-                    $city = City::where('name', 'Уфа')->first();
-                }
-                
-                return response()->json([
-                    'city' => $city,
-                    'session' => '0',
-                ]);
+                $city = City::where('name', 'Уфа')->first();
             }
+            
+            return response()->json([
+                'city' => $city,
+                'session' => '0',
+            ]);
         }
         
     }

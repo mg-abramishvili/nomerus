@@ -4259,30 +4259,14 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/cities').then(function (response) {
       _this.cities = response.data;
     });
-    axios.get('https://api.ipify.org?format=json').then(function (response) {
-      _this.user_ip = response.data.ip;
+    axios.get('/api/city-detect/0').then(function (response) {
+      _this.current_city = response.data.city;
+      _this.lead_city = response.data.city.name;
+      _this.city_session = response.data.session;
+      console.log(response.data.session);
 
-      if (_this.user_ip) {
-        axios.get("/api/city-detect/".concat(_this.user_ip)).then(function (response) {
-          _this.current_city = response.data.city;
-          _this.lead_city = response.data.city.name;
-          _this.city_session = response.data.session;
-          console.log(response.data.session);
-
-          if (_this.city_session == '0') {
-            _this.openCityCorrectModal();
-          }
-        });
-      } else {
-        axios.get("/api/city-detect/0").then(function (response) {
-          _this.current_city = response.data.city;
-          _this.lead_city = response.data.city.name;
-          _this.city_session = response.data.session;
-
-          if (_this.city_session == '0') {
-            _this.openCityCorrectModal();
-          }
-        });
+      if (_this.city_session == '0') {
+        _this.openCityCorrectModal();
       }
 
       axios.get('/api/addresses').then(function (response) {
