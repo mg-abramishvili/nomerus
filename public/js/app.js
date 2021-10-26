@@ -52645,9 +52645,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass: "home-why-item",
-                staticStyle: {
-                  "background-image": "url(/img/home-why-item-2.jpg)"
-                }
+                staticStyle: { "background-image": "url(/img/preim.jpg)" }
               },
               [
                 _c("p", [
@@ -52664,9 +52662,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass: "home-why-item",
-                staticStyle: {
-                  "background-image": "url(/img/home-why-item-3.jpg)"
-                }
+                staticStyle: { "background-image": "url(/img/preim.jpg)" }
               },
               [
                 _c("p", [
@@ -52683,9 +52679,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass: "home-why-item",
-                staticStyle: {
-                  "background-image": "url(/img/home-why-item-1.jpg)"
-                }
+                staticStyle: { "background-image": "url(/img/preim.jpg)" }
               },
               [
                 _c("p", [
@@ -52702,9 +52696,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass: "home-why-item",
-                staticStyle: {
-                  "background-image": "url(/img/home-why-item-2.jpg)"
-                }
+                staticStyle: { "background-image": "url(/img/preim.jpg)" }
               },
               [
                 _c("p", [

@@ -75,22 +75,22 @@
                 <h2 class="home-block-title">Почему стоит заказать номер у нас?</h2>
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <div class="home-why-item" style="background-image:url(/img/home-why-item-2.jpg)">
+                        <div class="home-why-item" style="background-image:url(/img/preim.jpg)">
                             <p>Мы состоим в реестре <br>изготовителей ГРЗ </p>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <div class="home-why-item" style="background-image:url(/img/home-why-item-3.jpg)">
+                        <div class="home-why-item" style="background-image:url(/img/preim.jpg)">
                             <p>Есть все необходимые <br>сертификаты</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <div class="home-why-item" style="background-image:url(/img/home-why-item-1.jpg)">
+                        <div class="home-why-item" style="background-image:url(/img/preim.jpg)">
                             <p>Даем гарантию <br>3 года на номер</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        <div class="home-why-item" style="background-image:url(/img/home-why-item-2.jpg)">
+                        <div class="home-why-item" style="background-image:url(/img/preim.jpg)">
                             <p>Изготовим номер <br>за 5 минут</p>
                         </div>
                     </div>
