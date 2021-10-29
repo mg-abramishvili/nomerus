@@ -5530,6 +5530,14 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    changeClientType: function changeClientType() {
+      document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
+        el.classList.remove('text-danger');
+      });
+      document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
+        el.classList.remove('border-danger');
+      });
+    },
     saveOrder: function saveOrder() {
       var _this5 = this;
 
@@ -53707,9 +53715,14 @@ var render = function() {
                         attrs: { type: "radio", value: "fz" },
                         domProps: { checked: _vm._q(_vm.client_type, "fz") },
                         on: {
-                          change: function($event) {
-                            _vm.client_type = "fz"
-                          }
+                          change: [
+                            function($event) {
+                              _vm.client_type = "fz"
+                            },
+                            function($event) {
+                              return _vm.changeClientType()
+                            }
+                          ]
                         }
                       }),
                       _vm._v(" "),
@@ -53737,9 +53750,14 @@ var render = function() {
                         attrs: { type: "radio", value: "ur" },
                         domProps: { checked: _vm._q(_vm.client_type, "ur") },
                         on: {
-                          change: function($event) {
-                            _vm.client_type = "ur"
-                          }
+                          change: [
+                            function($event) {
+                              _vm.client_type = "ur"
+                            },
+                            function($event) {
+                              return _vm.changeClientType()
+                            }
+                          ]
                         }
                       }),
                       _vm._v(" "),

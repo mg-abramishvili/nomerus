@@ -156,11 +156,11 @@
                     <div v-if="order_fields" class="row">
                         <div class="col-12 mb-4">
                             <div class="form-check form-check-inline">
-                                <input v-model="client_type" class="form-check-input" type="radio" value="fz">
+                                <input v-model="client_type" @change="changeClientType()" class="form-check-input" type="radio" value="fz">
                                 <label class="form-check-label" for="inlineRadio1">физ. лицо</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input v-model="client_type" class="form-check-input" type="radio" value="ur">
+                                <input v-model="client_type" @change="changeClientType()" class="form-check-input" type="radio" value="ur">
                                 <label class="form-check-label" for="inlineRadio2">юр. лицо</label>
                             </div>
                         </div>
@@ -449,6 +449,14 @@
                         this.number_region = ''
                     }
                 }));
+            },
+            changeClientType() {
+                document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
+                    el.classList.remove('text-danger')
+                });
+                document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
+                    el.classList.remove('border-danger')
+                });
             },
             saveOrder() {
 
