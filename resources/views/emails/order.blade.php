@@ -18,8 +18,13 @@ E-mail:<br>{{ $email }}
 @endisset
 
 @isset($company)
-    Компания:<br>{{ $company }}
-    <br><br>
+Компания:<br>{{ $company }}
+<br><br>
+@endisset
+
+@isset($city)
+Город:<br>{{ $city }}
+<br><br>
 @endisset
 
 Заказ:<br>

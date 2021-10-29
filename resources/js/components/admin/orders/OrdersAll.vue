@@ -35,6 +35,12 @@
                         <template v-if="order.email">
                             {{ order.email }}
                         </template>
+
+                        <template v-if="order.cities">
+                            <template v-for="oc in order.cities">
+                                {{ oc.name }}<br>
+                            </template>
+                        </template>
                     </td>
                     <td>
                         {{ order.price }} руб.

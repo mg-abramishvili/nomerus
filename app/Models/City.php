@@ -18,4 +18,9 @@ class City extends Model
     {
         return $this->belongsToMany('App\Models\Address');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order');
+    }
 }

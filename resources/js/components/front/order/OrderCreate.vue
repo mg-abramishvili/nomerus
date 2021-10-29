@@ -459,7 +459,6 @@
                 });
             },
             saveOrder() {
-
                 if(this.client_type == 'fz') {
                     document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
                         el.classList.remove('text-danger')
@@ -478,7 +477,8 @@
                                 tel: this.tel,
                                 name: this.name,
                                 price: parseInt(this.price_total),
-                                orderItems: this.order_list.map( (item) => item.uid )
+                                orderItems: this.order_list.map( (item) => item.uid ),
+                                city: this.$parent.current_city.id
                             })
                         .then(response => (
                             this.$router.push({name: 'OrderComplete'})
@@ -521,7 +521,8 @@
                                 email: this.email,
                                 company: this.company,
                                 price: parseInt(this.price_total),
-                                orderItems: this.order_list.map( (item) => item.uid )
+                                orderItems: this.order_list.map( (item) => item.uid ),
+                                city: this.$parent.current_city.id
                             })
                         .then(response => (
                             this.$router.push({name: 'OrderComplete'})

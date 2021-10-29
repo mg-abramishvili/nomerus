@@ -3194,6 +3194,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5557,7 +5563,8 @@ __webpack_require__.r(__webpack_exports__);
             price: parseInt(this.price_total),
             orderItems: this.order_list.map(function (item) {
               return item.uid;
-            })
+            }),
+            city: this.$parent.current_city.id
           }).then(function (response) {
             return _this5.$router.push({
               name: 'OrderComplete'
@@ -5599,7 +5606,8 @@ __webpack_require__.r(__webpack_exports__);
             price: parseInt(this.price_total),
             orderItems: this.order_list.map(function (item) {
               return item.uid;
-            })
+            }),
+            city: this.$parent.current_city.id
           }).then(function (response) {
             return _this5.$router.push({
               name: 'OrderComplete'
@@ -49974,6 +49982,19 @@ var render = function() {
                           _vm._s(order.email) +
                           "\n                    "
                       )
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                order.cities
+                  ? [
+                      _vm._l(order.cities, function(oc) {
+                        return [
+                          _vm._v(
+                            "\n                            " + _vm._s(oc.name)
+                          ),
+                          _c("br")
+                        ]
+                      })
                     ]
                   : _vm._e()
               ],

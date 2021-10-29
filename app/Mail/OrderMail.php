@@ -30,6 +30,7 @@ class OrderMail extends Mailable
             'company' => $this->order->company,
             'email' => $this->order->email,
             'items' => $this->order->orderItems,
+            'city' => $this->order->cities->first()->name,
         ]);
     }
 }
