@@ -53,8 +53,6 @@ class OrderController extends Controller
         $order->uid = time() . Str::random(9) . rand(1, 100000) . Str::random(9) . rand(1, 100000);
         $order->save();
 
-        $order->cities()->attach($data['city'], ['order_id' => $order->id]);
-
         $orderItems = $request->input('orderItems', []);
         
         for ($orderItem=0; $orderItem < count($orderItems); $orderItem++) {
@@ -62,7 +60,9 @@ class OrderController extends Controller
             $order->orderItems()->attach($orderItemID->id, ['order_id' => $order->id]);
         }
 
-        //$order = Order::with('orderItems', 'cities')->find($order->id);
-        //Mail::to('nomerus.rf@mail.ru')->send(new OrderMail($order));
+        $order->cities()->attach($data['city'], ['order_id' => $order->id]);
+
+        $order = Order::with('orderItems', 'cities')->find($order->id);
+        Mail::to('nomerus.rf@mail.ru')->send(new OrderMail($order));
     }
 }
