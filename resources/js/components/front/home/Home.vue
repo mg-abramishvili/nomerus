@@ -6,6 +6,8 @@
                     <h1 v-if="$parent.current_city && $parent.current_city.name && $parent.current_city.name.length > 0">Изготовление <br/>госномеров 
                         <strong v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</strong>
                         <strong v-else-if="$parent.current_city.name.substr(-1) === 'ы'">в {{ $parent.current_city.name.slice(0, -1) + 'ах' }}</strong>
+                        <template v-else-if="$parent.current_city.name.substr(-1) === 'и'">в {{ $parent.current_city.name.slice(0, -1) + 'ях' }}</template>
+                    <template v-else-if="$parent.current_city.name.substr(-1) === 'й'">в {{ $parent.current_city.name.slice(0, -1) + 'ом' }}</template>
                         <strong v-else>в {{ $parent.current_city.name + 'е' }}</strong>
                     </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
@@ -137,6 +139,8 @@
                 <h2 v-if="$parent.current_city && $parent.current_city.name" class="home-block-title">Изготовление автомобильных номеров 
                     <template v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</template>
                     <template v-else-if="$parent.current_city.name.substr(-1) === 'ы'">в {{ $parent.current_city.name.slice(0, -1) + 'ах' }}</template>
+                    <template v-else-if="$parent.current_city.name.substr(-1) === 'и'">в {{ $parent.current_city.name.slice(0, -1) + 'ях' }}</template>
+                    <template v-else-if="$parent.current_city.name.substr(-1) === 'й'">в {{ $parent.current_city.name.slice(0, -1) + 'ом' }}</template>
                     <template v-else>в {{ $parent.current_city.name + 'е' }}</template>
                 </h2>
                 <div v-if="text && text.company_text" v-html="text.company_text.split('***').join('<br><br>')"></div>

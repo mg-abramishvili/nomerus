@@ -336,6 +336,12 @@
                 if(this.current_city.namecode === 'tuimazy') {
                     this.ymap_city_coords = [54.59935686492598,53.71163149999992]
                 }
+                if(this.current_city.namecode === 'durtuli') {
+                    this.ymap_city_coords = [55.48578672904617,54.87422798770665]
+                }
+                if(this.current_city.namecode === 'oktyabr') {
+                    this.ymap_city_coords = [54.490948126893585,53.46458687011712]
+                }
             },
             toggleMenu() {
                 if(document.getElementById('navbarCollapse').classList.contains('collapse')) {
