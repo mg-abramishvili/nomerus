@@ -34,9 +34,15 @@ class GalleryController extends Controller
         if($request->hasFile('image')) {
             
             $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
+            $filename = time().'.'.$file->extension();
             $folder = uniqid() . '-' . now()->timestamp;
+            $img = Image::make($file->path());
             $file->move(public_path() . '/temp_uploads/' . $folder, $filename);
+            $img->resize(500, 500, function ($const) {
+                $const->aspectRatio();
+            })->save(public_path() . '/temp_uploads/' . $folder . '/' . $filename);
+
+            //$file->move(public_path() . '/temp_uploads/' . $folder, $filename);
 
             TemporaryFile::create([
                 'folder' => $folder,

@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\TemporaryFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Image;
 
 class ServiceController extends Controller
 {
@@ -47,9 +48,15 @@ class ServiceController extends Controller
                 $file = $request->file('image');
             }
 
-            $filename = $file->getClientOriginalName();
+            $filename = time().'.'.$file->extension();
             $folder = uniqid() . '-' . now()->timestamp;
+            $img = Image::make($file->path());
             $file->move(public_path() . '/temp_uploads/' . $folder, $filename);
+            $img->resize(500, 500, function ($const) {
+                $const->aspectRatio();
+            })->save(public_path() . '/temp_uploads/' . $folder . '/' . $filename);
+
+            //$file->move(public_path() . '/temp_uploads/' . $folder, $filename);
 
             TemporaryFile::create([
                 'folder' => $folder,
