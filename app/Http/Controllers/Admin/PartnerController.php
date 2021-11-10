@@ -62,15 +62,9 @@ class PartnerController extends Controller
                 $file = $request->file('image');
             }
 
-            $filename = time().'.'.$file->extension();
+            $filename = $file->getClientOriginalName();
             $folder = uniqid() . '-' . now()->timestamp;
-            $img = Image::make($file->path());
             $file->move(public_path() . '/temp_uploads/' . $folder, $filename);
-            $img->resize(500, 500, function ($const) {
-                $const->aspectRatio();
-            })->save(public_path() . '/temp_uploads/' . $folder . '/' . $filename);
-
-            //$file->move(public_path() . '/temp_uploads/' . $folder, $filename);
 
             TemporaryFile::create([
                 'folder' => $folder,

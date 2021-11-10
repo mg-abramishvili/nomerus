@@ -38,7 +38,7 @@ class GalleryController extends Controller
             $folder = uniqid() . '-' . now()->timestamp;
             $img = Image::make($file->path());
             $file->move(public_path() . '/temp_uploads/' . $folder, $filename);
-            $img->resize(500, 500, function ($const) {
+            $img->resize(1500, 1500, function ($const) {
                 $const->aspectRatio();
             })->save(public_path() . '/temp_uploads/' . $folder . '/' . $filename);
 
