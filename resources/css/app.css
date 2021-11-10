@@ -533,9 +533,15 @@ html, body {
 
 .home-services-item .home-services-item-image {
     height: 100%;
-    background-size: cover;
-    background-position: center center;
+    background-size: 200%;
+    background-position: 50% 80%;
     position: relative;
+}
+@media (max-width: 900px) {
+    .home-services-item .home-services-item-image {
+        background-size: cover;
+        background-position: center center;
+    }
 }
 
 .home-services-item .home-services-item-image:before {
