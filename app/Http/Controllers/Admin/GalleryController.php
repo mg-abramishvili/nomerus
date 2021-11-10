@@ -6,6 +6,7 @@ use App\Models\Gallery;
 use App\Models\TemporaryFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Image;
 
 class GalleryController extends Controller
 {

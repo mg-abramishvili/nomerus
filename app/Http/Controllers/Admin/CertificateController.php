@@ -6,6 +6,7 @@ use App\Models\Certificate;
 use App\Models\TemporaryFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Image;
 
 class CertificateController extends Controller
 {
