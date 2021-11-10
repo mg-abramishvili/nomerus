@@ -6,8 +6,8 @@
                     <h1 v-if="$parent.current_city && $parent.current_city.name && $parent.current_city.name.length > 0">Изготовление <br/>госномеров 
                         <strong v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</strong>
                         <strong v-else-if="$parent.current_city.name.substr(-1) === 'ы'">в {{ $parent.current_city.name.slice(0, -1) + 'ах' }}</strong>
-                        <template v-else-if="$parent.current_city.name.substr(-1) === 'и'">в {{ $parent.current_city.name.slice(0, -1) + 'ях' }}</template>
-                    <template v-else-if="$parent.current_city.name.substr(-1) === 'й'">в {{ $parent.current_city.name.slice(0, -1) + 'ом' }}</template>
+                        <strong v-else-if="$parent.current_city.name.substr(-1) === 'и'">в {{ $parent.current_city.name.slice(0, -1) + 'ях' }}</strong>
+                        <strong v-else-if="$parent.current_city.name.substr(-1) === 'й'">в {{ $parent.current_city.name.slice(0, -2) + 'ом' }}</strong>
                         <strong v-else>в {{ $parent.current_city.name + 'е' }}</strong>
                     </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
