@@ -342,6 +342,9 @@
                 if(this.current_city.namecode === 'oktyabr') {
                     this.ymap_city_coords = [54.490948126893585,53.46458687011712]
                 }
+                if(this.current_city.namecode === 'belorezk') {
+                    this.ymap_city_coords = [53.96597374611644,58.3987485]
+                }
             },
             toggleMenu() {
                 if(document.getElementById('navbarCollapse').classList.contains('collapse')) {
