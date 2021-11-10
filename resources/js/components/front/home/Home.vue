@@ -140,7 +140,7 @@
                     <template v-if="$parent.current_city.name.substr(-1) === 'а'">в {{ $parent.current_city.name.slice(0, -1) + 'е' }}</template>
                     <template v-else-if="$parent.current_city.name.substr(-1) === 'ы'">в {{ $parent.current_city.name.slice(0, -1) + 'ах' }}</template>
                     <template v-else-if="$parent.current_city.name.substr(-1) === 'и'">в {{ $parent.current_city.name.slice(0, -1) + 'ях' }}</template>
-                    <template v-else-if="$parent.current_city.name.substr(-1) === 'й'">в {{ $parent.current_city.name.slice(0, -1) + 'ом' }}</template>
+                    <template v-else-if="$parent.current_city.name.substr(-1) === 'й'">в {{ $parent.current_city.name.slice(0, -2) + 'ом' }}</template>
                     <template v-else>в {{ $parent.current_city.name + 'е' }}</template>
                 </h2>
                 <div v-if="text && text.company_text" v-html="text.company_text.split('***').join('<br><br>')"></div>
