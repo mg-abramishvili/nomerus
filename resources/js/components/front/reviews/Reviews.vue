@@ -43,6 +43,10 @@ export default {
         };
     },
     created() {
+        ym(86309721, 'hit', `/reviews`, {
+            title: 'Отзывы',
+            referer: `http://номерус.рф/reviews`
+        });
     },
     methods: {
     },

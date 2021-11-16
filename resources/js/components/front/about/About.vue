@@ -121,6 +121,11 @@ export default {
             .then(response => (
                 this.partners = response.data
             ));
+
+            ym(86309721, 'hit', `/about`, {
+                title: 'О компании',
+                referer: `http://номерус.рф/about`
+            });
         },
     methods: {
         homeCertMiniPrev() {

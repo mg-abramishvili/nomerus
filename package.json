@@ -27,6 +27,7 @@
         "moment": "^2.29.1",
         "vue-filepond": "^6.0.0",
         "vue-router": "^3.5.1",
-        "vue-yandex-maps": "^0.10.12"
+        "vue-yandex-maps": "^0.10.12",
+        "vue-yandex-metrika": "^1.8.3"
     }
 }

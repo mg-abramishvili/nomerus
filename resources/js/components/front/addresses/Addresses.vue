@@ -53,6 +53,11 @@ export default {
                 this.ymap_addresses = response.data
                 this.ymap_cityChange()
             }));
+
+            ym(86309721, 'hit', `/addresses`, {
+                title: 'Адреса',
+                referer: `http://номерус.рф/addresses`
+            });
         },
     methods: {
         ymap_cityChange() {

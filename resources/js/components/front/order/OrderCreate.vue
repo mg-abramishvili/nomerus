@@ -305,6 +305,29 @@
                     }));
 
                 }));
+
+            ym(86309721, 'hit', `/order/fz/${this.$route.params.transport}/${this.$route.params.type}`, {
+                title: 'Заказ номера',
+                referer: `http://номерус.рф/order/fz/${this.$route.params.transport}/${this.$route.params.type}`
+            });
+
+            if(this.$route.params.transport === 'legkovoy') {
+                if(this.$route.params.type === 'type1_with_flag') {
+                    ym(86309721,'reachGoal','zakaz_obichni_nomer')
+                }
+                if(this.$route.params.type === 'type1_without_flag') {
+                    ym(86309721,'reachGoal','zakaz_bf')
+                }
+                if(this.$route.params.type === 'type1a') {
+                    ym(86309721,'reachGoal','zakaz_kvadrat')
+                }
+            }
+            if(this.$route.params.transport === 'moto') {
+                ym(86309721,'reachGoal','zakaz_mtckl')
+            }
+            if(this.$route.params.transport === 'pricep') {
+                ym(86309721,'reachGoal','zakaz_pricep')
+            }
         },
         methods: {
             selectTransport() {

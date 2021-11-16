@@ -12,6 +12,12 @@
             }
         },
         created() {
+            ym(86309721, 'hit', `/order-complete`, {
+                title: 'Заказ принят',
+                referer: `http://номерус.рф/order-complete`
+            });
+
+            ym(86309721,'reachGoal','oformil_zakaz')
         },
         methods: {
         },

@@ -253,6 +253,11 @@ export default {
             .then(response => (
                 this.partners = response.data
             ));
+
+            ym(86309721, 'hit', '/', {
+                title: 'Главная страница',
+                referer: 'http://номерус.рф'
+            });
         },
     methods: {
         homeCertMiniPrev() {

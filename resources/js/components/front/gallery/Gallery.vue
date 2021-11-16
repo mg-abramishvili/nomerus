@@ -51,6 +51,11 @@ export default {
             .then(response => (
                 this.gallery = response.data
             ));
+
+            ym(86309721, 'hit', `/gallery`, {
+                title: 'Фотогалерея',
+                referer: `http://номерус.рф/gallery`
+            });
         },
     methods: {
         openModalGal(index) {
