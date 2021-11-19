@@ -17,18 +17,6 @@
     </head>
     <body>
         <div id="app"></div>
-        <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
-        <script src="//code-ya.jivosite.com/widget/ymomWD6pKB" async></script>
-        
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXDJT1LY2F"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-ZXDJT1LY2F');
-        </script>
 
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript" >
@@ -45,5 +33,18 @@
         </script>
         <noscript><div><img src="https://mc.yandex.ru/watch/86309721" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
         <!-- /Yandex.Metrika counter -->
+
+        <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+        <script src="//code-ya.jivosite.com/widget/ymomWD6pKB" async></script>
+        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXDJT1LY2F"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-ZXDJT1LY2F');
+        </script>
     </body>
 </html>
