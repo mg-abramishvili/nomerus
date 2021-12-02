@@ -345,6 +345,9 @@
                 if(this.current_city.namecode === 'belorezk') {
                     this.ymap_city_coords = [53.96597374611644,58.3987485]
                 }
+                if(this.current_city.namecode === 'chelyabinsk') {
+                    this.ymap_city_coords = [55.163586815694806,61.39444858203126]
+                }
             },
             toggleMenu() {
                 if(document.getElementById('navbarCollapse').classList.contains('collapse')) {
