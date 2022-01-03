@@ -148,7 +148,7 @@
                         <ul>
                             <template v-for="city in cities">
                                 <li v-if="city.addresses && city.addresses.length > 0">
-                                    <a @click="selectCity(city.id, city.name, city.namecode, city.instagram)">{{ city.name }}</a>
+                                    <a @click="selectCity(city.id, city.name, city.namecode, city.instagram, city.coordinates)">{{ city.name }}</a>
                                 </li>
                             </template>
                         </ul>
@@ -162,11 +162,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Где вы находитесь?</h5>
-                        <button @click="selectCity(current_city.id, current_city.name, current_city.namecode, current_city.instagram), closeCityCorrectModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button @click="selectCity(current_city.id, current_city.name, current_city.namecode, current_city.instagram, current_city.coordinates), closeCityCorrectModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
                         Ваш город {{ current_city.name }}? <br/><br/>
-                        <button @click="selectCity(current_city.id, current_city.name, current_city.namecode, current_city.instagram), closeCityCorrectModal()" class="btn btn-outline-danger">Да</button>
+                        <button @click="selectCity(current_city.id, current_city.name, current_city.namecode, current_city.instagram, current_city.coordinates), closeCityCorrectModal()" class="btn btn-outline-danger">Да</button>
                         <button @click="closeCityCorrectModal(), openCityModal()" class="btn btn-outline-danger">Нет</button>
                     </div>
                 </div>
@@ -264,7 +264,6 @@
                     .get('/api/addresses')
                     .then((response => {
                         this.ymap_addresses = response.data
-                        this.ymap_cityChange()
                     }));
             }));
             axios
@@ -318,36 +317,11 @@
                         if(this.city_session == '0') {
                             this.openCityCorrectModal()
                         }
+                        this.ymap_city_coords = '[' + response.data.city.coordinates + ']'
                     }));
                 }));
 
                 this.closeCityModal()
-            },
-            ymap_cityChange() {
-                if(this.current_city.namecode === 'ufa') {
-                    this.ymap_city_coords = [54.730299568811866,56.03773349999993]
-                }
-                if(this.current_city.namecode === 'ekb') {
-                    this.ymap_city_coords = [56.844860263326964,60.604154855468686]
-                }
-                if(this.current_city.namecode === 'strltmk') {
-                    this.ymap_city_coords = [53.63219996016489,55.929692909667935]
-                }
-                if(this.current_city.namecode === 'tuimazy') {
-                    this.ymap_city_coords = [54.59935686492598,53.71163149999992]
-                }
-                if(this.current_city.namecode === 'durtuli') {
-                    this.ymap_city_coords = [55.48578672904617,54.87422798770665]
-                }
-                if(this.current_city.namecode === 'oktyabr') {
-                    this.ymap_city_coords = [54.490948126893585,53.46458687011712]
-                }
-                if(this.current_city.namecode === 'belorezk') {
-                    this.ymap_city_coords = [53.96597374611644,58.3987485]
-                }
-                if(this.current_city.namecode === 'chelyabinsk') {
-                    this.ymap_city_coords = [55.163586815694806,61.39444858203126]
-                }
             },
             toggleMenu() {
                 if(document.getElementById('navbarCollapse').classList.contains('collapse')) {
@@ -391,14 +365,6 @@
                     this.show_policy = true
                 }
             }
-        },
-        mounted() {
-            this.$watch(
-            "current_city.id",
-            (new_value, old_value) => {
-                this.ymap_cityChange()
-            }
-            );
         },
         components: {
             yandexMap,

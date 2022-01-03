@@ -4286,8 +4286,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/addresses').then(function (response) {
         _this.ymap_addresses = response.data;
-
-        _this.ymap_cityChange();
       });
     });
     axios.get('/api/text').then(function (response) {
@@ -4340,42 +4338,11 @@ __webpack_require__.r(__webpack_exports__);
           if (_this2.city_session == '0') {
             _this2.openCityCorrectModal();
           }
+
+          _this2.ymap_city_coords = '[' + response.data.city.coordinates + ']';
         });
       });
       this.closeCityModal();
-    },
-    ymap_cityChange: function ymap_cityChange() {
-      if (this.current_city.namecode === 'ufa') {
-        this.ymap_city_coords = [54.730299568811866, 56.03773349999993];
-      }
-
-      if (this.current_city.namecode === 'ekb') {
-        this.ymap_city_coords = [56.844860263326964, 60.604154855468686];
-      }
-
-      if (this.current_city.namecode === 'strltmk') {
-        this.ymap_city_coords = [53.63219996016489, 55.929692909667935];
-      }
-
-      if (this.current_city.namecode === 'tuimazy') {
-        this.ymap_city_coords = [54.59935686492598, 53.71163149999992];
-      }
-
-      if (this.current_city.namecode === 'durtuli') {
-        this.ymap_city_coords = [55.48578672904617, 54.87422798770665];
-      }
-
-      if (this.current_city.namecode === 'oktyabr') {
-        this.ymap_city_coords = [54.490948126893585, 53.46458687011712];
-      }
-
-      if (this.current_city.namecode === 'belorezk') {
-        this.ymap_city_coords = [53.96597374611644, 58.3987485];
-      }
-
-      if (this.current_city.namecode === 'chelyabinsk') {
-        this.ymap_city_coords = [55.163586815694806, 61.39444858203126];
-      }
     },
     toggleMenu: function toggleMenu() {
       if (document.getElementById('navbarCollapse').classList.contains('collapse')) {
@@ -4415,13 +4382,6 @@ __webpack_require__.r(__webpack_exports__);
         this.show_policy = true;
       }
     }
-  },
-  mounted: function mounted() {
-    var _this4 = this;
-
-    this.$watch("current_city.id", function (new_value, old_value) {
-      _this4.ymap_cityChange();
-    });
   },
   components: {
     yandexMap: vue_yandex_maps__WEBPACK_IMPORTED_MODULE_1__.yandexMap,
@@ -51479,7 +51439,8 @@ var render = function() {
                                           city.id,
                                           city.name,
                                           city.namecode,
-                                          city.instagram
+                                          city.instagram,
+                                          city.coordinates
                                         )
                                       }
                                     }
@@ -51525,7 +51486,8 @@ var render = function() {
                           _vm.current_city.id,
                           _vm.current_city.name,
                           _vm.current_city.namecode,
-                          _vm.current_city.instagram
+                          _vm.current_city.instagram,
+                          _vm.current_city.coordinates
                         ),
                           _vm.closeCityCorrectModal()
                       }
@@ -51552,7 +51514,8 @@ var render = function() {
                             _vm.current_city.id,
                             _vm.current_city.name,
                             _vm.current_city.namecode,
-                            _vm.current_city.instagram
+                            _vm.current_city.instagram,
+                            _vm.current_city.coordinates
                           ),
                             _vm.closeCityCorrectModal()
                         }
