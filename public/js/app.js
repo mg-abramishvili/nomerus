@@ -4339,9 +4339,7 @@ __webpack_require__.r(__webpack_exports__);
             _this2.openCityCorrectModal();
           }
 
-          _this2.ymap_city_coords = [];
-
-          _this2.ymap_city_coords.push(response.data.city.coordinates.split(','));
+          _this2.ymap_city_coords = response.data.city.coordinates.split(',');
         });
       });
       this.closeCityModal();
