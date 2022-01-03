@@ -4284,6 +4284,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.openCityCorrectModal();
       }
 
+      _this.ymap_city_coords = response.data.city.coordinates.split(',');
       axios.get('/api/addresses').then(function (response) {
         _this.ymap_addresses = response.data;
       });

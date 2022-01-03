@@ -259,6 +259,7 @@
                 if(this.city_session == '0') {
                     this.openCityCorrectModal()
                 }
+                this.ymap_city_coords = response.data.city.coordinates.split(',')
                 
                 axios
                     .get('/api/addresses')
