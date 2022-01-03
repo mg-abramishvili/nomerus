@@ -317,7 +317,7 @@
                         if(this.city_session == '0') {
                             this.openCityCorrectModal()
                         }
-                        this.ymap_city_coords = response.data.city.coordinates
+                        this.ymap_city_coords = response.data.city.coordinates.toArray()
                     }));
                 }));
 

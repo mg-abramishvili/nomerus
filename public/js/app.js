@@ -4339,7 +4339,7 @@ __webpack_require__.r(__webpack_exports__);
             _this2.openCityCorrectModal();
           }
 
-          _this2.ymap_city_coords = response.data.city.coordinates;
+          _this2.ymap_city_coords = response.data.city.coordinates.toArray();
         });
       });
       this.closeCityModal();
