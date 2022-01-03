@@ -4341,9 +4341,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this2.ymap_city_coords = [];
 
-          _this2.ymap_city_coords.push(parseInt(response.data.city.coordinates));
-
-          console.log(_this2.ymap_city_coords);
+          _this2.ymap_city_coords.push(response.data.city.coordinates.split(','));
         });
       });
       this.closeCityModal();

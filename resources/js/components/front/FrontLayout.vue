@@ -318,8 +318,7 @@
                             this.openCityCorrectModal()
                         }
                         this.ymap_city_coords = []
-                        this.ymap_city_coords.push(parseInt(response.data.city.coordinates))
-                        console.log(this.ymap_city_coords)
+                        this.ymap_city_coords.push(response.data.city.coordinates.split(','))
                     }));
                 }));
 
