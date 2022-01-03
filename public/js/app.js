@@ -4337,10 +4337,9 @@ __webpack_require__.r(__webpack_exports__);
 
           if (_this2.city_session == '0') {
             _this2.openCityCorrectModal();
-          } // this.ymap_city_coords = parseInt(response.data.city.coordinates)
+          }
 
-
-          console.log(response.data.city.coordinates);
+          _this2.ymap_city_coords = response.data.city.coordinates;
         });
       });
       this.closeCityModal();
