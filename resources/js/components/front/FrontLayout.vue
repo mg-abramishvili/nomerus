@@ -15,9 +15,9 @@
                             <router-link :to="{name: 'Addresses'}">Адреса</router-link>
                         </div>
                         <div class="header-social">
-                            <a v-if="current_city.instagram" :href="current_city.instagram" target="_blank">
+                            <!-- <a v-if="current_city.instagram" :href="current_city.instagram" target="_blank">
                                 <img src="/img/insta.svg">
-                            </a>
+                            </a> -->
                             <a v-if="current_city.whatsapp" :href="'https://wa.me/' + current_city.whatsapp">
                                 <img src="/img/whatsapp.svg">
                             </a>
@@ -115,9 +115,9 @@
                         <router-link :to="{name: 'Policy'}">Политика конфиденциальности</router-link>
                     </div>
                     <div class="footer-social">
-                        <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
+                        <!-- <a href="https://www.instagram.com/nomerus_ufa/" target="_blank">
                             <img src="/img/insta.svg">
-                        </a>
+                        </a> -->
                         <a v-if="current_city.whatsapp" :href="'https://wa.me/' + current_city.whatsapp">
                                 <img src="/img/whatsapp.svg">
                             </a>
