@@ -9,18 +9,20 @@ class City extends Model
 {
     use HasFactory;
 
-    public function types()
-    {
-        return $this->belongsToMany('App\Models\Type')->withPivot(['price', 'komplekt_price', 'komplekt_same_type_price']);
-    }
+    public $timestamps = false;
 
     public function addresses()
     {
-        return $this->belongsToMany('App\Models\Address');
+        return $this->hasMany(Address::class);
+    }
+
+    public function prices()
+    {
+        return $this->hasMany(Price::class);
     }
 
     public function orders()
     {
-        return $this->belongsToMany('App\Models\Order');
+        return $this->hasMany(Order::class);
     }
 }

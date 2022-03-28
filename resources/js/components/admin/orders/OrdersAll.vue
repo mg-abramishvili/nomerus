@@ -36,10 +36,8 @@
                             {{ order.email }}
                         </template>
 
-                        <template v-if="order.cities">
-                            <template v-for="oc in order.cities">
-                                {{ oc.name }}<br>
-                            </template>
+                        <template v-if="order.city">
+                            {{ order.city.name }}
                         </template>
                     </td>
                     <td>
@@ -49,20 +47,29 @@
                         <ul>
                             <li v-for="orderItem in order.order_items" :key="'orderItem_' + orderItem.id">
                                 <div class="my-2">
-                                    <template v-for="transport in transports">
-                                        <template v-if="transport.id == orderItem.transport"><strong><u>{{ transport.name }}</u></strong><br></template>
+                                    <strong>
+                                        <u v-if="orderItem.transport == 'avto'">Автомобиль</u>
+                                        <u v-if="orderItem.transport == 'moto'">Мотоцикл</u>
+                                        <u v-if="orderItem.transport == 'pricep'">Прицеп</u>
+                                    </strong>
+                                    <br>
+
+                                    {{ orderItem.plate }}<br>
+
+                                    <template v-if="orderItem.komplekt">
+                                        комплект<br>
                                     </template>
-                                    {{ orderItem.type }}<br>
-                                    <template v-if="orderItem.komplekt_type">
-                                        + {{ orderItem.komplekt_type }}<br>
-                                    </template>
+
                                     <strong class="text-danger" style="text-transform: uppercase;">{{ orderItem.number }}</strong><br>
-                                    <template v-if="orderItem.bold == true">
+                                    
+                                    <template v-if="orderItem.zhirniy == true">
                                         жирный шрифт<br>
                                     </template>
-                                    <template v-if="orderItem.noholes == true">
+
+                                    <template v-if="orderItem.bez_otverstiy == true">
                                         без отверстий<br>
                                     </template>
+
                                     {{ orderItem.price }} руб.
                                 </div>
                             </li>
@@ -79,7 +86,6 @@
         data() {
             return {
                 orders: [],
-                transports: [],
                 moment: moment,
             }
         },
@@ -89,11 +95,6 @@
             .get('/api/admin/orders')
             .then(response => (
                 this.orders = response.data
-            ))
-            axios
-            .get('/api/admin/transports')
-            .then(response => (
-                this.transports = response.data
             ))
         },
         methods: {

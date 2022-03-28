@@ -3,9 +3,13 @@
         <select v-model="city" class="form-select mb-3">
             <option v-for="city in cities" :key="'city_' + city.id" :value="city.id">{{ city.name }}</option>
         </select>
+
         <input v-model="name" type="text" class="form-control mb-3" placeholder="Название">
+        
         <input v-model="tel" type="text" class="form-control mb-3" placeholder="Телефон">
+        
         <input v-model="coordinates" type="text" class="form-control mb-3" placeholder="Координаты">
+        
         <div class="row">
             <div class="col-6">
                 <button @click="updateAddress(address.id)" class="btn btn-primary">Сохранить</button>
@@ -14,7 +18,9 @@
                 <button @click="deleteAddress(address.id)" class="btn btn-outline-danger">Удалить</button>
             </div>
         </div>
+
         <hr>
+        
         <a href="https://yandex.ru/map-constructor/location-tool/" target="_blank">Сервис определения координат Яндекс</a>
     </div>
 </template>
@@ -41,7 +47,7 @@ export default {
                 this.$parent.subheader = this.address.name,
                 this.name = response.data.name,
                 this.tel = response.data.tel,
-                this.city = response.data.cities[0].id,
+                this.city = response.data.city_id,
                 this.coordinates = response.data.coordinates
             ))
         axios

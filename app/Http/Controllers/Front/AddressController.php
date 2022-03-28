@@ -10,6 +10,6 @@ class AddressController extends Controller
 {
     public function index()
     {
-        return Address::with('cities')->get();
+        return Address::with('city')->get();
     }
 }

@@ -23,8 +23,8 @@ import AdminAddresses from './components/admin/addresses/AddressesAll.vue';
 import AdminAddressCreate from './components/admin/addresses/AddressCreate.vue';
 import AdminAddressEdit from './components/admin/addresses/AddressEdit.vue';
 
-import AdminTypes from './components/admin/types/TypesAll.vue';
-import AdminTypeEdit from './components/admin/types/TypeEdit.vue';
+import AdminPrices from './components/admin/prices/PricesAll.vue';
+import AdminPriceEdit from './components/admin/prices/PriceEdit.vue';
 
 import AdminPartners from './components/admin/partners/PartnersAll.vue';
 import AdminPartnerCreate from './components/admin/partners/PartnerCreate.vue';
@@ -126,14 +126,14 @@ export const routes = [
         component: AdminAddressEdit
     },
     {
-        path: '/admin/types/:city',
-        name: 'AdminTypes',
-        component: AdminTypes
+        path: '/admin/prices/:city',
+        name: 'AdminPrices',
+        component: AdminPrices
     },
     {
-        path: '/admin/types/:type_id/:city_id/edit',
-        name: 'AdminTypeEdit',
-        component: AdminTypeEdit
+        path: '/admin/price/:id/edit',
+        name: 'AdminPriceEdit',
+        component: AdminPriceEdit
     },
     {
         path: '/admin/partners',

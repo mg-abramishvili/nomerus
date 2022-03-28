@@ -218,7 +218,7 @@
                 cities: [],
                 text: {},
 
-                current_city: 1,
+                current_city: '',
 
                 city_modal: false,
                 callback_modal: false,
@@ -255,7 +255,7 @@
                 this.current_city = response.data.city
                 this.lead_city = response.data.city.name
                 this.city_session = response.data.session
-                //console.log(response.data.session)
+                // console.log(response.data.session)
                 if(this.city_session == '0') {
                     this.openCityCorrectModal()
                 }

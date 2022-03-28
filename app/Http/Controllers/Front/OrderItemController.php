@@ -20,27 +20,25 @@ class OrderItemController extends Controller
     {
         $rules = [
             'transport' => 'required',
-            'type' => 'required',
-            'bold' => 'required',
-            'noholes' => 'required',
+            'plate' => 'required',
+            'zhirniy' => 'required',
+            'bez_otverstiy' => 'required',
             'number' => 'required',
             'price' => 'required|numeric',
         ];
 
         $this->validate($request, $rules);
-
-        $data = request()->all();
         
         $orderItem = new OrderItem();
-        $orderItem->transport = $data['transport'];
-        $orderItem->type = $data['type'];
-        if($data['komplekt_type']) {
-            $orderItem->komplekt_type = $data['komplekt_type'];
-        }
-        $orderItem->bold = $data['bold'];
-        $orderItem->noholes = $data['noholes'];
-        $orderItem->number = $data['number'];
-        $orderItem->price = $data['price'];
+
+        $orderItem->transport = $request->transport;
+
+        $orderItem->plate = $request->plate;
+        $orderItem->zhirniy = $request->zhirniy;
+        $orderItem->bez_otverstiy = $request->bez_otverstiy;
+        $orderItem->komplekt = $request->komplekt;
+        $orderItem->number = $request->number;
+        $orderItem->price = $request->price;
         $orderItem->uid = time() . Str::random(9) . rand(1, 100000) . Str::random(9) . rand(1, 100000);
         $orderItem->save();
 

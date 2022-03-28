@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Price extends Model
 {
     use HasFactory;
 
-    public function orderItems()
+    public function plate()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(Plate::class);
     }
 
     public function city()

@@ -12,7 +12,6 @@ class CreateTextsTable extends Migration
             $table->id();
             $table->longText('company_text');
             $table->longText('privacy_policy');
-            $table->timestamps();
         });
     }
 

@@ -10,14 +10,15 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id')->nullable();
             $table->string('transport');
-            $table->string('type');
+            $table->string('plate');
             $table->string('number');
-            $table->decimal('price');
+            $table->integer('price');
             $table->string('uid');
-            $table->boolean('bold');
-            $table->boolean('noholes');
-            $table->string('komplekt_type')->nullable();
+            $table->boolean('zhirniy');
+            $table->boolean('bez_otverstiy');
+            $table->boolean('komplekt');
             $table->timestamps();
         });
     }

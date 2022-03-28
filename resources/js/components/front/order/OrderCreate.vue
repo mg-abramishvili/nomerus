@@ -5,26 +5,28 @@
             <div class="row">
 
                 <div class="col-12 col-md-7">
-                    <div v-if="constructor" class="order-constructor">
+                    <div v-if="views.constructor" class="order-constructor">
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label mb-1">Транспорт</label>
-                                    <select v-model="selected_transport" @change="selectTransport()" class="form-select form-select-lg">
-                                        <option v-for="transport in transports" :key="'transport_' + transport.id" :value="transport">{{ transport.name }}</option>
+                                    <select v-model="selected.transport" @change="changeTransport()" class="form-select form-select-lg">
+                                        <option value="avto">Автомобиль</option>
+                                        <option value="moto">Мотоцикл</option>
+                                        <option value="pricep">Прицеп</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div v-if="selected_transport && selected_transport.id" class="mb-3">
-                                    <label id="number_label" class="form-label mb-1">Госномер <i @click="openStsModal()">?</i></label>
-                                    <template v-if="selected_transport.namecode === 'legkovoy'">
+                                <div v-if="selected.transport" class="mb-3">
+                                    <label class="form-label mb-1">Госномер <i @click="openStsModal()">?</i></label>
+                                    <template v-if="selected.transport == 'avto'">
                                         <input v-model="number" v-maska="{ mask: 'Z###ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" id="number_input" placeholder="а000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                                     </template>
-                                    <template v-if="selected_transport.namecode === 'moto'">
+                                    <template v-if="selected.transport == 'moto'">
                                         <input v-model="number" v-maska="{ mask: '####ZZ', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" id="number_input" placeholder="0000аа" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                                     </template>
-                                    <template v-if="selected_transport.namecode === 'pricep'">
+                                    <template v-if="selected.transport == 'pricep'">
                                         <input v-model="number" v-maska="{ mask: 'ZZ####', tokens: { 'Z': { pattern: /[у,к,е,н,х,в,а,р,о,с,м,т,У,К,Е,Н,Х,В,А,Р,О,С,М,Т]/ }}}" id="number_input" placeholder="аа0000" type="text" class="form-control form-control-lg" style="text-transform: uppercase;">
                                     </template>
                                 </div>
@@ -34,9 +36,9 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-2">
-                                <div v-if="selected_transport && selected_transport.id" class="mb-3">
-                                    <label id="number_region_label" class="form-label mb-1">Регион</label>
-                                    <input v-model="number_region" v-maska="{ mask: '###', tokens: { '###': { pattern: /[0-9]/ }}}" id="number_region_input" class="form-control form-control-lg">
+                                <div v-if="selected.transport" class="mb-3">
+                                    <label class="form-label mb-1">Регион</label>
+                                    <input v-model="numberRegion" v-maska="{ mask: '###', tokens: { '###': { pattern: /[0-9]/ }}}" class="form-control form-control-lg">
                                 </div>
                                 <div v-else class="mb-3">
                                     <label class="form-label mb-1">Регион</label>
@@ -45,143 +47,77 @@
                             </div>
                         </div>
 
-                        <div v-if="selected_transport && selected_transport.id" class="order-form-item">
+                        <div v-if="selected.transport" class="order-form-item">
                             <div class="row align-items-center">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label mb-1">Тип номера</label>
-                                    <select v-model="selected_type" @change="selectType()" class="form-select mb-3">
-                                        <option v-for="type in types" :key="'type_' + type.id" :value="type">{{ type.name }}</option>
+                                    <select v-model="selected.plate" @change="changePlate()" class="form-select mb-3">
+                                        <option v-for="plate in plates" :key="'plate_' + plate.id" :value="plate">{{ plate.name }}</option>
                                     </select>
-                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag' || selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="form-check form-switch mt-2">
-                                        <input v-model="bold" @change="changeBold()" class="form-check-input" type="checkbox" value="1" id="boldSwitch">
+
+                                    <div v-if="selected.plate.id == 1 || selected.plate.id == 2 || selected.plate.id == 7 || selected.plate.id == 8" class="form-check form-switch mt-2">
+                                        <input v-model="selected.zhirniy" class="form-check-input" type="checkbox" value="1" id="boldSwitch">
                                         <label class="form-check-label" for="boldSwitch">жирный шрифт</label>
                                     </div>
-                                    <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag' || selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="form-check form-switch mt-2">
-                                        <input v-model="noholes" @change="changeNoholes()" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
+
+                                    <div v-if="selected.plate.id == 1 || selected.plate.id == 2 || selected.plate.id == 7 || selected.plate.id == 8" class="form-check form-switch mt-2">
+                                        <input v-model="selected.bez_otverstiy" class="form-check-input" type="checkbox" value="1" id="holesSwitch">
                                         <label class="form-check-label" for="holesSwitch">без отверстий</label>
                                     </div>
-                                    <div v-if="selected_type && selected_type.id && selected_type.komplekt && selected_type.komplekt.length > 0" class="form-check form-switch mt-2">
-                                        <input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="komplSwitch">
-                                        <label class="form-check-label" for="komplSwitch">комплект (2 номера) <!--<small v-if="selected_komplekt_type">↳ {{ selected_type.name }}<br>↳ {{ selected_komplekt_type.name }}</small>--></label>
-                                        <!--<input v-model="add_komplekt" @change="addKomplekt()" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Заказать комплект (+ 1шт.)
-                                        </label>-->
+
+                                    <div v-if="selected.plate.id == 1 || selected.plate.id == 2" class="form-check form-switch mt-2">
+                                        <input v-model="selected.komplekt" class="form-check-input" type="checkbox" value="1" id="komplSwitch">
+                                        <label class="form-check-label" for="komplSwitch">комплект (2 номера)</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="order-plate-preview">
-                                        <div v-if="selected_type.namecode === 'type1_with_flag' || selected_type.namecode === 'type1_without_flag'" class="type1_with_flag" :class="{ 'fw-bold' : bold == true}">               
-                                            <div v-if="number && number.length > 0" class="numbers">
-                                                <span>{{ number.slice(0, 1) }}</span>
-                                                <span>{{ number.slice(1, 4) }}</span>
-                                                <span>{{ number.slice(4, 6) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                                <span>
-                                                    {{ number_region }}
-                                                </span>
-                                                <div class="reg-inner">
-                                                    <i>RUS</i>
-                                                    <img v-if="selected_type.namecode === 'type1_with_flag'" src="/img/rus.svg"/>
-                                                </div>
-                                            </div>
-                                            <div v-if="noholes == false" class="holes hole1"></div>
-                                            <div v-if="noholes == false" class="holes hole2"></div>
-                                        </div>
-                                        <div v-if="selected_type.namecode === 'type1a' || selected_type.namecode === 'type1a_without_flag'" class="type1a">               
-                                            <div v-if="number && number.length > 0" class="numbers">
-                                                <span>{{ number.slice(0, 1) }}</span>
-                                                <span>{{ number.slice(1, 4) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0" class="letters">
-                                                <span>{{ number.slice(4, 6) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                                <span>
-                                                    {{ number_region }}
-                                                </span>
-                                                <div class="reg-inner">
-                                                    <i>RUS</i>
-                                                    <img v-if="selected_type.namecode === 'type1a'" src="/img/rus.svg"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="selected_type.namecode === 'type4' || selected_type.namecode === 'type4_without_flag' || selected_type.namecode === 'type4mini' || selected_type.namecode === 'type4mini_without_flag'" class="type4">               
-                                            <div v-if="number && number.length > 0" class="numbers">
-                                                <span>{{ number.slice(0, 4) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0" class="letters">
-                                                <span>{{ number.slice(4, 6) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                                <div class="reg-inner">
-                                                    <i>RUS</i>
-                                                    <img v-if="selected_type.namecode === 'type4' || selected_type.namecode === 'type4mini'" src="/img/rus.svg"/>
-                                                </div>
-                                                <span>
-                                                    {{ number_region }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div v-if="selected_type.namecode === 'type2_with_flag' || selected_type.namecode === 'type2_without_flag'" class="type2_with_flag" :class="{ 'fw-bold' : bold == true}">               
-                                            <div v-if="number && number.length > 0" class="numbers">
-                                                <span>{{ number.slice(0, 1) }}</span>
-                                                <span>{{ number.slice(1, 4) }}</span>
-                                                <span>{{ number.slice(4, 6) }}</span>
-                                            </div>
-                                            <div v-if="number && number.length > 0 && number_region && number_region.length > 0" class="reg">
-                                                <span>
-                                                    {{ number_region }}
-                                                </span>
-                                                <div class="reg-inner">
-                                                    <i>RUS</i>
-                                                    <img v-if="selected_type.namecode === 'type2_with_flag'" src="/img/rus.svg"/>
-                                                </div>
-                                            </div>
-                                            <div v-if="noholes == false" class="holes hole1"></div>
-                                            <div v-if="noholes == false" class="holes hole2"></div>
-                                        </div>
+                                        <Avto v-if="selected.plate.id == 1 || selected.plate.id == 2" :number="number" :numberRegion="numberRegion" :selected="selected" />
+                                        <AvtoKv v-if="selected.plate.id == 3 || selected.plate.id == 4" :number="number" :numberRegion="numberRegion" :selected="selected" />
+
+                                        <Moto v-if="selected.plate.id == 5 || selected.plate.id == 6" :number="number" :numberRegion="numberRegion" :selected="selected" />
+                                        
+                                        <Pricep v-if="selected.plate.id == 7 || selected.plate.id == 8" :number="number" :numberRegion="numberRegion" :selected="selected" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="text-center mb-4">
-                            <h5 v-if="selected_transport && selected_transport.id" class="mt-4 text-center">{{ price }} руб.</h5>
+                        <div v-if="price > 0" class="text-center mb-4">
+                            <h5 v-if="selected.transport" class="mt-4 text-center">{{ price }} руб.</h5>
                             <button @click="saveOrderItem()" class="btn btn-standard mt-1">Добавить к заказу</button>
                         </div>
                     </div>
 
-                    <div v-if="order_fields" class="row">
+                    <div v-if="views.orderFields" class="row">
                         <div class="col-12 mb-4">
                             <div class="form-check form-check-inline">
-                                <input v-model="client_type" @change="changeClientType()" class="form-check-input" type="radio" value="fz">
+                                <input v-model="clientType" class="form-check-input" type="radio" value="fz">
                                 <label class="form-check-label" for="inlineRadio1">физ. лицо</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input v-model="client_type" @change="changeClientType()" class="form-check-input" type="radio" value="ur">
+                                <input v-model="clientType" class="form-check-input" type="radio" value="ur">
                                 <label class="form-check-label" for="inlineRadio2">юр. лицо</label>
                             </div>
                         </div>
 
-                        <div v-if="client_type == 'fz'" class="col-12 col-md-6">
-                            <label id="name_label" class="form-label">Имя</label>
-                            <input v-model="name" id="name_input" type="text" class="form-control mb-4">
+                        <div v-if="clientType == 'fz'" class="col-12 col-md-6">
+                            <label class="form-label">Имя</label>
+                            <input v-model="name" type="text" class="form-control mb-4">
                         </div>
 
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-12">
-                            <label id="company_label" class="form-label">Наименование организации</label>
-                            <input v-model="company" id="company_input" type="text" class="form-control mb-3">
+                        <div v-if="clientType == 'ur'" class="col-12 col-md-12">
+                            <label class="form-label">Наименование организации</label>
+                            <input v-model="company" type="text" class="form-control mb-3">
                         </div>
 
                         <div class="col-12 col-md-6">
-                            <label id="tel_label" class="form-label">Телефон</label>
-                            <input v-model="tel" id="tel_input" type="text" class="form-control mb-4">
+                            <label class="form-label">Телефон</label>
+                            <input v-model="tel" type="text" class="form-control mb-4">
                         </div>
-                        <div v-if="client_type == 'ur'" class="col-12 col-md-6">
-                            <label id="email_label" class="form-label">E-mail</label>
-                            <input v-model="email" id="email_input" type="text" class="form-control mb-4">
+                        <div v-if="clientType == 'ur'" class="col-12 col-md-6">
+                            <label class="form-label">E-mail</label>
+                            <input v-model="email" type="text" class="form-control mb-4">
                         </div>
                     </div>
                 </div>
@@ -190,7 +126,7 @@
                     <div class="order-list">
                         <p class="order-list-title">Ваш заказ</p>
                         <ul>
-                            <li v-for="orderItem in order_list">
+                            <li v-for="orderItem in orderList">
                                 <div class="row">
                                     <div class="col-6">
                                         <button @click="removeOrderItem(orderItem.uid)" class="btn btn-del">&times;</button>
@@ -202,33 +138,17 @@
                                 </div>
                             </li>
                         </ul>
-                        <h4 v-if="order_list && order_list.length > 0" class="order-total-price text-center">{{ price_total }} руб.</h4>
+                        <h4 v-if="orderList.length" class="order-total-price text-center">{{ priceTotal }} руб.</h4>
                         <div v-else class="text-center text-muted mb-4">Заказ пуст</div>
                         <div class="order-buttons text-center">
-                            <button v-if="order_list && order_list.length > 0 && constructor == false" @click="addAnotherNumber()" class="btn btn-lg btn-standard btn-standard-outline">Добавить еще номер</button>
-                            <button v-if="order_list && order_list.length > 0" @click="saveOrder()" class="btn btn-lg btn-standard">Оформить заказ</button>
+                            <button v-if="orderList.length && views.constructor == false" @click="addAnotherNumber()" class="btn btn-lg btn-standard btn-standard-outline">Добавить еще номер</button>
+                            <button v-if="orderList.length" @click="saveOrder()" class="btn btn-lg btn-standard">Оформить заказ</button>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
-        
-        <div v-if="sts_modal" class="modal sts_modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Госномер</h5>
-                        <button @click="closeStsModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="/img/sts.jpg" style="width: auto; max-width: 100%; max-height: 90vh; display: block; margin: 0 auto;">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div v-if="modal_bg" class="modal-backdrop fade show"></div>
 
     </div>
 </template>
@@ -236,82 +156,95 @@
 <script>
     import { maska } from 'maska'
 
+    import Avto from './comps/Avto.vue'
+    import AvtoKv from './comps/AvtoKv.vue'
+    import Moto from './comps/Moto.vue'
+    import Pricep from './comps/Pricep.vue'
+
     export default {
         directives: { maska },
         data() {
             return {
-                transports: [],
-                types: [],
-
-                selected_transport: {},
-                selected_type: {},
-
-                add_komplekt: '',
-                selected_komplekt_type: {},
-                selected_komplekt_type_name: '',
+                plates: [],
 
                 number: '',
-                number_region: '',
+                numberRegion: '',
 
-                bold: false,
-                noholes: false,
-
-                price: '',
-                price_total: '',
-
-                order_list: [],
-
-                constructor: true,
-                order_fields: false,
-
-                client_type: 'fz',
+                clientType: 'fz',
                 name: '',
                 tel: '',
                 email: '',
                 company: '',
+                orderList: [],
+                city: this.$parent.current_city.id,
 
-                sts_modal: false,
-                modal_bg: false,
+                selected: {
+                    transport: 'avto',
+                    plate: '',
+                    komplekt: false,
+                    zhirniy: false,
+                    bez_otverstiy: false,
+                },
+
+                views: {
+                    constructor: true,
+                    orderFields: false,
+                }
+            }
+        },
+        computed: {
+            price() {
+                if(!this.selected.plate) {
+                    return 0
+                }
+
+                if(this.selected.zhirniy) {
+                    if(this.selected.komplekt) {
+                        return this.selected.plate.prices[0].zhirniy_komplekt
+                    }
+
+                    return this.selected.plate.prices[0].zhirniy
+                }
+
+                if(this.selected.bez_otverstiy) {
+                    if(this.selected.komplekt) {
+                        return this.selected.plate.prices[0].bez_otverstiy_komplekt
+                    }
+                    
+                    return this.selected.plate.prices[0].bez_otverstiy
+                }
+
+                if(this.selected.komplekt) {
+                    return this.selected.plate.prices[0].komplekt
+                }
+                
+                return this.selected.plate.prices[0].odin
+            },
+            priceTotal() {
+                if(this.orderList.length) {
+                    return this.orderList.reduce((n, {price}) => n + price, 0)
+                }
             }
         },
         created() {
-            axios
-                .get('/api/transports')
-                .then((response => {
-                    this.transports = response.data
+            if(this.$route.params.transport === 'avto') {
+                this.selected.transport = 'avto'
+            }
+            if(this.$route.params.transport === 'moto') {
+                this.selected.transport = 'moto'
+            }
+            if(this.$route.params.transport === 'pricep') {
+                this.selected.transport = 'pricep'
+            }
 
-                    if(this.$route.params.transport === 'legkovoy') {
-                        this.selected_transport =  this.transports[0]
-                    }
-                    if(this.$route.params.transport === 'moto') {
-                        this.selected_transport =  this.transports[1]
-                    }
-                    if(this.$route.params.transport === 'pricep') {
-                        this.selected_transport =  this.transports[2]
-                    }
-
-                    this.client_type = this.$route.params.kto
-
-                    axios
-                    .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
-                    .then((response => {
-                        this.types = response.data
-                        this.types.forEach((type) => {
-                            if(type.namecode == this.$route.params.type) {
-                                this.selected_type = type
-                                this.selectType()
-                            }
-                        })
-                    }));
-
-                }));
+            this.clientType = this.$route.params.kto
 
             ym(86309721, 'hit', `/order/fz/${this.$route.params.transport}/${this.$route.params.type}`, {
                 title: 'Заказ номера',
                 referer: `http://номерус.рф/order/fz/${this.$route.params.transport}/${this.$route.params.type}`
             });
 
-            if(this.$route.params.transport === 'legkovoy') {
+            if(this.$route.params.transport === 'avto') {
                 if(this.$route.params.type === 'type1_with_flag') {
                     ym(86309721,'reachGoal','zakaz_obichni_nomer')
                 }
@@ -328,114 +261,78 @@
             if(this.$route.params.transport === 'pricep') {
                 ym(86309721,'reachGoal','zakaz_pricep')
             }
+
+            this.loadPlates()
         },
         methods: {
-            selectTransport() {
-                axios
-                .get(`/api/${this.$parent.current_city.id}/transport/${this.selected_transport.id}/types`)
-                .then((response => {
-                    this.types = response.data
-                    this.selected_type = response.data[0]
-                    this.selectType()
-                }));
+            loadPlates() {
+                axios.get(`/api/plates/${this.selected.transport}/${this.city}`)
+                .then(response => {
+                    this.plates = response.data
+                    this.selected.plate = this.plates[0]
+                })
+            },
+            changeTransport() {
                 this.number = ''
-                this.number_region = ''
+                this.numberRegion = ''
+                this.loadPlates()
+                this.changePlate()
             },
-            selectType() {
-                if(this.selected_type && this.selected_type.id) {
-                    if(this.selected_type.komplekt && this.selected_type.komplekt.length > 0) {
-                        if(this.selected_type.default_komplekt == true) {
-                            this.add_komplekt = true
-                            this.selected_komplekt_type = this.selected_type.komplekt[0]
-                            this.selected_komplekt_type_name = this.selected_type.komplekt[0].name
-                        } else {
-                            this.add_komplekt = false
-                            this.selected_komplekt_type = ''
-                            this.selected_komplekt_type_name = ''
-                        }
-                    } else {
-                        this.add_komplekt = false
-                        this.selected_komplekt_type = ''
-                        this.selected_komplekt_type_name = ''
-                    }
-                    this.bold = false,
-                    this.noholes = false,
-                    this.priceCalculate()
-                }
-            },
-            addKomplekt() {
-                if(this.add_komplekt == true) {
-                    this.selected_komplekt_type = this.selected_type.komplekt[0]
-                    this.selected_komplekt_type_name = this.selected_type.komplekt[0].name
-                    this.priceCalculate()
-                } else {
-                    this.selected_komplekt_type = ''
-                    this.selected_komplekt_type_name = ''
-                    this.price = this.selected_type.cities[0].pivot.price
-                    this.priceCalculate()
-                }
-            },
-            selectKomplektType() {
-                this.priceCalculate()
-            },
-            changeBold() {
-                this.priceCalculate()
-            },
-            changeNoholes() {
-                this.priceCalculate()
-            },
-            priceCalculate() {
-                if(this.add_komplekt == true) {
-                    if(this.selected_type.id === this.selected_komplekt_type.id) {
-                        if(this.bold == true || this.noholes == true) {
-                            if(this.selected_type.cities[0] && this.selected_type.cities[0].pivot) {
-                                this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price)
-                            }
-                        } else {
-                            if(this.selected_type.cities[0] && this.selected_type.cities[0].pivot) {
-                                this.price = parseInt(this.selected_type.cities[0].pivot.min_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.min_price)
-                            }
-                        }
-                    } else {
-                        if(this.bold == true || this.noholes == true) {
-                            this.price = parseInt(this.selected_type.cities[0].pivot.max_price) + parseInt(this.selected_komplekt_type.cities[0].pivot.max_price)
-                        } else {
-                            this.price = parseInt(this.selected_type.cities[0].pivot.price) + parseInt(this.selected_komplekt_type.cities[0].pivot.price)
-                        }
-                    }
-                } else {
-                    if(this.bold == true || this.noholes == true) {
-                        this.price = parseInt(this.selected_type.cities[0].pivot.max_price)
-                    } else {
-                        this.price = parseInt(this.selected_type.cities[0].pivot.price)
-                    }
-                }
+            changePlate() {
+                this.selected.zhirniy = false
+                this.selected.bez_otverstiy = false
+                this.selected.komplekt = false
             },
             saveOrderItem() {
-                document.getElementById('number_label').classList.remove('text-danger')
-                document.getElementById('number_input').classList.remove('border-danger')
-                
-                document.getElementById('number_region_label').classList.remove('text-danger')
-                document.getElementById('number_region_input').classList.remove('border-danger')
+                this.views.constructor = false
+                this.views.orderFields = true
 
-                if(this.selected_transport && this.selected_type && this.number && this.number_region) {
-                    //document.getElementById('order-page').scrollIntoView();
-                    this.constructor = false
-                    this.order_fields = true
+                axios.post(`/api/order-item`, {
+                        transport: this.selected.transport,
+                        plate: this.selected.plate.name,
+                        komplekt: this.selected.komplekt,
+                        number: this.number + this.numberRegion,
+                        zhirniy: this.selected.zhirniy,
+                        bez_otverstiy: this.selected.bez_otverstiy,
+                        price: this.price,
+                    })
+                .then(response => (
+                    this.changeTransport(),
+                    this.orderList.push(response.data)
+                ))
+                .catch((error) => {
+                    if(error.response) {
+                        for(var key in error.response.data.errors){
+                            console.log(key)
+                        }
+                    }
+                })
+            },
+            addAnotherNumber() {
+                this.changeTransport()
 
-                    axios
-                    .post(`/api/order-item`, {
-                            transport: this.selected_transport.id,
-                            type: this.selected_type.name,
-                            komplekt_type: this.selected_komplekt_type_name,
-                            number: this.number + this.number_region,
-                            bold: this.bold,
-                            noholes: this.noholes,
-                            price: this.price,
-                        })
+                this.views.constructor = true
+                this.views.orderFields = false
+            },
+            saveOrder() {
+                if(this.clientType == 'fz') {
+                    if(!this.name) {
+                        return
+                    }
+                    if(!this.tel) {
+                        return
+                    }
+
+                    axios.post(`/api/order`, {
+                        client_type: this.clientType,
+                        tel: this.tel,
+                        name: this.name,
+                        price: this.priceTotal,
+                        orderItems: this.orderList.map( (item) => item.uid ),
+                        city: this.city
+                    })
                     .then(response => (
-                        this.order_list.push(response.data),
-                        this.price_total = this.order_list.reduce((n, {price}) => n + parseInt(price), 0)
+                        this.$router.push({name: 'OrderComplete'})
                     ))
                     .catch((error) => {
                         if(error.response) {
@@ -443,174 +340,47 @@
                                 console.log(key)
                             }
                         }
-                    });
-                } else {
-                    if(!this.number) {
-                        document.getElementById('number_label').classList.add('text-danger')
-                        document.getElementById('number_input').classList.add('border-danger')
-                    }
-                    if(!this.number_region) {
-                        document.getElementById('number_region_label').classList.add('text-danger')
-                        document.getElementById('number_region_input').classList.add('border-danger')
-                    }
+                    })
                 }
-            },
-            removeOrderItem(uid) {
-                axios
-                .get(`/api/admin/order-item-del/${uid}`)
-                .then((response => {
-                    this.order_list = this.order_list.filter(function( obj ) {
-                        return obj.uid !== uid
-                    });
-                    this.price_total = this.order_list.reduce((n, {price}) => n + parseInt(price), 0)
-                    if(this.order_list.length == 0) {
-                        this.constructor = true
-                        this.order_fields = false
-                        this.selected_transport = ''
-                        this.selected_type = ''
-                        this.number = ''
-                        this.number_region = ''
-                    }
-                }));
-            },
-            changeClientType() {
-                document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
-                    el.classList.remove('text-danger')
-                });
-                document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
-                    el.classList.remove('border-danger')
-                });
-            },
-            saveOrder() {
-                if(this.client_type == 'fz') {
-                    document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
-                        el.classList.remove('text-danger')
-                    });
-                    document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
-                        el.classList.remove('border-danger')
-                    });
 
-                    if(
-                        this.name && this.name.length > 0 &&
-                        this.tel && this.tel.length > 0
-                    ) {
-                        axios
-                        .post(`/api/order`, {
-                                client_type: this.client_type,
-                                tel: this.tel,
-                                name: this.name,
-                                price: parseInt(this.price_total),
-                                orderItems: this.order_list.map( (item) => item.uid ),
-                                city: this.$parent.current_city.id
-                            })
-                        .then(response => (
-                            this.$router.push({name: 'OrderComplete'})
-                        ))
-                        .catch((error) => {
-                            if(error.response) {
-                                for(var key in error.response.data.errors){
-                                    console.log(key)
-                                }
+                if(this.clientType == 'ur') {
+                    if(!this.company) {
+                        return
+                    }
+                    if(!this.tel) {
+                        return
+                    }
+                    if(!this.email) {
+                        return
+                    }
+                    
+                    axios.post(`/api/order`, {
+                        client_type: this.clientType,
+                        tel: this.tel,
+                        email: this.email,
+                        company: this.company,
+                        price: this.priceTotal,
+                        orderItems: this.orderList.map( (item) => item.uid ),
+                        city: this.city
+                    })
+                    .then(response => (
+                        this.$router.push({name: 'OrderComplete'})
+                    ))
+                    .catch((error) => {
+                        if(error.response) {
+                            for(var key in error.response.data.errors){
+                                console.log(key)
                             }
-                        });
-                    } else {
-                        if(!this.name) {
-                            document.getElementById('name_label').classList.add('text-danger')
-                            document.getElementById('name_input').classList.add('border-danger')
                         }
-                        if(!this.tel) {
-                            document.getElementById('tel_label').classList.add('text-danger')
-                            document.getElementById('tel_input').classList.add('border-danger')
-                        }
-                    }
-                }
-                if(this.client_type == 'ur') {
-                    document.querySelectorAll('.form-label').forEach.call(document.querySelectorAll('.form-label'), function (el) {
-                        el.classList.remove('text-danger')
-                    });
-                    document.querySelectorAll('.form-control').forEach.call(document.querySelectorAll('.form-control'), function (el) {
-                        el.classList.remove('border-danger')
-                    });
-
-                    if(
-                        this.company && this.company.length > 0 &&
-                        this.tel && this.tel.length > 0 &&
-                        this.email && this.email.length > 0
-                    ) {
-                        axios
-                        .post(`/api/order`, {
-                                client_type: this.client_type,
-                                tel: this.tel,
-                                email: this.email,
-                                company: this.company,
-                                price: parseInt(this.price_total),
-                                orderItems: this.order_list.map( (item) => item.uid ),
-                                city: this.$parent.current_city.id
-                            })
-                        .then(response => (
-                            this.$router.push({name: 'OrderComplete'})
-                        ))
-                        .catch((error) => {
-                            if(error.response) {
-                                for(var key in error.response.data.errors){
-                                    console.log(key)
-                                }
-                            }
-                        });
-                    } else {
-                        if(!this.tel) {
-                            document.getElementById('tel_label').classList.add('text-danger')
-                            document.getElementById('tel_input').classList.add('border-danger')
-                        }
-                        if(!this.email) {
-                            document.getElementById('email_label').classList.add('text-danger')
-                            document.getElementById('email_input').classList.add('border-danger')
-                        }
-                        if(!this.company) {
-                            document.getElementById('company_label').classList.add('text-danger')
-                            document.getElementById('company_input').classList.add('border-danger')
-                        }
-                    }
+                    })
                 }
             },
-            addAnotherNumber() {
-                this.selected_transport = ''
-                this.selected_type = ''
-                this.number = ''
-                this.number_region = ''
-                this.add_komplekt = true
-
-                this.constructor = true
-                this.order_fields = false
-            },
-            openStsModal() {
-                this.sts_modal = true
-                this.modal_bg = true
-            },
-            closeStsModal() {
-                this.sts_modal = false
-                this.modal_bg = false
-            }
-        },
-        mounted() {
-            this.$watch(
-            "$parent.current_city.id",
-            (new_value, old_value) => {
-                this.selected_transport = ''
-                this.selected_type = ''
-                this.number = ''
-                this.number_region = ''
-                this.price = ''
-                this.add_komplekt = true
-
-                this.constructor = true
-                this.order_fields = false
-
-                this.order_list = []
-            }
-            );
         },
         components: {
+            Avto,
+            AvtoKv,
+            Moto,
+            Pricep
         }
     }
 </script>

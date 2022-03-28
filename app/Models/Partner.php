@@ -9,8 +9,5 @@ class Partner extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'image'
-    ];
+    public $timestamps = false;
 }

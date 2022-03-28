@@ -10,20 +10,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            TypeSeeder::class,
-            TransportSeeder::class,
-            CitySeeder::class,
-            TransportTypeSeeder::class,
-            KomplektTypeSeeder::class,
-            CityTypeSeeder::class,
-            AddressSeeder::class,
-            AddressCitySeeder::class,
-            CertificateSeeder::class,
-            ServiceSeeder::class,
-            GallerySeeder::class,
-            TextSeeder::class,
-            PartnerSeeder::class,
-            ServiceTypeSeeder::class,
         ]);
     }
 }

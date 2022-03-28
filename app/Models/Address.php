@@ -9,14 +9,17 @@ class Address extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
+        'city_id',
         'tel',
         'coordinates'
     ];
 
-    public function cities()
+    public function city()
     {
-        return $this->belongsToMany('App\Models\City');
+        return $this->belongsTo(City::class);
     }
 }

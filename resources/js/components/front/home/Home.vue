@@ -11,7 +11,7 @@
                         <strong v-else>в {{ $parent.current_city.name + 'е' }}</strong>
                     </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
-                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'legkovoy', type: 'type1_with_flag'} }" class="btn btn-standard">Заказать номер</router-link>
+                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'avto', type: 'type1_with_flag'} }" class="btn btn-standard">Заказать номер</router-link>
                 </div>
                 <div class="home-carousel-img"></div>
             </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-12 col-md-4">
                         <select v-model="banner_form_transport" class="form-select form-select-lg">
-                            <option value="legkovoy">Автомобиль</option>
+                            <option value="avto">Автомобиль</option>
                             <option value="moto">Мотоцикл</option>
                             <option value="pricep">Прицеп</option>
                         </select>
@@ -191,7 +191,7 @@ export default {
             nomerus_modal_certs: false,
 
             banner_form_client_type: 'fz',
-            banner_form_transport: 'legkovoy',
+            banner_form_transport: 'avto',
 
             homeCertMiniHooper: {
                 itemsToShow: 4,

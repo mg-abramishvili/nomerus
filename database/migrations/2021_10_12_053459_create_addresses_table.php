@@ -10,10 +10,10 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->integer('city_id');
             $table->string('name');
             $table->string('tel');
             $table->string('coordinates');
-            $table->timestamps();
         });
     }
 

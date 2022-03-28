@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function orders_index()
     {
-        return Order::with('orderItems', 'cities')->orderBy('created_at', 'desc')->get();
+        return Order::with('orderItems', 'city')->orderBy('created_at', 'desc')->get();
     }
     
 }

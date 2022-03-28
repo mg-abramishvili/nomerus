@@ -35,7 +35,7 @@
                                 <router-link :to="{name: 'AdminLeads'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminLeads'}">Заявки</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{name: 'AdminTypes', params: {city: 'ufa'}}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminTypes'}">Цены</router-link>
+                                <router-link :to="{name: 'AdminPrices', params: {city: 'ufa'}}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminPrices'}">Цены</router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link :to="{name: 'AdminGallery'}" class="nav-link" :class="{ 'text-danger' : $route.name == 'AdminGallery'}">Фотогалерея</router-link>

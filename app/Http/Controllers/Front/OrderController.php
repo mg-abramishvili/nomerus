@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\City;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
 use Illuminate\Http\Request;
@@ -35,34 +36,35 @@ class OrderController extends Controller
             $this->validate($request, $ur_rules);
         }
         
-        $data = request()->all();
         $order = new Order();
         $order->client_type = $client_type;
 
         if($client_type == 'fz') {
-            $order->name = $data['name'];
+            $order->name = $request->name;
         }
         if($client_type == 'ur') {
-            $order->email = $data['email'];
-            $order->company = $data['company'];
+            $order->email = $request->email;
+            $order->company = $request->company;
         }
 
-        $order->tel = $data['tel'];
-        $order->price = $data['price'];
+        $order->tel = $request->tel;
+        $order->price = $request->price;
+
+        $city = City::find($request->city);
+        $order->city_id = $city->id;
         
         $order->uid = time() . Str::random(9) . rand(1, 100000) . Str::random(9) . rand(1, 100000);
         $order->save();
 
         $orderItems = $request->input('orderItems', []);
-        
-        for ($orderItem=0; $orderItem < count($orderItems); $orderItem++) {
-            $orderItemID = OrderItem::where('uid', $orderItems[$orderItem])->first();
-            $order->orderItems()->attach($orderItemID->id, ['order_id' => $order->id]);
+
+        foreach($orderItems as $orderItem) {
+            $orderItem = OrderItem::where('uid', $orderItem)->first();
+            $orderItem->order_id = $order->id;
+            $orderItem->save();
         }
 
-        $order->cities()->attach($data['city'], ['order_id' => $order->id]);
-
-        $order = Order::with('orderItems', 'cities')->find($order->id);
-        Mail::to('nomerus.rf@mail.ru')->send(new OrderMail($order));
+        // $order = Order::with('orderItems', 'cities')->find($order->id);
+        // Mail::to('nomerus.rf@mail.ru')->send(new OrderMail($order));
     }
 }

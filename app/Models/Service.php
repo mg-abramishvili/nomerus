@@ -9,8 +9,5 @@ class Service extends Model
 {
     use HasFactory;
 
-    public function types()
-    {
-        return $this->belongsToMany('App\Models\Type');
-    }
+    public $timestamps = false;
 }

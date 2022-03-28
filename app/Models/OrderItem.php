@@ -9,19 +9,8 @@ class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'transport',
-        'type',
-        'number',
-        'price',
-        'uid',
-        'bold',
-        'noholes',
-        'komplekt_type',
-    ];
-
-    public function orders()
+    public function order()
     {
-        return $this->belongsToMany('App\Models\Order');
+        return $this->belongsTo(Order::class);
     }
 }

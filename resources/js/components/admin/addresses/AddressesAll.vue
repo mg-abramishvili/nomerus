@@ -15,9 +15,7 @@
             <tbody>
                 <tr v-for="address in addresses" :key="'address_' + address.id">
                     <td>
-                        <template v-for="city in address.cities">
-                            {{ city.name }}
-                        </template>
+                        {{ address.city.name }}
                     </td>
                     <td>
                         {{ address.name }}

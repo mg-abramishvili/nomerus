@@ -19,9 +19,7 @@ Route::get('text','App\Http\Controllers\Front\TextController@index');
 
 Route::get('partners','App\Http\Controllers\Front\PartnerController@index');
 
-Route::get('transports','App\Http\Controllers\Front\TransportController@transports_index');
-
-Route::get('{city}/transport/{id}/types','App\Http\Controllers\Front\TypeController@transport_types');
+Route::get('plates/{transport}/{city_id}','App\Http\Controllers\Front\PlateController@index');
 
 Route::get('certificates','App\Http\Controllers\Front\CertificateController@index');
 Route::get('gallery','App\Http\Controllers\Front\GalleryController@index');
@@ -55,9 +53,9 @@ Route::get('admin/address/{id}','App\Http\Controllers\Admin\AddressController@ad
 Route::get('admin/address/{id}/delete','App\Http\Controllers\Admin\AddressController@address_item_delete')->middleware('auth:sanctum');
 Route::post('admin/address/{id}','App\Http\Controllers\Admin\AddressController@address_update')->middleware('auth:sanctum');
 
-Route::get('admin/types/{city}','App\Http\Controllers\Admin\TypeController@index')->middleware('auth:sanctum');
-Route::get('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item')->middleware('auth:sanctum');
-Route::post('admin/type/{type_id}/{city_id}','App\Http\Controllers\Admin\TypeController@type_item_update')->middleware('auth:sanctum');
+Route::get('admin/prices/{city}','App\Http\Controllers\Admin\PriceController@index')->middleware('auth:sanctum');
+Route::get('admin/price/{id}','App\Http\Controllers\Admin\PriceController@type_item')->middleware('auth:sanctum');
+Route::put('admin/price/{id}/update','App\Http\Controllers\Admin\PriceController@type_item_update')->middleware('auth:sanctum');
 
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index')->middleware('auth:sanctum');
 Route::get('admin/service/{id}','App\Http\Controllers\Admin\ServiceController@service_item')->middleware('auth:sanctum');

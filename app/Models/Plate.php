@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transport extends Model
+class Plate extends Model
 {
     use HasFactory;
 
-    public function types()
+    public $timestamps = false;
+
+    public function prices()
     {
-        return $this->belongsToMany('App\Models\Type');
+        return $this->hasMany(Price::class);
     }
 }

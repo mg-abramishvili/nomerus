@@ -16,7 +16,8 @@ class CreateCitiesTable extends Migration
             $table->string('tel')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
-            $table->timestamps();
+            $table->string('coordinates')->nullable();
+            $table->string('order')->nullable();
         });
     }
 
