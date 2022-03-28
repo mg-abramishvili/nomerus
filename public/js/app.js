@@ -51033,7 +51033,7 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(price.odin) +
+                  _vm._s(price.odin ? price.odin : "-") +
                   "\n                "
               )
             ]),
@@ -51041,7 +51041,7 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(price.komplekt) +
+                  _vm._s(price.komplekt ? price.komplekt : "-") +
                   "\n                "
               )
             ]),
@@ -51049,7 +51049,7 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(price.zhirniy) +
+                  _vm._s(price.zhirniy ? price.zhirniy : "-") +
                   "\n                "
               )
             ]),
@@ -51057,7 +51057,9 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(price.zhirniy_komplekt) +
+                  _vm._s(
+                    price.zhirniy_komplekt ? price.zhirniy_komplekt : "-"
+                  ) +
                   "\n                "
               )
             ]),
@@ -51065,7 +51067,7 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(price.bez_otverstiy) +
+                  _vm._s(price.bez_otverstiy ? price.bez_otverstiy : "-") +
                   "\n                "
               )
             ]),
@@ -51073,7 +51075,11 @@ var render = function() {
             _c("td", [
               _vm._v(
                 "\n                    " +
-                  _vm._s(price.bez_otverstiy_komplekt) +
+                  _vm._s(
+                    price.bez_otverstiy_komplekt
+                      ? price.bez_otverstiy_komplekt
+                      : "-"
+                  ) +
                   "\n                "
               )
             ]),

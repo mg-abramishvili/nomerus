@@ -29,22 +29,22 @@
                         {{ price.plate.name }}
                     </td>
                     <td>
-                        {{ price.odin }}
+                        {{ price.odin ? price.odin : '-' }}
                     </td>
                     <td>
-                        {{ price.komplekt }}
+                        {{ price.komplekt ? price.komplekt : '-' }}
                     </td>
                     <td>
-                        {{ price.zhirniy }}
+                        {{ price.zhirniy ? price.zhirniy : '-' }}
                     </td>
                     <td>
-                        {{ price.zhirniy_komplekt }}
+                        {{ price.zhirniy_komplekt ? price.zhirniy_komplekt : '-' }}
                     </td>
                     <td>
-                        {{ price.bez_otverstiy }}
+                        {{ price.bez_otverstiy ? price.bez_otverstiy : '-' }}
                     </td>
                     <td>
-                        {{ price.bez_otverstiy_komplekt }}
+                        {{ price.bez_otverstiy_komplekt ? price.bez_otverstiy_komplekt : '-' }}
                     </td>
                     <td class="text-end">
                         <router-link :to="{name: 'AdminPriceEdit', params: {id: price.id}}" class="btn btn-sm btn-outline-primary">правка</router-link>
