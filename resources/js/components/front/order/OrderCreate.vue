@@ -176,7 +176,7 @@
                 email: '',
                 company: '',
                 orderList: [],
-                city: this.$parent.current_city.id,
+                city: '',
 
                 selected: {
                     transport: 'avto',
@@ -239,37 +239,47 @@
 
             this.clientType = this.$route.params.kto
 
-            ym(86309721, 'hit', `/order/fz/${this.$route.params.transport}/${this.$route.params.type}`, {
+            ym(86309721, 'hit', `/order/fz/${this.$route.params.transport}/${this.$route.params.plate}`, {
                 title: 'Заказ номера',
-                referer: `http://номерус.рф/order/fz/${this.$route.params.transport}/${this.$route.params.type}`
+                referer: `http://номерус.рф/order/fz/${this.$route.params.transport}/${this.$route.params.plate}`
             });
 
             if(this.$route.params.transport === 'avto') {
-                if(this.$route.params.type === 'type1_with_flag') {
+                if(this.$route.params.plate == 1) {
                     ym(86309721,'reachGoal','zakaz_obichni_nomer')
                 }
-                if(this.$route.params.type === 'type1_without_flag') {
+                if(this.$route.params.plate == 2) {
                     ym(86309721,'reachGoal','zakaz_bf')
                 }
-                if(this.$route.params.type === 'type1a') {
+                if(this.$route.params.plate == 3) {
                     ym(86309721,'reachGoal','zakaz_kvadrat')
                 }
             }
-            if(this.$route.params.transport === 'moto') {
+            if(this.$route.params.transport == 'moto') {
                 ym(86309721,'reachGoal','zakaz_mtckl')
             }
-            if(this.$route.params.transport === 'pricep') {
+            if(this.$route.params.transport == 'pricep') {
                 ym(86309721,'reachGoal','zakaz_pricep')
             }
 
-            this.loadPlates()
+            axios.get('/api/city-detect/0')
+            .then((response => {
+                this.city = response.data.city
+                this.loadPlates()
+            }))
         },
         methods: {
             loadPlates() {
-                axios.get(`/api/plates/${this.selected.transport}/${this.city}`)
+                axios.get(`/api/plates/${this.selected.transport}/${this.city.id}`)
                 .then(response => {
                     this.plates = response.data
                     this.selected.plate = this.plates[0]
+
+                    if(this.selected.transport == this.$route.params.transport) {
+                        if(this.$route.params.plate) {
+                            this.selected.plate = this.plates.find(plate => plate.id == this.$route.params.plate)
+                        }
+                    }
                 })
             },
             changeTransport() {
@@ -329,7 +339,7 @@
                         name: this.name,
                         price: this.priceTotal,
                         orderItems: this.orderList.map( (item) => item.uid ),
-                        city: this.city
+                        city: this.city.id
                     })
                     .then(response => (
                         this.$router.push({name: 'OrderComplete'})
@@ -361,7 +371,7 @@
                         company: this.company,
                         price: this.priceTotal,
                         orderItems: this.orderList.map( (item) => item.uid ),
-                        city: this.city
+                        city: this.city.id
                     })
                     .then(response => (
                         this.$router.push({name: 'OrderComplete'})

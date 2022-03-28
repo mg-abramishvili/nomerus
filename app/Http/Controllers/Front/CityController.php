@@ -38,7 +38,7 @@ class CityController extends Controller
             curl_close($ch);
             
             $res = json_decode($res);
-            if(City::where('name', $res->city)->count() > 0) {
+            if(City::where('name', $res->city)->first()) {
                 $city = City::where('name', $res->city)->first();
             } else {
                 $city = City::where('name', 'Уфа')->first();

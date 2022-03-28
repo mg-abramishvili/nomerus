@@ -11,7 +11,7 @@
                         <strong v-else>в {{ $parent.current_city.name + 'е' }}</strong>
                     </h1>
                     <p>Быстро и качественно <br>в соответствии с ГОСТ</p>
-                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'avto', type: 'type1_with_flag'} }" class="btn btn-standard">Заказать номер</router-link>
+                    <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: 'avto', plate: 1} }" class="btn btn-standard">Заказать номер</router-link>
                 </div>
                 <div class="home-carousel-img"></div>
             </div>
@@ -27,7 +27,21 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="home-services-item-image" v-bind:style="{ 'background-image': 'url(' + service.image + ')' }">
-                                        <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, type: service.types[0].namecode} }" class="btn btn-standard">Заказать</router-link>
+                                        <template v-if="service.id == 1">
+                                            <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, plate: 1} }" class="btn btn-standard">Заказать</router-link>
+                                        </template>
+                                        <template v-if="service.id == 2">
+                                            <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, plate: 2} }" class="btn btn-standard">Заказать</router-link>
+                                        </template>
+                                        <template v-if="service.id == 3">
+                                            <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, plate: 3} }" class="btn btn-standard">Заказать</router-link>
+                                        </template>
+                                        <template v-if="service.id == 4">
+                                            <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, plate: 5} }" class="btn btn-standard">Заказать</router-link>
+                                        </template>
+                                        <template v-if="service.id == 5">
+                                            <router-link :to="{ name: 'OrderCreate', params: {kto: 'fz', transport: service.type, plate: 7} }" class="btn btn-standard">Заказать</router-link>
+                                        </template>
                                     </div>
                                 </div>
                                 <div class="col-7">
@@ -65,7 +79,9 @@
                         </select>
                     </div>
                     <div class="col-12 col-md-4">
-                        <router-link :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport, type: 'type1_with_flag'} }" class="btn btn-standard">Продолжить</router-link>
+                        <router-link v-if="banner_form_transport == 'avto'" :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport, plate: 1} }" class="btn btn-standard">Продолжить</router-link>
+                        <router-link v-if="banner_form_transport == 'moto'" :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport, plate: 5} }" class="btn btn-standard">Продолжить</router-link>
+                        <router-link v-if="banner_form_transport == 'pricep'" :to="{ name: 'OrderCreate', params: {kto: banner_form_client_type, transport: banner_form_transport, plate: 7} }" class="btn btn-standard">Продолжить</router-link>
                     </div>
                 </div>
             </div>

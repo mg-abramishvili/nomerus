@@ -66,7 +66,7 @@
             </div>
         </header>
         <div>
-            <router-view :key="$route.path"></router-view>
+            <router-view :city="current_city"></router-view>
         </div>
 
         <div class="home-contacts">
@@ -74,7 +74,7 @@
                 <h2 v-if="$route.name === 'Addresses'" class="home-block-title">Адреса</h2>
                 <h2 v-else class="home-block-title">Контакты</h2>
                 <template v-for="city in cities">
-                    <template  v-if="city.id === current_city.id">
+                    <template v-if="city.id === current_city.id">
                         <ul v-for="address in city.addresses">
                             <li>{{ address.name }}
                             </li>
@@ -218,7 +218,7 @@
                 cities: [],
                 text: {},
 
-                current_city: '',
+                current_city: {},
 
                 city_modal: false,
                 callback_modal: false,

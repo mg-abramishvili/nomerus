@@ -10,6 +10,6 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        return Service::with('types')->get();
+        return Service::all();
     }
 }

@@ -4271,7 +4271,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cities: [],
       text: {},
-      current_city: '',
+      current_city: {},
       city_modal: false,
       callback_modal: false,
       city_correct_modal: false,
@@ -4968,6 +4968,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5301,7 +5317,7 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       company: '',
       orderList: [],
-      city: this.$parent.current_city.id,
+      city: '',
       selected: {
         transport: 'avto',
         plate: '',
@@ -5353,6 +5369,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this = this;
+
     if (this.$route.params.transport === 'avto') {
       this.selected.transport = 'avto';
     }
@@ -5366,42 +5384,54 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     this.clientType = this.$route.params.kto;
-    ym(86309721, 'hit', "/order/fz/".concat(this.$route.params.transport, "/").concat(this.$route.params.type), {
+    ym(86309721, 'hit', "/order/fz/".concat(this.$route.params.transport, "/").concat(this.$route.params.plate), {
       title: 'Заказ номера',
-      referer: "http://\u043D\u043E\u043C\u0435\u0440\u0443\u0441.\u0440\u0444/order/fz/".concat(this.$route.params.transport, "/").concat(this.$route.params.type)
+      referer: "http://\u043D\u043E\u043C\u0435\u0440\u0443\u0441.\u0440\u0444/order/fz/".concat(this.$route.params.transport, "/").concat(this.$route.params.plate)
     });
 
     if (this.$route.params.transport === 'avto') {
-      if (this.$route.params.type === 'type1_with_flag') {
+      if (this.$route.params.plate == 1) {
         ym(86309721, 'reachGoal', 'zakaz_obichni_nomer');
       }
 
-      if (this.$route.params.type === 'type1_without_flag') {
+      if (this.$route.params.plate == 2) {
         ym(86309721, 'reachGoal', 'zakaz_bf');
       }
 
-      if (this.$route.params.type === 'type1a') {
+      if (this.$route.params.plate == 3) {
         ym(86309721, 'reachGoal', 'zakaz_kvadrat');
       }
     }
 
-    if (this.$route.params.transport === 'moto') {
+    if (this.$route.params.transport == 'moto') {
       ym(86309721, 'reachGoal', 'zakaz_mtckl');
     }
 
-    if (this.$route.params.transport === 'pricep') {
+    if (this.$route.params.transport == 'pricep') {
       ym(86309721, 'reachGoal', 'zakaz_pricep');
     }
 
-    this.loadPlates();
+    axios.get('/api/city-detect/0').then(function (response) {
+      _this.city = response.data.city;
+
+      _this.loadPlates();
+    });
   },
   methods: {
     loadPlates: function loadPlates() {
-      var _this = this;
+      var _this2 = this;
 
-      axios.get("/api/plates/".concat(this.selected.transport, "/").concat(this.city)).then(function (response) {
-        _this.plates = response.data;
-        _this.selected.plate = _this.plates[0];
+      axios.get("/api/plates/".concat(this.selected.transport, "/").concat(this.city.id)).then(function (response) {
+        _this2.plates = response.data;
+        _this2.selected.plate = _this2.plates[0];
+
+        if (_this2.selected.transport == _this2.$route.params.transport) {
+          if (_this2.$route.params.plate) {
+            _this2.selected.plate = _this2.plates.find(function (plate) {
+              return plate.id == _this2.$route.params.plate;
+            });
+          }
+        }
       });
     },
     changeTransport: function changeTransport() {
@@ -5416,7 +5446,7 @@ __webpack_require__.r(__webpack_exports__);
       this.selected.komplekt = false;
     },
     saveOrderItem: function saveOrderItem() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.views.constructor = false;
       this.views.orderFields = true;
@@ -5429,7 +5459,7 @@ __webpack_require__.r(__webpack_exports__);
         bez_otverstiy: this.selected.bez_otverstiy,
         price: this.price
       }).then(function (response) {
-        return _this2.changeTransport(), _this2.orderList.push(response.data);
+        return _this3.changeTransport(), _this3.orderList.push(response.data);
       })["catch"](function (error) {
         if (error.response) {
           for (var key in error.response.data.errors) {
@@ -5444,7 +5474,7 @@ __webpack_require__.r(__webpack_exports__);
       this.views.orderFields = false;
     },
     saveOrder: function saveOrder() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.clientType == 'fz') {
         if (!this.name) {
@@ -5463,9 +5493,9 @@ __webpack_require__.r(__webpack_exports__);
           orderItems: this.orderList.map(function (item) {
             return item.uid;
           }),
-          city: this.city
+          city: this.city.id
         }).then(function (response) {
-          return _this3.$router.push({
+          return _this4.$router.push({
             name: 'OrderComplete'
           });
         })["catch"](function (error) {
@@ -5499,9 +5529,9 @@ __webpack_require__.r(__webpack_exports__);
           orderItems: this.orderList.map(function (item) {
             return item.uid;
           }),
-          city: this.city
+          city: this.city.id
         }).then(function (response) {
-          return _this3.$router.push({
+          return _this4.$router.push({
             name: 'OrderComplete'
           });
         })["catch"](function (error) {
@@ -5936,7 +5966,7 @@ var routes = [{
   name: 'Reviews',
   component: _components_front_reviews_Reviews_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: '/order/:kto/:transport/:type',
+  path: '/order/:kto/:transport/:plate',
   name: 'OrderCreate',
   component: _components_front_order_OrderCreate_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
@@ -51474,7 +51504,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", [_c("router-view", { key: _vm.$route.path })], 1),
+    _c("div", [_c("router-view", { attrs: { city: _vm.current_city } })], 1),
     _vm._v(" "),
     _c("div", { staticClass: "home-contacts" }, [
       _c(
@@ -52475,11 +52505,7 @@ var render = function() {
                 attrs: {
                   to: {
                     name: "OrderCreate",
-                    params: {
-                      kto: "fz",
-                      transport: "avto",
-                      type: "type1_with_flag"
-                    }
+                    params: { kto: "fz", transport: "avto", plate: 1 }
                   }
                 }
               },
@@ -52519,25 +52545,117 @@ var render = function() {
                           }
                         },
                         [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-standard",
-                              attrs: {
-                                to: {
-                                  name: "OrderCreate",
-                                  params: {
-                                    kto: "fz",
-                                    transport: service.type,
-                                    type: service.types[0].namecode
-                                  }
-                                }
-                              }
-                            },
-                            [_vm._v("Заказать")]
-                          )
+                          service.id == 1
+                            ? [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-standard",
+                                    attrs: {
+                                      to: {
+                                        name: "OrderCreate",
+                                        params: {
+                                          kto: "fz",
+                                          transport: service.type,
+                                          plate: 1
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Заказать")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          service.id == 2
+                            ? [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-standard",
+                                    attrs: {
+                                      to: {
+                                        name: "OrderCreate",
+                                        params: {
+                                          kto: "fz",
+                                          transport: service.type,
+                                          plate: 2
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Заказать")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          service.id == 3
+                            ? [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-standard",
+                                    attrs: {
+                                      to: {
+                                        name: "OrderCreate",
+                                        params: {
+                                          kto: "fz",
+                                          transport: service.type,
+                                          plate: 3
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Заказать")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          service.id == 4
+                            ? [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-standard",
+                                    attrs: {
+                                      to: {
+                                        name: "OrderCreate",
+                                        params: {
+                                          kto: "fz",
+                                          transport: service.type,
+                                          plate: 5
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Заказать")]
+                                )
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          service.id == 5
+                            ? [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-standard",
+                                    attrs: {
+                                      to: {
+                                        name: "OrderCreate",
+                                        params: {
+                                          kto: "fz",
+                                          transport: service.type,
+                                          plate: 7
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Заказать")]
+                                )
+                              ]
+                            : _vm._e()
                         ],
-                        1
+                        2
                       )
                     ]),
                     _vm._v(" "),
@@ -52656,23 +52774,65 @@ var render = function() {
             "div",
             { staticClass: "col-12 col-md-4" },
             [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-standard",
-                  attrs: {
-                    to: {
-                      name: "OrderCreate",
-                      params: {
-                        kto: _vm.banner_form_client_type,
-                        transport: _vm.banner_form_transport,
-                        type: "type1_with_flag"
+              _vm.banner_form_transport == "avto"
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-standard",
+                      attrs: {
+                        to: {
+                          name: "OrderCreate",
+                          params: {
+                            kto: _vm.banner_form_client_type,
+                            transport: _vm.banner_form_transport,
+                            plate: 1
+                          }
+                        }
                       }
-                    }
-                  }
-                },
-                [_vm._v("Продолжить")]
-              )
+                    },
+                    [_vm._v("Продолжить")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.banner_form_transport == "moto"
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-standard",
+                      attrs: {
+                        to: {
+                          name: "OrderCreate",
+                          params: {
+                            kto: _vm.banner_form_client_type,
+                            transport: _vm.banner_form_transport,
+                            plate: 5
+                          }
+                        }
+                      }
+                    },
+                    [_vm._v("Продолжить")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.banner_form_transport == "pricep"
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-standard",
+                      attrs: {
+                        to: {
+                          name: "OrderCreate",
+                          params: {
+                            kto: _vm.banner_form_client_type,
+                            transport: _vm.banner_form_transport,
+                            plate: 7
+                          }
+                        }
+                      }
+                    },
+                    [_vm._v("Продолжить")]
+                  )
+                : _vm._e()
             ],
             1
           )
