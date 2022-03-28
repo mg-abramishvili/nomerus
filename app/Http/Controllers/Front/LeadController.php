@@ -25,7 +25,7 @@ class LeadController extends Controller
         $lead->tel = $data['tel'];
         $lead->city = $data['city'];
         $lead->save();
-        $lead = Lead::find($lead->id);
-        Mail::to('nomerus.rf@mail.ru')->send(new LeadMail($lead));
+        // $lead = Lead::find($lead->id);
+        // Mail::to('nomerus.rf@mail.ru')->send(new LeadMail($lead));
     }
 }

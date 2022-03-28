@@ -1938,6 +1938,20 @@ html, body {
     }
 }
 
+.disclaimer {
+    margin-left: 20px;
+    font-size: 13px;
+    color: #777;
+    font-weight: 300;
+    margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .disclaimer {
+        margin-left: 0;
+        font-size: 11px;
+    }
+}
+
 .order-list-title {
     font-size: 26px;
     font-weight: 500;

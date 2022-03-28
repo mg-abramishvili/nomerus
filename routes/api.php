@@ -54,8 +54,8 @@ Route::get('admin/address/{id}/delete','App\Http\Controllers\Admin\AddressContro
 Route::post('admin/address/{id}','App\Http\Controllers\Admin\AddressController@address_update')->middleware('auth:sanctum');
 
 Route::get('admin/prices/{city}','App\Http\Controllers\Admin\PriceController@index')->middleware('auth:sanctum');
-Route::get('admin/price/{id}','App\Http\Controllers\Admin\PriceController@type_item')->middleware('auth:sanctum');
-Route::put('admin/price/{id}/update','App\Http\Controllers\Admin\PriceController@type_item_update')->middleware('auth:sanctum');
+Route::get('admin/price/{id}','App\Http\Controllers\Admin\PriceController@price')->middleware('auth:sanctum');
+Route::put('admin/price/{id}/update','App\Http\Controllers\Admin\PriceController@update')->middleware('auth:sanctum');
 
 Route::get('admin/services','App\Http\Controllers\Admin\ServiceController@index')->middleware('auth:sanctum');
 Route::get('admin/service/{id}','App\Http\Controllers\Admin\ServiceController@service_item')->middleware('auth:sanctum');

@@ -1,14 +1,31 @@
 <template>
     <div class="w-100">
         <div class="row">
-            <div class="col-12 col-md-4">
-                <input v-model="min_price" type="text" class="form-control mb-3">
+            <div class="col-12 col-md-6">
+                <label>Стандарт 1шт</label>
+                <input v-model="odin" type="text" class="form-control mb-3">
             </div>
-            <div class="col-12 col-md-4">
-                <input v-model="price" type="text" class="form-control mb-3">
+            <div class="col-12 col-md-6">
+                <label>Стандарт комплект</label>
+                <input v-model="komplekt" type="text" class="form-control mb-3">
             </div>
-            <div class="col-12 col-md-4">
-                <input v-model="max_price" type="text" class="form-control mb-3">
+
+            <div class="col-12 col-md-6">
+                <label>Жирный 1шт</label>
+                <input v-model="zhirniy" type="text" class="form-control mb-3">
+            </div>
+            <div class="col-12 col-md-6">
+                <label>Жирный комплект</label>
+                <input v-model="zhirniy_komplekt" type="text" class="form-control mb-3">
+            </div>
+
+            <div class="col-12 col-md-6">
+                <label>Без отверстий 1шт</label>
+                <input v-model="bez_otverstiy" type="text" class="form-control mb-3">
+            </div>
+            <div class="col-12 col-md-6">
+                <label>Без отверстий комплект</label>
+                <input v-model="bez_otverstiy_komplekt" type="text" class="form-control mb-3">
             </div>
         </div>
         
@@ -20,30 +37,44 @@
     export default {
         data() {
             return {
-                type: {},
+                price: {},
 
-                min_price: '',
-                price: '',
-                max_price: '',
+                odin: '',
+                komplekt: '',
+                zhirniy: '',
+                zhirniy_komplekt: '',
+                bez_otverstiy: '',
+                bez_otverstiy_komplekt: '',
             }
         },
         created() {
             axios
-            .get(`/api/admin/type/${this.$route.params.type_id}/${this.$route.params.city_id}`)
+            .get(`/api/admin/price/${this.$route.params.id}`)
             .then(response => (
-                this.type = response.data,
-                this.$parent.subheader = response.data[0].name,
-                this.min_price = response.data[0].cities[0].pivot.min_price,
-                this.price = response.data[0].cities[0].pivot.price,
-                this.max_price = response.data[0].cities[0].pivot.max_price
+                this.price = response.data,
+
+                this.$parent.subheader = response.data.name,
+                this.odin = response.data.odin,
+                this.komplekt = response.data.komplekt,
+                this.zhirniy = response.data.zhirniy,
+                this.zhirniy_komplekt = response.data.zhirniy_komplekt,
+                this.bez_otverstiy = response.data.bez_otverstiy,
+                this.bez_otverstiy_komplekt = response.data.bez_otverstiy_komplekt
             ))
         },
         methods: {
             updateType() {
                 axios
-                .post(`/api/admin/type/${this.$route.params.type_id}/${this.$route.params.city_id}`, { min_price: this.min_price, price: this.price, max_price: this.max_price })
+                .put(`/api/admin/price/${this.$route.params.id}/update`, {
+                    odin: this.odin,
+                    komplekt: this.komplekt,
+                    zhirniy: this.zhirniy,
+                    zhirniy_komplekt: this.zhirniy_komplekt,
+                    bez_otverstiy: this.bez_otverstiy,
+                    bez_otverstiy_komplekt: this.bez_otverstiy_komplekt
+                })
                 .then(response => (
-                    this.$router.push({name: 'AdminTypes', params: {city: 'ufa'}})
+                    this.$router.push({name: 'AdminPrices', params: {city: this.price.city.namecode}})
                 ))
                 .catch((error) => {
                     if(error.response) {

@@ -22,6 +22,10 @@
             <tbody>
                 <tr v-for="price in prices" :key="price.id">
                     <td>
+                        <small v-if="price.plate.transport == 'avto'">автомобиль</small>
+                        <small v-if="price.plate.transport == 'moto'">мотоцикл</small>
+                        <small v-if="price.plate.transport == 'pricep'">прицеп</small>
+                        <br>
                         {{ price.plate.name }}
                     </td>
                     <td>
@@ -78,7 +82,7 @@
                 this.cities = response.data
             ))
 
-            this.city = this.$route.params.city
+            this.selected.city = this.$route.params.city
         },
         methods: {
             changeCity() {

@@ -3617,35 +3617,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      type: {},
-      min_price: '',
-      price: '',
-      max_price: ''
+      price: {},
+      odin: '',
+      komplekt: '',
+      zhirniy: '',
+      zhirniy_komplekt: '',
+      bez_otverstiy: '',
+      bez_otverstiy_komplekt: ''
     };
   },
   created: function created() {
     var _this = this;
 
-    axios.get("/api/admin/type/".concat(this.$route.params.type_id, "/").concat(this.$route.params.city_id)).then(function (response) {
-      return _this.type = response.data, _this.$parent.subheader = response.data[0].name, _this.min_price = response.data[0].cities[0].pivot.min_price, _this.price = response.data[0].cities[0].pivot.price, _this.max_price = response.data[0].cities[0].pivot.max_price;
+    axios.get("/api/admin/price/".concat(this.$route.params.id)).then(function (response) {
+      return _this.price = response.data, _this.$parent.subheader = response.data.name, _this.odin = response.data.odin, _this.komplekt = response.data.komplekt, _this.zhirniy = response.data.zhirniy, _this.zhirniy_komplekt = response.data.zhirniy_komplekt, _this.bez_otverstiy = response.data.bez_otverstiy, _this.bez_otverstiy_komplekt = response.data.bez_otverstiy_komplekt;
     });
   },
   methods: {
     updateType: function updateType() {
       var _this2 = this;
 
-      axios.post("/api/admin/type/".concat(this.$route.params.type_id, "/").concat(this.$route.params.city_id), {
-        min_price: this.min_price,
-        price: this.price,
-        max_price: this.max_price
+      axios.put("/api/admin/price/".concat(this.$route.params.id, "/update"), {
+        odin: this.odin,
+        komplekt: this.komplekt,
+        zhirniy: this.zhirniy,
+        zhirniy_komplekt: this.zhirniy_komplekt,
+        bez_otverstiy: this.bez_otverstiy,
+        bez_otverstiy_komplekt: this.bez_otverstiy_komplekt
       }).then(function (response) {
         return _this2.$router.push({
-          name: 'AdminTypes',
+          name: 'AdminPrices',
           params: {
-            city: 'ufa'
+            city: _this2.price.city.namecode
           }
         });
       })["catch"](function (error) {
@@ -3726,6 +3749,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3746,7 +3773,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("/api/admin/cities").then(function (response) {
       return _this.cities = response.data;
     });
-    this.city = this.$route.params.city;
+    this.selected.city = this.$route.params.city;
   },
   methods: {
     changeCity: function changeCity() {
@@ -5297,6 +5324,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5447,6 +5478,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     saveOrderItem: function saveOrderItem() {
       var _this3 = this;
+
+      if (!this.number) {
+        return;
+      }
+
+      if (!this.numberRegion) {
+        return;
+      }
 
       this.views.constructor = false;
       this.views.orderFields = true;
@@ -50719,73 +50758,157 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "w-100" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 col-md-4" }, [
+      _c("div", { staticClass: "col-12 col-md-6" }, [
+        _c("label", [_vm._v("Стандарт 1шт")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.min_price,
-              expression: "min_price"
+              value: _vm.odin,
+              expression: "odin"
             }
           ],
           staticClass: "form-control mb-3",
           attrs: { type: "text" },
-          domProps: { value: _vm.min_price },
+          domProps: { value: _vm.odin },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.min_price = $event.target.value
+              _vm.odin = $event.target.value
             }
           }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-md-4" }, [
+      _c("div", { staticClass: "col-12 col-md-6" }, [
+        _c("label", [_vm._v("Стандарт комплект")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.price,
-              expression: "price"
+              value: _vm.komplekt,
+              expression: "komplekt"
             }
           ],
           staticClass: "form-control mb-3",
           attrs: { type: "text" },
-          domProps: { value: _vm.price },
+          domProps: { value: _vm.komplekt },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.price = $event.target.value
+              _vm.komplekt = $event.target.value
             }
           }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-md-4" }, [
+      _c("div", { staticClass: "col-12 col-md-6" }, [
+        _c("label", [_vm._v("Жирный 1шт")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.max_price,
-              expression: "max_price"
+              value: _vm.zhirniy,
+              expression: "zhirniy"
             }
           ],
           staticClass: "form-control mb-3",
           attrs: { type: "text" },
-          domProps: { value: _vm.max_price },
+          domProps: { value: _vm.zhirniy },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.max_price = $event.target.value
+              _vm.zhirniy = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-md-6" }, [
+        _c("label", [_vm._v("Жирный комплект")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.zhirniy_komplekt,
+              expression: "zhirniy_komplekt"
+            }
+          ],
+          staticClass: "form-control mb-3",
+          attrs: { type: "text" },
+          domProps: { value: _vm.zhirniy_komplekt },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.zhirniy_komplekt = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-md-6" }, [
+        _c("label", [_vm._v("Без отверстий 1шт")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.bez_otverstiy,
+              expression: "bez_otverstiy"
+            }
+          ],
+          staticClass: "form-control mb-3",
+          attrs: { type: "text" },
+          domProps: { value: _vm.bez_otverstiy },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.bez_otverstiy = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-md-6" }, [
+        _c("label", [_vm._v("Без отверстий комплект")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.bez_otverstiy_komplekt,
+              expression: "bez_otverstiy_komplekt"
+            }
+          ],
+          staticClass: "form-control mb-3",
+          attrs: { type: "text" },
+          domProps: { value: _vm.bez_otverstiy_komplekt },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.bez_otverstiy_komplekt = $event.target.value
             }
           }
         })
@@ -50887,6 +51010,19 @@ var render = function() {
         _vm._l(_vm.prices, function(price) {
           return _c("tr", { key: price.id }, [
             _c("td", [
+              price.plate.transport == "avto"
+                ? _c("small", [_vm._v("автомобиль")])
+                : _vm._e(),
+              _vm._v(" "),
+              price.plate.transport == "moto"
+                ? _c("small", [_vm._v("мотоцикл")])
+                : _vm._e(),
+              _vm._v(" "),
+              price.plate.transport == "pricep"
+                ? _c("small", [_vm._v("прицеп")])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("br"),
               _vm._v(
                 "\n                    " +
                   _vm._s(price.plate.name) +
@@ -54233,14 +54369,39 @@ var render = function() {
                     )
                   : _vm._e()
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
           ])
         ])
       ]
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "disclaimer" }, [
+      _c("p", [
+        _vm._v(
+          "Информация, размещенная на сайте, носит справочно-информационный характер и не является публичной офертой."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          'Нажимая кнопку "Оформить заказ", вы соглашаетесь с обработкой ваших персональных данных и '
+        ),
+        _c("a", { attrs: { href: "/policy", target: "_blank" } }, [
+          _vm._v("политикой конфиденциальности")
+        ]),
+        _vm._v(" сайта.")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

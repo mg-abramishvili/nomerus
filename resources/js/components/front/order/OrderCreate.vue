@@ -145,6 +145,10 @@
                             <button v-if="orderList.length" @click="saveOrder()" class="btn btn-lg btn-standard">Оформить заказ</button>
                         </div>
                     </div>
+                    <div class="disclaimer">
+                        <p>Информация, размещенная на сайте, носит справочно-информационный характер и не является публичной офертой.</p>
+                        <p>Нажимая кнопку "Оформить заказ", вы соглашаетесь с обработкой ваших персональных данных и <a href="/policy" target="_blank">политикой конфиденциальности</a> сайта.</p>
+                    </div>
                 </div>
 
             </div>
@@ -294,6 +298,13 @@
                 this.selected.komplekt = false
             },
             saveOrderItem() {
+                if(!this.number) {
+                    return
+                }
+                if(!this.numberRegion) {
+                    return
+                }
+
                 this.views.constructor = false
                 this.views.orderFields = true
 
