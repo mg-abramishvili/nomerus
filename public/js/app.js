@@ -51480,6 +51480,19 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "header-social" }, [
+              _vm.current_city.instagram
+                ? _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: _vm.current_city.instagram,
+                        target: "_blank"
+                      }
+                    },
+                    [_c("img", { attrs: { src: "/img/vk.svg" } })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _vm.current_city.whatsapp
                 ? _c(
                     "a",
@@ -51755,6 +51768,12 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "footer-social" }, [
+            _c(
+              "a",
+              { attrs: { href: _vm.current_city.instagram, target: "_blank" } },
+              [_c("img", { attrs: { src: "/img/vk.svg" } })]
+            ),
+            _vm._v(" "),
             _vm.current_city.whatsapp
               ? _c(
                   "a",
