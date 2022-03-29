@@ -13,6 +13,8 @@ class PlateController extends Controller
     {
         return Plate::where('transport', $transport)->whereHas('prices', function($q) use($city_id) {
             $q->where('city_id', '=', $city_id);
-        })->with('prices')->get();
+        })->with('prices', function($q) use($city_id) {
+            $q->where('city_id', '=', $city_id);
+        })->get();
     }
 }

@@ -2105,7 +2105,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {//
+    };
   },
   methods: {},
   components: {
@@ -5337,6 +5338,7 @@ __webpack_require__.r(__webpack_exports__);
   directives: {
     maska: maska__WEBPACK_IMPORTED_MODULE_0__.maska
   },
+  props: ['current_city'],
   data: function data() {
     return {
       plates: [],
@@ -5401,6 +5403,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
+
+    console.log(this.current_city.id);
 
     if (this.$route.params.transport === 'avto') {
       this.selected.transport = 'avto';
@@ -51646,7 +51650,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", [_c("router-view", { attrs: { city: _vm.current_city } })], 1),
+    _c(
+      "div",
+      [_c("router-view", { attrs: { current_city: _vm.current_city } })],
+      1
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "home-contacts" }, [
       _c(

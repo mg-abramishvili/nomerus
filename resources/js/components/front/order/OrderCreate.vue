@@ -167,6 +167,7 @@
 
     export default {
         directives: { maska },
+        props: ['current_city'],
         data() {
             return {
                 plates: [],
@@ -231,6 +232,8 @@
             }
         },
         created() {
+            console.log(this.current_city.id)
+
             if(this.$route.params.transport === 'avto') {
                 this.selected.transport = 'avto'
             }

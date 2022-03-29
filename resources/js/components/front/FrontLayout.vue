@@ -66,7 +66,7 @@
             </div>
         </header>
         <div>
-            <router-view :city="current_city"></router-view>
+            <router-view :current_city="current_city"></router-view>
         </div>
 
         <div class="home-contacts">
