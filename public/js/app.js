@@ -50763,7 +50763,7 @@ var render = function() {
   return _c("div", { staticClass: "w-100" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12 col-md-6" }, [
-        _c("label", [_vm._v("Стандарт 1шт")]),
+        _c("label", [_vm._v("1шт")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -50789,7 +50789,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-12 col-md-6" }, [
-        _c("label", [_vm._v("Стандарт комплект")]),
+        _c("label", [_vm._v("Комплект")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -51121,9 +51121,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_c("small", [_vm._v("Тип")])]),
         _vm._v(" "),
-        _c("th", [_c("small", [_vm._v("Стандарт 1шт")])]),
+        _c("th", [_c("small", [_vm._v("1шт")])]),
         _vm._v(" "),
-        _c("th", [_c("small", [_vm._v("Стандарт комплект")])]),
+        _c("th", [_c("small", [_vm._v("Комплект")])]),
         _vm._v(" "),
         _c("th", [_c("small", [_vm._v("Жирный 1шт")])]),
         _vm._v(" "),

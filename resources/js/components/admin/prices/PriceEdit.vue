@@ -2,11 +2,11 @@
     <div class="w-100">
         <div class="row">
             <div class="col-12 col-md-6">
-                <label>Стандарт 1шт</label>
+                <label>1шт</label>
                 <input v-model="odin" type="text" class="form-control mb-3">
             </div>
             <div class="col-12 col-md-6">
-                <label>Стандарт комплект</label>
+                <label>Комплект</label>
                 <input v-model="komplekt" type="text" class="form-control mb-3">
             </div>
 

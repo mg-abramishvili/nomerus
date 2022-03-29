@@ -10,8 +10,8 @@
             <thead>
                 <tr>
                     <th><small>Тип</small></th>
-                    <th><small>Стандарт 1шт</small></th>
-                    <th><small>Стандарт комплект</small></th>
+                    <th><small>1шт</small></th>
+                    <th><small>Комплект</small></th>
                     <th><small>Жирный 1шт</small></th>
                     <th><small>Жирный комплект</small></th>
                     <th><small>Без отверстий 1шт</small></th>
