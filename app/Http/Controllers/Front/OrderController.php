@@ -65,6 +65,6 @@ class OrderController extends Controller
         }
 
         $order = Order::with('orderItems', 'city')->find($order->id);
-        Mail::to('mg.abramishvili@yandex.ru')->send(new OrderMail($order));
+        Mail::to('nomerus.rf@mail.ru')->send(new OrderMail($order));
     }
 }
