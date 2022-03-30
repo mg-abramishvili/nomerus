@@ -29,23 +29,35 @@ E-mail:<br>{{ $email }}
 
 Заказ:<br>
 @foreach($items as $item)
+
 {{ $item->transport }} {{ $item->plate }}
 <br>
+
 @isset($item->komplekt)
+@if($item->komplekt == 1)
 комплект
 <br>
+@endif
 @endisset
+
 @isset($item->zhirniy)
+@if($item->zhirniy == 1)
 жирный шрифт
 <br>
+@endif
 @endisset
+
 @isset($item->bez_otverstiy)
+@if($item->bez_otverstiy == 1)
 без отверстий
 <br>
+@endif
 @endisset
-{{ $item->number }}
-<br>
+
+{{ $item->number }}<br>
+
 {{ $item->price }} руб.
+
 @endforeach
 <br><br>
 
