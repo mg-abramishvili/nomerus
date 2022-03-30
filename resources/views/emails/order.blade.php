@@ -29,10 +29,18 @@ E-mail:<br>{{ $email }}
 
 Заказ:<br>
 @foreach($items as $item)
-{{ $item->type }}
+{{ $item->transport }} {{ $item->plate }}
 <br>
-@isset($item->komplekt_type)
-+ {{ $item->komplekt_type }}
+@isset($item->komplekt)
+комплект
+<br>
+@endisset
+@isset($item->zhirniy)
+жирный шрифт
+<br>
+@endisset
+@isset($item->bez_otverstiy)
+без отверстий
 <br>
 @endisset
 {{ $item->number }}
