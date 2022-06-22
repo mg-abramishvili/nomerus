@@ -91,7 +91,7 @@
 
                     <div v-if="views.orderFields" class="row">
                         <div v-if="errors.length" class="alert alert-danger mb-4" role="alert">
-                            Заполните все поля
+                            <span v-for="error in errors" class="d-block my-1">{{ error }}</span>
                         </div>
 
                         <div class="col-12 mb-4">
@@ -359,10 +359,10 @@
 
                 if(this.clientType == 'fz') {
                     if(!this.name) {
-                        this.errors.push(1)
+                        this.errors.push('Укажите имя')
                     }
                     if(!this.tel) {
-                        this.errors.push(1)
+                        this.errors.push('Укажите телефон')
                     }
                     if(this.errors.length) {
                         return
@@ -390,13 +390,13 @@
 
                 if(this.clientType == 'ur') {
                     if(!this.company) {
-                        this.errors.push(1)
+                        this.errors.push('Укажите наименование организации')
                     }
                     if(!this.tel) {
-                        this.errors.push(1)
+                        this.errors.push('Укажите телефон')
                     }
                     if(!this.email) {
-                        this.errors.push(1)
+                        this.errors.push('Укажите E-mail')
                     }
                     if(this.errors.length) {
                         return
