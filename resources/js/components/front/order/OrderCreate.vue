@@ -117,7 +117,7 @@
 
                         <div class="col-12 col-md-6">
                             <label class="form-label">Телефон</label>
-                            <input v-model="tel" v-maska="{ mask: '+Z (ZZZ) ZZZ-ZZ-ZZ', tokens: { 'Z': { pattern: /[1,2,3,4,5,6,7,8,9,0]/ }}}" id="tel_tel" type="text" class="form-control mb-4">
+                            <input v-model="tel" @keypress="onlyNumber" type="text" class="form-control mb-4">
                         </div>
                         <div v-if="clientType == 'ur'" class="col-12 col-md-6">
                             <label class="form-label">E-mail</label>
@@ -343,6 +343,13 @@
 
                 this.views.constructor = true
                 this.views.orderFields = false
+            },
+            onlyNumber ($event) {
+                //console.log($event.keyCode); //keyCodes value
+                let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+                if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+                    $event.preventDefault();
+                }
             },
             saveOrder() {
                 this.errors = []
