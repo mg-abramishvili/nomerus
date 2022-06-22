@@ -117,7 +117,7 @@
 
                         <div class="col-12 col-md-6">
                             <label class="form-label">Телефон</label>
-                            <input v-model="tel" v-maska="{ mask: '+7 (###) ###-##-##', tokens: { 'Z': { pattern: /[1,2,3,4,5,6,7,8,9,0]/ }}}" type="text" class="form-control mb-4">
+                            <input v-model="tel" v-maska="{ mask: '+7 (ZZZ) ZZZ-ZZ-ZZ', tokens: { 'Z': { pattern: /[1,2,3,4,5,6,7,8,9,0]/ }}}" type="text" class="form-control mb-4">
                         </div>
                         <div v-if="clientType == 'ur'" class="col-12 col-md-6">
                             <label class="form-label">E-mail</label>
