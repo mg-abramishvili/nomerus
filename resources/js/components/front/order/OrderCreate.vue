@@ -345,11 +345,12 @@
                 this.views.orderFields = false
             },
             onlyNumber ($event) {
-                //console.log($event.keyCode); //keyCodes value
-                let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
-                if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
-                    $event.preventDefault();
-                }
+                console.log($event)
+                // let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+                
+                // if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+                //     $event.preventDefault();
+                // }
             },
             saveOrder() {
                 this.errors = []
