@@ -346,11 +346,13 @@
             },
             onlyNumber ($event) {
                 console.log($event)
-                // let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
                 
-                // if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
-                //     $event.preventDefault();
-                // }
+                let mask = [1,2,3,4,5,6,7,8,9,0,'+','-','(',')']
+                let key = $event.key
+
+                if(!mask.includes(key)) {
+                    $event.preventDefault()
+                }
             },
             saveOrder() {
                 this.errors = []
