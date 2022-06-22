@@ -90,6 +90,10 @@
                     </div>
 
                     <div v-if="views.orderFields" class="row">
+                        <div v-if="errors.length" class="alert alert-danger mb-4" role="alert">
+                            Заполните все поля
+                        </div>
+
                         <div class="col-12 mb-4">
                             <div class="form-check form-check-inline">
                                 <input v-model="clientType" class="form-check-input" type="radio" value="fz">
@@ -113,7 +117,7 @@
 
                         <div class="col-12 col-md-6">
                             <label class="form-label">Телефон</label>
-                            <input v-model="tel" type="text" class="form-control mb-4">
+                            <input v-model="tel" v-maska="{ mask: '+7 (###) ##-##-##', tokens: { 'Z': { pattern: /[1,2,3,4,5,6,7,8,9,0]/ }}}" type="text" class="form-control mb-4">
                         </div>
                         <div v-if="clientType == 'ur'" class="col-12 col-md-6">
                             <label class="form-label">E-mail</label>
@@ -190,6 +194,8 @@
                     zhirniy: false,
                     bez_otverstiy: false,
                 },
+
+                errors: [],
 
                 views: {
                     constructor: true,
@@ -339,11 +345,16 @@
                 this.views.orderFields = false
             },
             saveOrder() {
+                this.errors = []
+
                 if(this.clientType == 'fz') {
                     if(!this.name) {
-                        return
+                        this.errors.push(1)
                     }
                     if(!this.tel) {
+                        this.errors.push(1)
+                    }
+                    if(this.errors.length) {
                         return
                     }
 
@@ -369,12 +380,15 @@
 
                 if(this.clientType == 'ur') {
                     if(!this.company) {
-                        return
+                        this.errors.push(1)
                     }
                     if(!this.tel) {
-                        return
+                        this.errors.push(1)
                     }
                     if(!this.email) {
+                        this.errors.push(1)
+                    }
+                    if(this.errors.length) {
                         return
                     }
                     
